@@ -182,14 +182,34 @@
                 const md = await res.text();
                 
                 // 解析wikilink - 转成可点击的span，调用loadFile
+                // 建立文件名到完整路径的映射
+                const fileMap = {};
+                allFiles.forEach(f => {
+                    const fileName = f.split('/').pop();
+                    const nameNoExt = fileName.replace(/\.md$/, '');
+                    fileMap[nameNoExt] = f;
+                    fileMap[fileName] = f;
+                });
+                
                 let processedMd = md.replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, (match, target, display) => {
                     const targetClean = target.trim();
-                    let targetFile = allFiles.find(f => f === targetClean || f.endsWith('/' + targetClean));
-                    if (!targetFile) {
-                        targetFile = allFiles.find(f => {
-                            const fileName = f.split('/').pop();
-                            return fileName.includes(targetClean) || targetClean.includes(fileName);
-                        });
+                    
+                    // 从映射里找完整路径
+                    let filePath = fileMap[targetClean];
+                    if (!filePath) {
+                        // 模糊匹配
+                        filePath = Object.keys(fileMap).find(k => k.includes(targetClean) || targetClean.includes(k));
+                        if (filePath) filePath = fileMap[filePath];
+                    }
+                    
+                    if (filePath) {
+                        const safePath = filePath.replace(/'/g, "\'");
+                        return `<span style="color: #007acc; cursor: pointer; text-decoration: underline;" onclick="loadFile('${safePath}')">${display || target}</span>`;
+                    } else {
+                        // 找不到就显示灰色
+                        return `<span style="color: #999;">${display || target}</span>`;
+                    }
+                });
                     }
                     // 自动找对应的.md文件
                     let filePath = targetFile;
