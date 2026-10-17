@@ -50,7 +50,6 @@
 
 ## 五、HKUST科研写作手册（英文/中文混合）
 
-> 香港科技大学李伯岩组的科研写作指南，涵盖选题、论文写作、绘图、Vibe Research、案例剖析。
 
 ### 01 预备
 - [1.1 如何评价一篇论文的质量](HKUSTDial%20Supervisor-Skills%20main%20handbook/01_Preliminary/1.1_如何评价一篇论文的质量.md)

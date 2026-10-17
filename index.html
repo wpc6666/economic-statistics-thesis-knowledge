@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>经济统计学论文写作知识库 - 从0基础到论文精通</title>
-    <meta name="description" content="经济统计学论文写作知识库：从0基础到论文精通，涵盖综合评价、计量经济学、时间序列分析、多元统计分析、统计学原理5门课程，包含论文写作全流程、方法选择决策、答辩指南，以及香港科技大学科研写作指南。">
+    <meta name="description" content="经济统计学论文写作知识库：从0基础到论文精通，涵盖综合评价、计量经济学、时间序列分析、多元统计分析、统计学原理5门课程，包含论文写作全流程、方法选择决策、答辩指南。">
     <meta name="keywords" content="综合评价,计量经济学,时间序列分析,多元统计分析,统计学原理,经济统计,论文写作,毕业论文,Stata,Python,SPSS,熵值法,TOPSIS,固定效应,ARIMA,PCA,主成分分析">
-    <meta name="author" content="经济统计学知识库">
+    <meta name="author" content="白澤 程">
     <meta name="robots" content="index, follow">
     <meta name="msvalidate.01" content="F519A4DA9F13C310A90496F067A99A78">
     <meta property="og:title" content="经济统计学论文写作知识库">
@@ -19,6 +19,9 @@
         tex: {
             inlineMath: [['$', '$'], ['\\(', '\\)']],
             displayMath: [['$$', '$$'], ['\\[', '\\]']]
+        },
+        options: {
+            skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
         }
     };
     </script>
@@ -30,24 +33,37 @@
             display: flex;
             height: 100vh;
             background: #f5f5f5;
+            overflow: hidden;
         }
         /* 侧边栏 */
         .sidebar {
-            width: 320px;
+            width: 300px;
             background: #fff;
             border-right: 1px solid #e0e0e0;
             display: flex;
             flex-direction: column;
+            flex-shrink: 0;
         }
         .sidebar-header {
             padding: 15px;
             border-bottom: 1px solid #e0e0e0;
         }
         .sidebar-header h1 {
-            font-size: 16px;
+            font-size: 15px;
             color: #333;
             margin-bottom: 10px;
         }
+        .sidebar-header .repo-link {
+            display: inline-block;
+            margin-top: 8px;
+            padding: 4px 10px;
+            background: #24292e;
+            color: #fff;
+            border-radius: 4px;
+            font-size: 12px;
+            text-decoration: none;
+        }
+        .sidebar-header .repo-link:hover { background: #0366d6; }
         .search-box {
             width: 100%;
             padding: 8px 12px;
@@ -87,6 +103,7 @@
             border-radius: 3px;
         }
         .file-tree li.hidden { display: none; }
+        .file-tree ul.collapsed { display: none; }
         /* 主内容区 */
         .main {
             flex: 1;
@@ -94,6 +111,7 @@
             flex-direction: column;
             padding: 20px;
             overflow: hidden;
+            min-width: 0;
         }
         .breadcrumb {
             background: #fff;
@@ -102,6 +120,9 @@
             margin-bottom: 10px;
             font-size: 14px;
             color: #666;
+            display: flex;
+            align-items: center;
+            gap: 5px;
         }
         .breadcrumb a {
             color: #007acc;
@@ -148,6 +169,10 @@
             text-align: left;
         }
         .content table th { background: #f5f5f5; }
+        .content img, .content svg {
+            max-width: 100%;
+            height: auto;
+        }
         .wikilink {
             color: #007acc;
             cursor: pointer;
@@ -155,6 +180,21 @@
         }
         .wikilink:hover { color: #005a9e; }
         .wikilink.broken { color: #999; }
+        /* 页脚 */
+        .footer {
+            background: #fff;
+            padding: 12px 15px;
+            border-radius: 4px;
+            margin-top: 10px;
+            font-size: 12px;
+            color: #888;
+            text-align: center;
+        }
+        .footer a {
+            color: #007acc;
+            text-decoration: none;
+        }
+        .footer a:hover { text-decoration: underline; }
         /* 欢迎页 */
         .welcome {
             text-align: center;
@@ -162,13 +202,55 @@
         }
         .welcome h1 { font-size: 32px; margin-bottom: 20px; }
         .welcome p { font-size: 16px; color: #666; margin-bottom: 10px; }
+        /* 移动端菜单按钮 */
+        .mobile-menu-btn {
+            display: none;
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            z-index: 1000;
+            padding: 8px 12px;
+            background: #007acc;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        /* 响应式 - 手机竖屏 */
+        @media (max-width: 768px) {
+            body { flex-direction: column; }
+            .sidebar {
+                position: fixed;
+                left: -300px;
+                top: 0;
+                height: 100vh;
+                z-index: 999;
+                transition: left 0.3s;
+                box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+            }
+            .sidebar.open { left: 0; }
+            .mobile-menu-btn { display: block; }
+            .main {
+                padding: 10px;
+                padding-top: 50px;
+            }
+            .content { padding: 20px 15px; }
+            .content h1 { font-size: 22px; }
+            .content h2 { font-size: 19px; }
+            .content h3 { font-size: 17px; }
+        }
     </style>
 </head>
 <body>
-    <div class="sidebar">
+    <button class="mobile-menu-btn" onclick="toggleSidebar()">☰ 目录</button>
+    <div class="sidebar" id="sidebar">
         <div class="sidebar-header">
             <h1>📚 经济统计学论文写作知识库</h1>
             <input type="text" class="search-box" id="searchBox" placeholder="搜索文件...">
+            <a href="https://github.com/wpc6666/economic-statistics-thesis-knowledge" target="_blank" class="repo-link">
+                ⭐ GitHub仓库
+            </a>
         </div>
         <div class="file-tree" id="fileTree"></div>
     </div>
@@ -181,11 +263,20 @@
                 <p>从左侧选择文件开始阅读</p>
             </div>
         </div>
+        <div class="footer">
+            <p>📦 原仓库地址：<a href="https://github.com/wpc6666/economic-statistics-thesis-knowledge" target="_blank">github.com/wpc6666/economic-statistics-thesis-knowledge</a></p>
+            <p>© 白澤 程 · 经济统计学论文写作知识库</p>
+        </div>
     </div>
 
     <script>
         let fileTreeData = {};
         let allFiles = [];
+
+        // 移动端侧边栏开关
+        function toggleSidebar() {
+            document.getElementById("sidebar").classList.toggle("open");
+        }
 
         // 加载文件树
         async function loadFileTree() {
@@ -219,15 +310,21 @@
                     li.onclick = (e) => {
                         e.stopPropagation();
                         loadFile(newPath);
+                        // 手机端点击后收起侧边栏
+                        if (window.innerWidth <= 768) {
+                            document.getElementById("sidebar").classList.remove("open");
+                        }
                     };
                     container.appendChild(li);
                 } else {
-                    // 文件夹
+                    // 文件夹 - 默认收起
                     li.className = "folder";
                     li.textContent = key;
                     const ul = document.createElement("ul");
-                    li.onclick = () => {
-                        ul.style.display = ul.style.display === "none" ? "block" : "none";
+                    ul.classList.add("collapsed"); // 默认收起
+                    li.onclick = (e) => {
+                        e.stopPropagation();
+                        ul.classList.toggle("collapsed");
                     };
                     container.appendChild(li);
                     container.appendChild(ul);
@@ -243,16 +340,25 @@
             
             try {
                 const res = await fetch(encodeURI(path));
+                if (!res.ok) throw new Error(`HTTP ${res.status}`);
                 let md = await res.text();
                 
-                // 解析wikilink
+                // 解析wikilink - 改进路径匹配逻辑
                 md = md.replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, (match, target, display) => {
-                    // 查找目标文件
-                    const targetFile = allFiles.find(f => f.includes(target));
+                    const targetClean = target.trim();
+                    // 精确匹配文件名
+                    let targetFile = allFiles.find(f => f === targetClean || f.endsWith('/' + targetClean));
+                    // 模糊匹配 - 包含KP编号或关键词
+                    if (!targetFile) {
+                        targetFile = allFiles.find(f => {
+                            const fileName = f.split('/').pop().replace('.md', '');
+                            return fileName.includes(targetClean) || targetClean.includes(fileName);
+                        });
+                    }
                     if (targetFile) {
                         return `<span class="wikilink" onclick="loadFile('${targetFile}')">${display || target}</span>`;
                     } else {
-                        return `<span class="wikilink broken">${display || target}</span>`;
+                        return `<span class="wikilink broken" title="未找到: ${target}">${display || target}</span>`;
                     }
                 });
                 
@@ -268,9 +374,12 @@
                     }
                 });
                 
+                // 滚动到顶部
+                document.getElementById("content").scrollTop = 0;
+                
                 // 触发MathJax渲染公式
                 if (window.MathJax && window.MathJax.typesetPromise) {
-                    window.MathJax.typesetPromise([document.getElementById("content")]);
+                    window.MathJax.typesetPromise([document.getElementById("content"]]);
                 }
             } catch (err) {
                 document.getElementById("content").innerHTML = 
