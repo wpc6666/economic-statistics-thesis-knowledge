@@ -5,17 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>经济统计学论文写作知识库</title>
     <meta name="msvalidate.01" content="F519A4DA9F13C310A90496F067A99A78">
+    
+    <!-- 第三方库 -->
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+    
+    <!-- 配置 -->
     <script>
+    // Mermaid配置
     mermaid.initialize({ 
         startOnLoad: false,
         theme: 'default',
         securityLevel: 'loose',
         fontFamily: 'inherit'
     });
-    </script>
-    <script>
+    
+    // MathJax配置
     window.MathJax = {
         tex: {
             inlineMath: [['$', '$'], ['\\(', '\\)']],
@@ -27,15 +33,19 @@
         }
     };
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+    
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: -apple-system, sans-serif; display: flex; height: 100vh; background: #f5f5f5; }
-        .sidebar { width: 300px; background: #fff; border-right: 1px solid #ddd; overflow-y: auto; flex-shrink: 0; }
-        .sidebar-header { padding: 15px; border-bottom: 1px solid #ddd; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; display: flex; height: 100vh; background: #f5f5f5; }
+        
+        /* 侧边栏 */
+        .sidebar { width: 300px; background: #fff; border-right: 1px solid #ddd; overflow-y: auto; flex-shrink: 0; transition: transform 0.3s; }
+        .sidebar-header { padding: 15px; border-bottom: 1px solid #ddd; position: sticky; top: 0; background: #fff; z-index: 10; }
         .sidebar-header h1 { font-size: 16px; margin-bottom: 10px; }
-        .repo-btn { display: inline-block; padding: 6px 12px; background: #24292e; color: #fff; border-radius: 4px; text-decoration: none; font-size: 13px; margin-bottom: 5px; }
-        .hkust-btn { display: inline-block; padding: 6px 12px; background: #28a745; color: #fff; border-radius: 4px; text-decoration: none; font-size: 13px; }
+        .repo-btn { display: inline-block; padding: 6px 12px; background: #24292e; color: #fff; border-radius: 4px; text-decoration: none; font-size: 13px; margin-bottom: 5px; margin-right: 5px; }
+        .hkust-btn { background: #28a745; }
+        
+        /* 文件树 */
         .file-tree { padding: 10px; font-size: 13px; }
         .file-tree ul { list-style: none; padding-left: 15px; }
         .file-tree li { padding: 3px 0; cursor: pointer; color: #333; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
@@ -45,130 +55,150 @@
         .file-tree li.file::before { content: "📄 "; }
         .file-tree li.active { background: #e3f2fd; color: #007acc; padding-left: 5px; border-radius: 3px; }
         .file-tree ul.collapsed { display: none; }
+        
+        /* 主内容区 */
         .main { flex: 1; display: flex; flex-direction: column; padding: 20px; overflow: hidden; min-width: 0; }
+        .mobile-menu-btn { display: none; padding: 10px 15px; background: #007acc; color: #fff; border: none; border-radius: 4px; font-size: 14px; cursor: pointer; margin-bottom: 10px; }
         .breadcrumb { background: #fff; padding: 10px 15px; border-radius: 4px; margin-bottom: 10px; font-size: 14px; color: #666; }
-        .content { flex: 1; background: #fff; padding: 30px; border-radius: 4px; overflow-y: auto; line-height: 2; color: #333; font-size: 16px; }
-        .content p, .content li { margin-bottom: 15px; }
-        .content table { border-collapse: collapse; width: 100%; margin: 20px 0; }
-        .content th, .content td { border: 1px solid #ddd; padding: 12px; text-align: left; }
-        .content th { background: #f5f5f5; font-weight: bold; }
-        .content h1, .content h2, .content h3 { margin-top: 30px; margin-bottom: 15px; }
-        .content h1 { font-size: 28px; margin: 20px 0 15px; }
-        .content h2 { font-size: 24px; margin: 20px 0 10px; border-bottom: 1px solid #eee; padding-bottom: 5px; }
-        .content h3 { font-size: 20px; margin: 15px 0 10px; }
-        .content code { background: #f5f5f5; padding: 2px 6px; border-radius: 3px; }
-        .content pre { background: #f5f5f5; padding: 15px; border-radius: 5px; overflow-x: auto; margin: 10px 0; }
+        .content { flex: 1; background: #fff; padding: 30px; border-radius: 4px; overflow-y: auto; line-height: 1.8; color: #333; font-size: 16px; }
+        
+        /* Markdown样式 */
+        .content h1, .content h2, .content h3 { margin: 20px 0 10px; color: #222; }
+        .content h1 { font-size: 28px; border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        .content h2 { font-size: 24px; }
+        .content h3 { font-size: 20px; }
+        .content p { margin: 10px 0; }
+        .content ul, .content ol { margin: 10px 0; padding-left: 30px; }
+        .content code { background: #f5f5f5; padding: 2px 6px; border-radius: 3px; font-size: 14px; }
+        .content pre { background: #f5f5f5; padding: 15px; border-radius: 4px; overflow-x: auto; margin: 15px 0; }
+        .content pre code { background: none; padding: 0; }
+        .content blockquote { border-left: 4px solid #ddd; padding-left: 15px; color: #666; margin: 15px 0; }
         .content table { border-collapse: collapse; width: 100%; margin: 15px 0; }
-        .content table th, .content table td { border: 1px solid #ddd; padding: 8px 12px; }
-        .content img, .content svg { max-width: 100%; height: auto; }
-        .welcome { text-align: center; padding: 100px; }
+        .content th, .content td { border: 1px solid #ddd; padding: 8px 12px; text-align: left; }
+        .content th { background: #f5f5f5; }
+        .content img { max-width: 100%; }
+        
+        /* 页脚 */
+        .footer { text-align: center; padding: 20px; color: #999; font-size: 14px; }
+        .footer a { color: #007acc; text-decoration: none; margin: 0 10px; }
+        
+        /* 移动端适配 */
         @media (max-width: 768px) {
             body { flex-direction: column; }
-            .sidebar { position: fixed; left: -300px; top: 0; height: 100vh; z-index: 999; transition: left 0.3s; }
-            .sidebar.open { left: 0; }
-            .mobile-btn { display: block !important; }
-            .main { padding: 10px; padding-top: 50px; }
-            .content { padding: 20px 15px; }
+            .sidebar { position: fixed; left: 0; top: 0; bottom: 0; z-index: 100; transform: translateX(-100%); width: 80%; max-width: 300px; }
+            .sidebar.open { transform: translateX(0); }
+            .mobile-menu-btn { display: block; }
+            .main { padding: 10px; }
+            .content { padding: 15px; font-size: 15px; }
+            .content h1 { font-size: 24px; }
+            .content h2 { font-size: 20px; }
+            .content h3 { font-size: 18px; }
         }
-        .mobile-btn { display: none; position: fixed; top: 10px; left: 10px; z-index: 1000; padding: 8px 12px; background: #007acc; color: #fff; border: none; border-radius: 4px; cursor: pointer; }
     </style>
 </head>
 <body>
-    <button class="mobile-btn" onclick="document.getElementById('sidebar').classList.toggle('open')">☰ 目录</button>
+    <!-- 侧边栏 -->
     <div class="sidebar" id="sidebar">
         <div class="sidebar-header">
-            <h1>📚 知识库</h1>
-            <a href="https://github.com/wpc6666/economic-statistics-thesis-knowledge" target="_blank" class="repo-btn">⭐ 本仓库</a>
-            <br>
-            <a href="https://github.com/HKUSTDial/Supervisor-Skills" target="_blank" class="hkust-btn">📚 HKUST科研写作指南</a>
+            <h1>知识库</h1>
+            <a href="https://github.com/wpc6666/economic-statistics-thesis-knowledge" target="_blank" class="repo-btn">本仓库</a>
+            <a href="https://github.com/HKUSTDial/Supervisor-Skills" target="_blank" class="repo-btn hkust-btn">HKUST</a>
         </div>
         <div class="file-tree" id="fileTree">
-            <p style="padding: 20px; color: #999;">加载中...</p>
+            <p style="padding: 10px; color: #999;">加载中...</p>
         </div>
     </div>
+    
+    <!-- 主内容区 -->
     <div class="main">
+        <button class="mobile-menu-btn" id="mobileMenuBtn">☰ 目录</button>
         <div class="breadcrumb" id="breadcrumb">首页</div>
         <div class="content" id="content">
-            <div class="welcome">
-                <h1>欢迎使用经济统计学论文写作知识库</h1>
-                <p>从0基础到论文精通</p>
-                <p>从左侧选择文件开始阅读</p>
-            </div>
+            <h1>欢迎使用经济统计学论文写作知识库</h1>
+            <p>从左侧目录选择要查看的文件。</p>
         </div>
-        <div style="background: #fff; padding: 12px 15px; border-radius: 4px; margin-top: 10px; font-size: 12px; color: #888; text-align: center;">
-            <p>
-                <a href="https://github.com/wpc6666/economic-statistics-thesis-knowledge" target="_blank" style="color: #007acc; margin-right: 15px;">⭐ 本仓库</a>
-                <a href="https://github.com/HKUSTDial/Supervisor-Skills" target="_blank" style="color: #28a745;">📚 HKUST科研写作指南</a>
-            </p>
-            <p style="margin-top: 5px;">© 白澤 程 · 经济统计学论文写作知识库</p>
+        <div class="footer">
+            <a href="https://github.com/wpc6666/economic-statistics-thesis-knowledge" target="_blank">⭐ 本仓库</a>
+            <a href="https://github.com/HKUSTDial/Supervisor-Skills" target="_blank">📚 HKUST科研写作指南</a>
+            <p>© 白澤 程 · 经济统计学论文写作知识库</p>
         </div>
     </div>
-
+    
     <script>
+        // 全局变量
         let allFiles = [];
-
+        
+        // ===== 加载文件树 =====
         async function loadFileTree() {
             try {
                 const res = await fetch('file-tree.json');
-                const data = await res.json();
-                const container = document.getElementById('fileTree');
-                container.innerHTML = '';
-                
-                renderTree(data, container);
-                collectFiles(data, '');
+                if (!res.ok) throw new Error('HTTP ' + res.status);
+                allFiles = await res.json();
+                renderFileTree(allFiles);
             } catch (err) {
-                document.getElementById('fileTree').innerHTML = '<p style="color: red; padding: 20px;">加载失败: ' + err.message + '</p>';
+                document.getElementById('fileTree').innerHTML = '<p style="color: red; padding: 10px;">加载文件树失败: ' + err.message + '</p>';
             }
         }
-
-        function renderTree(data, container) {
-            for (const key in data) {
-                const value = data[key];
-                const li = document.createElement('li');
-                const newPath = (container.dataset.path || '') + '/' + key;
+        
+        function renderFileTree(files) {
+            // 构建树形结构
+            const tree = {};
+            files.forEach(path => {
+                const parts = path.split('/');
+                let current = tree;
+                parts.forEach((part, i) => {
+                    if (i === parts.length - 1) {
+                        current[part] = path;
+                    } else {
+                        if (!current[part]) current[part] = {};
+                        current = current[part];
+                    }
+                });
+            });
+            
+            // 渲染
+            const container = document.getElementById('fileTree');
+            container.innerHTML = buildTreeHtml(tree);
+            
+            // 绑定点击事件
+            container.querySelectorAll('li.folder').forEach(li => {
+                li.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const ul = li.nextElementSibling;
+                    if (ul) ul.classList.toggle('collapsed');
+                });
+            });
+            container.querySelectorAll('li.file').forEach(li => {
+                li.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    document.querySelectorAll('li.file').forEach(l => l.classList.remove('active'));
+                    li.classList.add('active');
+                    loadFile(li.dataset.path);
+                });
+            });
+        }
+        
+        function buildTreeHtml(node, path = '') {
+            let html = '<ul>';
+            Object.keys(node).forEach(key => {
+                const value = node[key];
+                const currentPath = path ? path + '/' + key : key;
                 
-                if (value === null) {
-                    li.className = 'file';
-                    li.textContent = key;
-                    li.dataset.path = newPath.substring(1);
-                    li.onclick = (e) => {
-                        e.stopPropagation();
-                        // 手机端直接收起侧边栏
-                        document.getElementById('sidebar').classList.remove('open');
-                        loadFile(li.dataset.path);
-                        document.querySelectorAll('.file-tree li').forEach(l => l.classList.remove('active'));
-                        li.classList.add('active');
-                    };
-                    container.appendChild(li);
+                if (typeof value === 'string') {
+                    // 文件
+                    const nameNoExt = key.replace(/\.md$/, '');
+                    html += `<li class="file" data-path="${value}">${nameNoExt}</li>`;
                 } else {
-                    li.className = 'folder';
-                    li.textContent = key;
-                    const ul = document.createElement('ul');
-                    ul.dataset.path = newPath;
-                    ul.classList.add('collapsed'); // 默认收起
-                    li.onclick = (e) => {
-                        e.stopPropagation();
-                        ul.classList.toggle('collapsed');
-                    };
-                    container.appendChild(li);
-                    container.appendChild(ul);
-                    renderTree(value, ul);
+                    // 文件夹
+                    html += `<li class="folder">${key}</li>`;
+                    html += buildTreeHtml(value, currentPath);
                 }
-            }
+            });
+            html += '</ul>';
+            return html;
         }
-
-        function collectFiles(tree, path) {
-            for (const key in tree) {
-                const value = tree[key];
-                const newPath = path ? path + '/' + key : key;
-                if (value === null) {
-                    allFiles.push(newPath);
-                } else {
-                    collectFiles(value, newPath);
-                }
-            }
-        }
-
+        
+        // ===== 加载文件内容 =====
         async function loadFile(path) {
             // 手机端自动收起侧边栏
             if (window.innerWidth <= 768) {
@@ -176,21 +206,15 @@
             }
             
             document.getElementById('breadcrumb').textContent = '首页 / ' + path;
-            document.getElementById('content').innerHTML = '<p style="padding:20px;color:#666;">加载中...</p>';
+            document.getElementById('content').innerHTML = '<p style="padding: 20px; color: #666;">加载中...</p>';
             
             try {
-                // ===== 第1步：读取文件 =====
-                let res, md;
-                try {
-                    res = await fetch(encodeURI(path));
-                    if (!res.ok) throw new Error('HTTP ' + res.status);
-                    md = await res.text();
-                } catch(e) {
-                    document.getElementById('content').innerHTML = '<h1>加载失败</h1><p>无法读取文件: ' + path + '</p><p>错误: ' + e.message + '</p>';
-                    return;
-                }
+                // 读取文件
+                const res = await fetch(encodeURI(path));
+                if (!res.ok) throw new Error('HTTP ' + res.status);
+                let md = await res.text();
                 
-                // ===== 第2步：处理wikilink =====
+                // 处理wikilink
                 const fileMap = {};
                 allFiles.forEach(f => {
                     const fileName = f.split('/').pop();
@@ -199,7 +223,7 @@
                     fileMap[fileName] = f;
                 });
                 
-                let processedMd = md.replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, (match, target, display) => {
+                md = md.replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, (match, target, display) => {
                     const targetClean = target.trim();
                     let filePath = fileMap[targetClean];
                     if (!filePath) {
@@ -207,72 +231,18 @@
                         if (filePath) filePath = fileMap[filePath];
                     }
                     if (filePath) {
-                        const safePath = filePath.replace(/'/g, "\'");
+                        const safePath = filePath.replace(/'/g, "\\'");
                         return `<span style="color: #007acc; cursor: pointer; text-decoration: underline;" onclick="loadFile('${safePath}')">${display || target}</span>`;
                     } else {
                         return `<span style="color: #999;">${display || target}</span>`;
                     }
                 });
                 
-                // ===== 第3步：渲染markdown（多种方法自动切换） =====
-                let html = '';
-                
-                // 先提取mermaid代码块，避免被marked转义
-                const mermaidBlocks = [];
-                let mdWithoutMermaid = processedMd.replace(/```mermaid\n([\s\S]*?)```/g, (match, code) => {
-                    mermaidBlocks.push(code);
-                    return `@@MERMAID_${mermaidBlocks.length - 1}@@`;
-                });
-                
-                // 方法1：先提取公式，再渲染
-                try {
-                    const formulas = [];
-                    let mdWithoutFormulas = mdWithoutMermaid.replace(/\$\$([\s\S]*?)\$\$/g, (match, f) => {
-                    let mdWithoutFormulas = mdWithoutMermaid.replace(/\$\$([\s\S]*?)\$\$/g, (match, f) => {
-                        formulas.push({type: 'block', content: f});
-                        return `@@FORMULA_${formulas.length - 1}@@`;
-                    });
-                    mdWithoutFormulas = mdWithoutFormulas.replace(/\$([^$\n]+)\$/g, (match, f) => {
-                        formulas.push({type: 'inline', content: f});
-                        return `@@FORMULA_${formulas.length - 1}@@`;
-                    });
-                    
-                    html = marked.parse(mdWithoutFormulas);
-                    
-                    formulas.forEach((f, i) => {
-                        if (f.type === 'block') {
-                            html = html.replace(`<p>@@FORMULA_${i}@@</p>`, `$$${f.content}$$`);
-                        } else {
-                            html = html.replace(`@@FORMULA_${i}@@`, `$${f.content}$$`);
-                        }
-                    });
-                    
-                    // 检查有没有残留的@@FORMULA
-                    if (html.includes('@@FORMULA_')) {
-                        throw new Error('公式提取失败');
-                    }
-                } catch(e1) {
-                    // 方法2：直接marked.parse()，然后还原转义
-                    try {
-                        html = marked.parse(processedMd);
-                        html = html.replace(/\\\\/g, '\\');
-                        html = html.replace(/\\\$/g, '\$');
-                    } catch(e2) {
-                        // 方法3：直接显示原始markdown
-                        html = '<pre>' + processedMd + '</pre>';
-                    }
-                }
-                
-                // 把mermaid代码放回去
-                mermaidBlocks.forEach((code, i) => {
-                    html = html.replace(`<p>@@MERMAID_${i}@@</p>`, `<pre><code class="language-mermaid">${code}</code></pre>`);
-                    html = html.replace(`@@MERMAID_${i}@@`, `<pre><code class="language-mermaid">${code}</code></pre>`);
-                });
-                
-                // ===== 第4步：设置到页面上 =====
+                // 渲染markdown
+                let html = marked.parse(md);
                 document.getElementById('content').innerHTML = html;
                 
-                // ===== 第5步：渲染SVG =====
+                // 渲染SVG
                 try {
                     document.querySelectorAll('img[src$=".svg"]').forEach(img => {
                         const src = img.getAttribute('src');
@@ -284,51 +254,35 @@
                             }
                         });
                     });
-                } catch(e) {
+                } catch (e) {
                     console.log('SVG渲染失败:', e);
                 }
                 
-                // ===== 第6步：渲染mermaid图（多种方法自动切换） =====
-                if (window.mermaid) {
-                    try {
-                        document.querySelectorAll('pre code.language-mermaid').forEach(el => {
-                            const pre = el.parentElement;
-                            const code = el.textContent;
-                            
-                            // 方法1：标准mermaid.render()
-                            try {
-                                mermaid.render('mermaid-' + Math.random().toString(36).substr(2, 9), code)
-                                    .then(({svg}) => { 
-                                        pre.innerHTML = svg; 
-                                    })
-                                    .catch((err) => { 
-                                        // 方法1失败，尝试方法2：用mermaid.run()
-                                        try {
-                                            pre.innerHTML = '<div class="mermaid">' + code + '</div>';
-                                            mermaid.run({
-                                                nodes: [pre.querySelector('.mermaid')]
-                                            });
-                                        } catch(e2) {
-                                            // 方法2也失败，直接显示代码
-                                            pre.innerHTML = '<div style="color:#666;padding:10px;background:#f5f5f5;">Mermaid代码:</div><pre>' + code + '</pre>';
-                                        }
-                                    });
-                            } catch(e) {
-                                pre.innerHTML = '<div style="color:#666;padding:10px;background:#f5f5f5;">Mermaid代码:</div><pre>' + code + '</pre>';
-                            }
-                        });
-                    } catch(e) {
-                        console.log('mermaid渲染失败:', e);
-                    }
+                // 渲染mermaid
+                try {
+                    document.querySelectorAll('pre code.language-mermaid').forEach(el => {
+                        const pre = el.parentElement;
+                        const code = el.textContent;
+                        
+                        mermaid.render('mermaid-' + Math.random().toString(36).substr(2, 9), code)
+                            .then(({svg}) => { 
+                                pre.innerHTML = svg; 
+                            })
+                            .catch((err) => { 
+                                pre.innerHTML = '<div style="color: #666; padding: 10px; background: #f5f5f5;">Mermaid代码:</div><pre>' + code + '</pre>';
+                            });
+                    });
+                } catch (e) {
+                    console.log('Mermaid渲染失败:', e);
                 }
                 
-                // ===== 第7步：渲染公式（MathJax） =====
+                // 渲染公式
                 if (window.MathJax && window.MathJax.typesetPromise) {
                     try {
                         window.MathJax.typesetPromise([document.getElementById('content')]).catch(err => {
                             console.log('MathJax渲染失败:', err);
                         });
-                    } catch(e) {
+                    } catch (e) {
                         console.log('MathJax渲染失败:', e);
                     }
                 }
@@ -339,6 +293,12 @@
             }
         }
         
+        // ===== 移动端菜单 =====
+        document.getElementById('mobileMenuBtn').addEventListener('click', () => {
+            document.getElementById('sidebar').classList.toggle('open');
+        });
+        
+        // 初始加载
         loadFileTree();
     </script>
 </body>
