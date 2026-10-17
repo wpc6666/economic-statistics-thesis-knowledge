@@ -212,11 +212,44 @@
                     }
                 });
                 
-                // 渲染markdown
-                let html = marked.parse(processedMd);
+                // 渲染markdown - 多种方法自动切换
+                let html = '';
                 
-                // 还原marked转义的反斜杠
-                html = html.replace(/\\\\/g, '\\');
+                try {
+                    // 方法1：标准marked.parse()
+                    html = marked.parse(processedMd);
+                    // 检查有没有@@FORMULA残留
+                    if (html.includes('@@FORMULA_')) {
+                        throw new Error('公式提取失败');
+                    }
+                } catch(e1) {
+                    try {
+                        // 方法2：先提取公式再渲染
+                        const formulas = [];
+                        let processed = processedMd.replace(/\$\$([\s\S]*?)\$\$/g, (match, f) => {
+                            formulas.push({type: 'block', content: f});
+                            return `@@FORMULA_${formulas.length - 1}@@`;
+                        });
+                        processed = processed.replace(/\$([^$\n]+)\$/g, (match, f) => {
+                            formulas.push({type: 'inline', content: f});
+                            return `@@FORMULA_${formulas.length - 1}@@`;
+                        });
+                        
+                        html = marked.parse(processed);
+                        
+                        formulas.forEach((f, i) => {
+                            if (f.type === 'block') {
+                                html = html.replace(`<p>@@FORMULA_${i}@@</p>`, `$$${f.content}$$`);
+                            } else {
+                                html = html.replace(`@@FORMULA_${i}@@`, `$${f.content}$$`);
+                            }
+                        });
+                    } catch(e2) {
+                        // 方法3：还原转义字符
+                        html = marked.parse(processedMd);
+                        html = html.replace(/\\/g, '\\');
+                    }
+                }
                 
                 document.getElementById('content').innerHTML = html;
                 
