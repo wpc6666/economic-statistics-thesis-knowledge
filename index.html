@@ -264,19 +264,32 @@
                 });
                 
                 // 渲染mermaid图，加上错误处理
+                // 渲染mermaid图 - 多种方法自动切换
                 if (window.mermaid) {
                     document.querySelectorAll('pre code.language-mermaid').forEach(el => {
                         const pre = el.parentElement;
                         const code = el.textContent;
+                        
+                        // 方法1：标准mermaid.render()
                         try {
                             mermaid.render('mermaid-' + Math.random().toString(36).substr(2, 9), code)
                                 .then(({svg}) => { 
                                     pre.innerHTML = svg; 
                                 })
                                 .catch((err) => { 
-                                    pre.innerHTML = '<div style="color:red;padding:10px;">Mermaid语法错误: ' + err.message + '</div><pre>' + code + '</pre>';
+                                    // 方法1失败，尝试方法2：用mermaid.run()
+                                    try {
+                                        pre.innerHTML = '<div class="mermaid">' + code + '</div>';
+                                        mermaid.run({
+                                            nodes: [pre.querySelector('.mermaid')]
+                                        });
+                                    } catch(e2) {
+                                        // 方法2也失败，直接显示代码
+                                        pre.innerHTML = '<div style="color:#666;padding:10px;background:#f5f5f5;">Mermaid代码（渲染失败）:</div><pre>' + code + '</pre>';
+                                    }
                                 });
                         } catch(e) {
+                            // 方法1同步失败，直接显示代码
                             pre.innerHTML = '<div style="color:red;padding:10px;">Mermaid渲染失败: ' + e.message + '</div><pre>' + code + '</pre>';
                         }
                     });
