@@ -220,13 +220,23 @@
                     }
                 });
                 
-                // 先提取mermaid代码块，用<div class="mermaid">包裹
+                // 先提取mermaid代码块，用特殊标记替换
+                const mermaidBlocks = [];
                 md = md.replace(/```mermaid\n(.*?)```/gs, function(match, code) {
-                    return '<div class="mermaid">' + code.trim() + '</div>';
+                    const id = 'MERMAID_PLACEHOLDER_' + mermaidBlocks.length;
+                    mermaidBlocks.push(code.trim());
+                    return id;
                 });
                 
                 // 渲染markdown
                 let html = marked.parse(md);
+                
+                // 把特殊标记替换回真正的mermaid代码
+                mermaidBlocks.forEach(function(code, index) {
+                    const id = 'MERMAID_PLACEHOLDER_' + index;
+                    html = html.replace(id, '<div class="mermaid">' + code + '</div>');
+                });
+                
                 document.getElementById('content').innerHTML = html;
                 
                 // 渲染mermaid
