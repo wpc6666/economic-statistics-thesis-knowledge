@@ -192,8 +192,8 @@
                     const nameNoExt = key.replace(/\.md$/, '');
                     html += `<li class="file" data-path="${currentPath}">${nameNoExt}</li>`;
                 } else if (typeof value === 'object') {
-                    // 文件夹：子ul放在父li里面
-                    html += `<li class="folder">${key}`;
+                    // 文件夹：子ul放在父li里面，直接加onclick
+                    html += `<li class="folder" onclick="this.querySelector('ul').classList.toggle('collapsed')">${key}`;
                     html += buildTreeHtml(value, currentPath);
                     html += `</li>`;
                 }
