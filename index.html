@@ -217,10 +217,18 @@
                 // ===== 第3步：渲染markdown（多种方法自动切换） =====
                 let html = '';
                 
+                // 先提取mermaid代码块，避免被marked转义
+                const mermaidBlocks = [];
+                let mdWithoutMermaid = processedMd.replace(/```mermaid\n([\s\S]*?)```/g, (match, code) => {
+                    mermaidBlocks.push(code);
+                    return `@@MERMAID_${mermaidBlocks.length - 1}@@`;
+                });
+                
                 // 方法1：先提取公式，再渲染
                 try {
                     const formulas = [];
-                    let mdWithoutFormulas = processedMd.replace(/\$\$([\s\S]*?)\$\$/g, (match, f) => {
+                    let mdWithoutFormulas = mdWithoutMermaid.replace(/\$\$([\s\S]*?)\$\$/g, (match, f) => {
+                    let mdWithoutFormulas = mdWithoutMermaid.replace(/\$\$([\s\S]*?)\$\$/g, (match, f) => {
                         formulas.push({type: 'block', content: f});
                         return `@@FORMULA_${formulas.length - 1}@@`;
                     });
@@ -254,6 +262,12 @@
                         html = '<pre>' + processedMd + '</pre>';
                     }
                 }
+                
+                // 把mermaid代码放回去
+                mermaidBlocks.forEach((code, i) => {
+                    html = html.replace(`<p>@@MERMAID_${i}@@</p>`, `<pre><code class="language-mermaid">${code}</code></pre>`);
+                    html = html.replace(`@@MERMAID_${i}@@`, `<pre><code class="language-mermaid">${code}</code></pre>`);
+                });
                 
                 // ===== 第4步：设置到页面上 =====
                 document.getElementById('content').innerHTML = html;
