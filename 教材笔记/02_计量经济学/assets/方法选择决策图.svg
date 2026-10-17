@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="1100" viewBox="0 0 800 1100">
+<style>
+text { font-family: "PingFang SC","Microsoft YaHei",sans-serif; }
+.title { font-size: 18px; font-weight: bold; fill: #1a1a2e; text-anchor: middle; }
+.q { font-size: 13px; font-weight: bold; fill: #fff; text-anchor: middle; }
+.a { font-size: 12px; fill: #2c3e50; }
+.box { rx: 8; }
+</style>
+<rect width="800" height="1100" fill="#fafbfc"/>
+<text x="400" y="30" class="title">计量方法选择决策图</text>
+<rect x="200" y="60" width="400" height="36" fill="#e74c3c" class="box"/>
+<text x="400" y="83" class="q">数据是什么类型？</text>
+<rect x="200" y="160" width="400" height="36" fill="#e67e22" class="box"/>
+<text x="400" y="183" class="q">截面数据</text>
+<line x1="400" y1="120" x2="400" y2="160" stroke="#7f8c8d" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="200" y="260" width="400" height="36" fill="#f1c40f" class="box"/>
+<text x="400" y="283" class="q">解释变量外生吗？</text>
+<line x1="400" y1="220" x2="400" y2="260" stroke="#7f8c8d" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="200" y="360" width="400" height="36" fill="#2ecc71" class="box"/>
+<text x="400" y="383" class="q">OLS回归</text>
+<line x1="400" y1="320" x2="400" y2="360" stroke="#7f8c8d" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="200" y="430" width="400" height="36" fill="#e74c3c" class="box"/>
+<text x="400" y="453" class="q">有内生性</text>
+<line x1="400" y1="390" x2="400" y2="430" stroke="#7f8c8d" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="200" y="530" width="400" height="36" fill="#9b59b6" class="box"/>
+<text x="400" y="553" class="q">工具变量2SLS</text>
+<line x1="400" y1="490" x2="400" y2="530" stroke="#7f8c8d" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="200" y="620" width="400" height="36" fill="#3498db" class="box"/>
+<text x="400" y="643" class="q">面板数据？</text>
+<line x1="400" y1="580" x2="400" y2="620" stroke="#7f8c8d" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="200" y="720" width="400" height="36" fill="#1abc9c" class="box"/>
+<text x="400" y="743" class="q">混合回归→FE/RE</text>
+<line x1="400" y1="680" x2="400" y2="720" stroke="#7f8c8d" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="200" y="820" width="400" height="36" fill="#d35400" class="box"/>
+<text x="400" y="843" class="q">时间序列？</text>
+<line x1="400" y1="780" x2="400" y2="820" stroke="#7f8c8d" stroke-width="2" marker-end="url(#arrow)"/>
+<rect x="200" y="920" width="400" height="36" fill="#c0392b" class="box"/>
+<text x="400" y="943" class="q">平稳→ARMA/VAR；非平稳→ADF+协整</text>
+<line x1="400" y1="880" x2="400" y2="920" stroke="#7f8c8d" stroke-width="2" marker-end="url(#arrow)"/>
+<defs><marker id="arrow" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#7f8c8d"/></marker></defs>
+</svg>

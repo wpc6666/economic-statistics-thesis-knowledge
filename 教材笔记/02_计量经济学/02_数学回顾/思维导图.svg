@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 730" width="900" height="730" font-family="PingFang SC, Hiragino Sans GB, Microsoft YaHei, sans-serif">
+  <rect width="100%" height="100%" fill="#f0fdf4"/>
+  <rect x="300" y="30" width="300" height="60" rx="14" fill="#166534" stroke="#14532d" stroke-width="2"/>
+  <text x="450" y="68" text-anchor="middle" fill="#ffffff" font-size="20" font-weight="bold">第3章 数学回顾</text>
+  <path d="M450 90 L450 120 L180 120 L180 150" stroke="#166534" stroke-width="1.8" fill="none"/>
+  <rect x="40" y="150" width="280" height="50" rx="10" fill="#22c55e" stroke="#166534" stroke-width="1.5"/>
+  <text x="180" y="181" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">四大统计分布</text>
+  <line x1="180" y1="200" x2="180" y2="210" stroke="#166534" stroke-width="1.2"/>
+  <rect x="40" y="210" width="280" height="42" rx="8" fill="#dcfce7" stroke="#22c55e" stroke-width="1.2"/>
+  <text x="180" y="236" text-anchor="middle" fill="#14532d" font-size="12">正态 N(μ,σ²),钟形对称</text>
+  <line x1="180" y1="250" x2="180" y2="260" stroke="#166534" stroke-width="1.2"/>
+  <rect x="40" y="260" width="280" height="42" rx="8" fill="#dcfce7" stroke="#22c55e" stroke-width="1.2"/>
+  <text x="180" y="286" text-anchor="middle" fill="#14532d" font-size="12">χ²(k)=k个独立Z²之和</text>
+  <line x1="180" y1="300" x2="180" y2="310" stroke="#166534" stroke-width="1.2"/>
+  <rect x="40" y="310" width="280" height="42" rx="8" fill="#dcfce7" stroke="#22c55e" stroke-width="1.2"/>
+  <text x="180" y="336" text-anchor="middle" fill="#14532d" font-size="12">t(k)=Z/√(χ²/k),厚尾</text>
+  <line x1="180" y1="350" x2="180" y2="360" stroke="#166534" stroke-width="1.2"/>
+  <rect x="40" y="360" width="280" height="42" rx="8" fill="#dcfce7" stroke="#22c55e" stroke-width="1.2"/>
+  <text x="180" y="386" text-anchor="middle" fill="#14532d" font-size="12">F(k1,k2)=(χ²₁/k₁)/(χ²₂/k₂)</text>
+  <line x1="180" y1="400" x2="180" y2="410" stroke="#166534" stroke-width="1.2"/>
+  <rect x="40" y="410" width="280" height="42" rx="8" fill="#dcfce7" stroke="#22c55e" stroke-width="1.2"/>
+  <text x="180" y="436" text-anchor="middle" fill="#14532d" font-size="12">k→∞时 t(k)→N(0,1)</text>
+  <path d="M450 90 L450 120 L450 120 L450 150" stroke="#166534" stroke-width="1.8" fill="none"/>
+  <rect x="300" y="150" width="300" height="50" rx="10" fill="#22c55e" stroke="#166534" stroke-width="1.5"/>
+  <text x="450" y="181" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">数字特征与定律</text>
+  <line x1="450" y1="200" x2="450" y2="210" stroke="#166534" stroke-width="1.2"/>
+  <rect x="300" y="210" width="300" height="42" rx="8" fill="#dcfce7" stroke="#22c55e" stroke-width="1.2"/>
+  <text x="450" y="236" text-anchor="middle" fill="#14532d" font-size="12">Var(X)=E(X²)-[E(X)]²</text>
+  <line x1="450" y1="250" x2="450" y2="260" stroke="#166534" stroke-width="1.2"/>
+  <rect x="300" y="260" width="300" height="42" rx="8" fill="#dcfce7" stroke="#22c55e" stroke-width="1.2"/>
+  <text x="450" y="286" text-anchor="middle" fill="#14532d" font-size="12">Cov(X,Y)=E(XY)-EX·EY</text>
+  <line x1="450" y1="300" x2="450" y2="310" stroke="#166534" stroke-width="1.2"/>
+  <rect x="300" y="310" width="300" height="42" rx="8" fill="#dcfce7" stroke="#22c55e" stroke-width="1.2"/>
+  <text x="450" y="336" text-anchor="middle" fill="#14532d" font-size="12">迭代期望 E(Y)=E[E(Y|X)]</text>
+  <line x1="450" y1="350" x2="450" y2="360" stroke="#166534" stroke-width="1.2"/>
+  <rect x="300" y="360" width="300" height="42" rx="8" fill="#dcfce7" stroke="#22c55e" stroke-width="1.2"/>
+  <text x="450" y="386" text-anchor="middle" fill="#14532d" font-size="12">MSE=Var(θ̂)+Bias²</text>
+  <line x1="450" y1="400" x2="450" y2="410" stroke="#166534" stroke-width="1.2"/>
+  <rect x="300" y="410" width="300" height="42" rx="8" fill="#dcfce7" stroke="#22c55e" stroke-width="1.2"/>
+  <text x="450" y="436" text-anchor="middle" fill="#14532d" font-size="12">相关系数ρ=Cov/√(VarX·VarY)</text>
+  <path d="M450 90 L450 120 L720 120 L720 150" stroke="#166534" stroke-width="1.8" fill="none"/>
+  <rect x="580" y="150" width="280" height="50" rx="10" fill="#22c55e" stroke="#166534" stroke-width="1.5"/>
+  <text x="720" y="181" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">无关性三层次</text>
+  <line x1="720" y1="200" x2="720" y2="210" stroke="#166534" stroke-width="1.2"/>
+  <rect x="580" y="210" width="280" height="42" rx="8" fill="#dcfce7" stroke="#22c55e" stroke-width="1.2"/>
+  <text x="720" y="236" text-anchor="middle" fill="#14532d" font-size="12">相互独立⇒均值独立⇒不相关</text>
+  <line x1="720" y1="250" x2="720" y2="260" stroke="#166534" stroke-width="1.2"/>
+  <rect x="580" y="260" width="280" height="42" rx="8" fill="#dcfce7" stroke="#22c55e" stroke-width="1.2"/>
+  <text x="720" y="286" text-anchor="middle" fill="#14532d" font-size="12">均值独立 E(Y|x)=E(Y)</text>
+  <line x1="720" y1="300" x2="720" y2="310" stroke="#166534" stroke-width="1.2"/>
+  <rect x="580" y="310" width="280" height="42" rx="8" fill="#dcfce7" stroke="#22c55e" stroke-width="1.2"/>
+  <text x="720" y="336" text-anchor="middle" fill="#14532d" font-size="12">不相关 Cov(X,Y)=0</text>
+  <line x1="720" y1="350" x2="720" y2="360" stroke="#166534" stroke-width="1.2"/>
+  <rect x="580" y="360" width="280" height="42" rx="8" fill="#dcfce7" stroke="#22c55e" stroke-width="1.2"/>
+  <text x="720" y="386" text-anchor="middle" fill="#14532d" font-size="12">LLN: X̄ → E(X)</text>
+  <line x1="720" y1="400" x2="720" y2="410" stroke="#166534" stroke-width="1.2"/>
+  <rect x="580" y="410" width="280" height="42" rx="8" fill="#dcfce7" stroke="#22c55e" stroke-width="1.2"/>
+  <text x="720" y="436" text-anchor="middle" fill="#14532d" font-size="12">CLT: √n(X̄-μ)/σ → N(0,1)</text>
+  <rect x="80" y="500" width="740" height="80" rx="12" fill="#ffffff" stroke="#166534" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="450" y="528" text-anchor="middle" fill="#14532d" font-size="14" font-weight="bold">🔗 概念关系链</text>
+  <text x="450" y="552" text-anchor="middle" fill="#14532d" font-size="13">正态Z → 平方得χ² → 除√χ²/k得t → 两χ²相比得F</text>
+  <text x="450" y="622" text-anchor="middle" fill="#166534" font-size="13" font-style="italic">💡 OLS与假设检验的数学工具箱</text>
+  <text x="450" y="682" text-anchor="middle" fill="#166534" font-size="11.5">📚 相关：第4章一元回归｜第6章大样本OLS｜第11章MLE</text>
+</svg>

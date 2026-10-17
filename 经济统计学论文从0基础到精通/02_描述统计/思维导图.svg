@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 780" width="900" height="780" font-family="PingFang SC, Hiragino Sans GB, Microsoft YaHei, sans-serif">
+  <rect width="100%" height="100%" fill="#eff6ff"/>
+  <rect x="300" y="30" width="300" height="60" rx="14" fill="#1e40af" stroke="#1e3a8a" stroke-width="2"/>
+  <text x="450" y="68" text-anchor="middle" fill="#ffffff" font-size="20" font-weight="bold">02 描述统计：拿到数据先体检</text>
+  <path d="M450 90 L450 120 L180 120 L180 150" stroke="#1e40af" stroke-width="1.8" fill="none"/>
+  <rect x="40" y="150" width="280" height="50" rx="10" fill="#3b82f6" stroke="#1e40af" stroke-width="1.5"/>
+  <text x="180" y="181" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">🗂️ 数据类型与总量相对</text>
+  <line x1="180" y1="200" x2="180" y2="210" stroke="#1e40af" stroke-width="1.2"/>
+  <rect x="40" y="210" width="280" height="42" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.2"/>
+  <text x="180" y="236" text-anchor="middle" fill="#1e3a8a" font-size="12">截面/时间序列/面板三种数据结构</text>
+  <line x1="180" y1="250" x2="180" y2="260" stroke="#1e40af" stroke-width="1.2"/>
+  <rect x="40" y="260" width="280" height="42" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.2"/>
+  <text x="180" y="286" text-anchor="middle" fill="#1e3a8a" font-size="12">连续变量 vs 分类变量 vs 定序变量</text>
+  <line x1="180" y1="300" x2="180" y2="310" stroke="#1e40af" stroke-width="1.2"/>
+  <rect x="40" y="310" width="280" height="42" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.2"/>
+  <text x="180" y="336" text-anchor="middle" fill="#1e3a8a" font-size="12">时期指标(流量,可加) vs 时点指标(存量)</text>
+  <line x1="180" y1="350" x2="180" y2="360" stroke="#1e40af" stroke-width="1.2"/>
+  <rect x="40" y="360" width="280" height="42" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.2"/>
+  <text x="180" y="386" text-anchor="middle" fill="#1e3a8a" font-size="12">六种相对数：计划/结构/比例/比较/动态/强度</text>
+  <line x1="180" y1="400" x2="180" y2="410" stroke="#1e40af" stroke-width="1.2"/>
+  <rect x="40" y="410" width="280" height="42" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.2"/>
+  <text x="180" y="436" text-anchor="middle" fill="#1e3a8a" font-size="12">强度相对数：人均GDP=GDP/人口</text>
+  <path d="M450 90 L450 120 L450 120 L450 150" stroke="#1e40af" stroke-width="1.8" fill="none"/>
+  <rect x="300" y="150" width="300" height="50" rx="10" fill="#3b82f6" stroke="#1e40af" stroke-width="1.5"/>
+  <text x="450" y="181" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">📊 集中趋势</text>
+  <line x1="450" y1="200" x2="450" y2="210" stroke="#1e40af" stroke-width="1.2"/>
+  <rect x="300" y="210" width="300" height="42" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.2"/>
+  <text x="450" y="236" text-anchor="middle" fill="#1e3a8a" font-size="12">均值x̄=Σx/n：受极端值影响(马云进酒吧)</text>
+  <line x1="450" y1="250" x2="450" y2="260" stroke="#1e40af" stroke-width="1.2"/>
+  <rect x="300" y="260" width="300" height="42" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.2"/>
+  <text x="450" y="286" text-anchor="middle" fill="#1e3a8a" font-size="12">中位数：排队站中间，抗极端值</text>
+  <line x1="450" y1="300" x2="450" y2="310" stroke="#1e40af" stroke-width="1.2"/>
+  <rect x="300" y="310" width="300" height="42" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.2"/>
+  <text x="450" y="336" text-anchor="middle" fill="#1e3a8a" font-size="12">众数：出现最多的值</text>
+  <line x1="450" y1="350" x2="450" y2="360" stroke="#1e40af" stroke-width="1.2"/>
+  <rect x="300" y="360" width="300" height="42" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.2"/>
+  <text x="450" y="386" text-anchor="middle" fill="#1e3a8a" font-size="12">几何均值：增长率/利率的平均</text>
+  <line x1="450" y1="400" x2="450" y2="410" stroke="#1e40af" stroke-width="1.2"/>
+  <rect x="300" y="410" width="300" height="42" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.2"/>
+  <text x="450" y="436" text-anchor="middle" fill="#1e3a8a" font-size="12">偏态时关系：左偏 均值&lt;中位数&lt;众数</text>
+  <path d="M450 90 L450 120 L720 120 L720 150" stroke="#1e40af" stroke-width="1.8" fill="none"/>
+  <rect x="580" y="150" width="280" height="50" rx="10" fill="#3b82f6" stroke="#1e40af" stroke-width="1.5"/>
+  <text x="720" y="181" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">📉 离散程度与可视化</text>
+  <line x1="720" y1="200" x2="720" y2="210" stroke="#1e40af" stroke-width="1.2"/>
+  <rect x="580" y="210" width="280" height="42" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.2"/>
+  <text x="720" y="236" text-anchor="middle" fill="#1e3a8a" font-size="12">方差s²=Σ(x-x̄)²/(n-1)，标准差s</text>
+  <line x1="720" y1="250" x2="720" y2="260" stroke="#1e40af" stroke-width="1.2"/>
+  <rect x="580" y="260" width="280" height="42" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.2"/>
+  <text x="720" y="286" text-anchor="middle" fill="#1e3a8a" font-size="12">极差/四分位距IQR：稳健离散</text>
+  <line x1="720" y1="300" x2="720" y2="310" stroke="#1e40af" stroke-width="1.2"/>
+  <rect x="580" y="310" width="280" height="42" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.2"/>
+  <text x="720" y="336" text-anchor="middle" fill="#1e3a8a" font-size="12">离散系数CV=s/x̄：消单位后比谁更散</text>
+  <line x1="720" y1="350" x2="720" y2="360" stroke="#1e40af" stroke-width="1.2"/>
+  <rect x="580" y="360" width="280" height="42" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.2"/>
+  <text x="720" y="386" text-anchor="middle" fill="#1e3a8a" font-size="12">直方图/箱线图/散点图按变量选用</text>
+  <line x1="720" y1="400" x2="720" y2="410" stroke="#1e40af" stroke-width="1.2"/>
+  <rect x="580" y="410" width="280" height="42" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.2"/>
+  <text x="720" y="436" text-anchor="middle" fill="#1e3a8a" font-size="12">偏态与峰度：数字描述分布歪不歪、尖不尖</text>
+  <line x1="720" y1="450" x2="720" y2="460" stroke="#1e40af" stroke-width="1.2"/>
+  <rect x="580" y="460" width="280" height="42" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.2"/>
+  <text x="720" y="486" text-anchor="middle" fill="#1e3a8a" font-size="12">数据清洗：缺失值/异常值/极端值处理</text>
+  <rect x="80" y="550" width="740" height="80" rx="12" fill="#ffffff" stroke="#1e40af" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="450" y="578" text-anchor="middle" fill="#1e3a8a" font-size="14" font-weight="bold">🔗 概念关系链</text>
+  <text x="450" y="602" text-anchor="middle" fill="#1e3a8a" font-size="13">数据类型→集中趋势(均值/中位/众数)→离散程度(方差/CV)→分布形态→可视化→清洗</text>
+  <text x="450" y="672" text-anchor="middle" fill="#1e40af" font-size="13" font-style="italic">💡 拿到数据先&quot;体检&quot;再跑回归，描述统计表是论文第一节</text>
+  <text x="450" y="732" text-anchor="middle" fill="#1e40af" font-size="11.5">📚 相关：03相关与回归 / 教材笔记·03数据整理 / 教材笔记·05平均与变异</text>
+</svg>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 780" width="900" height="780" font-family="PingFang SC, Hiragino Sans GB, Microsoft YaHei, sans-serif">
+  <rect width="100%" height="100%" fill="#eff6ff"/>
+  <rect x="300" y="30" width="300" height="60" rx="14" fill="#1e40af" stroke="#1e3a8a" stroke-width="2"/>
+  <text x="450" y="68" text-anchor="middle" fill="#ffffff" font-size="20" font-weight="bold">11 方法选择决策</text>
+  <path d="M450 90 L450 120 L180 120 L180 150" stroke="#1e40af" stroke-width="1.8" fill="none"/>
+  <rect x="40" y="150" width="280" height="50" rx="10" fill="#3b82f6" stroke="#1e40af" stroke-width="1.5"/>
+  <text x="180" y="181" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">按因变量类型</text>
+  <line x1="180" y1="200" x2="180" y2="210" stroke="#1e40af" stroke-width="1.2"/>
+  <rect x="40" y="210" width="280" height="42" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.2"/>
+  <text x="180" y="236" text-anchor="middle" fill="#1e3a8a" font-size="12">连续变量→OLS线性回归（先看线性、异方差、自相关）</text>
+  <line x1="180" y1="250" x2="180" y2="260" stroke="#1e40af" stroke-width="1.2"/>
+  <rect x="40" y="260" width="280" height="42" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.2"/>
+  <text x="180" y="286" text-anchor="middle" fill="#1e3a8a" font-size="12">二值变量(0/1)→Probit/Logit，报告…</text>
+  <line x1="180" y1="300" x2="180" y2="310" stroke="#1e40af" stroke-width="1.2"/>
+  <rect x="40" y="310" width="280" height="42" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.2"/>
+  <text x="180" y="336" text-anchor="middle" fill="#1e3a8a" font-size="12">多分类无序→多项Logit(Mlogit)；多分类…</text>
+  <line x1="180" y1="350" x2="180" y2="360" stroke="#1e40af" stroke-width="1.2"/>
+  <rect x="40" y="360" width="280" height="42" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.2"/>
+  <text x="180" y="386" text-anchor="middle" fill="#1e3a8a" font-size="12">计数变量(次数，非负整数)→Poisson/负二项…</text>
+  <line x1="180" y1="400" x2="180" y2="410" stroke="#1e40af" stroke-width="1.2"/>
+  <rect x="40" y="410" width="280" height="42" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.2"/>
+  <text x="180" y="436" text-anchor="middle" fill="#1e3a8a" font-size="12">删失数据（左侧/右侧截断）→Tobit模型</text>
+  <line x1="180" y1="450" x2="180" y2="460" stroke="#1e40af" stroke-width="1.2"/>
+  <rect x="40" y="460" width="280" height="42" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.2"/>
+  <text x="180" y="486" text-anchor="middle" fill="#1e3a8a" font-size="12">持续时间（存活时间）→Cox比例风险模型</text>
+  <path d="M450 90 L450 120 L450 120 L450 150" stroke="#1e40af" stroke-width="1.8" fill="none"/>
+  <rect x="300" y="150" width="300" height="50" rx="10" fill="#3b82f6" stroke="#1e40af" stroke-width="1.5"/>
+  <text x="450" y="181" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">按数据结构</text>
+  <line x1="450" y1="200" x2="450" y2="210" stroke="#1e40af" stroke-width="1.2"/>
+  <rect x="300" y="210" width="300" height="42" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.2"/>
+  <text x="450" y="236" text-anchor="middle" fill="#1e3a8a" font-size="12">截面数据（同一时点多个体）→OLS/Probit/…</text>
+  <line x1="450" y1="250" x2="450" y2="260" stroke="#1e40af" stroke-width="1.2"/>
+  <rect x="300" y="260" width="300" height="42" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.2"/>
+  <text x="450" y="286" text-anchor="middle" fill="#1e3a8a" font-size="12">时间序列→ARIMA/VAR/GARCH，先做平稳…</text>
+  <line x1="450" y1="300" x2="450" y2="310" stroke="#1e40af" stroke-width="1.2"/>
+  <rect x="300" y="310" width="300" height="42" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.2"/>
+  <text x="450" y="336" text-anchor="middle" fill="#1e3a8a" font-size="12">面板数据（多时点多个体）→固定效应FE/随机效应R…</text>
+  <line x1="450" y1="350" x2="450" y2="360" stroke="#1e40af" stroke-width="1.2"/>
+  <rect x="300" y="360" width="300" height="42" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.2"/>
+  <text x="450" y="386" text-anchor="middle" fill="#1e3a8a" font-size="12">混合截面→DID双重差分（政策冲击前后对比）</text>
+  <line x1="450" y1="400" x2="450" y2="410" stroke="#1e40af" stroke-width="1.2"/>
+  <rect x="300" y="410" width="300" height="42" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.2"/>
+  <text x="450" y="436" text-anchor="middle" fill="#1e3a8a" font-size="12">嵌套结构（学生嵌套于班级）→多层线性模型HLM</text>
+  <line x1="450" y1="450" x2="450" y2="460" stroke="#1e40af" stroke-width="1.2"/>
+  <rect x="300" y="460" width="300" height="42" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.2"/>
+  <text x="450" y="486" text-anchor="middle" fill="#1e3a8a" font-size="12">实验/准实验→RCT/DID/IV/RDD断点回归…</text>
+  <path d="M450 90 L450 120 L720 120 L720 150" stroke="#1e40af" stroke-width="1.8" fill="none"/>
+  <rect x="580" y="150" width="280" height="50" rx="10" fill="#3b82f6" stroke="#1e40af" stroke-width="1.5"/>
+  <text x="720" y="181" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">按内生性问题</text>
+  <line x1="720" y1="200" x2="720" y2="210" stroke="#1e40af" stroke-width="1.2"/>
+  <rect x="580" y="210" width="280" height="42" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.2"/>
+  <text x="720" y="236" text-anchor="middle" fill="#1e3a8a" font-size="12">内生性来源：遗漏变量、测量误差、双向因果</text>
+  <line x1="720" y1="250" x2="720" y2="260" stroke="#1e40af" stroke-width="1.2"/>
+  <rect x="580" y="260" width="280" height="42" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.2"/>
+  <text x="720" y="286" text-anchor="middle" fill="#1e3a8a" font-size="12">工具变量IV：找一个只影响X不直接影响Y的外生变量</text>
+  <line x1="720" y1="300" x2="720" y2="310" stroke="#1e40af" stroke-width="1.2"/>
+  <rect x="580" y="310" width="280" height="42" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.2"/>
+  <text x="720" y="336" text-anchor="middle" fill="#1e3a8a" font-size="12">弱工具变量：第一阶段F&gt;10才合格；过度识别J检验</text>
+  <line x1="720" y1="350" x2="720" y2="360" stroke="#1e40af" stroke-width="1.2"/>
+  <rect x="580" y="360" width="280" height="42" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.2"/>
+  <text x="720" y="386" text-anchor="middle" fill="#1e3a8a" font-size="12">DID：平行趋势检验是命门，不通过则结论不可信</text>
+  <line x1="720" y1="400" x2="720" y2="410" stroke="#1e40af" stroke-width="1.2"/>
+  <rect x="580" y="410" width="280" height="42" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.2"/>
+  <text x="720" y="436" text-anchor="middle" fill="#1e3a8a" font-size="12">PSM：解决可观测混淆，匹配后做平衡性检验</text>
+  <line x1="720" y1="450" x2="720" y2="460" stroke="#1e40af" stroke-width="1.2"/>
+  <rect x="580" y="460" width="280" height="42" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.2"/>
+  <text x="720" y="486" text-anchor="middle" fill="#1e3a8a" font-size="12">RDD：断点附近局部随机，需画图验证跳跃</text>
+  <rect x="80" y="550" width="740" height="80" rx="12" fill="#ffffff" stroke="#1e40af" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="450" y="578" text-anchor="middle" fill="#1e3a8a" font-size="14" font-weight="bold">🔗 概念关系链</text>
+  <text x="450" y="602" text-anchor="middle" fill="#1e3a8a" font-size="13">看因变量类型 → 看数据结构（截面/时序/面板）→ 查内生性来源 → 选对应方法 → 检验稳健性</text>
+  <text x="450" y="672" text-anchor="middle" fill="#1e40af" font-size="13" font-style="italic">💡 选方法三步走：因变量类型→数据结构→内生性问题，别拿OLS打天下</text>
+  <text x="450" y="732" text-anchor="middle" fill="#1e40af" font-size="11.5">📚 相关：03_相关与回归 04_回归三大问题 05_内生性与面板 06_受限因变量</text>
+</svg>

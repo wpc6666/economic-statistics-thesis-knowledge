@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 780" width="900" height="780" font-family="PingFang SC, Hiragino Sans GB, Microsoft YaHei, sans-serif">
+  <rect width="100%" height="100%" fill="#faf5ff"/>
+  <rect x="300" y="30" width="300" height="60" rx="14" fill="#6d28d9" stroke="#4c1d95" stroke-width="2"/>
+  <text x="450" y="68" text-anchor="middle" fill="#ffffff" font-size="20" font-weight="bold">第5章 ARIMA与异方差</text>
+  <path d="M450 90 L450 120 L180 120 L180 150" stroke="#6d28d9" stroke-width="1.8" fill="none"/>
+  <rect x="40" y="150" width="280" height="50" rx="10" fill="#a78bfa" stroke="#6d28d9" stroke-width="1.5"/>
+  <text x="180" y="181" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">一、差分与ARIMA</text>
+  <line x1="180" y1="200" x2="180" y2="210" stroke="#6d28d9" stroke-width="1.2"/>
+  <rect x="40" y="210" width="280" height="42" rx="8" fill="#f5f3ff" stroke="#a78bfa" stroke-width="1.2"/>
+  <text x="180" y="236" text-anchor="middle" fill="#4c1d95" font-size="12">一阶差分 ∇x_t=x_t-x_{t-1}</text>
+  <line x1="180" y1="250" x2="180" y2="260" stroke="#6d28d9" stroke-width="1.2"/>
+  <rect x="40" y="260" width="280" height="42" rx="8" fill="#f5f3ff" stroke="#a78bfa" stroke-width="1.2"/>
+  <text x="180" y="286" text-anchor="middle" fill="#4c1d95" font-size="12">二阶差分提二次曲线趋势</text>
+  <line x1="180" y1="300" x2="180" y2="310" stroke="#6d28d9" stroke-width="1.2"/>
+  <rect x="40" y="310" width="280" height="42" rx="8" fill="#f5f3ff" stroke="#a78bfa" stroke-width="1.2"/>
+  <text x="180" y="336" text-anchor="middle" fill="#4c1d95" font-size="12">过差分：方差增大精度下降</text>
+  <line x1="180" y1="350" x2="180" y2="360" stroke="#6d28d9" stroke-width="1.2"/>
+  <rect x="40" y="360" width="280" height="42" rx="8" fill="#f5f3ff" stroke="#a78bfa" stroke-width="1.2"/>
+  <text x="180" y="386" text-anchor="middle" fill="#4c1d95" font-size="12">ARIMA(p,d,q)=AR(p)+d阶差分+M…</text>
+  <line x1="180" y1="400" x2="180" y2="410" stroke="#6d28d9" stroke-width="1.2"/>
+  <rect x="40" y="410" width="280" height="42" rx="8" fill="#f5f3ff" stroke="#a78bfa" stroke-width="1.2"/>
+  <text x="180" y="436" text-anchor="middle" fill="#4c1d95" font-size="12">auto.arima()自动选d/p/q</text>
+  <path d="M450 90 L450 120 L450 120 L450 150" stroke="#6d28d9" stroke-width="1.8" fill="none"/>
+  <rect x="300" y="150" width="300" height="50" rx="10" fill="#a78bfa" stroke="#6d28d9" stroke-width="1.5"/>
+  <text x="450" y="181" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">二、季节与残差</text>
+  <line x1="450" y1="200" x2="450" y2="210" stroke="#6d28d9" stroke-width="1.2"/>
+  <rect x="300" y="210" width="300" height="42" rx="8" fill="#f5f3ff" stroke="#a78bfa" stroke-width="1.2"/>
+  <text x="450" y="236" text-anchor="middle" fill="#4c1d95" font-size="12">SARIMA(p,d,q)(P,D,Q)_s</text>
+  <line x1="450" y1="250" x2="450" y2="260" stroke="#6d28d9" stroke-width="1.2"/>
+  <rect x="300" y="260" width="300" height="42" rx="8" fill="#f5f3ff" stroke="#a78bfa" stroke-width="1.2"/>
+  <text x="450" y="286" text-anchor="middle" fill="#4c1d95" font-size="12">ACF滞后12/24峰值判季节</text>
+  <line x1="450" y1="300" x2="450" y2="310" stroke="#6d28d9" stroke-width="1.2"/>
+  <rect x="300" y="310" width="300" height="42" rx="8" fill="#f5f3ff" stroke="#a78bfa" stroke-width="1.2"/>
+  <text x="450" y="336" text-anchor="middle" fill="#4c1d95" font-size="12">疏系数ARIMA：部分系数为0</text>
+  <line x1="450" y1="350" x2="450" y2="360" stroke="#6d28d9" stroke-width="1.2"/>
+  <rect x="300" y="360" width="300" height="42" rx="8" fill="#f5f3ff" stroke="#a78bfa" stroke-width="1.2"/>
+  <text x="450" y="386" text-anchor="middle" fill="#4c1d95" font-size="12">残差自回归：先回归再对残差ARMA</text>
+  <path d="M450 90 L450 120 L720 120 L720 150" stroke="#6d28d9" stroke-width="1.8" fill="none"/>
+  <rect x="580" y="150" width="280" height="50" rx="10" fill="#a78bfa" stroke="#6d28d9" stroke-width="1.5"/>
+  <text x="720" y="181" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">三、ARCH/GARCH</text>
+  <line x1="720" y1="200" x2="720" y2="210" stroke="#6d28d9" stroke-width="1.2"/>
+  <rect x="580" y="210" width="280" height="42" rx="8" fill="#f5f3ff" stroke="#a78bfa" stroke-width="1.2"/>
+  <text x="720" y="236" text-anchor="middle" fill="#4c1d95" font-size="12">ARCH效应：波动率聚集</text>
+  <line x1="720" y1="250" x2="720" y2="260" stroke="#6d28d9" stroke-width="1.2"/>
+  <rect x="580" y="260" width="280" height="42" rx="8" fill="#f5f3ff" stroke="#a78bfa" stroke-width="1.2"/>
+  <text x="720" y="286" text-anchor="middle" fill="#4c1d95" font-size="12">ARCH(q): h_t=ω+Σλ_j ε²_{t…</text>
+  <line x1="720" y1="300" x2="720" y2="310" stroke="#6d28d9" stroke-width="1.2"/>
+  <rect x="580" y="310" width="280" height="42" rx="8" fill="#f5f3ff" stroke="#a78bfa" stroke-width="1.2"/>
+  <text x="720" y="336" text-anchor="middle" fill="#4c1d95" font-size="12">GARCH(p,q): +Ση_i h_{t-i}</text>
+  <line x1="720" y1="350" x2="720" y2="360" stroke="#6d28d9" stroke-width="1.2"/>
+  <rect x="580" y="360" width="280" height="42" rx="8" fill="#f5f3ff" stroke="#a78bfa" stroke-width="1.2"/>
+  <text x="720" y="386" text-anchor="middle" fill="#4c1d95" font-size="12">LM检验ARCH效应</text>
+  <line x1="720" y1="400" x2="720" y2="410" stroke="#6d28d9" stroke-width="1.2"/>
+  <rect x="580" y="410" width="280" height="42" rx="8" fill="#f5f3ff" stroke="#a78bfa" stroke-width="1.2"/>
+  <text x="720" y="436" text-anchor="middle" fill="#4c1d95" font-size="12">平稳条件 η_1+λ_1&lt;1</text>
+  <line x1="720" y1="450" x2="720" y2="460" stroke="#6d28d9" stroke-width="1.2"/>
+  <rect x="580" y="460" width="280" height="42" rx="8" fill="#f5f3ff" stroke="#a78bfa" stroke-width="1.2"/>
+  <text x="720" y="486" text-anchor="middle" fill="#4c1d95" font-size="12">ARIMA建均值，GARCH建方差</text>
+  <rect x="80" y="550" width="740" height="80" rx="12" fill="#ffffff" stroke="#6d28d9" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="450" y="578" text-anchor="middle" fill="#4c1d95" font-size="14" font-weight="bold">🔗 概念关系链</text>
+  <text x="450" y="602" text-anchor="middle" fill="#4c1d95" font-size="13">非平稳 → 差分稳化 → ARIMA建均值 → 残差平方检验 → GARCH建方差</text>
+  <text x="450" y="672" text-anchor="middle" fill="#6d28d9" font-size="13" font-style="italic">💡 差分稳化+均值建模+波动率建模三件套</text>
+  <text x="450" y="732" text-anchor="middle" fill="#6d28d9" font-size="11.5">📚 相关：第3章 ARMA / 第6章 协整</text>
+</svg>

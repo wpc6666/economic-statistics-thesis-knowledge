@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 780" width="900" height="780" font-family="PingFang SC, Hiragino Sans GB, Microsoft YaHei, sans-serif">
+  <rect width="100%" height="100%" fill="#eff6ff"/>
+  <rect x="300" y="30" width="300" height="60" rx="14" fill="#1e40af" stroke="#1e3a8a" stroke-width="2"/>
+  <text x="450" y="68" text-anchor="middle" fill="#ffffff" font-size="20" font-weight="bold">00 学前准备：16周学习路线图</text>
+  <path d="M450 90 L450 120 L180 120 L180 150" stroke="#1e40af" stroke-width="1.8" fill="none"/>
+  <rect x="40" y="150" width="280" height="50" rx="10" fill="#3b82f6" stroke="#1e40af" stroke-width="1.5"/>
+  <text x="180" y="181" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">📅 16周学习路径</text>
+  <line x1="180" y1="200" x2="180" y2="210" stroke="#1e40af" stroke-width="1.2"/>
+  <rect x="40" y="210" width="280" height="42" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.2"/>
+  <text x="180" y="236" text-anchor="middle" fill="#1e3a8a" font-size="12">第0周：读5节+装Stata/R+建data/co…</text>
+  <line x1="180" y1="250" x2="180" y2="260" stroke="#1e40af" stroke-width="1.2"/>
+  <rect x="40" y="260" width="280" height="42" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.2"/>
+  <text x="180" y="286" text-anchor="middle" fill="#1e3a8a" font-size="12">第1-2周 基础数学：函数/导数/求和/矩阵/概率…</text>
+  <line x1="180" y1="300" x2="180" y2="310" stroke="#1e40af" stroke-width="1.2"/>
+  <rect x="40" y="310" width="280" height="42" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.2"/>
+  <text x="180" y="336" text-anchor="middle" fill="#1e3a8a" font-size="12">第3-4周 描述统计：均值/方差/画图/数据清洗</text>
+  <line x1="180" y1="350" x2="180" y2="360" stroke="#1e40af" stroke-width="1.2"/>
+  <rect x="40" y="360" width="280" height="42" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.2"/>
+  <text x="180" y="386" text-anchor="middle" fill="#1e3a8a" font-size="12">第5-7周 相关与回归【心脏】：OLS手推+多元+…</text>
+  <line x1="180" y1="400" x2="180" y2="410" stroke="#1e40af" stroke-width="1.2"/>
+  <rect x="40" y="410" width="280" height="42" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.2"/>
+  <text x="180" y="436" text-anchor="middle" fill="#1e3a8a" font-size="12">第8-9周 回归三大问题：异方差/自相关/共线性诊断</text>
+  <line x1="180" y1="450" x2="180" y2="460" stroke="#1e40af" stroke-width="1.2"/>
+  <rect x="40" y="460" width="280" height="42" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.2"/>
+  <text x="180" y="486" text-anchor="middle" fill="#1e3a8a" font-size="12">第10-16周：内生性→专题→写作→实证→改稿答辩</text>
+  <path d="M450 90 L450 120 L450 120 L450 150" stroke="#1e40af" stroke-width="1.8" fill="none"/>
+  <rect x="300" y="150" width="300" height="50" rx="10" fill="#3b82f6" stroke="#1e40af" stroke-width="1.5"/>
+  <text x="450" y="181" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">📐 数学要补到哪</text>
+  <line x1="450" y1="200" x2="450" y2="210" stroke="#1e40af" stroke-width="1.2"/>
+  <rect x="300" y="210" width="300" height="42" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.2"/>
+  <text x="450" y="236" text-anchor="middle" fill="#1e3a8a" font-size="12">要会算：初中代数/求和号Σ/均值方差/简单概率</text>
+  <line x1="450" y1="250" x2="450" y2="260" stroke="#1e40af" stroke-width="1.2"/>
+  <rect x="300" y="260" width="300" height="42" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.2"/>
+  <text x="450" y="286" text-anchor="middle" fill="#1e3a8a" font-size="12">要会认：函数图像/矩阵向量/希腊字母μσβ̂ε</text>
+  <line x1="450" y1="300" x2="450" y2="310" stroke="#1e40af" stroke-width="1.2"/>
+  <rect x="300" y="310" width="300" height="42" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.2"/>
+  <text x="450" y="336" text-anchor="middle" fill="#1e3a8a" font-size="12">完全不用：ε-δ极限/特征值推导/测度论/证明</text>
+  <line x1="450" y1="350" x2="450" y2="360" stroke="#1e40af" stroke-width="1.2"/>
+  <rect x="300" y="360" width="300" height="42" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.2"/>
+  <text x="450" y="386" text-anchor="middle" fill="#1e3a8a" font-size="12">遇到定理证明直接跳过，只记结论</text>
+  <line x1="450" y1="400" x2="450" y2="410" stroke="#1e40af" stroke-width="1.2"/>
+  <rect x="300" y="410" width="300" height="42" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.2"/>
+  <text x="450" y="436" text-anchor="middle" fill="#1e3a8a" font-size="12">每个数字例题必须手算一遍，别光看</text>
+  <path d="M450 90 L450 120 L720 120 L720 150" stroke="#1e40af" stroke-width="1.8" fill="none"/>
+  <rect x="580" y="150" width="280" height="50" rx="10" fill="#3b82f6" stroke="#1e40af" stroke-width="1.5"/>
+  <text x="720" y="181" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">🛠️ 工具与论文结构</text>
+  <line x1="720" y1="200" x2="720" y2="210" stroke="#1e40af" stroke-width="1.2"/>
+  <rect x="580" y="210" width="280" height="42" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.2"/>
+  <text x="720" y="236" text-anchor="middle" fill="#1e3a8a" font-size="12">Stata主跑回归：reg/estat/outre…</text>
+  <line x1="720" y1="250" x2="720" y2="260" stroke="#1e40af" stroke-width="1.2"/>
+  <rect x="580" y="260" width="280" height="42" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.2"/>
+  <text x="720" y="286" text-anchor="middle" fill="#1e3a8a" font-size="12">R/Python画图+清洗：matplotlib直…</text>
+  <line x1="720" y1="300" x2="720" y2="310" stroke="#1e40af" stroke-width="1.2"/>
+  <rect x="580" y="310" width="280" height="42" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.2"/>
+  <text x="720" y="336" text-anchor="middle" fill="#1e3a8a" font-size="12">数据来源：国家统计局/CSMAR/Wind/CNR…</text>
+  <line x1="720" y1="350" x2="720" y2="360" stroke="#1e40af" stroke-width="1.2"/>
+  <rect x="580" y="360" width="280" height="42" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.2"/>
+  <text x="720" y="386" text-anchor="middle" fill="#1e3a8a" font-size="12">论文结构：摘要→绪论→文献→实证→结论→致谢</text>
+  <line x1="720" y1="400" x2="720" y2="410" stroke="#1e40af" stroke-width="1.2"/>
+  <rect x="580" y="410" width="280" height="42" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.2"/>
+  <text x="720" y="436" text-anchor="middle" fill="#1e3a8a" font-size="12">2周紧急版：跳过数学专题，只保OLS+写作</text>
+  <rect x="80" y="550" width="740" height="80" rx="12" fill="#ffffff" stroke="#1e40af" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="450" y="578" text-anchor="middle" fill="#1e3a8a" font-size="14" font-weight="bold">🔗 概念关系链</text>
+  <text x="450" y="602" text-anchor="middle" fill="#1e3a8a" font-size="13">00准备→01数学→02描述→03回归(核心)→04诊断→05-09专题→10写作→12实战</text>
+  <text x="450" y="672" text-anchor="middle" fill="#1e40af" font-size="13" font-style="italic">💡 16周从0到毕业论文，第5-7周OLS是心脏，多花时间</text>
+  <text x="450" y="732" text-anchor="middle" fill="#1e40af" font-size="11.5">📚 相关：01基础数学 / 10论文写作全流程 / 12毕业论文实战</text>
+</svg>

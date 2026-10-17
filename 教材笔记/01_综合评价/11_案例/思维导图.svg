@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 780" width="900" height="780" font-family="PingFang SC, Hiragino Sans GB, Microsoft YaHei, sans-serif">
+  <rect width="100%" height="100%" fill="#f0fdfa"/>
+  <rect x="300" y="30" width="300" height="60" rx="14" fill="#0e7490" stroke="#164e63" stroke-width="2"/>
+  <text x="450" y="68" text-anchor="middle" fill="#ffffff" font-size="20" font-weight="bold">第十一章 综合评价案例</text>
+  <path d="M450 90 L450 120 L180 120 L180 150" stroke="#0e7490" stroke-width="1.8" fill="none"/>
+  <rect x="40" y="150" width="280" height="50" rx="10" fill="#06b6d4" stroke="#0e7490" stroke-width="1.5"/>
+  <text x="180" y="181" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">案例一 企业入驻</text>
+  <line x1="180" y1="200" x2="180" y2="210" stroke="#0e7490" stroke-width="1.2"/>
+  <rect x="40" y="210" width="280" height="42" rx="8" fill="#ecfeff" stroke="#06b6d4" stroke-width="1.2"/>
+  <text x="180" y="236" text-anchor="middle" fill="#164e63" font-size="12">总部经济六因素30个指标</text>
+  <line x1="180" y1="250" x2="180" y2="260" stroke="#0e7490" stroke-width="1.2"/>
+  <rect x="40" y="260" width="280" height="42" rx="8" fill="#ecfeff" stroke="#06b6d4" stroke-width="1.2"/>
+  <text x="180" y="286" text-anchor="middle" fill="#164e63" font-size="12">基础设施/市场需求/经济水平</text>
+  <line x1="180" y1="300" x2="180" y2="310" stroke="#0e7490" stroke-width="1.2"/>
+  <rect x="40" y="310" width="280" height="42" rx="8" fill="#ecfeff" stroke="#06b6d4" stroke-width="1.2"/>
+  <text x="180" y="336" text-anchor="middle" fill="#164e63" font-size="12">第三产业/人文社会/总部氛围</text>
+  <line x1="180" y1="350" x2="180" y2="360" stroke="#0e7490" stroke-width="1.2"/>
+  <rect x="40" y="360" width="280" height="42" rx="8" fill="#ecfeff" stroke="#06b6d4" stroke-width="1.2"/>
+  <text x="180" y="386" text-anchor="middle" fill="#164e63" font-size="12">AHP分层赋权0.92~4.29</text>
+  <line x1="180" y1="400" x2="180" y2="410" stroke="#0e7490" stroke-width="1.2"/>
+  <rect x="40" y="410" width="280" height="42" rx="8" fill="#ecfeff" stroke="#06b6d4" stroke-width="1.2"/>
+  <text x="180" y="436" text-anchor="middle" fill="#164e63" font-size="12">31省区→东中西三大区域对比</text>
+  <path d="M450 90 L450 120 L450 120 L450 150" stroke="#0e7490" stroke-width="1.8" fill="none"/>
+  <rect x="300" y="150" width="300" height="50" rx="10" fill="#06b6d4" stroke="#0e7490" stroke-width="1.5"/>
+  <text x="450" y="181" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">案例二 城市竞争力房价</text>
+  <line x1="450" y1="200" x2="450" y2="210" stroke="#0e7490" stroke-width="1.2"/>
+  <rect x="300" y="210" width="300" height="42" rx="8" fill="#ecfeff" stroke="#06b6d4" stroke-width="1.2"/>
+  <text x="450" y="236" text-anchor="middle" fill="#164e63" font-size="12">9因素多重共线性问题</text>
+  <line x1="450" y1="250" x2="450" y2="260" stroke="#0e7490" stroke-width="1.2"/>
+  <rect x="300" y="260" width="300" height="42" rx="8" fill="#ecfeff" stroke="#06b6d4" stroke-width="1.2"/>
+  <text x="450" y="286" text-anchor="middle" fill="#164e63" font-size="12">主成分回归PCR识别净影响</text>
+  <line x1="450" y1="300" x2="450" y2="310" stroke="#0e7490" stroke-width="1.2"/>
+  <rect x="300" y="310" width="300" height="42" rx="8" fill="#ecfeff" stroke="#06b6d4" stroke-width="1.2"/>
+  <text x="450" y="336" text-anchor="middle" fill="#164e63" font-size="12">功效系数法+综合指数法互证</text>
+  <line x1="450" y1="350" x2="450" y2="360" stroke="#0e7490" stroke-width="1.2"/>
+  <rect x="300" y="360" width="300" height="42" rx="8" fill="#ecfeff" stroke="#06b6d4" stroke-width="1.2"/>
+  <text x="450" y="386" text-anchor="middle" fill="#164e63" font-size="12">26大中城市竞争力排名</text>
+  <line x1="450" y1="400" x2="450" y2="410" stroke="#0e7490" stroke-width="1.2"/>
+  <rect x="300" y="410" width="300" height="42" rx="8" fill="#ecfeff" stroke="#06b6d4" stroke-width="1.2"/>
+  <text x="450" y="436" text-anchor="middle" fill="#164e63" font-size="12">重庆1997-2008时序预测</text>
+  <path d="M450 90 L450 120 L720 120 L720 150" stroke="#0e7490" stroke-width="1.8" fill="none"/>
+  <rect x="580" y="150" width="280" height="50" rx="10" fill="#06b6d4" stroke="#0e7490" stroke-width="1.5"/>
+  <text x="720" y="181" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">案例三 重庆社会发展</text>
+  <line x1="720" y1="200" x2="720" y2="210" stroke="#0e7490" stroke-width="1.2"/>
+  <rect x="580" y="210" width="280" height="42" rx="8" fill="#ecfeff" stroke="#06b6d4" stroke-width="1.2"/>
+  <text x="720" y="236" text-anchor="middle" fill="#164e63" font-size="12">5领域26指标体系</text>
+  <line x1="720" y1="250" x2="720" y2="260" stroke="#0e7490" stroke-width="1.2"/>
+  <rect x="580" y="260" width="280" height="42" rx="8" fill="#ecfeff" stroke="#06b6d4" stroke-width="1.2"/>
+  <text x="720" y="286" text-anchor="middle" fill="#164e63" font-size="12">人口素质/生活质量/公益服务</text>
+  <line x1="720" y1="300" x2="720" y2="310" stroke="#0e7490" stroke-width="1.2"/>
+  <rect x="580" y="310" width="280" height="42" rx="8" fill="#ecfeff" stroke="#06b6d4" stroke-width="1.2"/>
+  <text x="720" y="336" text-anchor="middle" fill="#164e63" font-size="12">社会保护/社会结构</text>
+  <line x1="720" y1="350" x2="720" y2="360" stroke="#0e7490" stroke-width="1.2"/>
+  <rect x="580" y="360" width="280" height="42" rx="8" fill="#ecfeff" stroke="#06b6d4" stroke-width="1.2"/>
+  <text x="720" y="386" text-anchor="middle" fill="#164e63" font-size="12">德尔菲+主成分组合赋权</text>
+  <line x1="720" y1="400" x2="720" y2="410" stroke="#0e7490" stroke-width="1.2"/>
+  <rect x="580" y="410" width="280" height="42" rx="8" fill="#ecfeff" stroke="#06b6d4" stroke-width="1.2"/>
+  <text x="720" y="436" text-anchor="middle" fill="#164e63" font-size="12">加权功效系数法合成</text>
+  <line x1="720" y1="450" x2="720" y2="460" stroke="#0e7490" stroke-width="1.2"/>
+  <rect x="580" y="460" width="280" height="42" rx="8" fill="#ecfeff" stroke="#06b6d4" stroke-width="1.2"/>
+  <text x="720" y="486" text-anchor="middle" fill="#164e63" font-size="12">相关/位次/聚类匹配分析</text>
+  <rect x="80" y="550" width="740" height="80" rx="12" fill="#ffffff" stroke="#0e7490" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="450" y="578" text-anchor="middle" fill="#164e63" font-size="14" font-weight="bold">🔗 概念关系链</text>
+  <text x="450" y="602" text-anchor="middle" fill="#164e63" font-size="13">指标体系 → 主客观组合赋权 → 加权合成 → 聚类/匹配分析 → 政策建议</text>
+  <text x="450" y="672" text-anchor="middle" fill="#0e7490" font-size="13" font-style="italic">💡 三大关键技术的完整实战示范</text>
+  <text x="450" y="732" text-anchor="middle" fill="#0e7490" font-size="11.5">📚 相关：全书各章方法综合应用</text>
+</svg>

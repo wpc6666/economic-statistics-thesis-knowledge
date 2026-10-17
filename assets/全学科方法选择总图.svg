@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="1400" viewBox="0 0 900 1400">
+<style>
+text { font-family: "PingFang SC","Microsoft YaHei",sans-serif; }
+.title { font-size: 20px; font-weight: bold; fill: #1a1a2e; text-anchor: middle; }
+.root { font-size: 16px; font-weight: bold; fill: #fff; text-anchor: middle; }
+.branch { font-size: 14px; font-weight: bold; fill: #fff; text-anchor: middle; }
+.method { font-size: 12px; fill: #2c3e50; text-anchor: middle; }
+.box { rx: 8; }
+</style>
+<rect width="900" height="1400" fill="#fafbfc"/>
+<text x="450" y="35" class="title">全学科方法选择总图</text>
+
+<!-- 根节点 -->
+<rect x="300" y="60" width="300" height="40" fill="#2c3e50" class="box"/>
+<text x="450" y="85" class="root">你要解决什么问题？</text>
+<rect x="200" y="150" width="500" height="32" fill="#27ae60" class="box"/>
+<text x="450" y="172" class="branch">A. 综合评价（打分排序）</text>
+<line x1="450" y1="100" x2="450" y2="150" stroke="#95a5a6" stroke-width="1.5"/>
+<rect x="250" y="184" width="400" height="20" fill="#ecf0f1" stroke="#bdc3c7" rx="3"/>
+<text x="450" y="198" class="method">熵值法（客观赋权）</text>
+<rect x="250" y="208" width="400" height="20" fill="#ecf0f1" stroke="#bdc3c7" rx="3"/>
+<text x="450" y="222" class="method">AHP层次分析（主观赋权）</text>
+<rect x="250" y="232" width="400" height="20" fill="#ecf0f1" stroke="#bdc3c7" rx="3"/>
+<text x="450" y="246" class="method">TOPSIS（接近理想解）</text>
+<rect x="250" y="256" width="400" height="20" fill="#ecf0f1" stroke="#bdc3c7" rx="3"/>
+<text x="450" y="270" class="method">模糊综合评价</text>
+<rect x="250" y="280" width="400" height="20" fill="#ecf0f1" stroke="#bdc3c7" rx="3"/>
+<text x="450" y="294" class="method">灰色关联度</text>
+<rect x="200" y="380" width="500" height="32" fill="#2980b9" class="box"/>
+<text x="450" y="402" class="branch">B. 因果推断（X影响Y）</text>
+<line x1="450" y1="100" x2="450" y2="380" stroke="#95a5a6" stroke-width="1.5"/>
+<rect x="250" y="414" width="400" height="20" fill="#ecf0f1" stroke="#bdc3c7" rx="3"/>
+<text x="450" y="428" class="method">OLS基准回归</text>
+<rect x="250" y="438" width="400" height="20" fill="#ecf0f1" stroke="#bdc3c7" rx="3"/>
+<text x="450" y="452" class="method">异方差：稳健标准误</text>
+<rect x="250" y="462" width="400" height="20" fill="#ecf0f1" stroke="#bdc3c7" rx="3"/>
+<text x="450" y="476" class="method">自相关：Newey-West</text>
+<rect x="250" y="486" width="400" height="20" fill="#ecf0f1" stroke="#bdc3c7" rx="3"/>
+<text x="450" y="500" class="method">工具变量2SLS</text>
+<rect x="250" y="510" width="400" height="20" fill="#ecf0f1" stroke="#bdc3c7" rx="3"/>
+<text x="450" y="524" class="method">面板固定效应</text>
+<rect x="250" y="534" width="400" height="20" fill="#ecf0f1" stroke="#bdc3c7" rx="3"/>
+<text x="450" y="548" class="method">Logit/Probit</text>
+<rect x="200" y="620" width="500" height="32" fill="#8e44ad" class="box"/>
+<text x="450" y="642" class="branch">C. 预测（用过去推未来）</text>
+<line x1="450" y1="100" x2="450" y2="620" stroke="#95a5a6" stroke-width="1.5"/>
+<rect x="250" y="654" width="400" height="20" fill="#ecf0f1" stroke="#bdc3c7" rx="3"/>
+<text x="450" y="668" class="method">ARMA（平稳序列）</text>
+<rect x="250" y="678" width="400" height="20" fill="#ecf0f1" stroke="#bdc3c7" rx="3"/>
+<text x="450" y="692" class="method">ARIMA（差分后平稳）</text>
+<rect x="250" y="702" width="400" height="20" fill="#ecf0f1" stroke="#bdc3c7" rx="3"/>
+<text x="450" y="716" class="method">GARCH（波动率）</text>
+<rect x="250" y="726" width="400" height="20" fill="#ecf0f1" stroke="#bdc3c7" rx="3"/>
+<text x="450" y="740" class="method">VAR（多变量预测）</text>
+<rect x="250" y="750" width="400" height="20" fill="#ecf0f1" stroke="#bdc3c7" rx="3"/>
+<text x="450" y="764" class="method">协整+ECM</text>
+<rect x="200" y="870" width="500" height="32" fill="#d35400" class="box"/>
+<text x="450" y="892" class="branch">D. 降维/分组</text>
+<line x1="450" y1="100" x2="450" y2="870" stroke="#95a5a6" stroke-width="1.5"/>
+<rect x="250" y="904" width="400" height="20" fill="#ecf0f1" stroke="#bdc3c7" rx="3"/>
+<text x="450" y="918" class="method">PCA主成分</text>
+<rect x="250" y="928" width="400" height="20" fill="#ecf0f1" stroke="#bdc3c7" rx="3"/>
+<text x="450" y="942" class="method">因子分析</text>
+<rect x="250" y="952" width="400" height="20" fill="#ecf0f1" stroke="#bdc3c7" rx="3"/>
+<text x="450" y="966" class="method">系统聚类</text>
+<rect x="250" y="976" width="400" height="20" fill="#ecf0f1" stroke="#bdc3c7" rx="3"/>
+<text x="450" y="990" class="method">K-means</text>
+<rect x="250" y="1000" width="400" height="20" fill="#ecf0f1" stroke="#bdc3c7" rx="3"/>
+<text x="450" y="1014" class="method">Fisher判别</text>
+</svg>

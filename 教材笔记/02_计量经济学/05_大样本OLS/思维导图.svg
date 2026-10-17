@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 730" width="900" height="730" font-family="PingFang SC, Hiragino Sans GB, Microsoft YaHei, sans-serif">
+  <rect width="100%" height="100%" fill="#f0fdf4"/>
+  <rect x="300" y="30" width="300" height="60" rx="14" fill="#166534" stroke="#14532d" stroke-width="2"/>
+  <text x="450" y="68" text-anchor="middle" fill="#ffffff" font-size="20" font-weight="bold">第6章 大样本OLS</text>
+  <path d="M450 90 L450 120 L180 120 L180 150" stroke="#166534" stroke-width="1.8" fill="none"/>
+  <rect x="40" y="150" width="280" height="50" rx="10" fill="#22c55e" stroke="#166534" stroke-width="1.5"/>
+  <text x="180" y="181" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">收敛与极限定理</text>
+  <line x1="180" y1="200" x2="180" y2="210" stroke="#166534" stroke-width="1.2"/>
+  <rect x="40" y="210" width="280" height="42" rx="8" fill="#dcfce7" stroke="#22c55e" stroke-width="1.2"/>
+  <text x="180" y="236" text-anchor="middle" fill="#14532d" font-size="12">依概率收敛 plim θ̂ₙ→θ</text>
+  <line x1="180" y1="250" x2="180" y2="260" stroke="#166534" stroke-width="1.2"/>
+  <rect x="40" y="260" width="280" height="42" rx="8" fill="#dcfce7" stroke="#22c55e" stroke-width="1.2"/>
+  <text x="180" y="286" text-anchor="middle" fill="#14532d" font-size="12">均方收敛 E[(θ̂-θ)²]→0</text>
+  <line x1="180" y1="300" x2="180" y2="310" stroke="#166534" stroke-width="1.2"/>
+  <rect x="40" y="310" width="280" height="42" rx="8" fill="#dcfce7" stroke="#22c55e" stroke-width="1.2"/>
+  <text x="180" y="336" text-anchor="middle" fill="#14532d" font-size="12">LLN: X̄ → E(X)</text>
+  <line x1="180" y1="350" x2="180" y2="360" stroke="#166534" stroke-width="1.2"/>
+  <rect x="40" y="360" width="280" height="42" rx="8" fill="#dcfce7" stroke="#22c55e" stroke-width="1.2"/>
+  <text x="180" y="386" text-anchor="middle" fill="#14532d" font-size="12">CLT: √n(X̄-μ)/σ → N(0,1)</text>
+  <line x1="180" y1="400" x2="180" y2="410" stroke="#166534" stroke-width="1.2"/>
+  <rect x="40" y="410" width="280" height="42" rx="8" fill="#dcfce7" stroke="#22c55e" stroke-width="1.2"/>
+  <text x="180" y="436" text-anchor="middle" fill="#14532d" font-size="12">分布收敛→已知分布</text>
+  <path d="M450 90 L450 120 L450 120 L450 150" stroke="#166534" stroke-width="1.8" fill="none"/>
+  <rect x="300" y="150" width="300" height="50" rx="10" fill="#22c55e" stroke="#166534" stroke-width="1.5"/>
+  <text x="450" y="181" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">大样本性质</text>
+  <line x1="450" y1="200" x2="450" y2="210" stroke="#166534" stroke-width="1.2"/>
+  <rect x="300" y="210" width="300" height="42" rx="8" fill="#dcfce7" stroke="#22c55e" stroke-width="1.2"/>
+  <text x="450" y="236" text-anchor="middle" fill="#14532d" font-size="12">一致性 plim β̂=β 更基本</text>
+  <line x1="450" y1="250" x2="450" y2="260" stroke="#166534" stroke-width="1.2"/>
+  <rect x="300" y="260" width="300" height="42" rx="8" fill="#dcfce7" stroke="#22c55e" stroke-width="1.2"/>
+  <text x="450" y="286" text-anchor="middle" fill="#14532d" font-size="12">渐近正态 √n(β̂-β)→N(0,σ²Q⁻¹)</text>
+  <line x1="450" y1="300" x2="450" y2="310" stroke="#166534" stroke-width="1.2"/>
+  <rect x="300" y="310" width="300" height="42" rx="8" fill="#dcfce7" stroke="#22c55e" stroke-width="1.2"/>
+  <text x="450" y="336" text-anchor="middle" fill="#14532d" font-size="12">渐近有效</text>
+  <line x1="450" y1="350" x2="450" y2="360" stroke="#166534" stroke-width="1.2"/>
+  <rect x="300" y="360" width="300" height="42" rx="8" fill="#dcfce7" stroke="#22c55e" stroke-width="1.2"/>
+  <text x="450" y="386" text-anchor="middle" fill="#14532d" font-size="12">条件:外生+X&#x27;X/n渐近满秩</text>
+  <line x1="450" y1="400" x2="450" y2="410" stroke="#166534" stroke-width="1.2"/>
+  <rect x="300" y="410" width="300" height="42" rx="8" fill="#dcfce7" stroke="#22c55e" stroke-width="1.2"/>
+  <text x="450" y="436" text-anchor="middle" fill="#14532d" font-size="12">无偏≠一致,有偏可渐近一致</text>
+  <path d="M450 90 L450 120 L720 120 L720 150" stroke="#166534" stroke-width="1.8" fill="none"/>
+  <rect x="580" y="150" width="280" height="50" rx="10" fill="#22c55e" stroke="#166534" stroke-width="1.5"/>
+  <text x="720" y="181" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">大样本推断</text>
+  <line x1="720" y1="200" x2="720" y2="210" stroke="#166534" stroke-width="1.2"/>
+  <rect x="580" y="210" width="280" height="42" rx="8" fill="#dcfce7" stroke="#22c55e" stroke-width="1.2"/>
+  <text x="720" y="236" text-anchor="middle" fill="#14532d" font-size="12">t=β̂/SE → N(0,1)</text>
+  <line x1="720" y1="250" x2="720" y2="260" stroke="#166534" stroke-width="1.2"/>
+  <rect x="580" y="260" width="280" height="42" rx="8" fill="#dcfce7" stroke="#22c55e" stroke-width="1.2"/>
+  <text x="720" y="286" text-anchor="middle" fill="#14532d" font-size="12">F渐近 χ²/m</text>
+  <line x1="720" y1="300" x2="720" y2="310" stroke="#166534" stroke-width="1.2"/>
+  <rect x="580" y="310" width="280" height="42" rx="8" fill="#dcfce7" stroke="#22c55e" stroke-width="1.2"/>
+  <text x="720" y="336" text-anchor="middle" fill="#14532d" font-size="12">CI: β̂±1.96·SE</text>
+  <line x1="720" y1="350" x2="720" y2="360" stroke="#166534" stroke-width="1.2"/>
+  <rect x="580" y="360" width="280" height="42" rx="8" fill="#dcfce7" stroke="#22c55e" stroke-width="1.2"/>
+  <text x="720" y="386" text-anchor="middle" fill="#14532d" font-size="12">不要求扰动正态</text>
+  <line x1="720" y1="400" x2="720" y2="410" stroke="#166534" stroke-width="1.2"/>
+  <rect x="580" y="410" width="280" height="42" rx="8" fill="#dcfce7" stroke="#22c55e" stroke-width="1.2"/>
+  <text x="720" y="436" text-anchor="middle" fill="#14532d" font-size="12">n&gt;30即可用渐近结论</text>
+  <rect x="80" y="500" width="740" height="80" rx="12" fill="#ffffff" stroke="#166534" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="450" y="528" text-anchor="middle" fill="#14532d" font-size="14" font-weight="bold">🔗 概念关系链</text>
+  <text x="450" y="552" text-anchor="middle" fill="#14532d" font-size="13">LLN+CLT → 一致性 → 渐近正态 → t≈N(0,1),F≈χ²/m</text>
+  <text x="450" y="622" text-anchor="middle" fill="#166534" font-size="13" font-style="italic">💡 放松正态假设:不要求扰动正态,只要样本够大</text>
+  <text x="450" y="682" text-anchor="middle" fill="#166534" font-size="11.5">📚 相关：第5章小样本OLS｜第7章异方差稳健SE｜第9章IV</text>
+</svg>

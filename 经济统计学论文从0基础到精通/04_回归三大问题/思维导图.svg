@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 780" width="900" height="780" font-family="PingFang SC, Hiragino Sans GB, Microsoft YaHei, sans-serif">
+  <rect width="100%" height="100%" fill="#eff6ff"/>
+  <rect x="300" y="30" width="300" height="60" rx="14" fill="#1e40af" stroke="#1e3a8a" stroke-width="2"/>
+  <text x="450" y="68" text-anchor="middle" fill="#ffffff" font-size="20" font-weight="bold">04 回归三大问题：真实数据不完美</text>
+  <path d="M450 90 L450 120 L180 120 L180 150" stroke="#1e40af" stroke-width="1.8" fill="none"/>
+  <rect x="40" y="150" width="280" height="50" rx="10" fill="#3b82f6" stroke="#1e40af" stroke-width="1.5"/>
+  <text x="180" y="181" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">📐 异方差</text>
+  <line x1="180" y1="200" x2="180" y2="210" stroke="#1e40af" stroke-width="1.2"/>
+  <rect x="40" y="210" width="280" height="42" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.2"/>
+  <text x="180" y="236" text-anchor="middle" fill="#1e3a8a" font-size="12">定义：Var(ε|X)≠常数，残差波动不均匀</text>
+  <line x1="180" y1="250" x2="180" y2="260" stroke="#1e40af" stroke-width="1.2"/>
+  <rect x="40" y="260" width="280" height="42" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.2"/>
+  <text x="180" y="286" text-anchor="middle" fill="#1e3a8a" font-size="12">后果：系数无偏，但标准误算错→t检验失效</text>
+  <line x1="180" y1="300" x2="180" y2="310" stroke="#1e40af" stroke-width="1.2"/>
+  <rect x="40" y="310" width="280" height="42" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.2"/>
+  <text x="180" y="336" text-anchor="middle" fill="#1e3a8a" font-size="12">BP检验：estat hettest，p&lt;0.05…</text>
+  <line x1="180" y1="350" x2="180" y2="360" stroke="#1e40af" stroke-width="1.2"/>
+  <rect x="40" y="360" width="280" height="42" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.2"/>
+  <text x="180" y="386" text-anchor="middle" fill="#1e3a8a" font-size="12">怀特检验：estat imtest, white</text>
+  <line x1="180" y1="400" x2="180" y2="410" stroke="#1e40af" stroke-width="1.2"/>
+  <rect x="40" y="410" width="280" height="42" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.2"/>
+  <text x="180" y="436" text-anchor="middle" fill="#1e3a8a" font-size="12">修法：回归命令后加 , robust 稳健标准误</text>
+  <path d="M450 90 L450 120 L450 120 L450 150" stroke="#1e40af" stroke-width="1.8" fill="none"/>
+  <rect x="300" y="150" width="300" height="50" rx="10" fill="#3b82f6" stroke="#1e40af" stroke-width="1.5"/>
+  <text x="450" y="181" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">📈 自相关</text>
+  <line x1="450" y1="200" x2="450" y2="210" stroke="#1e40af" stroke-width="1.2"/>
+  <rect x="300" y="210" width="300" height="42" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.2"/>
+  <text x="450" y="236" text-anchor="middle" fill="#1e3a8a" font-size="12">定义：ε_t与ε_{t-1}相关，时间序列常见</text>
+  <line x1="450" y1="250" x2="450" y2="260" stroke="#1e40af" stroke-width="1.2"/>
+  <rect x="300" y="260" width="300" height="42" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.2"/>
+  <text x="450" y="286" text-anchor="middle" fill="#1e3a8a" font-size="12">后果：标准误偏小，t值虚高</text>
+  <line x1="450" y1="300" x2="450" y2="310" stroke="#1e40af" stroke-width="1.2"/>
+  <rect x="300" y="310" width="300" height="42" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.2"/>
+  <text x="450" y="336" text-anchor="middle" fill="#1e3a8a" font-size="12">DW检验：dwstat，DW≈2无自相关</text>
+  <line x1="450" y1="350" x2="450" y2="360" stroke="#1e40af" stroke-width="1.2"/>
+  <rect x="300" y="360" width="300" height="42" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.2"/>
+  <text x="450" y="386" text-anchor="middle" fill="#1e3a8a" font-size="12">BG检验：estat bgodfrey，p&lt;0.0…</text>
+  <line x1="450" y1="400" x2="450" y2="410" stroke="#1e40af" stroke-width="1.2"/>
+  <rect x="300" y="410" width="300" height="42" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.2"/>
+  <text x="450" y="436" text-anchor="middle" fill="#1e3a8a" font-size="12">修法：newey y x, lag(#) HAC标…</text>
+  <line x1="450" y1="450" x2="450" y2="460" stroke="#1e40af" stroke-width="1.2"/>
+  <rect x="300" y="460" width="300" height="42" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.2"/>
+  <text x="450" y="486" text-anchor="middle" fill="#1e3a8a" font-size="12">截面数据天然无自相关，跳过此步</text>
+  <path d="M450 90 L450 120 L720 120 L720 150" stroke="#1e40af" stroke-width="1.8" fill="none"/>
+  <rect x="580" y="150" width="280" height="50" rx="10" fill="#3b82f6" stroke="#1e40af" stroke-width="1.5"/>
+  <text x="720" y="181" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">🔗 多重共线性与诊断流程</text>
+  <line x1="720" y1="200" x2="720" y2="210" stroke="#1e40af" stroke-width="1.2"/>
+  <rect x="580" y="210" width="280" height="42" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.2"/>
+  <text x="720" y="236" text-anchor="middle" fill="#1e3a8a" font-size="12">定义：两个X高度相关，系数忽大忽小符号翻转</text>
+  <line x1="720" y1="250" x2="720" y2="260" stroke="#1e40af" stroke-width="1.2"/>
+  <rect x="580" y="260" width="280" height="42" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.2"/>
+  <text x="720" y="286" text-anchor="middle" fill="#1e3a8a" font-size="12">VIF=1/(1-R²ⱼ)，VIF&gt;10为严重共线</text>
+  <line x1="720" y1="300" x2="720" y2="310" stroke="#1e40af" stroke-width="1.2"/>
+  <rect x="580" y="310" width="280" height="42" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.2"/>
+  <text x="720" y="336" text-anchor="middle" fill="#1e3a8a" font-size="12">修法：删经济意义弱的变量/合并/岭回归</text>
+  <line x1="720" y1="350" x2="720" y2="360" stroke="#1e40af" stroke-width="1.2"/>
+  <rect x="580" y="360" width="280" height="42" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.2"/>
+  <text x="720" y="386" text-anchor="middle" fill="#1e3a8a" font-size="12">诊断顺序：先VIF→再BP→再DW</text>
+  <line x1="720" y1="400" x2="720" y2="410" stroke="#1e40af" stroke-width="1.2"/>
+  <rect x="580" y="410" width="280" height="42" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.2"/>
+  <text x="720" y="436" text-anchor="middle" fill="#1e3a8a" font-size="12">Stata: reg→estat vif→esta…</text>
+  <line x1="720" y1="450" x2="720" y2="460" stroke="#1e40af" stroke-width="1.2"/>
+  <rect x="580" y="460" width="280" height="42" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.2"/>
+  <text x="720" y="486" text-anchor="middle" fill="#1e3a8a" font-size="12">结果干净后才看p值、系数符号、R²</text>
+  <rect x="80" y="550" width="740" height="80" rx="12" fill="#ffffff" stroke="#1e40af" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="450" y="578" text-anchor="middle" fill="#1e3a8a" font-size="14" font-weight="bold">🔗 概念关系链</text>
+  <text x="450" y="602" text-anchor="middle" fill="#1e3a8a" font-size="13">跑reg→VIF查共线→BP查异方差→DW查自相关→robust/HAC修复→结果干净才看p值</text>
+  <text x="450" y="672" text-anchor="middle" fill="#1e40af" font-size="13" font-style="italic">💡 三大问题都动标准误不动系数，诊断顺序VIF→BP→DW</text>
+  <text x="450" y="732" text-anchor="middle" fill="#1e40af" font-size="11.5">📚 相关：03相关与回归 / 05内生性与面板 / 教材笔记·计量诊断检验</text>
+</svg>

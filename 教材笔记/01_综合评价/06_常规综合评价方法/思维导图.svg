@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 730" width="900" height="730" font-family="PingFang SC, Hiragino Sans GB, Microsoft YaHei, sans-serif">
+  <rect width="100%" height="100%" fill="#f0fdfa"/>
+  <rect x="300" y="30" width="300" height="60" rx="14" fill="#0e7490" stroke="#164e63" stroke-width="2"/>
+  <text x="450" y="68" text-anchor="middle" fill="#ffffff" font-size="20" font-weight="bold">第六章 常规综合评价方法</text>
+  <path d="M450 90 L450 120 L180 120 L180 150" stroke="#0e7490" stroke-width="1.8" fill="none"/>
+  <rect x="40" y="150" width="280" height="50" rx="10" fill="#06b6d4" stroke="#0e7490" stroke-width="1.5"/>
+  <text x="180" y="181" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">评分法与指数法</text>
+  <line x1="180" y1="200" x2="180" y2="210" stroke="#0e7490" stroke-width="1.2"/>
+  <rect x="40" y="210" width="280" height="42" rx="8" fill="#ecfeff" stroke="#06b6d4" stroke-width="1.2"/>
+  <text x="180" y="236" text-anchor="middle" fill="#164e63" font-size="12">区间打分法：五级5~1分查表</text>
+  <line x1="180" y1="250" x2="180" y2="260" stroke="#0e7490" stroke-width="1.2"/>
+  <rect x="40" y="260" width="280" height="42" rx="8" fill="#ecfeff" stroke="#06b6d4" stroke-width="1.2"/>
+  <text x="180" y="286" text-anchor="middle" fill="#164e63" font-size="12">区间增量法：按偏离D增减分</text>
+  <line x1="180" y1="300" x2="180" y2="310" stroke="#0e7490" stroke-width="1.2"/>
+  <rect x="40" y="310" width="280" height="42" rx="8" fill="#ecfeff" stroke="#06b6d4" stroke-width="1.2"/>
+  <text x="180" y="336" text-anchor="middle" fill="#164e63" font-size="12">综合指数：z=Σwᵢxᵢ/xᵢ₀</text>
+  <line x1="180" y1="350" x2="180" y2="360" stroke="#0e7490" stroke-width="1.2"/>
+  <rect x="40" y="360" width="280" height="42" rx="8" fill="#ecfeff" stroke="#06b6d4" stroke-width="1.2"/>
+  <text x="180" y="386" text-anchor="middle" fill="#164e63" font-size="12">标准值：纵向/横向/计划数</text>
+  <line x1="180" y1="400" x2="180" y2="410" stroke="#0e7490" stroke-width="1.2"/>
+  <rect x="40" y="410" width="280" height="42" rx="8" fill="#ecfeff" stroke="#06b6d4" stroke-width="1.2"/>
+  <text x="180" y="436" text-anchor="middle" fill="#164e63" font-size="12">超100%部分按100%计防替代</text>
+  <path d="M450 90 L450 120 L450 120 L450 150" stroke="#0e7490" stroke-width="1.8" fill="none"/>
+  <rect x="300" y="150" width="300" height="50" rx="10" fill="#06b6d4" stroke="#0e7490" stroke-width="1.5"/>
+  <text x="450" y="181" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">RSR与功效系数法</text>
+  <line x1="450" y1="200" x2="450" y2="210" stroke="#0e7490" stroke-width="1.2"/>
+  <rect x="300" y="210" width="300" height="42" rx="8" fill="#ecfeff" stroke="#06b6d4" stroke-width="1.2"/>
+  <text x="450" y="236" text-anchor="middle" fill="#164e63" font-size="12">RSR等级化：实际值转位次</text>
+  <line x1="450" y1="250" x2="450" y2="260" stroke="#0e7490" stroke-width="1.2"/>
+  <rect x="300" y="260" width="300" height="42" rx="8" fill="#ecfeff" stroke="#06b6d4" stroke-width="1.2"/>
+  <text x="450" y="286" text-anchor="middle" fill="#164e63" font-size="12">RSR：z=100Σwⱼrᵢⱼ/(np)</text>
+  <line x1="450" y1="300" x2="450" y2="310" stroke="#0e7490" stroke-width="1.2"/>
+  <rect x="300" y="310" width="300" height="42" rx="8" fill="#ecfeff" stroke="#06b6d4" stroke-width="1.2"/>
+  <text x="450" y="336" text-anchor="middle" fill="#164e63" font-size="12">RSR结果越小越好(方向陷阱)</text>
+  <line x1="450" y1="350" x2="450" y2="360" stroke="#0e7490" stroke-width="1.2"/>
+  <rect x="300" y="360" width="300" height="42" rx="8" fill="#ecfeff" stroke="#06b6d4" stroke-width="1.2"/>
+  <text x="450" y="386" text-anchor="middle" fill="#164e63" font-size="12">功效函数：满意=100不允许=60</text>
+  <line x1="450" y1="400" x2="450" y2="410" stroke="#0e7490" stroke-width="1.2"/>
+  <rect x="300" y="410" width="300" height="42" rx="8" fill="#ecfeff" stroke="#06b6d4" stroke-width="1.2"/>
+  <text x="450" y="436" text-anchor="middle" fill="#164e63" font-size="12">功效系数线性/几何汇总</text>
+  <path d="M450 90 L450 120 L720 120 L720 150" stroke="#0e7490" stroke-width="1.8" fill="none"/>
+  <rect x="580" y="150" width="280" height="50" rx="10" fill="#06b6d4" stroke="#0e7490" stroke-width="1.5"/>
+  <text x="720" y="181" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">四法对比与前提</text>
+  <line x1="720" y1="200" x2="720" y2="210" stroke="#0e7490" stroke-width="1.2"/>
+  <rect x="580" y="210" width="280" height="42" rx="8" fill="#ecfeff" stroke="#06b6d4" stroke-width="1.2"/>
+  <text x="720" y="236" text-anchor="middle" fill="#164e63" font-size="12">共同前提：指标须先独立</text>
+  <line x1="720" y1="250" x2="720" y2="260" stroke="#0e7490" stroke-width="1.2"/>
+  <rect x="580" y="260" width="280" height="42" rx="8" fill="#ecfeff" stroke="#06b6d4" stroke-width="1.2"/>
+  <text x="720" y="286" text-anchor="middle" fill="#164e63" font-size="12">四法均不能消除指标间相关</text>
+  <line x1="720" y1="300" x2="720" y2="310" stroke="#0e7490" stroke-width="1.2"/>
+  <rect x="580" y="310" width="280" height="42" rx="8" fill="#ecfeff" stroke="#06b6d4" stroke-width="1.2"/>
+  <text x="720" y="336" text-anchor="middle" fill="#164e63" font-size="12">RSR抗异常值但丢数值差异</text>
+  <line x1="720" y1="350" x2="720" y2="360" stroke="#0e7490" stroke-width="1.2"/>
+  <rect x="580" y="360" width="280" height="42" rx="8" fill="#ecfeff" stroke="#06b6d4" stroke-width="1.2"/>
+  <text x="720" y="386" text-anchor="middle" fill="#164e63" font-size="12">怕异常看名次→RSR</text>
+  <line x1="720" y1="400" x2="720" y2="410" stroke="#0e7490" stroke-width="1.2"/>
+  <rect x="580" y="410" width="280" height="42" rx="8" fill="#ecfeff" stroke="#06b6d4" stroke-width="1.2"/>
+  <text x="720" y="436" text-anchor="middle" fill="#164e63" font-size="12">要双边界百分制→功效系数</text>
+  <rect x="80" y="500" width="740" height="80" rx="12" fill="#ffffff" stroke="#0e7490" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="450" y="528" text-anchor="middle" fill="#164e63" font-size="14" font-weight="bold">🔗 概念关系链</text>
+  <text x="450" y="552" text-anchor="middle" fill="#164e63" font-size="13">指标独立 → 选基准(标准值/位次/双边界) → 线性加权 → 综合得分排序</text>
+  <text x="450" y="622" text-anchor="middle" fill="#0e7490" font-size="13" font-style="italic">💡 线性综合法的四种常规应用</text>
+  <text x="450" y="682" text-anchor="middle" fill="#0e7490" font-size="11.5">📚 相关：第三章 规格化 · 第四章 赋权 · 第五章 线性综合</text>
+</svg>

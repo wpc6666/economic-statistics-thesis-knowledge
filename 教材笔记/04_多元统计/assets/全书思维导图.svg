@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="1300" viewBox="0 0 900 1300">
+<style>
+text { font-family: "PingFang SC","Microsoft YaHei",sans-serif; }
+.title { font-size: 20px; font-weight: bold; fill: #1a1a2e; text-anchor: middle; }
+.chapter { font-size: 13px; font-weight: bold; fill: #fff; text-anchor: middle; }
+.topic { font-size: 11px; fill: #333; }
+.box { rx: 6; }
+</style>
+<rect width="900" height="1300" fill="#fafbfc"/>
+<text x="450" y="35" class="title">多元统计分析知识思维导图（11章）</text>
+<rect x="50" y="70" width="180" height="36" fill="#2c3e50" class="box"/>
+<text x="140" y="93" class="chapter">基础理论</text>
+<rect x="270" y="111" width="400" height="20" fill="#ecf0f1" stroke="#bdc3c7" rx="3"/>
+<text x="285" y="125" class="topic">多元正态分布</text>
+<rect x="270" y="133" width="400" height="20" fill="#ecf0f1" stroke="#bdc3c7" rx="3"/>
+<text x="285" y="147" class="topic">均值向量/协方差阵检验</text>
+<rect x="50" y="200" width="180" height="36" fill="#2980b9" class="box"/>
+<text x="140" y="223" class="chapter">分类方法</text>
+<rect x="270" y="241" width="400" height="20" fill="#ecf0f1" stroke="#bdc3c7" rx="3"/>
+<text x="285" y="255" class="topic">聚类分析(无标签)</text>
+<rect x="270" y="263" width="400" height="20" fill="#ecf0f1" stroke="#bdc3c7" rx="3"/>
+<text x="285" y="277" class="topic">判别分析(有标签)</text>
+<rect x="50" y="380" width="180" height="36" fill="#27ae60" class="box"/>
+<text x="140" y="403" class="chapter">降维方法</text>
+<rect x="270" y="421" width="400" height="20" fill="#ecf0f1" stroke="#bdc3c7" rx="3"/>
+<text x="285" y="435" class="topic">主成分PCA</text>
+<rect x="270" y="443" width="400" height="20" fill="#ecf0f1" stroke="#bdc3c7" rx="3"/>
+<text x="285" y="457" class="topic">因子分析FA</text>
+<rect x="50" y="560" width="180" height="36" fill="#8e44ad" class="box"/>
+<text x="140" y="583" class="chapter">对应与典型</text>
+<rect x="270" y="601" width="400" height="20" fill="#ecf0f1" stroke="#bdc3c7" rx="3"/>
+<text x="285" y="615" class="topic">对应分析(列联表)</text>
+<rect x="270" y="623" width="400" height="20" fill="#ecf0f1" stroke="#bdc3c7" rx="3"/>
+<text x="285" y="637" class="topic">典型相关CCA</text>
+<rect x="50" y="720" width="180" height="36" fill="#d35400" class="box"/>
+<text x="140" y="743" class="chapter">定性与可视化</text>
+<rect x="270" y="761" width="400" height="20" fill="#ecf0f1" stroke="#bdc3c7" rx="3"/>
+<text x="285" y="775" class="topic">Logistic回归</text>
+<rect x="270" y="783" width="400" height="20" fill="#ecf0f1" stroke="#bdc3c7" rx="3"/>
+<text x="285" y="797" class="topic">多变量图表示</text>
+<rect x="50" y="880" width="180" height="36" fill="#c0392b" class="box"/>
+<text x="140" y="903" class="chapter">其他降维</text>
+<rect x="270" y="921" width="400" height="20" fill="#ecf0f1" stroke="#bdc3c7" rx="3"/>
+<text x="285" y="935" class="topic">多维标度MDS</text>
+</svg>

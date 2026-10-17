@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1400" width="900" height="1400" font-family="PingFang SC, Hiragino Sans GB, Microsoft YaHei, sans-serif">
+  <defs>
+    <style>
+      .root { fill: #0e7490; stroke: #164e63; }
+      .sec  { fill: #06b6d4; stroke: #0e7490; }
+      .kp   { fill: #ecfeff; stroke: #06b6d4; }
+      .txt-root { fill: #ffffff; font-size: 22px; font-weight: bold; }
+      .txt-sec  { fill: #ffffff; font-size: 15px; font-weight: bold; }
+      .txt-kp   { fill: #164e63; font-size: 12px; }
+      .line { stroke: #0e7490; stroke-width: 1.5; fill: none; }
+    </style>
+  </defs>
+
+  <rect x="280" y="30" width="340" height="60" rx="12" class="root"/>
+  <text x="450" y="68" text-anchor="middle" class="txt-root">第二章 统计数据的采集</text>
+
+  <!-- 5节横向分支 -->
+  <path d="M450 90 L450 115 L110 115 L110 140" class="line"/>
+  <path d="M450 90 L450 115 L290 115 L290 140" class="line"/>
+  <path d="M450 90 L450 140" class="line"/>
+  <path d="M450 90 L450 115 L610 115 L610 140" class="line"/>
+  <path d="M450 90 L450 115 L790 115 L790 140" class="line"/>
+
+  <rect x="20" y="140" width="180" height="46" rx="8" class="sec"/>
+  <text x="110" y="168" text-anchor="middle" class="txt-sec">第一节 概述与种类</text>
+
+  <rect x="200" y="140" width="180" height="46" rx="8" class="sec"/>
+  <text x="290" y="168" text-anchor="middle" class="txt-sec">第二节 方案设计</text>
+
+  <rect x="360" y="140" width="180" height="46" rx="8" class="sec"/>
+  <text x="450" y="168" text-anchor="middle" class="txt-sec">第三节 组织方式</text>
+
+  <rect x="520" y="140" width="180" height="46" rx="8" class="sec"/>
+  <text x="610" y="168" text-anchor="middle" class="txt-sec">第四节 采集方法</text>
+
+  <rect x="700" y="140" width="180" height="46" rx="8" class="sec"/>
+  <text x="790" y="168" text-anchor="middle" class="txt-sec">第五节 问卷设计</text>
+
+  <!-- KP 节点 -->
+  <line x1="110" y1="186" x2="110" y2="210" class="line"/>
+  <rect x="20" y="210" width="180" height="50" rx="6" class="kp"/>
+  <text x="110" y="230" text-anchor="middle" class="txt-kp">KP01 三种分类</text>
+  <text x="110" y="248" text-anchor="middle" class="txt-kp">范围/时间/组织方式</text>
+
+  <line x1="290" y1="186" x2="290" y2="210" class="line"/>
+  <rect x="200" y="210" width="180" height="50" rx="6" class="kp"/>
+  <text x="290" y="230" text-anchor="middle" class="txt-kp">KP02 方案六要素</text>
+  <text x="290" y="248" text-anchor="middle" class="txt-kp">对象/单位/报告单位</text>
+
+  <line x1="450" y1="186" x2="450" y2="210" class="line"/>
+  <rect x="360" y="210" width="180" height="50" rx="6" class="kp"/>
+  <text x="450" y="230" text-anchor="middle" class="txt-kp">KP03 五种组织方式</text>
+  <text x="450" y="248" text-anchor="middle" class="txt-kp">普查/抽样/报表/重点/典型</text>
+
+  <line x1="610" y1="186" x2="610" y2="210" class="line"/>
+  <rect x="520" y="210" width="180" height="50" rx="6" class="kp"/>
+  <text x="610" y="230" text-anchor="middle" class="txt-kp">KP04 六种采集方法</text>
+  <text x="610" y="248" text-anchor="middle" class="txt-kp">观察/采访/电话/邮寄/网络/实验</text>
+
+  <line x1="790" y1="186" x2="790" y2="210" class="line"/>
+  <rect x="700" y="210" width="180" height="22" rx="6" class="kp"/>
+  <text x="790" y="225" text-anchor="middle" class="txt-kp">KP05 设计原则</text>
+  <rect x="700" y="238" width="180" height="22" rx="6" class="kp"/>
+  <text x="790" y="253" text-anchor="middle" class="txt-kp">KP06 结构与措辞</text>
+
+  <!-- 关键辨析区 -->
+  <rect x="60" y="320" width="780" height="120" rx="10" class="kp"/>
+  <text x="450" y="350" text-anchor="middle" class="txt-kp" style="font-weight:bold;font-size:14px;">三组关键辨析</text>
+  <text x="80" y="378" class="txt-kp">① 调查单位（数据承担者）≠ 报告单位（提交者）</text>
+  <text x="80" y="402" class="txt-kp">② 标准时间（数据所属时点）≠ 调查期限（干活时长）</text>
+  <text x="80" y="426" class="txt-kp">③ 抽样调查可推总体；重点/典型调查不能推总体</text>
+
+  <!-- 我国普查节奏 -->
+  <rect x="60" y="470" width="780" height="100" rx="10" class="kp"/>
+  <text x="450" y="500" text-anchor="middle" class="txt-kp" style="font-weight:bold;font-size:14px;">我国周期性普查节奏</text>
+  <text x="80" y="528" class="txt-kp">人口普查：逢 0（每10年） ｜ 农业普查：逢 6（每10年） ｜ 经济普查：逢 3、8（每10年两次）</text>
+  <text x="80" y="552" class="txt-kp">方针：以周期性普查为基础，以经常性抽样调查为主体</text>
+
+  <text x="450" y="620" text-anchor="middle" class="txt-kp" style="font-size:14px;fill:#0e7490;">本章产出：一份可发放的调查问卷 → 进入第3章整理</text>
+</svg>

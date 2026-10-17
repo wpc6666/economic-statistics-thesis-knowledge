@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 780" width="900" height="780" font-family="PingFang SC, Hiragino Sans GB, Microsoft YaHei, sans-serif">
+  <rect width="100%" height="100%" fill="#eff6ff"/>
+  <rect x="300" y="30" width="300" height="60" rx="14" fill="#1e40af" stroke="#1e3a8a" stroke-width="2"/>
+  <text x="450" y="68" text-anchor="middle" fill="#ffffff" font-size="20" font-weight="bold">06 受限因变量：Y只能是是/否</text>
+  <path d="M450 90 L450 120 L180 120 L180 150" stroke="#1e40af" stroke-width="1.8" fill="none"/>
+  <rect x="40" y="150" width="280" height="50" rx="10" fill="#3b82f6" stroke="#1e40af" stroke-width="1.5"/>
+  <text x="180" y="181" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">❌ 为什么不能直接OLS</text>
+  <line x1="180" y1="200" x2="180" y2="210" stroke="#1e40af" stroke-width="1.2"/>
+  <rect x="40" y="210" width="280" height="42" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.2"/>
+  <text x="180" y="236" text-anchor="middle" fill="#1e3a8a" font-size="12">LPM问题：P=β₀+β₁X会跑出[0,1]之外</text>
+  <line x1="180" y1="250" x2="180" y2="260" stroke="#1e40af" stroke-width="1.2"/>
+  <rect x="40" y="260" width="280" height="42" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.2"/>
+  <text x="180" y="286" text-anchor="middle" fill="#1e3a8a" font-size="12">扰动项必然异方差：Var(ε|X)=P(1-P)</text>
+  <line x1="180" y1="300" x2="180" y2="310" stroke="#1e40af" stroke-width="1.2"/>
+  <rect x="40" y="310" width="280" height="42" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.2"/>
+  <text x="180" y="336" text-anchor="middle" fill="#1e3a8a" font-size="12">R²没意义：拟合概率非正态</text>
+  <line x1="180" y1="350" x2="180" y2="360" stroke="#1e40af" stroke-width="1.2"/>
+  <rect x="40" y="360" width="280" height="42" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.2"/>
+  <text x="180" y="386" text-anchor="middle" fill="#1e3a8a" font-size="12">仅当大样本+X集中均值附近才允许LPM</text>
+  <path d="M450 90 L450 120 L450 120 L450 150" stroke="#1e40af" stroke-width="1.8" fill="none"/>
+  <rect x="300" y="150" width="300" height="50" rx="10" fill="#3b82f6" stroke="#1e40af" stroke-width="1.5"/>
+  <text x="450" y="181" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">📈 Logit模型</text>
+  <line x1="450" y1="200" x2="450" y2="210" stroke="#1e40af" stroke-width="1.2"/>
+  <rect x="300" y="210" width="300" height="42" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.2"/>
+  <text x="450" y="236" text-anchor="middle" fill="#1e3a8a" font-size="12">S形函数：P=1/(1+e^{-(β₀+β₁X)})</text>
+  <line x1="450" y1="250" x2="450" y2="260" stroke="#1e40af" stroke-width="1.2"/>
+  <rect x="300" y="260" width="300" height="42" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.2"/>
+  <text x="450" y="286" text-anchor="middle" fill="#1e3a8a" font-size="12">odds=P/(1-P)=e^{β₀+β₁X}</text>
+  <line x1="450" y1="300" x2="450" y2="310" stroke="#1e40af" stroke-width="1.2"/>
+  <rect x="300" y="310" width="300" height="42" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.2"/>
+  <text x="450" y="336" text-anchor="middle" fill="#1e3a8a" font-size="12">几率比OR=e^β₁：X涨1 odds乘多少(非概…</text>
+  <line x1="450" y1="350" x2="450" y2="360" stroke="#1e40af" stroke-width="1.2"/>
+  <rect x="300" y="360" width="300" height="42" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.2"/>
+  <text x="450" y="386" text-anchor="middle" fill="#1e3a8a" font-size="12">AME平均边际效应=β₁P(1-P)</text>
+  <line x1="450" y1="400" x2="450" y2="410" stroke="#1e40af" stroke-width="1.2"/>
+  <rect x="300" y="410" width="300" height="42" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.2"/>
+  <text x="450" y="436" text-anchor="middle" fill="#1e3a8a" font-size="12">Stata: logit y x, robust …</text>
+  <path d="M450 90 L450 120 L720 120 L720 150" stroke="#1e40af" stroke-width="1.8" fill="none"/>
+  <rect x="580" y="150" width="280" height="50" rx="10" fill="#3b82f6" stroke="#1e40af" stroke-width="1.5"/>
+  <text x="720" y="181" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">📊 Probit与模型选择</text>
+  <line x1="720" y1="200" x2="720" y2="210" stroke="#1e40af" stroke-width="1.2"/>
+  <rect x="580" y="210" width="280" height="42" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.2"/>
+  <text x="720" y="236" text-anchor="middle" fill="#1e3a8a" font-size="12">Probit：P=Φ(β₀+β₁X)，Φ为正态CDF</text>
+  <line x1="720" y1="250" x2="720" y2="260" stroke="#1e40af" stroke-width="1.2"/>
+  <rect x="580" y="260" width="280" height="42" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.2"/>
+  <text x="720" y="286" text-anchor="middle" fill="#1e3a8a" font-size="12">大样本下Logit与Probit结果几乎一样</text>
+  <line x1="720" y1="300" x2="720" y2="310" stroke="#1e40af" stroke-width="1.2"/>
+  <rect x="580" y="310" width="280" height="42" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.2"/>
+  <text x="720" y="336" text-anchor="middle" fill="#1e3a8a" font-size="12">小样本：跑两个看AIC，AIC小的赢</text>
+  <line x1="720" y1="350" x2="720" y2="360" stroke="#1e40af" stroke-width="1.2"/>
+  <rect x="580" y="360" width="280" height="42" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.2"/>
+  <text x="720" y="386" text-anchor="middle" fill="#1e3a8a" font-size="12">Probit不能报OR，只能报边际效应</text>
+  <line x1="720" y1="400" x2="720" y2="410" stroke="#1e40af" stroke-width="1.2"/>
+  <rect x="580" y="410" width="280" height="42" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.2"/>
+  <text x="720" y="436" text-anchor="middle" fill="#1e3a8a" font-size="12">拟合优度：Pseudo R²(0.2-0.4)+A…</text>
+  <line x1="720" y1="450" x2="720" y2="460" stroke="#1e40af" stroke-width="1.2"/>
+  <rect x="580" y="460" width="280" height="42" rx="8" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.2"/>
+  <text x="720" y="486" text-anchor="middle" fill="#1e3a8a" font-size="12">稳健性：主回归Logit，换Probit再跑一遍</text>
+  <rect x="80" y="550" width="740" height="80" rx="12" fill="#ffffff" stroke="#1e40af" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="450" y="578" text-anchor="middle" fill="#1e3a8a" font-size="14" font-weight="bold">🔗 概念关系链</text>
+  <text x="450" y="602" text-anchor="middle" fill="#1e3a8a" font-size="12.5">Y是0/1→LPM越界→Logit S形/OR=e^β→</text>
+  <text x="450" y="622" text-anchor="middle" fill="#1e3a8a" font-size="12.5">Probit正态CDF→AME边际效应→AIC选模型</text>
+  <text x="450" y="672" text-anchor="middle" fill="#1e40af" font-size="13" font-style="italic">💡 Y是&quot;是/否&quot;时Logit报几率比OR，Probit做稳健性</text>
+  <text x="450" y="732" text-anchor="middle" fill="#1e40af" font-size="11.5">📚 相关：05内生性与面板 / 03相关与回归 / 教材笔记·10二值选择模型</text>
+</svg>

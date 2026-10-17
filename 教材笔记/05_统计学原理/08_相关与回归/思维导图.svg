@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1480" width="900" height="1480" font-family="PingFang SC, Hiragino Sans GB, Microsoft YaHei, sans-serif">
+  <defs>
+    <style>
+      .root { fill: #06b6d4; stroke: #0e7490; stroke-width: 2; }
+      .root-text { fill: #ffffff; font-size: 20px; font-weight: 700; text-anchor: middle; dominant-baseline: middle; }
+      .section { fill: #ecfeff; stroke: #0e7490; stroke-width: 1.6; }
+      .section-text { fill: #164e63; font-size: 15px; font-weight: 600; text-anchor: middle; dominant-baseline: middle; }
+      .kp { fill: #ffffff; stroke: #06b6d4; stroke-width: 1.2; }
+      .kp-text { fill: #164e63; font-size: 12.5px; text-anchor: start; dominant-baseline: middle; }
+      .line { stroke: #0e7490; stroke-width: 1.4; fill: none; }
+      .branch { stroke: #06b6d4; stroke-width: 1.2; fill: none; }
+    </style>
+  </defs>
+
+  <!-- 背景 -->
+  <rect x="0" y="0" width="900" height="1480" fill="#f0fdfa"/>
+
+  <!-- 根节点 -->
+  <rect class="root" x="270" y="30" width="360" height="60" rx="12"/>
+  <text class="root-text" x="450" y="60">第8章 相关与回归分析</text>
+
+  <!-- 主干竖线 -->
+  <path class="line" d="M 450 90 L 450 130 L 120 130 L 120 1180"/>
+
+  <!-- ========== 第一节 ========== -->
+  <rect class="section" x="40" y="180" width="160" height="44" rx="8"/>
+  <text class="section-text" x="120" y="202">第一节 基本概念</text>
+  <path class="line" d="M 120 130 L 120 202 L 200 202"/>
+
+  <!-- KP 支线 -->
+  <path class="branch" d="M 200 202 L 260 202"/>
+  <path class="branch" d="M 260 160 L 260 260"/>
+  <rect class="kp" x="270" y="148" width="280" height="26" rx="6"/>
+  <text class="kp-text" x="280" y="161">KP01 函数关系 vs 相关关系</text>
+  <rect class="kp" x="270" y="189" width="280" height="26" rx="6"/>
+  <text class="kp-text" x="280" y="202">KP02 相关方向与相关形式</text>
+  <rect class="kp" x="270" y="230" width="280" height="26" rx="6"/>
+  <text class="kp-text" x="280" y="243">KP06 相关分析 vs 回归分析</text>
+
+  <!-- ========== 第二节 ========== -->
+  <rect class="section" x="40" y="440" width="160" height="44" rx="8"/>
+  <text class="section-text" x="120" y="462">第二节 一元线性回归</text>
+  <path class="line" d="M 120 462 L 200 462"/>
+
+  <path class="branch" d="M 200 462 L 260 462"/>
+  <path class="branch" d="M 260 350 L 260 590"/>
+  <rect class="kp" x="270" y="338" width="300" height="26" rx="6"/>
+  <text class="kp-text" x="280" y="351">KP03 相关系数 r 的直觉</text>
+  <rect class="kp" x="270" y="370" width="300" height="26" rx="6"/>
+  <text class="kp-text" x="280" y="383">KP04 相关系数手算（5 组数据）</text>
+  <rect class="kp" x="270" y="402" width="300" height="26" rx="6"/>
+  <text class="kp-text" x="280" y="415">KP05 显著性 t 检验</text>
+  <rect class="kp" x="270" y="434" width="300" height="26" rx="6"/>
+  <text class="kp-text" x="280" y="447">KP07 一元回归模型 y=β0+β1x+ε</text>
+  <rect class="kp" x="270" y="466" width="300" height="26" rx="6"/>
+  <text class="kp-text" x="280" y="479">KP08 最小二乘法 OLS</text>
+  <rect class="kp" x="270" y="498" width="300" height="26" rx="6"/>
+  <text class="kp-text" x="280" y="511">KP09 拟合优度 R²</text>
+
+  <!-- 原书小例子提示 -->
+  <rect class="kp" x="270" y="530" width="300" height="26" rx="6" fill="#ecfeff"/>
+  <text class="kp-text" x="280" y="543" fill="#0e7490">原书例 8-1/2/3：投资 vs GDP</text>
+
+  <!-- ========== 第三节 ========== -->
+  <rect class="section" x="40" y="660" width="160" height="44" rx="8"/>
+  <text class="section-text" x="120" y="682">第三节 多元线性回归</text>
+  <path class="line" d="M 120 682 L 200 682"/>
+
+  <path class="branch" d="M 200 682 L 260 682"/>
+  <rect class="kp" x="270" y="669" width="320" height="26" rx="6"/>
+  <text class="kp-text" x="280" y="682">KP10 多元回归与偏回归系数（R/F/t 检验）</text>
+
+  <rect class="kp" x="270" y="701" width="320" height="26" rx="6" fill="#ecfeff"/>
+  <text class="kp-text" x="280" y="714" fill="#0e7490">原书例 8-4：消费 = f(GDP, 人口)</text>
+
+  <!-- ========== 第四节 ========== -->
+  <rect class="section" x="40" y="800" width="160" height="44" rx="8"/>
+  <text class="section-text" x="120" y="822">第四节 曲线回归</text>
+  <path class="line" d="M 120 822 L 200 822"/>
+
+  <path class="branch" d="M 200 822 L 260 822"/>
+  <rect class="kp" x="270" y="809" width="320" height="26" rx="6"/>
+  <text class="kp-text" x="280" y="822">KP11 曲线回归与线性化（指数/二次/双曲线）</text>
+
+  <rect class="kp" x="270" y="841" width="320" height="26" rx="6" fill="#ecfeff"/>
+  <text class="kp-text" x="280" y="854" fill="#0e7490">原书例 8-5：费用率 = f(零售额)</text>
+
+  <!-- ========== 第五节 ========== -->
+  <rect class="section" x="40" y="940" width="160" height="44" rx="8"/>
+  <text class="section-text" x="120" y="962">第五节 应用注意</text>
+  <path class="line" d="M 120 962 L 200 962"/>
+
+  <path class="branch" d="M 200 962 L 260 962"/>
+  <rect class="kp" x="270" y="949" width="340" height="26" rx="6"/>
+  <text class="kp-text" x="280" y="962">KP12 相关≠因果、外推风险、异常值</text>
+
+  <rect class="kp" x="270" y="981" width="340" height="26" rx="6" fill="#ecfeff"/>
+  <text class="kp-text" x="280" y="994" fill="#0e7490">经典反例：冰淇淋 vs 溺水（第三变量=夏天）</text>
+
+  <!-- ========== 第六节 ========== -->
+  <rect class="section" x="40" y="1080" width="160" height="44" rx="8"/>
+  <text class="section-text" x="120" y="1102">第六节 Excel 操作</text>
+  <path class="line" d="M 120 1102 L 200 1102"/>
+
+  <path class="branch" d="M 200 1102 L 260 1102"/>
+  <rect class="kp" x="270" y="1089" width="340" height="26" rx="6"/>
+  <text class="kp-text" x="280" y="1102">数据分析 → 回归 → 读 Multiple R / R² / F / t</text>
+
+  <!-- ========== 底部：与大牛库/其他章互链 ========== -->
+  <rect x="600" y="180" width="270" height="120" rx="10" fill="#ffffff" stroke="#0e7490" stroke-width="1.4" stroke-dasharray="4,3"/>
+  <text x="735" y="205" text-anchor="middle" fill="#164e63" font-size="14" font-weight="700">互链 · 大牛库</text>
+  <text x="615" y="232" fill="#164e63" font-size="12">→ 03 相关与回归</text>
+  <text x="615" y="254" fill="#164e63" font-size="12">→ 04 回归三大问题</text>
+  <text x="615" y="276" fill="#164e63" font-size="12">→ 第6章抽样 / 第7章检验</text>
+
+  <!-- 核心公式速查 -->
+  <rect x="600" y="330" width="270" height="240" rx="10" fill="#ffffff" stroke="#0e7490" stroke-width="1.4" stroke-dasharray="4,3"/>
+  <text x="735" y="355" text-anchor="middle" fill="#164e63" font-size="14" font-weight="700">核心公式</text>
+  <text x="615" y="383" fill="#164e63" font-size="12">r = Σ(x-x̄)(y-ȳ) / (Sx·Sy)</text>
+  <text x="615" y="407" fill="#164e63" font-size="12">b₁ = Σ(x-x̄)(y-ȳ) / Σ(x-x̄)²</text>
+  <text x="615" y="431" fill="#164e63" font-size="12">b₀ = ȳ - b₁·x̄</text>
+  <text x="615" y="455" fill="#164e63" font-size="12">ŷ = b₀ + b₁·x + ... + bₘ·xₘ</text>
+  <text x="615" y="479" fill="#164e63" font-size="12">R² = 1 - SS残差 / SS总</text>
+  <text x="615" y="503" fill="#164e63" font-size="12">tⱼ = bⱼ / s_bⱼ</text>
+  <text x="615" y="527" fill="#164e63" font-size="12">F = (R²/(1-R²))·(n-m)/(m-1)</text>
+  <text x="615" y="551" fill="#0e7490" font-size="11" font-style="italic">一元里：R² = r²</text>
+
+  <!-- 关键提醒 -->
+  <rect x="600" y="600" width="270" height="160" rx="10" fill="#ecfeff" stroke="#06b6d4" stroke-width="1.4"/>
+  <text x="735" y="625" text-anchor="middle" fill="#164e63" font-size="14" font-weight="700">三个必须记的直觉</text>
+  <text x="615" y="653" fill="#164e63" font-size="12">① r：先看同涨同落（协方差）</text>
+  <text x="615" y="675" fill="#164e63" font-size="12">   再除标准差消量纲</text>
+  <text x="615" y="699" fill="#164e63" font-size="12">② OLS：为什么是平方？</text>
+  <text x="615" y="721" fill="#164e63" font-size="12">   可导 + 放大大误差</text>
+  <text x="615" y="745" fill="#c2410c" font-size="12" font-weight="700">③ 相关 ≠ 因果！</text>
+
+  <!-- 底部签名 -->
+  <text x="450" y="1200" text-anchor="middle" fill="#0e7490" font-size="13" font-weight="600">韩兆洲《统计学原理（第7版）》· 第8章 思维导图</text>
+  <text x="450" y="1225" text-anchor="middle" fill="#164e63" font-size="11" font-style="italic">青色系 · PingFang SC · 教材笔记</text>
+</svg>

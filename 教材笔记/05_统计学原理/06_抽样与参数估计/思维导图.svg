@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="660" viewBox="0 0 900 660">
+<rect width="100%" height="100%" fill="#f0fdfa"/>
+<rect x="270.0" y="20" width="360" height="50" rx="12" fill="#06b6d4" stroke="#0e7490" stroke-width="2"/>
+<text x="450.0" y="51.0" text-anchor="middle" font-family="PingFang SC, Hiragino Sans GB, Microsoft YaHei, sans-serif" font-size="20" font-weight="bold" fill="white">第六章 抽样与参数估计</text>
+<rect x="60.0" y="90" width="780" height="90" rx="8" fill="#ecfeff" stroke="#0e7490" stroke-width="1.5"/>
+<text x="75.0" y="115" font-family="PingFang SC, Hiragino Sans GB, Microsoft YaHei, sans-serif" font-size="15" font-weight="bold" fill="#164e63">第一节 抽样调查的概念和作用</text>
+<text x="75.0" y="140" font-family="PingFang SC, Hiragino Sans GB, Microsoft YaHei, sans-serif" font-size="12" fill="#0e7490">抽样调查 ｜ 随机原则</text>
+<line x1="450.0" y1="70" x2="450.0" y2="80" stroke="#0e7490" stroke-width="1.5"/>
+<line x1="450.0" y1="80" x2="450.0" y2="90" stroke="#0e7490" stroke-width="1.5"/>
+<rect x="60.0" y="200" width="780" height="90" rx="8" fill="#ecfeff" stroke="#0e7490" stroke-width="1.5"/>
+<text x="75.0" y="225" font-family="PingFang SC, Hiragino Sans GB, Microsoft YaHei, sans-serif" font-size="15" font-weight="bold" fill="#164e63">第二节 抽样的基本概念</text>
+<text x="75.0" y="250" font-family="PingFang SC, Hiragino Sans GB, Microsoft YaHei, sans-serif" font-size="12" fill="#0e7490">总体与样本 ｜ 参数与统计量 ｜ 重复vs不重复</text>
+<line x1="450.0" y1="70" x2="450.0" y2="190" stroke="#0e7490" stroke-width="1.5"/>
+<line x1="450.0" y1="190" x2="450.0" y2="200" stroke="#0e7490" stroke-width="1.5"/>
+<rect x="60.0" y="310" width="780" height="90" rx="8" fill="#ecfeff" stroke="#0e7490" stroke-width="1.5"/>
+<text x="75.0" y="335" font-family="PingFang SC, Hiragino Sans GB, Microsoft YaHei, sans-serif" font-size="15" font-weight="bold" fill="#164e63">第三节 抽样分布</text>
+<text x="75.0" y="360" font-family="PingFang SC, Hiragino Sans GB, Microsoft YaHei, sans-serif" font-size="12" fill="#0e7490">三种分布 ｜ 样本均值抽样分布 ｜ 标准误σ/√n ｜ 中心极限定理 ｜ 样本成数抽样分布</text>
+<line x1="450.0" y1="70" x2="450.0" y2="300" stroke="#0e7490" stroke-width="1.5"/>
+<line x1="450.0" y1="300" x2="450.0" y2="310" stroke="#0e7490" stroke-width="1.5"/>
+<rect x="60.0" y="420" width="780" height="90" rx="8" fill="#ecfeff" stroke="#0e7490" stroke-width="1.5"/>
+<text x="75.0" y="445" font-family="PingFang SC, Hiragino Sans GB, Microsoft YaHei, sans-serif" font-size="15" font-weight="bold" fill="#164e63">第四节 参数估计</text>
+<text x="75.0" y="470" font-family="PingFang SC, Hiragino Sans GB, Microsoft YaHei, sans-serif" font-size="12" fill="#0e7490">点估计三标准 ｜ 置信区间 ｜ 均值区间(Z/t) ｜ 成数区间 ｜ 样本量确定</text>
+<line x1="450.0" y1="70" x2="450.0" y2="410" stroke="#0e7490" stroke-width="1.5"/>
+<line x1="450.0" y1="410" x2="450.0" y2="420" stroke="#0e7490" stroke-width="1.5"/>
+<rect x="60.0" y="530" width="780" height="90" rx="8" fill="#ecfeff" stroke="#0e7490" stroke-width="1.5"/>
+<text x="75.0" y="555" font-family="PingFang SC, Hiragino Sans GB, Microsoft YaHei, sans-serif" font-size="15" font-weight="bold" fill="#164e63">第五节 抽样组织形式</text>
+<text x="75.0" y="580" font-family="PingFang SC, Hiragino Sans GB, Microsoft YaHei, sans-serif" font-size="12" fill="#0e7490">简单随机 ｜ 类型(分层) ｜ 等距 ｜ 整群 ｜ 多阶段</text>
+<line x1="450.0" y1="70" x2="450.0" y2="520" stroke="#0e7490" stroke-width="1.5"/>
+<line x1="450.0" y1="520" x2="450.0" y2="530" stroke="#0e7490" stroke-width="1.5"/>
+<rect x="60.0" y="640" width="780" height="90" rx="8" fill="#ecfeff" stroke="#0e7490" stroke-width="1.5"/>
+<text x="75.0" y="665" font-family="PingFang SC, Hiragino Sans GB, Microsoft YaHei, sans-serif" font-size="15" font-weight="bold" fill="#164e63">第六节 Excel抽样</text>
+<text x="75.0" y="690" font-family="PingFang SC, Hiragino Sans GB, Microsoft YaHei, sans-serif" font-size="12" fill="#0e7490">描述统计 ｜ 标准误计算</text>
+<line x1="450.0" y1="70" x2="450.0" y2="630" stroke="#0e7490" stroke-width="1.5"/>
+<line x1="450.0" y1="630" x2="450.0" y2="640" stroke="#0e7490" stroke-width="1.5"/>
+</svg>

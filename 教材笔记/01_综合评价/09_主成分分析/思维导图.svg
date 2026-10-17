@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 780" width="900" height="780" font-family="PingFang SC, Hiragino Sans GB, Microsoft YaHei, sans-serif">
+  <rect width="100%" height="100%" fill="#f0fdfa"/>
+  <rect x="300" y="30" width="300" height="60" rx="14" fill="#0e7490" stroke="#164e63" stroke-width="2"/>
+  <text x="450" y="68" text-anchor="middle" fill="#ffffff" font-size="20" font-weight="bold">第九章 主成分分析</text>
+  <path d="M450 90 L450 120 L180 120 L180 150" stroke="#0e7490" stroke-width="1.8" fill="none"/>
+  <rect x="40" y="150" width="280" height="50" rx="10" fill="#06b6d4" stroke="#0e7490" stroke-width="1.5"/>
+  <text x="180" y="181" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">PCA数学原理</text>
+  <line x1="180" y1="200" x2="180" y2="210" stroke="#0e7490" stroke-width="1.2"/>
+  <rect x="40" y="210" width="280" height="42" rx="8" fill="#ecfeff" stroke="#06b6d4" stroke-width="1.2"/>
+  <text x="180" y="236" text-anchor="middle" fill="#164e63" font-size="12">多相关指标→少数不相关综合指标</text>
+  <line x1="180" y1="250" x2="180" y2="260" stroke="#0e7490" stroke-width="1.2"/>
+  <rect x="40" y="260" width="280" height="42" rx="8" fill="#ecfeff" stroke="#06b6d4" stroke-width="1.2"/>
+  <text x="180" y="286" text-anchor="middle" fill="#164e63" font-size="12">主成分=特征向量线性投影</text>
+  <line x1="180" y1="300" x2="180" y2="310" stroke="#0e7490" stroke-width="1.2"/>
+  <rect x="40" y="310" width="280" height="42" rx="8" fill="#ecfeff" stroke="#06b6d4" stroke-width="1.2"/>
+  <text x="180" y="336" text-anchor="middle" fill="#164e63" font-size="12">方差=特征根λ、成分间协方差=0</text>
+  <line x1="180" y1="350" x2="180" y2="360" stroke="#0e7490" stroke-width="1.2"/>
+  <rect x="40" y="360" width="280" height="42" rx="8" fill="#ecfeff" stroke="#06b6d4" stroke-width="1.2"/>
+  <text x="180" y="386" text-anchor="middle" fill="#164e63" font-size="12">总方差守恒：Σvar=Σλ</text>
+  <line x1="180" y1="400" x2="180" y2="410" stroke="#0e7490" stroke-width="1.2"/>
+  <rect x="40" y="410" width="280" height="42" rx="8" fill="#ecfeff" stroke="#06b6d4" stroke-width="1.2"/>
+  <text x="180" y="436" text-anchor="middle" fill="#164e63" font-size="12">作用：降维/透视/回归/选变量</text>
+  <path d="M450 90 L450 120 L450 120 L450 150" stroke="#0e7490" stroke-width="1.8" fill="none"/>
+  <rect x="300" y="150" width="300" height="50" rx="10" fill="#06b6d4" stroke="#0e7490" stroke-width="1.5"/>
+  <text x="450" y="181" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">综合评价七步</text>
+  <line x1="450" y1="200" x2="450" y2="210" stroke="#0e7490" stroke-width="1.2"/>
+  <rect x="300" y="210" width="300" height="42" rx="8" fill="#ecfeff" stroke="#06b6d4" stroke-width="1.2"/>
+  <text x="450" y="236" text-anchor="middle" fill="#164e63" font-size="12">z-score标准化消除量纲</text>
+  <line x1="450" y1="250" x2="450" y2="260" stroke="#0e7490" stroke-width="1.2"/>
+  <rect x="300" y="260" width="300" height="42" rx="8" fill="#ecfeff" stroke="#06b6d4" stroke-width="1.2"/>
+  <text x="450" y="286" text-anchor="middle" fill="#164e63" font-size="12">构造相关系数矩阵R</text>
+  <line x1="450" y1="300" x2="450" y2="310" stroke="#0e7490" stroke-width="1.2"/>
+  <rect x="300" y="310" width="300" height="42" rx="8" fill="#ecfeff" stroke="#06b6d4" stroke-width="1.2"/>
+  <text x="450" y="336" text-anchor="middle" fill="#164e63" font-size="12">特征分解求特征根/向量</text>
+  <line x1="450" y1="350" x2="450" y2="360" stroke="#0e7490" stroke-width="1.2"/>
+  <rect x="300" y="360" width="300" height="42" rx="8" fill="#ecfeff" stroke="#06b6d4" stroke-width="1.2"/>
+  <text x="450" y="386" text-anchor="middle" fill="#164e63" font-size="12">方差贡献率aₖ=λₖ/Σλ</text>
+  <line x1="450" y1="400" x2="450" y2="410" stroke="#0e7490" stroke-width="1.2"/>
+  <rect x="300" y="410" width="300" height="42" rx="8" fill="#ecfeff" stroke="#06b6d4" stroke-width="1.2"/>
+  <text x="450" y="436" text-anchor="middle" fill="#164e63" font-size="12">选k：累积≥85%或λ&gt;1</text>
+  <line x1="450" y1="450" x2="450" y2="460" stroke="#0e7490" stroke-width="1.2"/>
+  <rect x="300" y="460" width="300" height="42" rx="8" fill="#ecfeff" stroke="#06b6d4" stroke-width="1.2"/>
+  <text x="450" y="486" text-anchor="middle" fill="#164e63" font-size="12">综合值F=Σλᵢyᵢ/Σλᵢ排序</text>
+  <path d="M450 90 L450 120 L720 120 L720 150" stroke="#0e7490" stroke-width="1.8" fill="none"/>
+  <rect x="580" y="150" width="280" height="50" rx="10" fill="#06b6d4" stroke="#0e7490" stroke-width="1.5"/>
+  <text x="720" y="181" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">特点与改进</text>
+  <line x1="720" y1="200" x2="720" y2="210" stroke="#0e7490" stroke-width="1.2"/>
+  <rect x="580" y="210" width="280" height="42" rx="8" fill="#ecfeff" stroke="#06b6d4" stroke-width="1.2"/>
+  <text x="720" y="236" text-anchor="middle" fill="#164e63" font-size="12">消除指标相关(最大优点)</text>
+  <line x1="720" y1="250" x2="720" y2="260" stroke="#0e7490" stroke-width="1.2"/>
+  <rect x="580" y="260" width="280" height="42" rx="8" fill="#ecfeff" stroke="#06b6d4" stroke-width="1.2"/>
+  <text x="720" y="286" text-anchor="middle" fill="#164e63" font-size="12">权数客观(方差贡献率)</text>
+  <line x1="720" y1="300" x2="720" y2="310" stroke="#0e7490" stroke-width="1.2"/>
+  <rect x="580" y="310" width="280" height="42" rx="8" fill="#ecfeff" stroke="#06b6d4" stroke-width="1.2"/>
+  <text x="720" y="336" text-anchor="middle" fill="#164e63" font-size="12">结果不稳定：需n&gt;2p</text>
+  <line x1="720" y1="350" x2="720" y2="360" stroke="#0e7490" stroke-width="1.2"/>
+  <rect x="580" y="360" width="280" height="42" rx="8" fill="#ecfeff" stroke="#06b6d4" stroke-width="1.2"/>
+  <text x="720" y="386" text-anchor="middle" fill="#164e63" font-size="12">均值化：保留变异差异信息</text>
+  <line x1="720" y1="400" x2="720" y2="410" stroke="#0e7490" stroke-width="1.2"/>
+  <rect x="580" y="410" width="280" height="42" rx="8" fill="#ecfeff" stroke="#06b6d4" stroke-width="1.2"/>
+  <text x="720" y="436" text-anchor="middle" fill="#164e63" font-size="12">最大方差旋转使系数两极化</text>
+  <line x1="720" y1="450" x2="720" y2="460" stroke="#0e7490" stroke-width="1.2"/>
+  <rect x="580" y="460" width="280" height="42" rx="8" fill="#ecfeff" stroke="#06b6d4" stroke-width="1.2"/>
+  <text x="720" y="486" text-anchor="middle" fill="#164e63" font-size="12">非线性PCA：对数中心化成分数据</text>
+  <rect x="80" y="550" width="740" height="80" rx="12" fill="#ffffff" stroke="#0e7490" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="450" y="578" text-anchor="middle" fill="#164e63" font-size="14" font-weight="bold">🔗 概念关系链</text>
+  <text x="450" y="602" text-anchor="middle" fill="#164e63" font-size="13">标准化 → R矩阵特征分解 → 选主成分k → 贡献率加权F → 排序</text>
+  <text x="450" y="672" text-anchor="middle" fill="#0e7490" font-size="13" font-style="italic">💡 降维消相关的客观赋权评价</text>
+  <text x="450" y="732" text-anchor="middle" fill="#0e7490" font-size="11.5">📚 相关：第十章 因子分析 · 第四章 客观赋权</text>
+</svg>

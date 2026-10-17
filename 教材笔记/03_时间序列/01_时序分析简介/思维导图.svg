@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 730" width="900" height="730" font-family="PingFang SC, Hiragino Sans GB, Microsoft YaHei, sans-serif">
+  <rect width="100%" height="100%" fill="#faf5ff"/>
+  <rect x="300" y="30" width="300" height="60" rx="14" fill="#6d28d9" stroke="#4c1d95" stroke-width="2"/>
+  <text x="450" y="68" text-anchor="middle" fill="#ffffff" font-size="20" font-weight="bold">第1章 时序分析简介</text>
+  <path d="M450 90 L450 120 L180 120 L180 150" stroke="#6d28d9" stroke-width="1.8" fill="none"/>
+  <rect x="40" y="150" width="280" height="50" rx="10" fill="#a78bfa" stroke="#6d28d9" stroke-width="1.5"/>
+  <text x="180" y="181" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">一、基本概念</text>
+  <line x1="180" y1="200" x2="180" y2="210" stroke="#6d28d9" stroke-width="1.2"/>
+  <rect x="40" y="210" width="280" height="42" rx="8" fill="#f5f3ff" stroke="#a78bfa" stroke-width="1.2"/>
+  <text x="180" y="236" text-anchor="middle" fill="#4c1d95" font-size="12">随机时序{X_t, t∈T}：随机变量族</text>
+  <line x1="180" y1="250" x2="180" y2="260" stroke="#6d28d9" stroke-width="1.2"/>
+  <rect x="40" y="260" width="280" height="42" rx="8" fill="#f5f3ff" stroke="#a78bfa" stroke-width="1.2"/>
+  <text x="180" y="286" text-anchor="middle" fill="#4c1d95" font-size="12">观察值序列{x_t}：一次具体实现</text>
+  <line x1="180" y1="300" x2="180" y2="310" stroke="#6d28d9" stroke-width="1.2"/>
+  <rect x="40" y="310" width="280" height="42" rx="8" fill="#f5f3ff" stroke="#a78bfa" stroke-width="1.2"/>
+  <text x="180" y="336" text-anchor="middle" fill="#4c1d95" font-size="12">研究目的：样本推断总体性质</text>
+  <line x1="180" y1="350" x2="180" y2="360" stroke="#6d28d9" stroke-width="1.2"/>
+  <rect x="40" y="360" width="280" height="42" rx="8" fill="#f5f3ff" stroke="#a78bfa" stroke-width="1.2"/>
+  <text x="180" y="386" text-anchor="middle" fill="#4c1d95" font-size="12">每时刻只观测一次不可重复</text>
+  <path d="M450 90 L450 120 L450 120 L450 150" stroke="#6d28d9" stroke-width="1.8" fill="none"/>
+  <rect x="300" y="150" width="300" height="50" rx="10" fill="#a78bfa" stroke="#6d28d9" stroke-width="1.5"/>
+  <text x="450" y="181" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">二、方法分类</text>
+  <line x1="450" y1="200" x2="450" y2="210" stroke="#6d28d9" stroke-width="1.2"/>
+  <rect x="300" y="210" width="300" height="42" rx="8" fill="#f5f3ff" stroke="#a78bfa" stroke-width="1.2"/>
+  <text x="450" y="236" text-anchor="middle" fill="#4c1d95" font-size="12">描述性分析：绘图找规律，主观</text>
+  <line x1="450" y1="250" x2="450" y2="260" stroke="#6d28d9" stroke-width="1.2"/>
+  <rect x="300" y="260" width="300" height="42" rx="8" fill="#f5f3ff" stroke="#a78bfa" stroke-width="1.2"/>
+  <text x="450" y="286" text-anchor="middle" fill="#4c1d95" font-size="12">频域分析：傅里叶变换，工程用</text>
+  <line x1="450" y1="300" x2="450" y2="310" stroke="#6d28d9" stroke-width="1.2"/>
+  <rect x="300" y="310" width="300" height="42" rx="8" fill="#f5f3ff" stroke="#a78bfa" stroke-width="1.2"/>
+  <text x="450" y="336" text-anchor="middle" fill="#4c1d95" font-size="12">时域分析：自相关建模，本书核心</text>
+  <line x1="450" y1="350" x2="450" y2="360" stroke="#6d28d9" stroke-width="1.2"/>
+  <rect x="300" y="360" width="300" height="42" rx="8" fill="#f5f3ff" stroke="#a78bfa" stroke-width="1.2"/>
+  <text x="450" y="386" text-anchor="middle" fill="#4c1d95" font-size="12">社科主流：ARMA/ARIMA体系</text>
+  <path d="M450 90 L450 120 L720 120 L720 150" stroke="#6d28d9" stroke-width="1.8" fill="none"/>
+  <rect x="580" y="150" width="280" height="50" rx="10" fill="#a78bfa" stroke="#6d28d9" stroke-width="1.5"/>
+  <text x="720" y="181" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">三、五步法&amp;R工具</text>
+  <line x1="720" y1="200" x2="720" y2="210" stroke="#6d28d9" stroke-width="1.2"/>
+  <rect x="580" y="210" width="280" height="42" rx="8" fill="#f5f3ff" stroke="#a78bfa" stroke-width="1.2"/>
+  <text x="720" y="236" text-anchor="middle" fill="#4c1d95" font-size="12">①考察特征②选模型③估参④检验⑤预测</text>
+  <line x1="720" y1="250" x2="720" y2="260" stroke="#6d28d9" stroke-width="1.2"/>
+  <rect x="580" y="260" width="280" height="42" rx="8" fill="#f5f3ff" stroke="#a78bfa" stroke-width="1.2"/>
+  <text x="720" y="286" text-anchor="middle" fill="#4c1d95" font-size="12">ts()生成时序对象frequency=12</text>
+  <line x1="720" y1="300" x2="720" y2="310" stroke="#6d28d9" stroke-width="1.2"/>
+  <rect x="580" y="310" width="280" height="42" rx="8" fill="#f5f3ff" stroke="#a78bfa" stroke-width="1.2"/>
+  <text x="720" y="336" text-anchor="middle" fill="#4c1d95" font-size="12">read.table()读外部数据</text>
+  <line x1="720" y1="350" x2="720" y2="360" stroke="#6d28d9" stroke-width="1.2"/>
+  <rect x="580" y="360" width="280" height="42" rx="8" fill="#f5f3ff" stroke="#a78bfa" stroke-width="1.2"/>
+  <text x="720" y="386" text-anchor="middle" fill="#4c1d95" font-size="12">plot()绘制时序图</text>
+  <line x1="720" y1="400" x2="720" y2="410" stroke="#6d28d9" stroke-width="1.2"/>
+  <rect x="580" y="410" width="280" height="42" rx="8" fill="#f5f3ff" stroke="#a78bfa" stroke-width="1.2"/>
+  <text x="720" y="436" text-anchor="middle" fill="#4c1d95" font-size="12">library()加载程序包</text>
+  <rect x="80" y="500" width="740" height="80" rx="12" fill="#ffffff" stroke="#6d28d9" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="450" y="528" text-anchor="middle" fill="#4c1d95" font-size="14" font-weight="bold">🔗 概念关系链</text>
+  <text x="450" y="552" text-anchor="middle" fill="#4c1d95" font-size="13">观察值序列 → 随机时序推断 → 平稳性筛选 → 自相关建模 → 预测</text>
+  <text x="450" y="622" text-anchor="middle" fill="#6d28d9" font-size="13" font-style="italic">💡 全书入门：建立时序概念与R工具链</text>
+  <text x="450" y="682" text-anchor="middle" fill="#6d28d9" font-size="11.5">📚 相关：第2章 平稳性检验 / 第3章 ARMA建模</text>
+</svg>

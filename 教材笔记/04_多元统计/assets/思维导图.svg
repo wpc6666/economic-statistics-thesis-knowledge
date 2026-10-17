@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 388" width="900" height="388" font-family="PingFang SC, Hiragino Sans GB, Microsoft YaHei, sans-serif">
+  <defs>
+    <style>
+      .root { fill: #6b21a8; stroke: #6b21a8; }
+      .sec  { fill: #a855f7; stroke: #6b21a8; }
+      .kp   { fill: #f3e8ff; stroke: #a855f7; }
+      .txt-root { fill: #ffffff; font-size: 22px; font-weight: bold; }
+      .txt-sec  { fill: #ffffff; font-size: 16px; font-weight: bold; }
+      .txt-kp   { fill: #581c87; font-size: 13px; }
+      .line { stroke: #6b21a8; stroke-width: 1.5; fill: none; }
+    </style>
+  </defs>
+  <rect x="300" y="30" width="300" height="60" rx="12" class="root"/>
+  <text x="450" y="68" text-anchor="middle" class="txt-root">assets</text>
+  <rect x="250" y="180" width="400" height="50" rx="10" class="sec"/>
+  <text x="450" y="210" text-anchor="middle" class="txt-sec">知识点1</text>
+  <path d="M450 90 L450 180" class="line"/>
+  <rect x="300" y="240" width="300" height="30" rx="6" class="kp"/>
+  <text x="450" y="260" text-anchor="middle" class="txt-kp">assets</text>
+  <path d="M450 230 L450 240" class="line"/>
+</svg>

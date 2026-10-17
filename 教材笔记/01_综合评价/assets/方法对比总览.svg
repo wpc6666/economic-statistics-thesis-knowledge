@@ -1,0 +1,141 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1266" viewBox="0 0 1080 1266">
+<rect width="100%" height="100%" fill="#fbfcfd"/>
+<text x="540.0" y="36" font-size="21" fill="#2c3e50" text-anchor="middle" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif" font-weight="bold">综合评价方法对比总览</text>
+<text x="540.0" y="58" font-size="13" fill="#7f8c8d" text-anchor="middle" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">陈正伟《综合评价技术及应用》 · 五大方法家族</text>
+<rect x="40" y="64" width="8" height="26" rx="2" fill="#2980b9"/>
+<text x="58" y="83" font-size="16" fill="#2980b9" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif" font-weight="bold">一、赋权方法 · 权重从哪来</text>
+<rect x="40" y="98" width="322" height="90" rx="9" fill="#ffffff" stroke="#dfe6ea" stroke-width="1.2"/>
+<rect x="40" y="98" width="322" height="6" rx="3" fill="#2980b9"/>
+<text x="55" y="129" font-size="15" font-weight="bold" fill="#1a1a1a" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">专家评判法</text>
+<text x="55" y="151" font-size="12.5" fill="#555" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">主观 · 专家独立打分后平均归一</text>
+<rect x="53" y="164" width="71" height="18" rx="9" fill="#2980b9" opacity="0.14"/>
+<text x="61" y="177" font-size="11" fill="#2980b9" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">有专家资源</text>
+<rect x="378" y="98" width="322" height="90" rx="9" fill="#ffffff" stroke="#dfe6ea" stroke-width="1.2"/>
+<rect x="378" y="98" width="322" height="6" rx="3" fill="#2980b9"/>
+<text x="393" y="129" font-size="15" font-weight="bold" fill="#1a1a1a" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">AHP 层次分析</text>
+<text x="393" y="151" font-size="12.5" fill="#555" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">主观 · 两两比较 + 一致性检验</text>
+<rect x="391" y="164" width="60" height="18" rx="9" fill="#2980b9" opacity="0.14"/>
+<text x="399" y="177" font-size="11" fill="#2980b9" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">指标分层</text>
+<rect x="716" y="98" width="322" height="90" rx="9" fill="#ffffff" stroke="#dfe6ea" stroke-width="1.2"/>
+<rect x="716" y="98" width="322" height="6" rx="3" fill="#2980b9"/>
+<text x="731" y="129" font-size="15" font-weight="bold" fill="#1a1a1a" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">变异系数法</text>
+<text x="731" y="151" font-size="12.5" fill="#555" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">客观 · 按指标离散程度赋权</text>
+<rect x="729" y="164" width="71" height="18" rx="9" fill="#2980b9" opacity="0.14"/>
+<text x="737" y="177" font-size="11" fill="#2980b9" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">数据差异大</text>
+<rect x="40" y="202" width="322" height="90" rx="9" fill="#ffffff" stroke="#dfe6ea" stroke-width="1.2"/>
+<rect x="40" y="202" width="322" height="6" rx="3" fill="#2980b9"/>
+<text x="55" y="233" font-size="15" font-weight="bold" fill="#1a1a1a" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">相关系数法</text>
+<text x="55" y="255" font-size="12.5" fill="#555" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">客观 · 按重复信息赋权</text>
+<rect x="53" y="268" width="60" height="18" rx="9" fill="#2980b9" opacity="0.14"/>
+<text x="61" y="281" font-size="11" fill="#2980b9" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">指标相关</text>
+<rect x="378" y="202" width="322" height="90" rx="9" fill="#ffffff" stroke="#dfe6ea" stroke-width="1.2"/>
+<rect x="378" y="202" width="322" height="6" rx="3" fill="#2980b9"/>
+<text x="393" y="233" font-size="15" font-weight="bold" fill="#1a1a1a" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">熵值法</text>
+<text x="393" y="255" font-size="12.5" fill="#555" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">客观 · 按信息量/离散度赋权</text>
+<rect x="391" y="268" width="60" height="18" rx="9" fill="#2980b9" opacity="0.14"/>
+<text x="399" y="281" font-size="11" fill="#2980b9" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">数据完整</text>
+<rect x="716" y="202" width="322" height="90" rx="9" fill="#ffffff" stroke="#dfe6ea" stroke-width="1.2"/>
+<rect x="716" y="202" width="322" height="6" rx="3" fill="#2980b9"/>
+<text x="731" y="233" font-size="15" font-weight="bold" fill="#1a1a1a" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">坎蒂雷法</text>
+<text x="731" y="255" font-size="12.5" fill="#555" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">客观 · 同时利用变异与相关</text>
+<rect x="729" y="268" width="60" height="18" rx="9" fill="#2980b9" opacity="0.14"/>
+<text x="737" y="281" font-size="11" fill="#2980b9" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">信息兼顾</text>
+<rect x="40" y="306" width="322" height="90" rx="9" fill="#ffffff" stroke="#dfe6ea" stroke-width="1.2"/>
+<rect x="40" y="306" width="322" height="6" rx="3" fill="#2980b9"/>
+<text x="55" y="337" font-size="15" font-weight="bold" fill="#1a1a1a" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">组合赋权</text>
+<text x="55" y="359" font-size="12.5" fill="#555" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">主客观乘法/线性合成</text>
+<rect x="53" y="372" width="60" height="18" rx="9" fill="#2980b9" opacity="0.14"/>
+<text x="61" y="385" font-size="11" fill="#2980b9" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">稳健折中</text>
+<rect x="40" y="424" width="8" height="26" rx="2" fill="#16a085"/>
+<text x="58" y="443" font-size="16" fill="#16a085" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif" font-weight="bold">二、合成方法 · 怎么把指标合起来</text>
+<rect x="40" y="458" width="322" height="90" rx="9" fill="#ffffff" stroke="#dfe6ea" stroke-width="1.2"/>
+<rect x="40" y="458" width="322" height="6" rx="3" fill="#16a085"/>
+<text x="55" y="489" font-size="15" font-weight="bold" fill="#1a1a1a" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">线性综合</text>
+<text x="55" y="511" font-size="12.5" fill="#555" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">加权求和 · 指标可线性补偿</text>
+<rect x="53" y="524" width="71" height="18" rx="9" fill="#16a085" opacity="0.14"/>
+<text x="61" y="537" font-size="11" fill="#16a085" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">可相互替代</text>
+<rect x="378" y="458" width="322" height="90" rx="9" fill="#ffffff" stroke="#dfe6ea" stroke-width="1.2"/>
+<rect x="378" y="458" width="322" height="6" rx="3" fill="#16a085"/>
+<text x="393" y="489" font-size="15" font-weight="bold" fill="#1a1a1a" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">几何综合</text>
+<text x="393" y="511" font-size="12.5" fill="#555" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">连乘 · 一票否决、要求均衡</text>
+<rect x="391" y="524" width="60" height="18" rx="9" fill="#16a085" opacity="0.14"/>
+<text x="399" y="537" font-size="11" fill="#16a085" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">不可偏废</text>
+<rect x="716" y="458" width="322" height="90" rx="9" fill="#ffffff" stroke="#dfe6ea" stroke-width="1.2"/>
+<rect x="716" y="458" width="322" height="6" rx="3" fill="#16a085"/>
+<text x="731" y="489" font-size="15" font-weight="bold" fill="#1a1a1a" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">混合综合</text>
+<text x="731" y="511" font-size="12.5" fill="#555" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">加 + 乘叠加</text>
+<rect x="729" y="524" width="60" height="18" rx="9" fill="#16a085" opacity="0.14"/>
+<text x="737" y="537" font-size="11" fill="#16a085" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">部分补偿</text>
+<rect x="40" y="562" width="322" height="90" rx="9" fill="#ffffff" stroke="#dfe6ea" stroke-width="1.2"/>
+<rect x="40" y="562" width="322" height="6" rx="3" fill="#16a085"/>
+<text x="55" y="593" font-size="15" font-weight="bold" fill="#1a1a1a" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">模型综合</text>
+<text x="55" y="615" font-size="12.5" fill="#555" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">建函数 Z=F(X) · 投影</text>
+<rect x="53" y="628" width="71" height="18" rx="9" fill="#16a085" opacity="0.14"/>
+<text x="61" y="641" font-size="11" fill="#16a085" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">有明确机制</text>
+<rect x="378" y="562" width="322" height="90" rx="9" fill="#ffffff" stroke="#dfe6ea" stroke-width="1.2"/>
+<rect x="378" y="562" width="322" height="6" rx="3" fill="#16a085"/>
+<text x="393" y="593" font-size="15" font-weight="bold" fill="#1a1a1a" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">空间距离法</text>
+<text x="393" y="615" font-size="12.5" fill="#555" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">实际点到目标点距离</text>
+<rect x="391" y="628" width="60" height="18" rx="9" fill="#16a085" opacity="0.14"/>
+<text x="399" y="641" font-size="11" fill="#16a085" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">有标杆点</text>
+<rect x="716" y="562" width="322" height="90" rx="9" fill="#ffffff" stroke="#dfe6ea" stroke-width="1.2"/>
+<rect x="716" y="562" width="322" height="6" rx="3" fill="#16a085"/>
+<text x="731" y="593" font-size="15" font-weight="bold" fill="#1a1a1a" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">DEA 数据包络</text>
+<text x="731" y="615" font-size="12.5" fill="#555" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">多投入多产出 · 线性规划效率</text>
+<rect x="729" y="628" width="82" height="18" rx="9" fill="#16a085" opacity="0.14"/>
+<text x="737" y="641" font-size="11" fill="#16a085" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">评价相对效率</text>
+<rect x="40" y="680" width="8" height="26" rx="2" fill="#27ae60"/>
+<text x="58" y="699" font-size="16" fill="#27ae60" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif" font-weight="bold">三、常规成套方法 · 确定性数据</text>
+<rect x="40" y="714" width="322" height="90" rx="9" fill="#ffffff" stroke="#dfe6ea" stroke-width="1.2"/>
+<rect x="40" y="714" width="322" height="6" rx="3" fill="#27ae60"/>
+<text x="55" y="745" font-size="15" font-weight="bold" fill="#1a1a1a" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">综合评分法</text>
+<text x="55" y="767" font-size="12.5" fill="#555" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">实际值转分数后加权</text>
+<rect x="53" y="780" width="93" height="18" rx="9" fill="#27ae60" opacity="0.14"/>
+<text x="61" y="793" font-size="11" fill="#27ae60" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">有标准、易打分</text>
+<rect x="378" y="714" width="322" height="90" rx="9" fill="#ffffff" stroke="#dfe6ea" stroke-width="1.2"/>
+<rect x="378" y="714" width="322" height="6" rx="3" fill="#27ae60"/>
+<text x="393" y="745" font-size="15" font-weight="bold" fill="#1a1a1a" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">综合指数法</text>
+<text x="393" y="767" font-size="12.5" fill="#555" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">个体指数加权</text>
+<rect x="391" y="780" width="100" height="18" rx="9" fill="#27ae60" opacity="0.14"/>
+<text x="399" y="793" font-size="11" fill="#27ae60" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">有基期/计划标准</text>
+<rect x="716" y="714" width="322" height="90" rx="9" fill="#ffffff" stroke="#dfe6ea" stroke-width="1.2"/>
+<rect x="716" y="714" width="322" height="6" rx="3" fill="#27ae60"/>
+<text x="731" y="745" font-size="15" font-weight="bold" fill="#1a1a1a" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">秩和比 RSR</text>
+<text x="731" y="767" font-size="12.5" fill="#555" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">按位次加权 · 抗异常值</text>
+<rect x="729" y="780" width="60" height="18" rx="9" fill="#27ae60" opacity="0.14"/>
+<text x="737" y="793" font-size="11" fill="#27ae60" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">仅知位次</text>
+<rect x="40" y="818" width="322" height="90" rx="9" fill="#ffffff" stroke="#dfe6ea" stroke-width="1.2"/>
+<rect x="40" y="818" width="322" height="6" rx="3" fill="#27ae60"/>
+<text x="55" y="849" font-size="15" font-weight="bold" fill="#1a1a1a" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">功效系数法</text>
+<text x="55" y="871" font-size="12.5" fill="#555" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">满意/不允许映射 60~100</text>
+<rect x="53" y="884" width="60" height="18" rx="9" fill="#27ae60" opacity="0.14"/>
+<text x="61" y="897" font-size="11" fill="#27ae60" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">有双边界</text>
+<rect x="40" y="936" width="8" height="26" rx="2" fill="#8e44ad"/>
+<text x="58" y="955" font-size="16" fill="#8e44ad" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif" font-weight="bold">四、不确定性方法 · 模糊/灰色</text>
+<rect x="40" y="970" width="322" height="90" rx="9" fill="#ffffff" stroke="#dfe6ea" stroke-width="1.2"/>
+<rect x="40" y="970" width="322" height="6" rx="3" fill="#8e44ad"/>
+<text x="55" y="1001" font-size="15" font-weight="bold" fill="#1a1a1a" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">灰色关联度</text>
+<text x="55" y="1023" font-size="12.5" fill="#555" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">信息不完全 · 曲线形状相似</text>
+<rect x="53" y="1036" width="89" height="18" rx="9" fill="#8e44ad" opacity="0.14"/>
+<text x="61" y="1049" font-size="11" fill="#8e44ad" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">贫信息·小样本</text>
+<rect x="378" y="970" width="322" height="90" rx="9" fill="#ffffff" stroke="#dfe6ea" stroke-width="1.2"/>
+<rect x="378" y="970" width="322" height="6" rx="3" fill="#8e44ad"/>
+<text x="393" y="1001" font-size="15" font-weight="bold" fill="#1a1a1a" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">模糊综合评价</text>
+<text x="393" y="1023" font-size="12.5" fill="#555" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">边界模糊 · 隶属度矩阵合成</text>
+<rect x="391" y="1036" width="71" height="18" rx="9" fill="#8e44ad" opacity="0.14"/>
+<text x="399" y="1049" font-size="11" fill="#8e44ad" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">有评语等级</text>
+<rect x="40" y="1088" width="8" height="26" rx="2" fill="#b7950b"/>
+<text x="58" y="1107" font-size="16" fill="#b7950b" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif" font-weight="bold">五、降维方法 · 指标多且相关</text>
+<rect x="40" y="1122" width="322" height="90" rx="9" fill="#ffffff" stroke="#dfe6ea" stroke-width="1.2"/>
+<rect x="40" y="1122" width="322" height="6" rx="3" fill="#b7950b"/>
+<text x="55" y="1153" font-size="15" font-weight="bold" fill="#1a1a1a" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">主成分分析</text>
+<text x="55" y="1175" font-size="12.5" fill="#555" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">方差最大 · 客观综合得分</text>
+<rect x="53" y="1188" width="71" height="18" rx="9" fill="#b7950b" opacity="0.14"/>
+<text x="61" y="1201" font-size="11" fill="#b7950b" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">重综合排序</text>
+<rect x="378" y="1122" width="322" height="90" rx="9" fill="#ffffff" stroke="#dfe6ea" stroke-width="1.2"/>
+<rect x="378" y="1122" width="322" height="6" rx="3" fill="#b7950b"/>
+<text x="393" y="1153" font-size="15" font-weight="bold" fill="#1a1a1a" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">因子分析</text>
+<text x="393" y="1175" font-size="12.5" fill="#555" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">公共因子 · 旋转后结构解释</text>
+<rect x="391" y="1188" width="71" height="18" rx="9" fill="#b7950b" opacity="0.14"/>
+<text x="399" y="1201" font-size="11" fill="#b7950b" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">重潜在结构</text>
+</svg>

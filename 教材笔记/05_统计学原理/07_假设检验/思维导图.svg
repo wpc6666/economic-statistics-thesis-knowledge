@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="480" viewBox="0 0 900 480">
+<rect width="100%" height="100%" fill="#f0fdfa"/>
+<rect x="270.0" y="20" width="360" height="50" rx="12" fill="#06b6d4" stroke="#0e7490" stroke-width="2"/>
+<text x="450.0" y="51.0" text-anchor="middle" font-family="PingFang SC, Hiragino Sans GB, Microsoft YaHei, sans-serif" font-size="20" font-weight="bold" fill="white">第七章 假设检验</text>
+<rect x="60.0" y="90" width="780" height="90" rx="8" fill="#ecfeff" stroke="#0e7490" stroke-width="1.5"/>
+<text x="75.0" y="115" font-family="PingFang SC, Hiragino Sans GB, Microsoft YaHei, sans-serif" font-size="15" font-weight="bold" fill="#164e63">第一节 假设检验概述</text>
+<text x="75.0" y="140" font-family="PingFang SC, Hiragino Sans GB, Microsoft YaHei, sans-serif" font-size="12" fill="#0e7490">无罪推定逻辑 ｜ H0与H1 ｜ 显著性水平α</text>
+<line x1="450.0" y1="70" x2="450.0" y2="80" stroke="#0e7490" stroke-width="1.5"/>
+<line x1="450.0" y1="80" x2="450.0" y2="90" stroke="#0e7490" stroke-width="1.5"/>
+<rect x="60.0" y="200" width="780" height="90" rx="8" fill="#ecfeff" stroke="#0e7490" stroke-width="1.5"/>
+<text x="75.0" y="225" font-family="PingFang SC, Hiragino Sans GB, Microsoft YaHei, sans-serif" font-size="15" font-weight="bold" fill="#164e63">第二节 基本思路与方法</text>
+<text x="75.0" y="250" font-family="PingFang SC, Hiragino Sans GB, Microsoft YaHei, sans-serif" font-size="12" fill="#0e7490">两类错误α/β ｜ 单尾vs双尾 ｜ P值</text>
+<line x1="450.0" y1="70" x2="450.0" y2="190" stroke="#0e7490" stroke-width="1.5"/>
+<line x1="450.0" y1="190" x2="450.0" y2="200" stroke="#0e7490" stroke-width="1.5"/>
+<rect x="60.0" y="310" width="780" height="90" rx="8" fill="#ecfeff" stroke="#0e7490" stroke-width="1.5"/>
+<text x="75.0" y="335" font-family="PingFang SC, Hiragino Sans GB, Microsoft YaHei, sans-serif" font-size="15" font-weight="bold" fill="#164e63">第三节 总体参数检验</text>
+<text x="75.0" y="360" font-family="PingFang SC, Hiragino Sans GB, Microsoft YaHei, sans-serif" font-size="12" fill="#0e7490">均值Z检验 ｜ 均值t检验 ｜ 比例Z检验 ｜ 方差χ²检验</text>
+<line x1="450.0" y1="70" x2="450.0" y2="300" stroke="#0e7490" stroke-width="1.5"/>
+<line x1="450.0" y1="300" x2="450.0" y2="310" stroke="#0e7490" stroke-width="1.5"/>
+<rect x="60.0" y="420" width="780" height="90" rx="8" fill="#ecfeff" stroke="#0e7490" stroke-width="1.5"/>
+<text x="75.0" y="445" font-family="PingFang SC, Hiragino Sans GB, Microsoft YaHei, sans-serif" font-size="15" font-weight="bold" fill="#164e63">第四节 Excel假设检验</text>
+<text x="75.0" y="470" font-family="PingFang SC, Hiragino Sans GB, Microsoft YaHei, sans-serif" font-size="12" fill="#0e7490">TDIST函数 ｜ P值法</text>
+<line x1="450.0" y1="70" x2="450.0" y2="410" stroke="#0e7490" stroke-width="1.5"/>
+<line x1="450.0" y1="410" x2="450.0" y2="420" stroke="#0e7490" stroke-width="1.5"/>
+</svg>

@@ -1,0 +1,72 @@
+{
+  "collapse-filter": true,
+  "search": "",
+  "showTags": false,
+  "showAttachments": false,
+  "hideUnresolved": false,
+  "showOrphans": true,
+  "collapse-color-groups": false,
+  "colorGroups": [
+    {
+      "query": "path:教材笔记/01_综合评价",
+      "color": {
+        "a": 1,
+        "rgb": 255
+      }
+    },
+    {
+      "query": "path:教材笔记/02_计量经济学",
+      "color": {
+        "a": 1,
+        "rgb": 65280
+      }
+    },
+    {
+      "query": "path:教材笔记/03_时间序列",
+      "color": {
+        "a": 1,
+        "rgb": 16753920
+      }
+    },
+    {
+      "query": "path:教材笔记/04_多元统计",
+      "color": {
+        "a": 1,
+        "rgb": 10233776
+      }
+    },
+    {
+      "query": "path:经济统计学从0到论文大牛",
+      "color": {
+        "a": 1,
+        "rgb": 16711680
+      }
+    },
+    {
+      "query": "path:原文件",
+      "color": {
+        "a": 1,
+        "rgb": 8421504
+      }
+    },
+    {
+      "query": "path:教材笔记/05_统计学原理",
+      "color": {
+        "a": 1,
+        "rgb": 65535
+      }
+    }
+  ],
+  "collapse-display": false,
+  "showArrow": false,
+  "textFadeMultiplier": 0.5,
+  "nodeSizeMultiplier": 1.2,
+  "lineSizeMultiplier": 0.5,
+  "collapse-forces": false,
+  "centerStrength": 0.2,
+  "repelStrength": 5,
+  "linkStrength": 1,
+  "linkDistance": 150,
+  "scale": 1.0520487711549975,
+  "close": true
+}

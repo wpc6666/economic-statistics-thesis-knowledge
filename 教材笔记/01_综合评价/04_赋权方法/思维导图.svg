@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 730" width="900" height="730" font-family="PingFang SC, Hiragino Sans GB, Microsoft YaHei, sans-serif">
+  <rect width="100%" height="100%" fill="#f0fdfa"/>
+  <rect x="300" y="30" width="300" height="60" rx="14" fill="#0e7490" stroke="#164e63" stroke-width="2"/>
+  <text x="450" y="68" text-anchor="middle" fill="#ffffff" font-size="20" font-weight="bold">第四章 指标重要性赋权</text>
+  <path d="M450 90 L450 120 L180 120 L180 150" stroke="#0e7490" stroke-width="1.8" fill="none"/>
+  <rect x="40" y="150" width="280" height="50" rx="10" fill="#06b6d4" stroke="#0e7490" stroke-width="1.5"/>
+  <text x="180" y="181" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">主观赋权法</text>
+  <line x1="180" y1="200" x2="180" y2="210" stroke="#0e7490" stroke-width="1.2"/>
+  <rect x="40" y="210" width="280" height="42" rx="8" fill="#ecfeff" stroke="#06b6d4" stroke-width="1.2"/>
+  <text x="180" y="236" text-anchor="middle" fill="#164e63" font-size="12">专家评判法：打分→均值→归一</text>
+  <line x1="180" y1="250" x2="180" y2="260" stroke="#0e7490" stroke-width="1.2"/>
+  <rect x="40" y="260" width="280" height="42" rx="8" fill="#ecfeff" stroke="#06b6d4" stroke-width="1.2"/>
+  <text x="180" y="286" text-anchor="middle" fill="#164e63" font-size="12">AHP九标度：1同/3稍/5明/7甚/9极</text>
+  <line x1="180" y1="300" x2="180" y2="310" stroke="#0e7490" stroke-width="1.2"/>
+  <rect x="40" y="310" width="280" height="42" rx="8" fill="#ecfeff" stroke="#06b6d4" stroke-width="1.2"/>
+  <text x="180" y="336" text-anchor="middle" fill="#164e63" font-size="12">方根法：行积→p次根→归一</text>
+  <line x1="180" y1="350" x2="180" y2="360" stroke="#0e7490" stroke-width="1.2"/>
+  <rect x="40" y="360" width="280" height="42" rx="8" fill="#ecfeff" stroke="#06b6d4" stroke-width="1.2"/>
+  <text x="180" y="386" text-anchor="middle" fill="#164e63" font-size="12">一致性检验：CR=CI/RI&lt;0.10</text>
+  <line x1="180" y1="400" x2="180" y2="410" stroke="#0e7490" stroke-width="1.2"/>
+  <rect x="40" y="410" width="280" height="42" rx="8" fill="#ecfeff" stroke="#06b6d4" stroke-width="1.2"/>
+  <text x="180" y="436" text-anchor="middle" fill="#164e63" font-size="12">层次综合权：Σωij·aj</text>
+  <path d="M450 90 L450 120 L450 120 L450 150" stroke="#0e7490" stroke-width="1.8" fill="none"/>
+  <rect x="300" y="150" width="300" height="50" rx="10" fill="#06b6d4" stroke="#0e7490" stroke-width="1.5"/>
+  <text x="450" y="181" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">客观赋权法</text>
+  <line x1="450" y1="200" x2="450" y2="210" stroke="#0e7490" stroke-width="1.2"/>
+  <rect x="300" y="210" width="300" height="42" rx="8" fill="#ecfeff" stroke="#06b6d4" stroke-width="1.2"/>
+  <text x="450" y="236" text-anchor="middle" fill="#164e63" font-size="12">变异系数法：v=S/x̄归一</text>
+  <line x1="450" y1="250" x2="450" y2="260" stroke="#0e7490" stroke-width="1.2"/>
+  <rect x="300" y="260" width="300" height="42" rx="8" fill="#ecfeff" stroke="#06b6d4" stroke-width="1.2"/>
+  <text x="450" y="286" text-anchor="middle" fill="#164e63" font-size="12">相关系数法：重复信息多则权小</text>
+  <line x1="450" y1="300" x2="450" y2="310" stroke="#0e7490" stroke-width="1.2"/>
+  <rect x="300" y="310" width="300" height="42" rx="8" fill="#ecfeff" stroke="#06b6d4" stroke-width="1.2"/>
+  <text x="450" y="336" text-anchor="middle" fill="#164e63" font-size="12">熵值法：e_j→d_j=1-e_j归一</text>
+  <line x1="450" y1="350" x2="450" y2="360" stroke="#0e7490" stroke-width="1.2"/>
+  <rect x="300" y="360" width="300" height="42" rx="8" fill="#ecfeff" stroke="#06b6d4" stroke-width="1.2"/>
+  <text x="450" y="386" text-anchor="middle" fill="#164e63" font-size="12">坎蒂雷法：RS矩阵变异+相关</text>
+  <line x1="450" y1="400" x2="450" y2="410" stroke="#0e7490" stroke-width="1.2"/>
+  <rect x="300" y="410" width="300" height="42" rx="8" fill="#ecfeff" stroke="#06b6d4" stroke-width="1.2"/>
+  <text x="450" y="436" text-anchor="middle" fill="#164e63" font-size="12">熵值法第一步：同趋势化+比重</text>
+  <path d="M450 90 L450 120 L720 120 L720 150" stroke="#0e7490" stroke-width="1.8" fill="none"/>
+  <rect x="580" y="150" width="280" height="50" rx="10" fill="#06b6d4" stroke="#0e7490" stroke-width="1.5"/>
+  <text x="720" y="181" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">选择与组合</text>
+  <line x1="720" y1="200" x2="720" y2="210" stroke="#0e7490" stroke-width="1.2"/>
+  <rect x="580" y="210" width="280" height="42" rx="8" fill="#ecfeff" stroke="#06b6d4" stroke-width="1.2"/>
+  <text x="720" y="236" text-anchor="middle" fill="#164e63" font-size="12">四原则：差异/特征/归一/结合</text>
+  <line x1="720" y1="250" x2="720" y2="260" stroke="#0e7490" stroke-width="1.2"/>
+  <rect x="580" y="260" width="280" height="42" rx="8" fill="#ecfeff" stroke="#06b6d4" stroke-width="1.2"/>
+  <text x="720" y="286" text-anchor="middle" fill="#164e63" font-size="12">缺数据需导向→主观法</text>
+  <line x1="720" y1="300" x2="720" y2="310" stroke="#0e7490" stroke-width="1.2"/>
+  <rect x="580" y="310" width="280" height="42" rx="8" fill="#ecfeff" stroke="#06b6d4" stroke-width="1.2"/>
+  <text x="720" y="336" text-anchor="middle" fill="#164e63" font-size="12">有数据可复算→客观法</text>
+  <line x1="720" y1="350" x2="720" y2="360" stroke="#0e7490" stroke-width="1.2"/>
+  <rect x="580" y="360" width="280" height="42" rx="8" fill="#ecfeff" stroke="#06b6d4" stroke-width="1.2"/>
+  <text x="720" y="386" text-anchor="middle" fill="#164e63" font-size="12">乘法组合：ω=aβ/Σaβ</text>
+  <line x1="720" y1="400" x2="720" y2="410" stroke="#0e7490" stroke-width="1.2"/>
+  <rect x="580" y="410" width="280" height="42" rx="8" fill="#ecfeff" stroke="#06b6d4" stroke-width="1.2"/>
+  <text x="720" y="436" text-anchor="middle" fill="#164e63" font-size="12">线性组合：k=λa+(1-λ)β</text>
+  <rect x="80" y="500" width="740" height="80" rx="12" fill="#ffffff" stroke="#0e7490" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="450" y="528" text-anchor="middle" fill="#164e63" font-size="14" font-weight="bold">🔗 概念关系链</text>
+  <text x="450" y="552" text-anchor="middle" fill="#164e63" font-size="13">无量纲值 → 主观专家/AHP 或 客观数据 → 权数归一 → 组合赋权折中</text>
+  <text x="450" y="622" text-anchor="middle" fill="#0e7490" font-size="13" font-style="italic">💡 给每个指标分配话语权</text>
+  <text x="450" y="682" text-anchor="middle" fill="#0e7490" font-size="11.5">📚 相关：第三章 无量纲化 · 第九章 主成分客观赋权</text>
+</svg>

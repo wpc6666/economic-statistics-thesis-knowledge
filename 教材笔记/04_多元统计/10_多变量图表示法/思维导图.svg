@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 730" width="900" height="730" font-family="PingFang SC, Hiragino Sans GB, Microsoft YaHei, sans-serif">
+  <rect width="100%" height="100%" fill="#fff7ed"/>
+  <rect x="300" y="30" width="300" height="60" rx="14" fill="#c2410c" stroke="#7c2d12" stroke-width="2"/>
+  <text x="450" y="68" text-anchor="middle" fill="#ffffff" font-size="20" font-weight="bold">第10章 多变量图表示法</text>
+  <path d="M450 90 L450 120 L180 120 L180 150" stroke="#c2410c" stroke-width="1.8" fill="none"/>
+  <rect x="40" y="150" width="280" height="50" rx="10" fill="#fb923c" stroke="#c2410c" stroke-width="1.5"/>
+  <text x="180" y="181" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">一、散点图矩阵</text>
+  <line x1="180" y1="200" x2="180" y2="210" stroke="#c2410c" stroke-width="1.2"/>
+  <rect x="40" y="210" width="280" height="42" rx="8" fill="#fff7ed" stroke="#fb923c" stroke-width="1.2"/>
+  <text x="180" y="236" text-anchor="middle" fill="#7c2d12" font-size="12">pairs()两两散点方阵</text>
+  <line x1="180" y1="250" x2="180" y2="260" stroke="#c2410c" stroke-width="1.2"/>
+  <rect x="40" y="260" width="280" height="42" rx="8" fill="#fff7ed" stroke="#fb923c" stroke-width="1.2"/>
+  <text x="180" y="286" text-anchor="middle" fill="#7c2d12" font-size="12">主对角线放变量名</text>
+  <line x1="180" y1="300" x2="180" y2="310" stroke="#c2410c" stroke-width="1.2"/>
+  <rect x="40" y="310" width="280" height="42" rx="8" fill="#fff7ed" stroke="#fb923c" stroke-width="1.2"/>
+  <text x="180" y="336" text-anchor="middle" fill="#7c2d12" font-size="12">看两两边际相关</text>
+  <line x1="180" y1="350" x2="180" y2="360" stroke="#c2410c" stroke-width="1.2"/>
+  <rect x="40" y="360" width="280" height="42" rx="8" fill="#fff7ed" stroke="#fb923c" stroke-width="1.2"/>
+  <text x="180" y="386" text-anchor="middle" fill="#7c2d12" font-size="12">不反映多维联合结构</text>
+  <path d="M450 90 L450 120 L450 120 L450 150" stroke="#c2410c" stroke-width="1.8" fill="none"/>
+  <rect x="300" y="150" width="300" height="50" rx="10" fill="#fb923c" stroke="#c2410c" stroke-width="1.5"/>
+  <text x="450" y="181" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">二、脸谱与雷达图</text>
+  <line x1="450" y1="200" x2="450" y2="210" stroke="#c2410c" stroke-width="1.2"/>
+  <rect x="300" y="210" width="300" height="42" rx="8" fill="#fff7ed" stroke="#fb923c" stroke-width="1.2"/>
+  <text x="450" y="236" text-anchor="middle" fill="#7c2d12" font-size="12">Chernoff脸15~18部位对应变量</text>
+  <line x1="450" y1="250" x2="450" y2="260" stroke="#c2410c" stroke-width="1.2"/>
+  <rect x="300" y="260" width="300" height="42" rx="8" fill="#fff7ed" stroke="#fb923c" stroke-width="1.2"/>
+  <text x="450" y="286" text-anchor="middle" fill="#7c2d12" font-size="12">像相似的脸归一类</text>
+  <line x1="450" y1="300" x2="450" y2="310" stroke="#c2410c" stroke-width="1.2"/>
+  <rect x="300" y="310" width="300" height="42" rx="8" fill="#fff7ed" stroke="#fb923c" stroke-width="1.2"/>
+  <text x="450" y="336" text-anchor="middle" fill="#7c2d12" font-size="12">变量顺序改变脸形变</text>
+  <line x1="450" y1="350" x2="450" y2="360" stroke="#c2410c" stroke-width="1.2"/>
+  <rect x="300" y="360" width="300" height="42" rx="8" fill="#fff7ed" stroke="#fb923c" stroke-width="1.2"/>
+  <text x="450" y="386" text-anchor="middle" fill="#7c2d12" font-size="12">雷达图p边形对比结构</text>
+  <line x1="450" y1="400" x2="450" y2="410" stroke="#c2410c" stroke-width="1.2"/>
+  <rect x="300" y="410" width="300" height="42" rx="8" fill="#fff7ed" stroke="#fb923c" stroke-width="1.2"/>
+  <text x="450" y="436" text-anchor="middle" fill="#7c2d12" font-size="12">R: stars()画星图</text>
+  <path d="M450 90 L450 120 L720 120 L720 150" stroke="#c2410c" stroke-width="1.8" fill="none"/>
+  <rect x="580" y="150" width="280" height="50" rx="10" fill="#fb923c" stroke="#c2410c" stroke-width="1.5"/>
+  <text x="720" y="181" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">三、星座图</text>
+  <line x1="720" y1="200" x2="720" y2="210" stroke="#c2410c" stroke-width="1.2"/>
+  <rect x="580" y="210" width="280" height="42" rx="8" fill="#fff7ed" stroke="#fb923c" stroke-width="1.2"/>
+  <text x="720" y="236" text-anchor="middle" fill="#7c2d12" font-size="12">变量规格化到[0,π]</text>
+  <line x1="720" y1="250" x2="720" y2="260" stroke="#c2410c" stroke-width="1.2"/>
+  <rect x="580" y="260" width="280" height="42" rx="8" fill="#fff7ed" stroke="#fb923c" stroke-width="1.2"/>
+  <text x="720" y="286" text-anchor="middle" fill="#7c2d12" font-size="12">权重w_j半径画圆弧</text>
+  <line x1="720" y1="300" x2="720" y2="310" stroke="#c2410c" stroke-width="1.2"/>
+  <rect x="580" y="310" width="280" height="42" rx="8" fill="#fff7ed" stroke="#fb923c" stroke-width="1.2"/>
+  <text x="720" y="336" text-anchor="middle" fill="#7c2d12" font-size="12">Z_k=Σw_j e^{iB_jk}</text>
+  <line x1="720" y1="350" x2="720" y2="360" stroke="#c2410c" stroke-width="1.2"/>
+  <rect x="580" y="360" width="280" height="42" rx="8" fill="#fff7ed" stroke="#fb923c" stroke-width="1.2"/>
+  <text x="720" y="386" text-anchor="middle" fill="#7c2d12" font-size="12">半圆内位置即相似性</text>
+  <line x1="720" y1="400" x2="720" y2="410" stroke="#c2410c" stroke-width="1.2"/>
+  <rect x="580" y="410" width="280" height="42" rx="8" fill="#fff7ed" stroke="#fb923c" stroke-width="1.2"/>
+  <text x="720" y="436" text-anchor="middle" fill="#7c2d12" font-size="12">探索性工具需定量方法印证</text>
+  <rect x="80" y="500" width="740" height="80" rx="12" fill="#ffffff" stroke="#c2410c" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="450" y="528" text-anchor="middle" fill="#7c2d12" font-size="14" font-weight="bold">🔗 概念关系链</text>
+  <text x="450" y="552" text-anchor="middle" fill="#7c2d12" font-size="13">多维样本 → 每样本一张图 → 肉眼分群 → 配合聚类/MDS定量验证</text>
+  <text x="450" y="622" text-anchor="middle" fill="#c2410c" font-size="13" font-style="italic">💡 探索性可视化工具，不能单独下结论</text>
+  <text x="450" y="682" text-anchor="middle" fill="#c2410c" font-size="11.5">📚 相关：第3章 聚类 / 第11章 MDS</text>
+</svg>

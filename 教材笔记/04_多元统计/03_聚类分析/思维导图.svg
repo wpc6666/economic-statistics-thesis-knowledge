@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 730" width="900" height="730" font-family="PingFang SC, Hiragino Sans GB, Microsoft YaHei, sans-serif">
+  <rect width="100%" height="100%" fill="#fff7ed"/>
+  <rect x="300" y="30" width="300" height="60" rx="14" fill="#c2410c" stroke="#7c2d12" stroke-width="2"/>
+  <text x="450" y="68" text-anchor="middle" fill="#ffffff" font-size="20" font-weight="bold">第3章 聚类分析</text>
+  <path d="M450 90 L450 120 L180 120 L180 150" stroke="#c2410c" stroke-width="1.8" fill="none"/>
+  <rect x="40" y="150" width="280" height="50" rx="10" fill="#fb923c" stroke="#c2410c" stroke-width="1.5"/>
+  <text x="180" y="181" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">一、相似性度量</text>
+  <line x1="180" y1="200" x2="180" y2="210" stroke="#c2410c" stroke-width="1.2"/>
+  <rect x="40" y="210" width="280" height="42" rx="8" fill="#fff7ed" stroke="#fb923c" stroke-width="1.2"/>
+  <text x="180" y="236" text-anchor="middle" fill="#7c2d12" font-size="12">明氏距离 q=1曼哈顿/2欧氏</text>
+  <line x1="180" y1="250" x2="180" y2="260" stroke="#c2410c" stroke-width="1.2"/>
+  <rect x="40" y="260" width="280" height="42" rx="8" fill="#fff7ed" stroke="#fb923c" stroke-width="1.2"/>
+  <text x="180" y="286" text-anchor="middle" fill="#7c2d12" font-size="12">马氏距离消去变量相关性</text>
+  <line x1="180" y1="300" x2="180" y2="310" stroke="#c2410c" stroke-width="1.2"/>
+  <rect x="40" y="310" width="280" height="42" rx="8" fill="#fff7ed" stroke="#fb923c" stroke-width="1.2"/>
+  <text x="180" y="336" text-anchor="middle" fill="#7c2d12" font-size="12">夹角余弦变量相似系数</text>
+  <line x1="180" y1="350" x2="180" y2="360" stroke="#c2410c" stroke-width="1.2"/>
+  <rect x="40" y="360" width="280" height="42" rx="8" fill="#fff7ed" stroke="#fb923c" stroke-width="1.2"/>
+  <text x="180" y="386" text-anchor="middle" fill="#7c2d12" font-size="12">皮尔逊相关系数</text>
+  <line x1="180" y1="400" x2="180" y2="410" stroke="#c2410c" stroke-width="1.2"/>
+  <rect x="40" y="410" width="280" height="42" rx="8" fill="#fff7ed" stroke="#fb923c" stroke-width="1.2"/>
+  <text x="180" y="436" text-anchor="middle" fill="#7c2d12" font-size="12">量纲不同先Z-score标准化</text>
+  <path d="M450 90 L450 120 L450 120 L450 150" stroke="#c2410c" stroke-width="1.8" fill="none"/>
+  <rect x="300" y="150" width="300" height="50" rx="10" fill="#fb923c" stroke="#c2410c" stroke-width="1.5"/>
+  <text x="450" y="181" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">二、系统聚类法</text>
+  <line x1="450" y1="200" x2="450" y2="210" stroke="#c2410c" stroke-width="1.2"/>
+  <rect x="300" y="210" width="300" height="42" rx="8" fill="#fff7ed" stroke="#fb923c" stroke-width="1.2"/>
+  <text x="450" y="236" text-anchor="middle" fill="#7c2d12" font-size="12">各自成类→合并最近→更新距离</text>
+  <line x1="450" y1="250" x2="450" y2="260" stroke="#c2410c" stroke-width="1.2"/>
+  <rect x="300" y="260" width="300" height="42" rx="8" fill="#fff7ed" stroke="#fb923c" stroke-width="1.2"/>
+  <text x="450" y="286" text-anchor="middle" fill="#7c2d12" font-size="12">最短距离法易链式连接</text>
+  <line x1="450" y1="300" x2="450" y2="310" stroke="#c2410c" stroke-width="1.2"/>
+  <rect x="300" y="310" width="300" height="42" rx="8" fill="#fff7ed" stroke="#fb923c" stroke-width="1.2"/>
+  <text x="450" y="336" text-anchor="middle" fill="#7c2d12" font-size="12">最长距离法受极端值影响</text>
+  <line x1="450" y1="350" x2="450" y2="360" stroke="#c2410c" stroke-width="1.2"/>
+  <rect x="300" y="360" width="300" height="42" rx="8" fill="#fff7ed" stroke="#fb923c" stroke-width="1.2"/>
+  <text x="450" y="386" text-anchor="middle" fill="#7c2d12" font-size="12">类平均法利用信息多</text>
+  <line x1="450" y1="400" x2="450" y2="410" stroke="#c2410c" stroke-width="1.2"/>
+  <rect x="300" y="410" width="300" height="42" rx="8" fill="#fff7ed" stroke="#fb923c" stroke-width="1.2"/>
+  <text x="450" y="436" text-anchor="middle" fill="#7c2d12" font-size="12">Ward法离差平方和增量最小</text>
+  <path d="M450 90 L450 120 L720 120 L720 150" stroke="#c2410c" stroke-width="1.8" fill="none"/>
+  <rect x="580" y="150" width="280" height="50" rx="10" fill="#fb923c" stroke="#c2410c" stroke-width="1.5"/>
+  <text x="720" y="181" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">三、K-means与有序样品</text>
+  <line x1="720" y1="200" x2="720" y2="210" stroke="#c2410c" stroke-width="1.2"/>
+  <rect x="580" y="210" width="280" height="42" rx="8" fill="#fff7ed" stroke="#fb923c" stroke-width="1.2"/>
+  <text x="720" y="236" text-anchor="middle" fill="#7c2d12" font-size="12">预设K：分配→更新中心迭代</text>
+  <line x1="720" y1="250" x2="720" y2="260" stroke="#c2410c" stroke-width="1.2"/>
+  <rect x="580" y="260" width="280" height="42" rx="8" fill="#fff7ed" stroke="#fb923c" stroke-width="1.2"/>
+  <text x="720" y="286" text-anchor="middle" fill="#7c2d12" font-size="12">肘部法则/轮廓系数选K</text>
+  <line x1="720" y1="300" x2="720" y2="310" stroke="#c2410c" stroke-width="1.2"/>
+  <rect x="580" y="310" width="280" height="42" rx="8" fill="#fff7ed" stroke="#fb923c" stroke-width="1.2"/>
+  <text x="720" y="336" text-anchor="middle" fill="#7c2d12" font-size="12">n&gt;1000选K-means快</text>
+  <line x1="720" y1="350" x2="720" y2="360" stroke="#c2410c" stroke-width="1.2"/>
+  <rect x="580" y="360" width="280" height="42" rx="8" fill="#fff7ed" stroke="#fb923c" stroke-width="1.2"/>
+  <text x="720" y="386" text-anchor="middle" fill="#7c2d12" font-size="12">有序样品Fisher最优分割</text>
+  <line x1="720" y1="400" x2="720" y2="410" stroke="#c2410c" stroke-width="1.2"/>
+  <rect x="580" y="410" width="280" height="42" rx="8" fill="#fff7ed" stroke="#fb923c" stroke-width="1.2"/>
+  <text x="720" y="436" text-anchor="middle" fill="#7c2d12" font-size="12">模糊聚类隶属度0~1</text>
+  <rect x="80" y="500" width="740" height="80" rx="12" fill="#ffffff" stroke="#c2410c" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="450" y="528" text-anchor="middle" fill="#7c2d12" font-size="14" font-weight="bold">🔗 概念关系链</text>
+  <text x="450" y="552" text-anchor="middle" fill="#7c2d12" font-size="13">标准化 → 距离度量 → 系统聚类树状图 → 定K → K-means</text>
+  <text x="450" y="622" text-anchor="middle" fill="#c2410c" font-size="13" font-style="italic">💡 无监督学习：物以类聚，让数据自己分堆</text>
+  <text x="450" y="682" text-anchor="middle" fill="#c2410c" font-size="11.5">📚 相关：第1章 距离 / 第4章 判别分析</text>
+</svg>

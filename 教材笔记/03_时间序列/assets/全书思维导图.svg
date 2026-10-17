@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="850" height="1050" viewBox="0 0 850 1050">
+<style>
+text { font-family: "PingFang SC","Microsoft YaHei",sans-serif; }
+.title { font-size: 20px; font-weight: bold; fill: #1a1a2e; text-anchor: middle; }
+.chapter { font-size: 14px; font-weight: bold; fill: #fff; text-anchor: middle; }
+.topic { font-size: 11px; fill: #333; }
+.box { rx: 6; }
+</style>
+<rect width="850" height="1050" fill="#fafbfc"/>
+<text x="425" y="35" class="title">时间序列分析知识思维导图</text>
+<rect x="50" y="70" width="180" height="36" fill="#2c3e50" class="box"/>
+<text x="140" y="93" class="chapter">基础概念</text>
+<rect x="270" y="111" width="420" height="20" fill="#ecf0f1" stroke="#bdc3c7" rx="3"/>
+<text x="285" y="125" class="topic">平稳性定义</text>
+<rect x="270" y="133" width="420" height="20" fill="#ecf0f1" stroke="#bdc3c7" rx="3"/>
+<text x="285" y="147" class="topic">ACF/PACF</text>
+<rect x="270" y="155" width="420" height="20" fill="#ecf0f1" stroke="#bdc3c7" rx="3"/>
+<text x="285" y="169" class="topic">白噪声检验</text>
+<rect x="50" y="210" width="180" height="36" fill="#2980b9" class="box"/>
+<text x="140" y="233" class="chapter">ARMA模型</text>
+<rect x="270" y="251" width="420" height="20" fill="#ecf0f1" stroke="#bdc3c7" rx="3"/>
+<text x="285" y="265" class="topic">AR(p)：ACF拖尾PACF截尾</text>
+<rect x="270" y="273" width="420" height="20" fill="#ecf0f1" stroke="#bdc3c7" rx="3"/>
+<text x="285" y="287" class="topic">MA(q)：ACF截尾PACF拖尾</text>
+<rect x="270" y="295" width="420" height="20" fill="#ecf0f1" stroke="#bdc3c7" rx="3"/>
+<text x="285" y="309" class="topic">ARMA：都拖尾</text>
+<rect x="50" y="380" width="180" height="36" fill="#27ae60" class="box"/>
+<text x="140" y="403" class="chapter">建模六步法</text>
+<rect x="270" y="421" width="420" height="20" fill="#ecf0f1" stroke="#bdc3c7" rx="3"/>
+<text x="285" y="435" class="topic">平稳→识别→估计→检验→优化→预测</text>
+<rect x="50" y="500" width="180" height="36" fill="#8e44ad" class="box"/>
+<text x="140" y="523" class="chapter">确定性分析</text>
+<rect x="270" y="541" width="420" height="20" fill="#ecf0f1" stroke="#bdc3c7" rx="3"/>
+<text x="285" y="555" class="topic">趋势拟合/平滑法</text>
+<rect x="270" y="563" width="420" height="20" fill="#ecf0f1" stroke="#bdc3c7" rx="3"/>
+<text x="285" y="577" class="topic">指数平滑/Holt-Winters</text>
+<rect x="270" y="585" width="420" height="20" fill="#ecf0f1" stroke="#bdc3c7" rx="3"/>
+<text x="285" y="599" class="topic">季节效应</text>
+<rect x="50" y="640" width="180" height="36" fill="#d35400" class="box"/>
+<text x="140" y="663" class="chapter">ARIMA与异方差</text>
+<rect x="270" y="681" width="420" height="20" fill="#ecf0f1" stroke="#bdc3c7" rx="3"/>
+<text x="285" y="695" class="topic">ARIMA(p,d,q)</text>
+<rect x="270" y="703" width="420" height="20" fill="#ecf0f1" stroke="#bdc3c7" rx="3"/>
+<text x="285" y="717" class="topic">ARCH/GARCH</text>
+<rect x="270" y="725" width="420" height="20" fill="#ecf0f1" stroke="#bdc3c7" rx="3"/>
+<text x="285" y="739" class="topic">波动率聚集</text>
+<rect x="50" y="820" width="180" height="36" fill="#c0392b" class="box"/>
+<text x="140" y="843" class="chapter">多元与协整</text>
+<rect x="270" y="861" width="420" height="20" fill="#ecf0f1" stroke="#bdc3c7" rx="3"/>
+<text x="285" y="875" class="topic">虚假回归</text>
+<rect x="270" y="883" width="420" height="20" fill="#ecf0f1" stroke="#bdc3c7" rx="3"/>
+<text x="285" y="897" class="topic">DF/ADF单位根</text>
+<rect x="270" y="905" width="420" height="20" fill="#ecf0f1" stroke="#bdc3c7" rx="3"/>
+<text x="285" y="919" class="topic">协整/ECM</text>
+</svg>

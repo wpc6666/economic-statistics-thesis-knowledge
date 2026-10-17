@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="1052" viewBox="0 0 900 1052">
+<rect width="100%" height="100%" fill="#fbfcfd"/>
+<text x="450.0" y="40" font-size="22" fill="#2c3e50" text-anchor="middle" font-weight="bold" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">综合评价研究 · 从教材到论文全景图</text>
+<text x="450.0" y="66" font-size="13" fill="#7f8c8d" text-anchor="middle" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">教材知识 → 方法选择 → 论文写作 → 组合评价</text>
+<rect x="30" y="104" width="840" height="50" rx="10" fill="#2980b9"/>
+<text x="50" y="136" font-size="17" fill="#fff" text-anchor="start" font-weight="bold" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">① 教材知识</text>
+<text x="850" y="136" font-size="13" fill="#eef5fb" text-anchor="end" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">学方法、懂原理</text>
+<line x1="450.0" y1="82" x2="450.0" y2="100" stroke="#5a6b7b" stroke-width="2" marker-end="url(#ah)"/>
+<rect x="30.0" y="166" width="272.0" height="66" rx="9" fill="#ffffff" stroke="#dfe6ea" stroke-width="1.2"/>
+<rect x="30.0" y="166" width="5" height="66" rx="2.5" fill="#2980b9"/>
+<text x="45.0" y="194" font-size="14.5" font-weight="bold" fill="#1a1a1a" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">赋权方法</text>
+<text x="45.0" y="216" font-size="12" fill="#666" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">权重从哪来（主观/客观）</text>
+<rect x="314.0" y="166" width="272.0" height="66" rx="9" fill="#ffffff" stroke="#dfe6ea" stroke-width="1.2"/>
+<rect x="314.0" y="166" width="5" height="66" rx="2.5" fill="#2980b9"/>
+<text x="329.0" y="194" font-size="14.5" font-weight="bold" fill="#1a1a1a" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">合成方法</text>
+<text x="329.0" y="216" font-size="12" fill="#666" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">线性/几何/混合</text>
+<rect x="598.0" y="166" width="272.0" height="66" rx="9" fill="#ffffff" stroke="#dfe6ea" stroke-width="1.2"/>
+<rect x="598.0" y="166" width="5" height="66" rx="2.5" fill="#2980b9"/>
+<text x="613.0" y="194" font-size="14.5" font-weight="bold" fill="#1a1a1a" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">常规成套</text>
+<text x="613.0" y="216" font-size="12" fill="#666" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">评分/指数/RSR/功效</text>
+<rect x="30.0" y="244" width="272.0" height="66" rx="9" fill="#ffffff" stroke="#dfe6ea" stroke-width="1.2"/>
+<rect x="30.0" y="244" width="5" height="66" rx="2.5" fill="#2980b9"/>
+<text x="45.0" y="272" font-size="14.5" font-weight="bold" fill="#1a1a1a" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">不确定性</text>
+<text x="45.0" y="294" font-size="12" fill="#666" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">灰色关联 / 模糊综合</text>
+<rect x="314.0" y="244" width="272.0" height="66" rx="9" fill="#ffffff" stroke="#dfe6ea" stroke-width="1.2"/>
+<rect x="314.0" y="244" width="5" height="66" rx="2.5" fill="#2980b9"/>
+<text x="329.0" y="272" font-size="14.5" font-weight="bold" fill="#1a1a1a" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">降维方法</text>
+<text x="329.0" y="294" font-size="12" fill="#666" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">主成分 / 因子分析</text>
+<line x1="450.0" y1="310" x2="450.0" y2="332" stroke="#9aa7b4" stroke-width="2" marker-end="url(#ah)"/>
+<rect x="30" y="336" width="840" height="50" rx="10" fill="#16a085"/>
+<text x="50" y="368" font-size="17" fill="#fff" text-anchor="start" font-weight="bold" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">② 方法选择</text>
+<text x="850" y="368" font-size="13" fill="#eef5fb" text-anchor="end" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">按数据选方法</text>
+<rect x="30.0" y="398" width="272.0" height="66" rx="9" fill="#ffffff" stroke="#dfe6ea" stroke-width="1.2"/>
+<rect x="30.0" y="398" width="5" height="66" rx="2.5" fill="#16a085"/>
+<text x="45.0" y="426" font-size="14.5" font-weight="bold" fill="#1a1a1a" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">定指标体系</text>
+<text x="45.0" y="448" font-size="12" fill="#666" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">目标层-准则层-指标层</text>
+<rect x="314.0" y="398" width="272.0" height="66" rx="9" fill="#ffffff" stroke="#dfe6ea" stroke-width="1.2"/>
+<rect x="314.0" y="398" width="5" height="66" rx="2.5" fill="#16a085"/>
+<text x="329.0" y="426" font-size="14.5" font-weight="bold" fill="#1a1a1a" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">定性指标量化</text>
+<text x="329.0" y="448" font-size="12" fill="#666" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">次序/等级/主观</text>
+<rect x="598.0" y="398" width="272.0" height="66" rx="9" fill="#ffffff" stroke="#dfe6ea" stroke-width="1.2"/>
+<rect x="598.0" y="398" width="5" height="66" rx="2.5" fill="#16a085"/>
+<text x="613.0" y="426" font-size="14.5" font-weight="bold" fill="#1a1a1a" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">正逆适度处理</text>
+<text x="613.0" y="448" font-size="12" fill="#666" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">先同向化</text>
+<rect x="30.0" y="476" width="272.0" height="66" rx="9" fill="#ffffff" stroke="#dfe6ea" stroke-width="1.2"/>
+<rect x="30.0" y="476" width="5" height="66" rx="2.5" fill="#16a085"/>
+<text x="45.0" y="504" font-size="14.5" font-weight="bold" fill="#1a1a1a" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">选无量纲化</text>
+<text x="45.0" y="526" font-size="12" fill="#666" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">极差/标准化/比重</text>
+<rect x="314.0" y="476" width="272.0" height="66" rx="9" fill="#ffffff" stroke="#dfe6ea" stroke-width="1.2"/>
+<rect x="314.0" y="476" width="5" height="66" rx="2.5" fill="#16a085"/>
+<text x="329.0" y="504" font-size="14.5" font-weight="bold" fill="#1a1a1a" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">选择赋权</text>
+<text x="329.0" y="526" font-size="12" fill="#666" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">主观/客观/组合</text>
+<rect x="598.0" y="476" width="272.0" height="66" rx="9" fill="#ffffff" stroke="#dfe6ea" stroke-width="1.2"/>
+<rect x="598.0" y="476" width="5" height="66" rx="2.5" fill="#16a085"/>
+<text x="613.0" y="504" font-size="14.5" font-weight="bold" fill="#1a1a1a" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">合成或成套</text>
+<text x="613.0" y="526" font-size="12" fill="#666" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">按能否补偿选</text>
+<line x1="450.0" y1="542" x2="450.0" y2="564" stroke="#9aa7b4" stroke-width="2" marker-end="url(#ah)"/>
+<rect x="30" y="568" width="840" height="50" rx="10" fill="#27ae60"/>
+<text x="50" y="600" font-size="17" fill="#fff" text-anchor="start" font-weight="bold" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">③ 论文写作</text>
+<text x="850" y="600" font-size="13" fill="#eef5fb" text-anchor="end" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">规范成文</text>
+<rect x="30.0" y="630" width="272.0" height="66" rx="9" fill="#ffffff" stroke="#dfe6ea" stroke-width="1.2"/>
+<rect x="30.0" y="630" width="5" height="66" rx="2.5" fill="#27ae60"/>
+<text x="45.0" y="658" font-size="14.5" font-weight="bold" fill="#1a1a1a" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">第1章 绪论</text>
+<text x="45.0" y="680" font-size="12" fill="#666" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">背景、综述、意义</text>
+<rect x="314.0" y="630" width="272.0" height="66" rx="9" fill="#ffffff" stroke="#dfe6ea" stroke-width="1.2"/>
+<rect x="314.0" y="630" width="5" height="66" rx="2.5" fill="#27ae60"/>
+<text x="329.0" y="658" font-size="14.5" font-weight="bold" fill="#1a1a1a" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">第2章 指标与数据</text>
+<text x="329.0" y="680" font-size="12" fill="#666" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">体系、来源、预处理</text>
+<rect x="598.0" y="630" width="272.0" height="66" rx="9" fill="#ffffff" stroke="#dfe6ea" stroke-width="1.2"/>
+<rect x="598.0" y="630" width="5" height="66" rx="2.5" fill="#27ae60"/>
+<text x="613.0" y="658" font-size="14.5" font-weight="bold" fill="#1a1a1a" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">第3章 方法</text>
+<text x="613.0" y="680" font-size="12" fill="#666" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">赋权与评价方法</text>
+<rect x="30.0" y="708" width="272.0" height="66" rx="9" fill="#ffffff" stroke="#dfe6ea" stroke-width="1.2"/>
+<rect x="30.0" y="708" width="5" height="66" rx="2.5" fill="#27ae60"/>
+<text x="45.0" y="736" font-size="14.5" font-weight="bold" fill="#1a1a1a" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">第4章 实证</text>
+<text x="45.0" y="758" font-size="12" fill="#666" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">得分、排名、分析</text>
+<rect x="314.0" y="708" width="272.0" height="66" rx="9" fill="#ffffff" stroke="#dfe6ea" stroke-width="1.2"/>
+<rect x="314.0" y="708" width="5" height="66" rx="2.5" fill="#27ae60"/>
+<text x="329.0" y="736" font-size="14.5" font-weight="bold" fill="#1a1a1a" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">第5章 结论对策</text>
+<text x="329.0" y="758" font-size="12" fill="#666" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">结论、建议、不足</text>
+<line x1="450.0" y1="774" x2="450.0" y2="796" stroke="#9aa7b4" stroke-width="2" marker-end="url(#ah)"/>
+<rect x="30" y="800" width="840" height="50" rx="10" fill="#8e44ad"/>
+<text x="50" y="832" font-size="17" fill="#fff" text-anchor="start" font-weight="bold" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">④ 组合评价</text>
+<text x="850" y="832" font-size="13" fill="#eef5fb" text-anchor="end" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">多方法互证</text>
+<rect x="30.0" y="862" width="272.0" height="66" rx="9" fill="#ffffff" stroke="#dfe6ea" stroke-width="1.2"/>
+<rect x="30.0" y="862" width="5" height="66" rx="2.5" fill="#8e44ad"/>
+<text x="45.0" y="890" font-size="14.5" font-weight="bold" fill="#1a1a1a" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">多方法分别评价</text>
+<text x="45.0" y="912" font-size="12" fill="#666" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">各出得分与排名</text>
+<rect x="314.0" y="862" width="272.0" height="66" rx="9" fill="#ffffff" stroke="#dfe6ea" stroke-width="1.2"/>
+<rect x="314.0" y="862" width="5" height="66" rx="2.5" fill="#8e44ad"/>
+<text x="329.0" y="890" font-size="14.5" font-weight="bold" fill="#1a1a1a" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">事前一致性检验</text>
+<text x="329.0" y="912" font-size="12" fill="#666" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">Kendall W / Spearman</text>
+<rect x="598.0" y="862" width="272.0" height="66" rx="9" fill="#ffffff" stroke="#dfe6ea" stroke-width="1.2"/>
+<rect x="598.0" y="862" width="5" height="66" rx="2.5" fill="#8e44ad"/>
+<text x="613.0" y="890" font-size="14.5" font-weight="bold" fill="#1a1a1a" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">组合合成</text>
+<text x="613.0" y="912" font-size="12" fill="#666" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">Borda / 加权平均</text>
+<rect x="30.0" y="940" width="272.0" height="66" rx="9" fill="#ffffff" stroke="#dfe6ea" stroke-width="1.2"/>
+<rect x="30.0" y="940" width="5" height="66" rx="2.5" fill="#8e44ad"/>
+<text x="45.0" y="968" font-size="14.5" font-weight="bold" fill="#1a1a1a" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">得到稳健排名</text>
+<text x="45.0" y="990" font-size="12" fill="#666" font-family="PingFang SC, Hiragino Sans GB, STHeiti, Heiti SC, sans-serif">结论不依赖单一方法</text>
+<defs><marker id="ah" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L8,3 L0,6 z" fill="#5a6b7b"/></marker></defs>
+</svg>

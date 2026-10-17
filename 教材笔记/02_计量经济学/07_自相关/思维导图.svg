@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 730" width="900" height="730" font-family="PingFang SC, Hiragino Sans GB, Microsoft YaHei, sans-serif">
+  <rect width="100%" height="100%" fill="#f0fdf4"/>
+  <rect x="300" y="30" width="300" height="60" rx="14" fill="#166534" stroke="#14532d" stroke-width="2"/>
+  <text x="450" y="68" text-anchor="middle" fill="#ffffff" font-size="20" font-weight="bold">第8章 自相关</text>
+  <path d="M450 90 L450 120 L180 120 L180 150" stroke="#166534" stroke-width="1.8" fill="none"/>
+  <rect x="40" y="150" width="280" height="50" rx="10" fill="#22c55e" stroke="#166534" stroke-width="1.5"/>
+  <text x="180" y="181" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">模型与后果</text>
+  <line x1="180" y1="200" x2="180" y2="210" stroke="#166534" stroke-width="1.2"/>
+  <rect x="40" y="210" width="280" height="42" rx="8" fill="#dcfce7" stroke="#22c55e" stroke-width="1.2"/>
+  <text x="180" y="236" text-anchor="middle" fill="#14532d" font-size="12">AR(1): εₜ=ρεₜ₋₁+uₜ</text>
+  <line x1="180" y1="250" x2="180" y2="260" stroke="#166534" stroke-width="1.2"/>
+  <rect x="40" y="260" width="280" height="42" rx="8" fill="#dcfce7" stroke="#22c55e" stroke-width="1.2"/>
+  <text x="180" y="286" text-anchor="middle" fill="#14532d" font-size="12">Cov(εₜ,εₜ₋ₛ)≠0</text>
+  <line x1="180" y1="300" x2="180" y2="310" stroke="#166534" stroke-width="1.2"/>
+  <rect x="40" y="310" width="280" height="42" rx="8" fill="#dcfce7" stroke="#22c55e" stroke-width="1.2"/>
+  <text x="180" y="336" text-anchor="middle" fill="#14532d" font-size="12">时间序列有惯性</text>
+  <line x1="180" y1="350" x2="180" y2="360" stroke="#166534" stroke-width="1.2"/>
+  <rect x="40" y="360" width="280" height="42" rx="8" fill="#dcfce7" stroke="#22c55e" stroke-width="1.2"/>
+  <text x="180" y="386" text-anchor="middle" fill="#14532d" font-size="12">OLS无偏但SE通常低估</text>
+  <line x1="180" y1="400" x2="180" y2="410" stroke="#166534" stroke-width="1.2"/>
+  <rect x="40" y="410" width="280" height="42" rx="8" fill="#dcfce7" stroke="#22c55e" stroke-width="1.2"/>
+  <text x="180" y="436" text-anchor="middle" fill="#14532d" font-size="12">t检验过度拒绝</text>
+  <path d="M450 90 L450 120 L450 120 L450 150" stroke="#166534" stroke-width="1.8" fill="none"/>
+  <rect x="300" y="150" width="300" height="50" rx="10" fill="#22c55e" stroke="#166534" stroke-width="1.5"/>
+  <text x="450" y="181" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">检验方法</text>
+  <line x1="450" y1="200" x2="450" y2="210" stroke="#166534" stroke-width="1.2"/>
+  <rect x="300" y="210" width="300" height="42" rx="8" fill="#dcfce7" stroke="#22c55e" stroke-width="1.2"/>
+  <text x="450" y="236" text-anchor="middle" fill="#14532d" font-size="12">DW≈2(1-ρ̂), d≈2无自相关</text>
+  <line x1="450" y1="250" x2="450" y2="260" stroke="#166534" stroke-width="1.2"/>
+  <rect x="300" y="260" width="300" height="42" rx="8" fill="#dcfce7" stroke="#22c55e" stroke-width="1.2"/>
+  <text x="450" y="286" text-anchor="middle" fill="#14532d" font-size="12">d&lt;2正自相关,d&gt;2负自相关</text>
+  <line x1="450" y1="300" x2="450" y2="310" stroke="#166534" stroke-width="1.2"/>
+  <rect x="300" y="310" width="300" height="42" rx="8" fill="#dcfce7" stroke="#22c55e" stroke-width="1.2"/>
+  <text x="450" y="336" text-anchor="middle" fill="#14532d" font-size="12">BG检验 estat bgodfrey 高阶</text>
+  <line x1="450" y1="350" x2="450" y2="360" stroke="#166534" stroke-width="1.2"/>
+  <rect x="300" y="360" width="300" height="42" rx="8" fill="#dcfce7" stroke="#22c55e" stroke-width="1.2"/>
+  <text x="450" y="386" text-anchor="middle" fill="#14532d" font-size="12">Q检验 Ljung-Box相关图</text>
+  <line x1="450" y1="400" x2="450" y2="410" stroke="#166534" stroke-width="1.2"/>
+  <rect x="300" y="410" width="300" height="42" rx="8" fill="#dcfce7" stroke="#22c55e" stroke-width="1.2"/>
+  <text x="450" y="436" text-anchor="middle" fill="#14532d" font-size="12">含滞后因变量时DW失灵</text>
+  <path d="M450 90 L450 120 L720 120 L720 150" stroke="#166534" stroke-width="1.8" fill="none"/>
+  <rect x="580" y="150" width="280" height="50" rx="10" fill="#22c55e" stroke="#166534" stroke-width="1.5"/>
+  <text x="720" y="181" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">处理方法</text>
+  <line x1="720" y1="200" x2="720" y2="210" stroke="#166534" stroke-width="1.2"/>
+  <rect x="580" y="210" width="280" height="42" rx="8" fill="#dcfce7" stroke="#22c55e" stroke-width="1.2"/>
+  <text x="720" y="236" text-anchor="middle" fill="#14532d" font-size="12">Newey-West HAC修两者</text>
+  <line x1="720" y1="250" x2="720" y2="260" stroke="#166534" stroke-width="1.2"/>
+  <rect x="580" y="260" width="280" height="42" rx="8" fill="#dcfce7" stroke="#22c55e" stroke-width="1.2"/>
+  <text x="720" y="286" text-anchor="middle" fill="#14532d" font-size="12">滞后阶 L≈n^(1/4)</text>
+  <line x1="720" y1="300" x2="720" y2="310" stroke="#166534" stroke-width="1.2"/>
+  <rect x="580" y="310" width="280" height="42" rx="8" fill="#dcfce7" stroke="#22c55e" stroke-width="1.2"/>
+  <text x="720" y="336" text-anchor="middle" fill="#14532d" font-size="12">newey y x, lag(L)</text>
+  <line x1="720" y1="350" x2="720" y2="360" stroke="#166534" stroke-width="1.2"/>
+  <rect x="580" y="360" width="280" height="42" rx="8" fill="#dcfce7" stroke="#22c55e" stroke-width="1.2"/>
+  <text x="720" y="386" text-anchor="middle" fill="#14532d" font-size="12">准差分 yₜ-ρyₜ₋₁</text>
+  <line x1="720" y1="400" x2="720" y2="410" stroke="#166534" stroke-width="1.2"/>
+  <rect x="580" y="410" width="280" height="42" rx="8" fill="#dcfce7" stroke="#22c55e" stroke-width="1.2"/>
+  <text x="720" y="436" text-anchor="middle" fill="#14532d" font-size="12">FGLS先估ρ再变换</text>
+  <rect x="80" y="500" width="740" height="80" rx="12" fill="#ffffff" stroke="#166534" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="450" y="528" text-anchor="middle" fill="#14532d" font-size="14" font-weight="bold">🔗 概念关系链</text>
+  <text x="450" y="552" text-anchor="middle" fill="#14532d" font-size="13">DW/BG检验 → 存在自相关 → Newey-West HAC修标准误</text>
+  <text x="450" y="622" text-anchor="middle" fill="#166534" font-size="13" font-style="italic">💡 与异方差平行:只修标准误,不动系数</text>
+  <text x="450" y="682" text-anchor="middle" fill="#166534" font-size="11.5">📚 相关：第7章异方差｜第13章平稳时间序列｜第6章大样本OLS</text>
+</svg>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1400" width="900" height="1400" font-family="PingFang SC, Hiragino Sans GB, Microsoft YaHei, sans-serif">
+  <defs>
+    <style>
+      .root { fill: #0e7490; stroke: #164e63; }
+      .sec  { fill: #06b6d4; stroke: #0e7490; }
+      .kp   { fill: #ecfeff; stroke: #06b6d4; }
+      .txt-root { fill: #ffffff; font-size: 22px; font-weight: bold; }
+      .txt-sec  { fill: #ffffff; font-size: 16px; font-weight: bold; }
+      .txt-kp   { fill: #164e63; font-size: 13px; }
+      .line { stroke: #0e7490; stroke-width: 1.5; fill: none; }
+    </style>
+  </defs>
+
+  <!-- 根节点 -->
+  <rect x="300" y="30" width="300" height="60" rx="12" class="root"/>
+  <text x="450" y="68" text-anchor="middle" class="txt-root">第一章 绪论</text>
+
+  <!-- 三条分支线到三节 -->
+  <path d="M450 90 L450 120 L180 120 L180 150" class="line"/>
+  <path d="M450 90 L450 150" class="line"/>
+  <path d="M450 90 L450 120 L720 120 L720 150" class="line"/>
+
+  <!-- 第二节 -->
+  <rect x="300" y="150" width="300" height="50" rx="10" class="sec"/>
+  <text x="450" y="180" text-anchor="middle" class="txt-sec">第二节 研究对象·方法·阶段</text>
+
+  <!-- 第一节 -->
+  <rect x="40" y="150" width="280" height="50" rx="10" class="sec"/>
+  <text x="180" y="180" text-anchor="middle" class="txt-sec">第一节 含义·作用·任务</text>
+
+  <!-- 第三节 -->
+  <rect x="580" y="150" width="280" height="50" rx="10" class="sec"/>
+  <text x="720" y="180" text-anchor="middle" class="txt-sec">第三节 基本概念</text>
+
+  <!-- 第一节 KP -->
+  <line x1="180" y1="200" x2="180" y2="230" class="line"/>
+  <rect x="40" y="230" width="280" height="40" rx="8" class="kp"/>
+  <text x="180" y="255" text-anchor="middle" class="txt-kp">统计三含义（工作/资料/科学）</text>
+
+  <line x1="180" y1="270" x2="180" y2="300" class="line"/>
+  <rect x="40" y="300" width="280" height="40" rx="8" class="kp"/>
+  <text x="180" y="325" text-anchor="middle" class="txt-kp">三特点：数量性·具体性·综合性</text>
+
+  <line x1="180" y1="340" x2="180" y2="370" class="line"/>
+  <rect x="40" y="370" width="280" height="40" rx="8" class="kp"/>
+  <text x="180" y="395" text-anchor="middle" class="txt-kp">基本任务：服务 + 监督</text>
+
+  <!-- 第二节 KP -->
+  <line x1="450" y1="200" x2="450" y2="230" class="line"/>
+  <rect x="300" y="230" width="300" height="40" rx="8" class="kp"/>
+  <text x="450" y="255" text-anchor="middle" class="txt-kp">KP05 大数定理与五种研究方法</text>
+
+  <line x1="450" y1="270" x2="450" y2="300" class="line"/>
+  <rect x="300" y="300" width="300" height="40" rx="8" class="kp"/>
+  <text x="450" y="325" text-anchor="middle" class="txt-kp">KP06 研究四阶段（设计→调查→整理→分析）</text>
+
+  <line x1="450" y1="340" x2="450" y2="370" class="line"/>
+  <rect x="300" y="370" width="300" height="40" rx="8" class="kp"/>
+  <text x="450" y="395" text-anchor="middle" class="txt-kp">研究对象：总体数量特征与关系</text>
+
+  <!-- 第三节 KP -->
+  <line x1="720" y1="200" x2="720" y2="230" class="line"/>
+  <rect x="580" y="230" width="280" height="40" rx="8" class="kp"/>
+  <text x="720" y="255" text-anchor="middle" class="txt-kp">KP01 总体与总体单位</text>
+
+  <line x1="720" y1="270" x2="720" y2="300" class="line"/>
+  <rect x="580" y="300" width="280" height="40" rx="8" class="kp"/>
+  <text x="720" y="325" text-anchor="middle" class="txt-kp">KP02 标志与指标</text>
+
+  <line x1="720" y1="340" x2="720" y2="370" class="line"/>
+  <rect x="580" y="370" width="280" height="40" rx="8" class="kp"/>
+  <text x="720" y="395" text-anchor="middle" class="txt-kp">KP03 变异与变量（离散/连续）</text>
+
+  <line x1="720" y1="410" x2="720" y2="440" class="line"/>
+  <rect x="580" y="440" width="280" height="40" rx="8" class="kp"/>
+  <text x="720" y="465" text-anchor="middle" class="txt-kp">KP04 指标体系（少而精）</text>
+
+  <!-- 概念关系总览 -->
+  <rect x="100" y="540" width="700" height="80" rx="10" class="kp"/>
+  <text x="450" y="570" text-anchor="middle" class="txt-kp" style="font-weight:bold;">概念关系链</text>
+  <text x="450" y="595" text-anchor="middle" class="txt-kp">总体 → 总体单位 → 标志（品质/数量=变量）→ 各单位标志值汇总 → 指标 → 指标体系</text>
+
+  <!-- 底部说明 -->
+  <text x="450" y="680" text-anchor="middle" class="txt-kp" style="font-size:14px;fill:#0e7490;">本章是全书的"词汇表"：后续章节反复使用总体、标志、变量、指标这四组词</text>
+</svg>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 730" width="900" height="730" font-family="PingFang SC, Hiragino Sans GB, Microsoft YaHei, sans-serif">
+  <rect width="100%" height="100%" fill="#faf5ff"/>
+  <rect x="300" y="30" width="300" height="60" rx="14" fill="#6d28d9" stroke="#4c1d95" stroke-width="2"/>
+  <text x="450" y="68" text-anchor="middle" fill="#ffffff" font-size="20" font-weight="bold">第3章 ARMA模型</text>
+  <path d="M450 90 L450 120 L180 120 L180 150" stroke="#6d28d9" stroke-width="1.8" fill="none"/>
+  <rect x="40" y="150" width="280" height="50" rx="10" fill="#a78bfa" stroke="#6d28d9" stroke-width="1.5"/>
+  <text x="180" y="181" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">一、三类模型识别</text>
+  <line x1="180" y1="200" x2="180" y2="210" stroke="#6d28d9" stroke-width="1.2"/>
+  <rect x="40" y="210" width="280" height="42" rx="8" fill="#f5f3ff" stroke="#a78bfa" stroke-width="1.2"/>
+  <text x="180" y="236" text-anchor="middle" fill="#4c1d95" font-size="12">AR(p): x_t=Σφ_i x_{t-i}+ε…</text>
+  <line x1="180" y1="250" x2="180" y2="260" stroke="#6d28d9" stroke-width="1.2"/>
+  <rect x="40" y="260" width="280" height="42" rx="8" fill="#f5f3ff" stroke="#a78bfa" stroke-width="1.2"/>
+  <text x="180" y="286" text-anchor="middle" fill="#4c1d95" font-size="12">MA(q): x_t=ε_t-Σθ_j ε_{t-…</text>
+  <line x1="180" y1="300" x2="180" y2="310" stroke="#6d28d9" stroke-width="1.2"/>
+  <rect x="40" y="310" width="280" height="42" rx="8" fill="#f5f3ff" stroke="#a78bfa" stroke-width="1.2"/>
+  <text x="180" y="336" text-anchor="middle" fill="#4c1d95" font-size="12">ACF拖尾/PACF截尾→AR(p)</text>
+  <line x1="180" y1="350" x2="180" y2="360" stroke="#6d28d9" stroke-width="1.2"/>
+  <rect x="40" y="360" width="280" height="42" rx="8" fill="#f5f3ff" stroke="#a78bfa" stroke-width="1.2"/>
+  <text x="180" y="386" text-anchor="middle" fill="#4c1d95" font-size="12">ACF截尾/PACF拖尾→MA(q)</text>
+  <line x1="180" y1="400" x2="180" y2="410" stroke="#6d28d9" stroke-width="1.2"/>
+  <rect x="40" y="410" width="280" height="42" rx="8" fill="#f5f3ff" stroke="#a78bfa" stroke-width="1.2"/>
+  <text x="180" y="436" text-anchor="middle" fill="#4c1d95" font-size="12">ACF与PACF双拖尾→ARMA(p,q)</text>
+  <path d="M450 90 L450 120 L450 120 L450 150" stroke="#6d28d9" stroke-width="1.8" fill="none"/>
+  <rect x="300" y="150" width="300" height="50" rx="10" fill="#a78bfa" stroke="#6d28d9" stroke-width="1.5"/>
+  <text x="450" y="181" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">二、平稳可逆条件</text>
+  <line x1="450" y1="200" x2="450" y2="210" stroke="#6d28d9" stroke-width="1.2"/>
+  <rect x="300" y="210" width="300" height="42" rx="8" fill="#f5f3ff" stroke="#a78bfa" stroke-width="1.2"/>
+  <text x="450" y="236" text-anchor="middle" fill="#4c1d95" font-size="12">AR平稳：特征根|λ_i|&lt;1单位圆内</text>
+  <line x1="450" y1="250" x2="450" y2="260" stroke="#6d28d9" stroke-width="1.2"/>
+  <rect x="300" y="260" width="300" height="42" rx="8" fill="#f5f3ff" stroke="#a78bfa" stroke-width="1.2"/>
+  <text x="450" y="286" text-anchor="middle" fill="#4c1d95" font-size="12">AR(1)平稳域 |φ_1|&lt;1</text>
+  <line x1="450" y1="300" x2="450" y2="310" stroke="#6d28d9" stroke-width="1.2"/>
+  <rect x="300" y="310" width="300" height="42" rx="8" fill="#f5f3ff" stroke="#a78bfa" stroke-width="1.2"/>
+  <text x="450" y="336" text-anchor="middle" fill="#4c1d95" font-size="12">MA(q)永远平稳：白噪声线性组合</text>
+  <line x1="450" y1="350" x2="450" y2="360" stroke="#6d28d9" stroke-width="1.2"/>
+  <rect x="300" y="360" width="300" height="42" rx="8" fill="#f5f3ff" stroke="#a78bfa" stroke-width="1.2"/>
+  <text x="450" y="386" text-anchor="middle" fill="#4c1d95" font-size="12">MA可逆：Θ(B)=0根在单位圆外</text>
+  <line x1="450" y1="400" x2="450" y2="410" stroke="#6d28d9" stroke-width="1.2"/>
+  <rect x="300" y="410" width="300" height="42" rx="8" fill="#f5f3ff" stroke="#a78bfa" stroke-width="1.2"/>
+  <text x="450" y="436" text-anchor="middle" fill="#4c1d95" font-size="12">ARMA：平稳由AR定可逆由MA定</text>
+  <path d="M450 90 L450 120 L720 120 L720 150" stroke="#6d28d9" stroke-width="1.8" fill="none"/>
+  <rect x="580" y="150" width="280" height="50" rx="10" fill="#a78bfa" stroke="#6d28d9" stroke-width="1.5"/>
+  <text x="720" y="181" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">三、建模六步法</text>
+  <line x1="720" y1="200" x2="720" y2="210" stroke="#6d28d9" stroke-width="1.2"/>
+  <rect x="580" y="210" width="280" height="42" rx="8" fill="#f5f3ff" stroke="#a78bfa" stroke-width="1.2"/>
+  <text x="720" y="236" text-anchor="middle" fill="#4c1d95" font-size="12">①平稳检验②ACF/PACF定阶③MLE估计</text>
+  <line x1="720" y1="250" x2="720" y2="260" stroke="#6d28d9" stroke-width="1.2"/>
+  <rect x="580" y="260" width="280" height="42" rx="8" fill="#f5f3ff" stroke="#a78bfa" stroke-width="1.2"/>
+  <text x="720" y="286" text-anchor="middle" fill="#4c1d95" font-size="12">④残差LB白噪声+参数t检验</text>
+  <line x1="720" y1="300" x2="720" y2="310" stroke="#6d28d9" stroke-width="1.2"/>
+  <rect x="580" y="310" width="280" height="42" rx="8" fill="#f5f3ff" stroke="#a78bfa" stroke-width="1.2"/>
+  <text x="720" y="336" text-anchor="middle" fill="#4c1d95" font-size="12">AIC=nlnσ²+2(p+q+1)</text>
+  <line x1="720" y1="350" x2="720" y2="360" stroke="#6d28d9" stroke-width="1.2"/>
+  <rect x="580" y="360" width="280" height="42" rx="8" fill="#f5f3ff" stroke="#a78bfa" stroke-width="1.2"/>
+  <text x="720" y="386" text-anchor="middle" fill="#4c1d95" font-size="12">BIC=nlnσ²+ln(n)(p+q+1)</text>
+  <line x1="720" y1="400" x2="720" y2="410" stroke="#6d28d9" stroke-width="1.2"/>
+  <rect x="580" y="410" width="280" height="42" rx="8" fill="#f5f3ff" stroke="#a78bfa" stroke-width="1.2"/>
+  <text x="720" y="436" text-anchor="middle" fill="#4c1d95" font-size="12">forecast()线性最小方差预测</text>
+  <rect x="80" y="500" width="740" height="80" rx="12" fill="#ffffff" stroke="#6d28d9" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="450" y="528" text-anchor="middle" fill="#4c1d95" font-size="14" font-weight="bold">🔗 概念关系链</text>
+  <text x="450" y="552" text-anchor="middle" fill="#4c1d95" font-size="12.5">ACF/PACF拖尾截尾 → 定阶 → MLE估计 →</text>
+  <text x="450" y="572" text-anchor="middle" fill="#4c1d95" font-size="12.5">残差白噪声 → AIC/BIC选优 → 预测</text>
+  <text x="450" y="622" text-anchor="middle" fill="#6d28d9" font-size="13" font-style="italic">💡 平稳非白噪声序列的标准建模框架</text>
+  <text x="450" y="682" text-anchor="middle" fill="#6d28d9" font-size="11.5">📚 相关：第2章 预处理 / 第5章 ARIMA</text>
+</svg>

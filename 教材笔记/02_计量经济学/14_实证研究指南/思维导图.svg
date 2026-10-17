@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 730" width="900" height="730" font-family="PingFang SC, Hiragino Sans GB, Microsoft YaHei, sans-serif">
+  <rect width="100%" height="100%" fill="#f0fdf4"/>
+  <rect x="300" y="30" width="300" height="60" rx="14" fill="#166534" stroke="#14532d" stroke-width="2"/>
+  <text x="450" y="68" text-anchor="middle" fill="#ffffff" font-size="20" font-weight="bold">第15章 实证研究指南</text>
+  <path d="M450 90 L450 120 L180 120 L180 150" stroke="#166534" stroke-width="1.8" fill="none"/>
+  <rect x="40" y="150" width="280" height="50" rx="10" fill="#22c55e" stroke="#166534" stroke-width="1.5"/>
+  <text x="180" y="181" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">研究全流程</text>
+  <line x1="180" y1="200" x2="180" y2="210" stroke="#166534" stroke-width="1.2"/>
+  <rect x="40" y="210" width="280" height="42" rx="8" fill="#dcfce7" stroke="#22c55e" stroke-width="1.2"/>
+  <text x="180" y="236" text-anchor="middle" fill="#14532d" font-size="12">选题四要素:具体有趣新颖可行</text>
+  <line x1="180" y1="250" x2="180" y2="260" stroke="#166534" stroke-width="1.2"/>
+  <rect x="40" y="260" width="280" height="42" rx="8" fill="#dcfce7" stroke="#22c55e" stroke-width="1.2"/>
+  <text x="180" y="286" text-anchor="middle" fill="#14532d" font-size="12">数据清理+描述统计先行</text>
+  <line x1="180" y1="300" x2="180" y2="310" stroke="#166534" stroke-width="1.2"/>
+  <rect x="40" y="310" width="280" height="42" rx="8" fill="#dcfce7" stroke="#22c55e" stroke-width="1.2"/>
+  <text x="180" y="336" text-anchor="middle" fill="#14532d" font-size="12">建模型选识别方法</text>
+  <line x1="180" y1="350" x2="180" y2="360" stroke="#166534" stroke-width="1.2"/>
+  <rect x="40" y="360" width="280" height="42" rx="8" fill="#dcfce7" stroke="#22c55e" stroke-width="1.2"/>
+  <text x="180" y="386" text-anchor="middle" fill="#14532d" font-size="12">估计:符号+大小+显著性</text>
+  <line x1="180" y1="400" x2="180" y2="410" stroke="#166534" stroke-width="1.2"/>
+  <rect x="40" y="410" width="280" height="42" rx="8" fill="#dcfce7" stroke="#22c55e" stroke-width="1.2"/>
+  <text x="180" y="436" text-anchor="middle" fill="#14532d" font-size="12">诊断+稳健性后才写作</text>
+  <path d="M450 90 L450 120 L450 120 L450 150" stroke="#166534" stroke-width="1.8" fill="none"/>
+  <rect x="300" y="150" width="300" height="50" rx="10" fill="#22c55e" stroke="#166534" stroke-width="1.5"/>
+  <text x="450" y="181" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">诊断检验清单</text>
+  <line x1="450" y1="200" x2="450" y2="210" stroke="#166534" stroke-width="1.2"/>
+  <rect x="300" y="210" width="300" height="42" rx="8" fill="#dcfce7" stroke="#22c55e" stroke-width="1.2"/>
+  <text x="450" y="236" text-anchor="middle" fill="#14532d" font-size="12">异方差 estat imtest,white</text>
+  <line x1="450" y1="250" x2="450" y2="260" stroke="#166534" stroke-width="1.2"/>
+  <rect x="300" y="260" width="300" height="42" rx="8" fill="#dcfce7" stroke="#22c55e" stroke-width="1.2"/>
+  <text x="450" y="286" text-anchor="middle" fill="#14532d" font-size="12">自相关 estat bgodfrey</text>
+  <line x1="450" y1="300" x2="450" y2="310" stroke="#166534" stroke-width="1.2"/>
+  <rect x="300" y="310" width="300" height="42" rx="8" fill="#dcfce7" stroke="#22c55e" stroke-width="1.2"/>
+  <text x="450" y="336" text-anchor="middle" fill="#14532d" font-size="12">多重共线 estat vif</text>
+  <line x1="450" y1="350" x2="450" y2="360" stroke="#166534" stroke-width="1.2"/>
+  <rect x="300" y="360" width="300" height="42" rx="8" fill="#dcfce7" stroke="#22c55e" stroke-width="1.2"/>
+  <text x="450" y="386" text-anchor="middle" fill="#14532d" font-size="12">遗漏变量 estat ovtest</text>
+  <line x1="450" y1="400" x2="450" y2="410" stroke="#166534" stroke-width="1.2"/>
+  <rect x="300" y="410" width="300" height="42" rx="8" fill="#dcfce7" stroke="#22c55e" stroke-width="1.2"/>
+  <text x="450" y="436" text-anchor="middle" fill="#14532d" font-size="12">IV弱工具第一阶段F&gt;10</text>
+  <path d="M450 90 L450 120 L720 120 L720 150" stroke="#166534" stroke-width="1.8" fill="none"/>
+  <rect x="580" y="150" width="280" height="50" rx="10" fill="#22c55e" stroke="#166534" stroke-width="1.5"/>
+  <text x="720" y="181" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">稳健性与写作</text>
+  <line x1="720" y1="200" x2="720" y2="210" stroke="#166534" stroke-width="1.2"/>
+  <rect x="580" y="210" width="280" height="42" rx="8" fill="#dcfce7" stroke="#22c55e" stroke-width="1.2"/>
+  <text x="720" y="236" text-anchor="middle" fill="#14532d" font-size="12">换样本/去极值/换函数形式</text>
+  <line x1="720" y1="250" x2="720" y2="260" stroke="#166534" stroke-width="1.2"/>
+  <rect x="580" y="260" width="280" height="42" rx="8" fill="#dcfce7" stroke="#22c55e" stroke-width="1.2"/>
+  <text x="720" y="286" text-anchor="middle" fill="#14532d" font-size="12">OLS→FE→IV换方法</text>
+  <line x1="720" y1="300" x2="720" y2="310" stroke="#166534" stroke-width="1.2"/>
+  <rect x="580" y="310" width="280" height="42" rx="8" fill="#dcfce7" stroke="#22c55e" stroke-width="1.2"/>
+  <text x="720" y="336" text-anchor="middle" fill="#14532d" font-size="12">安慰剂检验随机分组</text>
+  <line x1="720" y1="350" x2="720" y2="360" stroke="#166534" stroke-width="1.2"/>
+  <rect x="580" y="360" width="280" height="42" rx="8" fill="#dcfce7" stroke="#22c55e" stroke-width="1.2"/>
+  <text x="720" y="386" text-anchor="middle" fill="#14532d" font-size="12">统计显著≠经济显著</text>
+  <line x1="720" y1="400" x2="720" y2="410" stroke="#166534" stroke-width="1.2"/>
+  <rect x="580" y="410" width="280" height="42" rx="8" fill="#dcfce7" stroke="#22c55e" stroke-width="1.2"/>
+  <text x="720" y="436" text-anchor="middle" fill="#14532d" font-size="12">结构:引言→文献→数据→结果→结论</text>
+  <rect x="80" y="500" width="740" height="80" rx="12" fill="#ffffff" stroke="#166534" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="450" y="528" text-anchor="middle" fill="#14532d" font-size="14" font-weight="bold">🔗 概念关系链</text>
+  <text x="450" y="552" text-anchor="middle" fill="#14532d" font-size="13">选题 → 数据 → 模型 → 估计 → 诊断 → 稳健性 → 写作投稿</text>
+  <text x="450" y="622" text-anchor="middle" fill="#166534" font-size="13" font-style="italic">💡 只报最佳结果=数据挖掘,换设定都稳才是真稳健</text>
+  <text x="450" y="682" text-anchor="middle" fill="#166534" font-size="11.5">📚 相关：全方法回顾｜大牛库10论文写作｜12毕业论文实战</text>
+</svg>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 730" width="900" height="730" font-family="PingFang SC, Hiragino Sans GB, Microsoft YaHei, sans-serif">
+  <rect width="100%" height="100%" fill="#f0fdfa"/>
+  <rect x="300" y="30" width="300" height="60" rx="14" fill="#0e7490" stroke="#164e63" stroke-width="2"/>
+  <text x="450" y="68" text-anchor="middle" fill="#ffffff" font-size="20" font-weight="bold">第一章 综合评价的一般问题</text>
+  <path d="M450 90 L450 120 L180 120 L180 150" stroke="#0e7490" stroke-width="1.8" fill="none"/>
+  <rect x="40" y="150" width="280" height="50" rx="10" fill="#06b6d4" stroke="#0e7490" stroke-width="1.5"/>
+  <text x="180" y="181" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">问题提出</text>
+  <line x1="180" y1="200" x2="180" y2="210" stroke="#0e7490" stroke-width="1.2"/>
+  <rect x="40" y="210" width="280" height="42" rx="8" fill="#ecfeff" stroke="#06b6d4" stroke-width="1.2"/>
+  <text x="180" y="236" text-anchor="middle" fill="#164e63" font-size="12">单指标评价：片面且相互矛盾</text>
+  <line x1="180" y1="250" x2="180" y2="260" stroke="#0e7490" stroke-width="1.2"/>
+  <rect x="40" y="260" width="280" height="42" rx="8" fill="#ecfeff" stroke="#06b6d4" stroke-width="1.2"/>
+  <text x="180" y="286" text-anchor="middle" fill="#164e63" font-size="12">指标体系：全面但整体性退步</text>
+  <line x1="180" y1="300" x2="180" y2="310" stroke="#0e7490" stroke-width="1.2"/>
+  <rect x="40" y="310" width="280" height="42" rx="8" fill="#ecfeff" stroke="#06b6d4" stroke-width="1.2"/>
+  <text x="180" y="336" text-anchor="middle" fill="#164e63" font-size="12">综合评价：多指标合成综合值</text>
+  <line x1="180" y1="350" x2="180" y2="360" stroke="#0e7490" stroke-width="1.2"/>
+  <rect x="40" y="360" width="280" height="42" rx="8" fill="#ecfeff" stroke="#06b6d4" stroke-width="1.2"/>
+  <text x="180" y="386" text-anchor="middle" fill="#164e63" font-size="12">既解决整体又克服片面</text>
+  <path d="M450 90 L450 120 L450 120 L450 150" stroke="#0e7490" stroke-width="1.8" fill="none"/>
+  <rect x="300" y="150" width="300" height="50" rx="10" fill="#06b6d4" stroke="#0e7490" stroke-width="1.5"/>
+  <text x="450" y="181" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">一般五步流程</text>
+  <line x1="450" y1="200" x2="450" y2="210" stroke="#0e7490" stroke-width="1.2"/>
+  <rect x="300" y="210" width="300" height="42" rx="8" fill="#ecfeff" stroke="#06b6d4" stroke-width="1.2"/>
+  <text x="450" y="236" text-anchor="middle" fill="#164e63" font-size="12">①选指标建体系：定性+定量</text>
+  <line x1="450" y1="250" x2="450" y2="260" stroke="#0e7490" stroke-width="1.2"/>
+  <rect x="300" y="260" width="300" height="42" rx="8" fill="#ecfeff" stroke="#06b6d4" stroke-width="1.2"/>
+  <text x="450" y="286" text-anchor="middle" fill="#164e63" font-size="12">②指标转换：无量纲化+合成</text>
+  <line x1="450" y1="300" x2="450" y2="310" stroke="#0e7490" stroke-width="1.2"/>
+  <rect x="300" y="310" width="300" height="42" rx="8" fill="#ecfeff" stroke="#06b6d4" stroke-width="1.2"/>
+  <text x="450" y="336" text-anchor="middle" fill="#164e63" font-size="12">③定权数：权数敏感改排序</text>
+  <line x1="450" y1="350" x2="450" y2="360" stroke="#0e7490" stroke-width="1.2"/>
+  <rect x="300" y="360" width="300" height="42" rx="8" fill="#ecfeff" stroke="#06b6d4" stroke-width="1.2"/>
+  <text x="450" y="386" text-anchor="middle" fill="#164e63" font-size="12">④汇总合成：综合评价值F</text>
+  <line x1="450" y1="400" x2="450" y2="410" stroke="#0e7490" stroke-width="1.2"/>
+  <rect x="300" y="410" width="300" height="42" rx="8" fill="#ecfeff" stroke="#06b6d4" stroke-width="1.2"/>
+  <text x="450" y="436" text-anchor="middle" fill="#164e63" font-size="12">⑤分析：排序/因素/类型/动态</text>
+  <path d="M450 90 L450 120 L720 120 L720 150" stroke="#0e7490" stroke-width="1.8" fill="none"/>
+  <rect x="580" y="150" width="280" height="50" rx="10" fill="#06b6d4" stroke="#0e7490" stroke-width="1.5"/>
+  <text x="720" y="181" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">三条数学思想</text>
+  <line x1="720" y1="200" x2="720" y2="210" stroke="#0e7490" stroke-width="1.2"/>
+  <rect x="580" y="210" width="280" height="42" rx="8" fill="#ecfeff" stroke="#06b6d4" stroke-width="1.2"/>
+  <text x="720" y="236" text-anchor="middle" fill="#164e63" font-size="12">消除量纲 = 定量化(第一次投影)</text>
+  <line x1="720" y1="250" x2="720" y2="260" stroke="#0e7490" stroke-width="1.2"/>
+  <rect x="580" y="260" width="280" height="42" rx="8" fill="#ecfeff" stroke="#06b6d4" stroke-width="1.2"/>
+  <text x="720" y="286" text-anchor="middle" fill="#164e63" font-size="12">权数 = 因素分析的数量刻画</text>
+  <line x1="720" y1="300" x2="720" y2="310" stroke="#0e7490" stroke-width="1.2"/>
+  <rect x="580" y="310" width="280" height="42" rx="8" fill="#ecfeff" stroke="#06b6d4" stroke-width="1.2"/>
+  <text x="720" y="336" text-anchor="middle" fill="#164e63" font-size="12">综合 = 两次空间投影</text>
+  <line x1="720" y1="350" x2="720" y2="360" stroke="#0e7490" stroke-width="1.2"/>
+  <rect x="580" y="360" width="280" height="42" rx="8" fill="#ecfeff" stroke="#06b6d4" stroke-width="1.2"/>
+  <text x="720" y="386" text-anchor="middle" fill="#164e63" font-size="12">A空间→B空间→一维直线</text>
+  <line x1="720" y1="400" x2="720" y2="410" stroke="#0e7490" stroke-width="1.2"/>
+  <rect x="580" y="410" width="280" height="42" rx="8" fill="#ecfeff" stroke="#06b6d4" stroke-width="1.2"/>
+  <text x="720" y="436" text-anchor="middle" fill="#164e63" font-size="12">常数修正I=I₀+K/乘数修正I=I₀×K</text>
+  <rect x="80" y="500" width="740" height="80" rx="12" fill="#ffffff" stroke="#0e7490" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="450" y="528" text-anchor="middle" fill="#164e63" font-size="14" font-weight="bold">🔗 概念关系链</text>
+  <text x="450" y="552" text-anchor="middle" fill="#164e63" font-size="13">选指标 → 无量纲化 → 定权数 → 加权合成 → 综合分析(两次投影)</text>
+  <text x="450" y="622" text-anchor="middle" fill="#0e7490" font-size="13" font-style="italic">💡 全书操作流程总纲：五步+三思想</text>
+  <text x="450" y="682" text-anchor="middle" fill="#0e7490" font-size="11.5">📚 相关：第二章 指标体系 · 第三章 无量纲化 · 第五章 合成</text>
+</svg>

@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="900" viewBox="0 0 800 900">
+<style>
+text { font-family: "PingFang SC","Microsoft YaHei",sans-serif; }
+.title { font-size: 18px; font-weight: bold; fill: #1a1a2e; text-anchor: middle; }
+.q { font-size: 13px; font-weight: bold; fill: #fff; text-anchor: middle; }
+.box { rx: 8; }
+</style>
+<rect width="800" height="900" fill="#fafbfc"/>
+<text x="400" y="30" class="title">ARMA模型识别决策图</text>
+<rect x="180" y="60" width="440" height="36" fill="#e74c3c" class="box"/>
+<text x="400" y="83" class="q">序列平稳吗？</text>
+<rect x="180" y="160" width="440" height="36" fill="#e67e22" class="box"/>
+<text x="400" y="183" class="q">不平稳→差分→看差分后ACF/PACF</text>
+<rect x="180" y="260" width="440" height="36" fill="#f1c40f" class="box"/>
+<text x="400" y="283" class="q">ACF截尾还是拖尾？</text>
+<rect x="180" y="360" width="440" height="36" fill="#2ecc71" class="box"/>
+<text x="400" y="383" class="q">ACF q阶截尾 → MA(q)</text>
+<rect x="180" y="440" width="440" height="36" fill="#9b59b6" class="box"/>
+<text x="400" y="463" class="q">ACF拖尾</text>
+<rect x="180" y="520" width="440" height="36" fill="#3498db" class="box"/>
+<text x="400" y="543" class="q">PACF截尾还是拖尾？</text>
+<rect x="180" y="600" width="440" height="36" fill="#1abc9c" class="box"/>
+<text x="400" y="623" class="q">PACF p阶截尾 → AR(p)</text>
+<rect x="180" y="680" width="440" height="36" fill="#d35400" class="box"/>
+<text x="400" y="703" class="q">PACF也拖尾 → ARMA(p,q)</text>
+</svg>

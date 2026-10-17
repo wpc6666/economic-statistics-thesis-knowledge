@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1400" font-family="PingFang SC, Hiragino Sans GB, Microsoft YaHei, sans-serif">
+  <defs>
+    <style>
+      .root { fill: #06b6d4; stroke: #0e7490; stroke-width: 2; }
+      .l2 { fill: #ecfeff; stroke: #06b6d4; stroke-width: 1.5; }
+      .l3 { fill: #f0fdfa; stroke: #0e7490; stroke-width: 1; }
+      .t-root { fill: #ffffff; font-size: 22px; font-weight: bold; text-anchor: middle; }
+      .t-l2 { fill: #164e63; font-size: 15px; font-weight: bold; text-anchor: middle; }
+      .t-l3 { fill: #164e63; font-size: 12px; text-anchor: middle; }
+      .line { stroke: #06b6d4; stroke-width: 1.5; fill: none; }
+    </style>
+  </defs>
+
+  <!-- 根节点 -->
+  <rect class="root" x="300" y="30" width="300" height="60" rx="12"/>
+  <text class="t-root" x="450" y="68">第10章 统计指数</text>
+
+  <!-- 第一节 左上 -->
+  <rect class="l2" x="30" y="150" width="180" height="44" rx="8"/>
+  <text class="t-l2" x="120" y="177">第一节 概念分类</text>
+  <path class="line" d="M 380 90 Q 200 120 120 150"/>
+
+  <rect class="l3" x="20" y="220" width="160" height="28" rx="6"/>
+  <text class="t-l3" x="100" y="239">广义 vs 狭义指数</text>
+  <path class="line" d="M 110 194 L 100 220"/>
+
+  <rect class="l3" x="20" y="256" width="160" height="28" rx="6"/>
+  <text class="t-l3" x="100" y="275">个体 vs 总指数</text>
+  <path class="line" d="M 110 194 L 100 256"/>
+
+  <rect class="l3" x="20" y="292" width="160" height="28" rx="6"/>
+  <text class="t-l3" x="100" y="311">数量 vs 质量指标</text>
+  <path class="line" d="M 110 194 L 100 292"/>
+
+  <rect class="l3" x="20" y="328" width="160" height="28" rx="6"/>
+  <text class="t-l3" x="100" y="347">同度量因素</text>
+  <path class="line" d="M 110 194 L 100 328"/>
+
+  <!-- 第二节 右上（核心） -->
+  <rect class="l2" x="690" y="150" width="180" height="44" rx="8"/>
+  <text class="t-l2" x="780" y="177">第二节 综合指数</text>
+  <path class="line" d="M 520 90 Q 700 120 780 150"/>
+
+  <rect class="l3" x="690" y="220" width="180" height="28" rx="6"/>
+  <text class="t-l3" x="780" y="239">拉氏 L：同度量固定在基期</text>
+  <path class="line" d="M 790 194 L 780 220"/>
+
+  <rect class="l3" x="690" y="256" width="180" height="28" rx="6"/>
+  <text class="t-l3" x="780" y="275">派氏 P：同度量固定在报告期</text>
+  <path class="line" d="M 790 194 L 780 256"/>
+
+  <rect class="l3" x="690" y="292" width="180" height="28" rx="6"/>
+  <text class="t-l3" x="780" y="311">拉氏 vs 派氏权偏误</text>
+  <path class="line" d="M 790 194 L 780 292"/>
+
+  <rect class="l3" x="690" y="328" width="180" height="28" rx="6"/>
+  <text class="t-l3" x="780" y="347">马艾 / 费雪 / 杨格</text>
+  <path class="line" d="M 790 194 L 780 328"/>
+
+  <!-- 第三节 左中 -->
+  <rect class="l2" x="30" y="420" width="180" height="44" rx="8"/>
+  <text class="t-l2" x="120" y="447">第三节 平均指数</text>
+  <path class="line" d="M 380 90 Q 200 250 120 420"/>
+
+  <rect class="l3" x="20" y="490" width="180" height="28" rx="6"/>
+  <text class="t-l3" x="110" y="509">加权算术平均（=拉氏）</text>
+  <path class="line" d="M 110 464 L 110 490"/>
+
+  <rect class="l3" x="20" y="526" width="180" height="28" rx="6"/>
+  <text class="t-l3" x="110" y="545">加权调和平均（=派氏）</text>
+  <path class="line" d="M 110 464 L 110 526"/>
+
+  <!-- 第四节 右中（重点） -->
+  <rect class="l2" x="690" y="420" width="180" height="44" rx="8"/>
+  <text class="t-l2" x="780" y="447">第四节 因素分析</text>
+  <path class="line" d="M 520 90 Q 700 250 780 420"/>
+
+  <rect class="l3" x="680" y="490" width="200" height="28" rx="6"/>
+  <text class="t-l3" x="780" y="509">销售额=销量×价格</text>
+  <path class="line" d="M 790 464 L 780 490"/>
+
+  <rect class="l3" x="680" y="526" width="200" height="28" rx="6"/>
+  <text class="t-l3" x="780" y="545">一拉氏 × 一派氏</text>
+  <path class="line" d="M 790 464 L 780 526"/>
+
+  <rect class="l3" x="680" y="562" width="200" height="28" rx="6"/>
+  <text class="t-l3" x="780" y="581">相对数 + 绝对数双拆账</text>
+  <path class="line" d="M 790 464 L 780 562"/>
+
+  <!-- 第五节 左下 -->
+  <rect class="l2" x="30" y="640" width="180" height="44" rx="8"/>
+  <text class="t-l2" x="120" y="667">第五节 指数数列</text>
+  <path class="line" d="M 380 90 Q 200 380 120 640"/>
+
+  <rect class="l3" x="20" y="710" width="180" height="28" rx="6"/>
+  <text class="t-l3" x="110" y="729">定基/环比换算</text>
+  <path class="line" d="M 110 684 L 110 710"/>
+
+  <rect class="l3" x="20" y="746" width="180" height="28" rx="6"/>
+  <text class="t-l3" x="110" y="765">不变权数 vs 可变权数</text>
+  <path class="line" d="M 110 684 L 110 746"/>
+
+  <!-- 第六节 右下 -->
+  <rect class="l2" x="690" y="640" width="180" height="44" rx="8"/>
+  <text class="t-l2" x="780" y="667">第六节 常见指数</text>
+  <path class="line" d="M 520 90 Q 700 380 780 640"/>
+
+  <rect class="l3" x="690" y="710" width="180" height="28" rx="6"/>
+  <text class="t-l3" x="780" y="729">CPI / RPI / PPI</text>
+  <path class="line" d="M 790 684 L 780 710"/>
+
+  <rect class="l3" x="690" y="746" width="180" height="28" rx="6"/>
+  <text class="t-l3" x="780" y="765">上证综指 / 恒生指数</text>
+  <path class="line" d="M 790 684 L 780 746"/>
+
+  <!-- 底部核心提醒 -->
+  <rect class="l2" x="100" y="850" width="700" height="100" rx="10"/>
+  <text class="t-l2" x="450" y="880">核心公式记忆</text>
+  <text class="t-l3" x="450" y="905">拉氏：同度量因素固定在基期  ｜  派氏：同度量因素固定在报告期</text>
+  <text class="t-l3" x="450" y="928">物量用拉氏，物价用派氏  ｜  指数体系 = 拉氏量 × 派氏价</text>
+
+  <rect class="l2" x="100" y="990" width="700" height="80" rx="10"/>
+  <text class="t-l2" x="450" y="1020">跨章互链</text>
+  <text class="t-l3" x="450" y="1045">第4章 总量指标  ·  第5章 加权平均 / 几何平均  ·  大牛库07 综合评价方法</text>
+</svg>

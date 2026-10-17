@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 730" width="900" height="730" font-family="PingFang SC, Hiragino Sans GB, Microsoft YaHei, sans-serif">
+  <rect width="100%" height="100%" fill="#faf5ff"/>
+  <rect x="300" y="30" width="300" height="60" rx="14" fill="#6d28d9" stroke="#4c1d95" stroke-width="2"/>
+  <text x="450" y="68" text-anchor="middle" fill="#ffffff" font-size="20" font-weight="bold">第6章 多元时序与协整</text>
+  <path d="M450 90 L450 120 L180 120 L180 150" stroke="#6d28d9" stroke-width="1.8" fill="none"/>
+  <rect x="40" y="150" width="280" height="50" rx="10" fill="#a78bfa" stroke="#6d28d9" stroke-width="1.5"/>
+  <text x="180" y="181" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">一、平稳多元与虚假回归</text>
+  <line x1="180" y1="200" x2="180" y2="210" stroke="#6d28d9" stroke-width="1.2"/>
+  <rect x="40" y="210" width="280" height="42" rx="8" fill="#f5f3ff" stroke="#a78bfa" stroke-width="1.2"/>
+  <text x="180" y="236" text-anchor="middle" fill="#4c1d95" font-size="12">多元平稳序列可直接回归</text>
+  <line x1="180" y1="250" x2="180" y2="260" stroke="#6d28d9" stroke-width="1.2"/>
+  <rect x="40" y="260" width="280" height="42" rx="8" fill="#f5f3ff" stroke="#a78bfa" stroke-width="1.2"/>
+  <text x="180" y="286" text-anchor="middle" fill="#4c1d95" font-size="12">虚假回归：独立随机游走R²虚高</text>
+  <line x1="180" y1="300" x2="180" y2="310" stroke="#6d28d9" stroke-width="1.2"/>
+  <rect x="40" y="310" width="280" height="42" rx="8" fill="#f5f3ff" stroke="#a78bfa" stroke-width="1.2"/>
+  <text x="180" y="336" text-anchor="middle" fill="#4c1d95" font-size="12">原因：共同趋势误判为因果</text>
+  <line x1="180" y1="350" x2="180" y2="360" stroke="#6d28d9" stroke-width="1.2"/>
+  <rect x="40" y="360" width="280" height="42" rx="8" fill="#f5f3ff" stroke="#a78bfa" stroke-width="1.2"/>
+  <text x="180" y="386" text-anchor="middle" fill="#4c1d95" font-size="12">非平稳回归前必须查协整</text>
+  <path d="M450 90 L450 120 L450 120 L450 150" stroke="#6d28d9" stroke-width="1.8" fill="none"/>
+  <rect x="300" y="150" width="300" height="50" rx="10" fill="#a78bfa" stroke="#6d28d9" stroke-width="1.5"/>
+  <text x="450" y="181" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">二、单位根检验</text>
+  <line x1="450" y1="200" x2="450" y2="210" stroke="#6d28d9" stroke-width="1.2"/>
+  <rect x="300" y="210" width="300" height="42" rx="8" fill="#f5f3ff" stroke="#a78bfa" stroke-width="1.2"/>
+  <text x="450" y="236" text-anchor="middle" fill="#4c1d95" font-size="12">随机游走 x_t=x_{t-1}+ε_t</text>
+  <line x1="450" y1="250" x2="450" y2="260" stroke="#6d28d9" stroke-width="1.2"/>
+  <rect x="300" y="260" width="300" height="42" rx="8" fill="#f5f3ff" stroke="#a78bfa" stroke-width="1.2"/>
+  <text x="450" y="286" text-anchor="middle" fill="#4c1d95" font-size="12">DF检验：无常数/有常数/有趋势</text>
+  <line x1="450" y1="300" x2="450" y2="310" stroke="#6d28d9" stroke-width="1.2"/>
+  <rect x="300" y="310" width="300" height="42" rx="8" fill="#f5f3ff" stroke="#a78bfa" stroke-width="1.2"/>
+  <text x="450" y="336" text-anchor="middle" fill="#4c1d95" font-size="12">ADF：加滞后差分项控自相关</text>
+  <line x1="450" y1="350" x2="450" y2="360" stroke="#6d28d9" stroke-width="1.2"/>
+  <rect x="300" y="360" width="300" height="42" rx="8" fill="#f5f3ff" stroke="#a78bfa" stroke-width="1.2"/>
+  <text x="450" y="386" text-anchor="middle" fill="#4c1d95" font-size="12">H0: 有单位根（非平稳）</text>
+  <line x1="450" y1="400" x2="450" y2="410" stroke="#6d28d9" stroke-width="1.2"/>
+  <rect x="300" y="410" width="300" height="42" rx="8" fill="#f5f3ff" stroke="#a78bfa" stroke-width="1.2"/>
+  <text x="450" y="436" text-anchor="middle" fill="#4c1d95" font-size="12">p&lt;0.05 → 平稳 I(0)</text>
+  <path d="M450 90 L450 120 L720 120 L720 150" stroke="#6d28d9" stroke-width="1.8" fill="none"/>
+  <rect x="580" y="150" width="280" height="50" rx="10" fill="#a78bfa" stroke="#6d28d9" stroke-width="1.5"/>
+  <text x="720" y="181" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">三、协整与ECM</text>
+  <line x1="720" y1="200" x2="720" y2="210" stroke="#6d28d9" stroke-width="1.2"/>
+  <rect x="580" y="210" width="280" height="42" rx="8" fill="#f5f3ff" stroke="#a78bfa" stroke-width="1.2"/>
+  <text x="720" y="236" text-anchor="middle" fill="#4c1d95" font-size="12">两I(1)序列线性组合可平稳</text>
+  <line x1="720" y1="250" x2="720" y2="260" stroke="#6d28d9" stroke-width="1.2"/>
+  <rect x="580" y="260" width="280" height="42" rx="8" fill="#f5f3ff" stroke="#a78bfa" stroke-width="1.2"/>
+  <text x="720" y="286" text-anchor="middle" fill="#4c1d95" font-size="12">喝醉人手拉手直觉</text>
+  <line x1="720" y1="300" x2="720" y2="310" stroke="#6d28d9" stroke-width="1.2"/>
+  <rect x="580" y="310" width="280" height="42" rx="8" fill="#f5f3ff" stroke="#a78bfa" stroke-width="1.2"/>
+  <text x="720" y="336" text-anchor="middle" fill="#4c1d95" font-size="12">EG两步法：OLS→残差ADF</text>
+  <line x1="720" y1="350" x2="720" y2="360" stroke="#6d28d9" stroke-width="1.2"/>
+  <rect x="580" y="360" width="280" height="42" rx="8" fill="#f5f3ff" stroke="#a78bfa" stroke-width="1.2"/>
+  <text x="720" y="386" text-anchor="middle" fill="#4c1d95" font-size="12">ECM: Δy_t=βΔx_t+γε̂_{t-1}</text>
+  <line x1="720" y1="400" x2="720" y2="410" stroke="#6d28d9" stroke-width="1.2"/>
+  <rect x="580" y="410" width="280" height="42" rx="8" fill="#f5f3ff" stroke="#a78bfa" stroke-width="1.2"/>
+  <text x="720" y="436" text-anchor="middle" fill="#4c1d95" font-size="12">γ&lt;0短期自动回调长期均衡</text>
+  <rect x="80" y="500" width="740" height="80" rx="12" fill="#ffffff" stroke="#6d28d9" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="450" y="528" text-anchor="middle" fill="#4c1d95" font-size="14" font-weight="bold">🔗 概念关系链</text>
+  <text x="450" y="552" text-anchor="middle" fill="#4c1d95" font-size="13">ADF定单整阶数 → 同阶I(1) → EG协整检验 → ECM短期调整+长期均衡</text>
+  <text x="450" y="622" text-anchor="middle" fill="#6d28d9" font-size="13" font-style="italic">💡 多非平稳序列的长期均衡关系建模</text>
+  <text x="450" y="682" text-anchor="middle" fill="#6d28d9" font-size="11.5">📚 相关：第5章 ARIMA / 计量第13章 协整</text>
+</svg>

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1400" width="900" height="1400" font-family="PingFang SC, Hiragino Sans GB, Microsoft YaHei, sans-serif">
+  <defs>
+    <style>
+      .root { fill: #0e7490; }
+      .sec { fill: #06b6d4; }
+      .kp  { fill: #ecfeff; stroke: #0e7490; stroke-width: 1.5; }
+      .line { stroke: #0891b2; stroke-width: 2; fill: none; }
+      .rootText { fill: #ffffff; font-size: 22px; font-weight: 700; }
+      .secText { fill: #ffffff; font-size: 18px; font-weight: 600; }
+      .kpText { fill: #164e63; font-size: 14px; }
+    </style>
+  </defs>
+
+  <!-- 背景 -->
+  <rect x="0" y="0" width="900" height="1400" fill="#f0fdff"/>
+
+  <!-- 根节点 -->
+  <rect class="root" x="250" y="40" width="400" height="70" rx="12" ry="12"/>
+  <text class="rootText" x="450" y="82" text-anchor="middle">第4章 总量指标与相对指标</text>
+
+  <!-- 二级：两节 -->
+  <rect class="sec" x="100" y="200" width="280" height="56" rx="10" ry="10"/>
+  <text class="secText" x="240" y="235" text-anchor="middle">第一节 总量指标</text>
+
+  <rect class="sec" x="520" y="200" width="280" height="56" rx="10" ry="10"/>
+  <text class="secText" x="660" y="235" text-anchor="middle">第二节 相对指标</text>
+
+  <!-- 根到两节连线 -->
+  <path class="line" d="M450,110 L450,160 L240,160 L240,200"/>
+  <path class="line" d="M450,160 L660,160 L660,200"/>
+
+  <!-- 第一节 KP：三个 -->
+  <rect class="kp" x="40" y="320" width="220" height="60" rx="8" ry="8"/>
+  <text class="kpText" x="150" y="345" text-anchor="middle">KP01 总量指标概念</text>
+  <text class="kpText" x="150" y="365" text-anchor="middle">总体总量 / 标志总量</text>
+
+  <rect class="kp" x="280" y="320" width="220" height="60" rx="8" ry="8"/>
+  <text class="kpText" x="390" y="345" text-anchor="middle">KP02 时期 vs 时点</text>
+  <text class="kpText" x="390" y="365" text-anchor="middle">能否累计 / 与长短关系</text>
+
+  <rect class="kp" x="40" y="420" width="220" height="60" rx="8" ry="8"/>
+  <text class="kpText" x="150" y="445" text-anchor="middle">KP03 计量单位</text>
+  <text class="kpText" x="150" y="465" text-anchor="middle">实物 / 价值 / 劳动量</text>
+
+  <!-- 第一节连线 -->
+  <path class="line" d="M240,256 L240,290 L150,290 L150,320"/>
+  <path class="line" d="M240,290 L390,290 L390,320"/>
+  <path class="line" d="M150,380 L150,420"/>
+
+  <!-- 第二节 KP：六个 -->
+  <rect class="kp" x="500" y="320" width="200" height="60" rx="8" ry="8"/>
+  <text class="kpText" x="600" y="345" text-anchor="middle">KP04 计划完成相对数</text>
+  <text class="kpText" x="600" y="365" text-anchor="middle">实际 / 计划</text>
+
+  <rect class="kp" x="720" y="320" width="160" height="60" rx="8" ry="8"/>
+  <text class="kpText" x="800" y="345" text-anchor="middle">KP05 结构与比例</text>
+  <text class="kpText" x="800" y="365" text-anchor="middle">部分占总体</text>
+
+  <rect class="kp" x="500" y="420" width="200" height="60" rx="8" ry="8"/>
+  <text class="kpText" x="600" y="445" text-anchor="middle">KP06 比较与动态</text>
+  <text class="kpText" x="600" y="465" text-anchor="middle">横向 / 纵向</text>
+
+  <rect class="kp" x="720" y="420" width="160" height="60" rx="8" ry="8"/>
+  <text class="kpText" x="800" y="445" text-anchor="middle">KP07 强度相对数</text>
+  <text class="kpText" x="800" y="465" text-anchor="middle">密度 / 强度</text>
+
+  <rect class="kp" x="500" y="520" width="380" height="70" rx="8" ry="8"/>
+  <text class="kpText" x="690" y="548" text-anchor="middle">KP08 六种相对数总对比</text>
+  <text class="kpText" x="690" y="570" text-anchor="middle">分子分母 / 能否互换 / 适用场景</text>
+
+  <!-- 第二节连线 -->
+  <path class="line" d="M660,256 L660,290 L600,290 L600,320"/>
+  <path class="line" d="M660,290 L800,290 L800,320"/>
+  <path class="line" d="M600,380 L600,420"/>
+  <path class="line" d="M800,380 L800,420"/>
+  <path class="line" d="M690,480 L690,520"/>
+
+  <!-- 底部要点 -->
+  <rect class="root" x="150" y="680" width="600" height="100" rx="12" ry="12"/>
+  <text class="secText" x="450" y="715" text-anchor="middle">本章核心</text>
+  <text class="rootText" x="450" y="748" text-anchor="middle" font-size="16">总量是地基，相对是对比；先分时期时点，再记六种相对数</text>
+
+  <!-- 应用原则 -->
+  <rect class="kp" x="100" y="830" width="220" height="80" rx="8" ry="8"/>
+  <text class="kpText" x="210" y="860" text-anchor="middle">可比性原则</text>
+  <text class="kpText" x="210" y="882" text-anchor="middle">口径一致才能比</text>
+
+  <rect class="kp" x="340" y="830" width="220" height="80" rx="8" ry="8"/>
+  <text class="kpText" x="450" y="860" text-anchor="middle">相对 + 总量结合</text>
+  <text class="kpText" x="450" y="882" text-anchor="middle">防止抽象化掩盖差异</text>
+
+  <rect class="kp" x="580" y="830" width="220" height="80" rx="8" ry="8"/>
+  <text class="kpText" x="690" y="860" text-anchor="middle">多种相对数结合</text>
+  <text class="kpText" x="690" y="882" text-anchor="middle">全面评价事物</text>
+
+  <path class="line" d="M450,780 L450,810 L210,810 L210,830"/>
+  <path class="line" d="M450,810 L450,830"/>
+  <path class="line" d="M450,810 L690,810 L690,830"/>
+
+  <!-- 后续章节 -->
+  <rect class="sec" x="200" y="980" width="500" height="60" rx="10" ry="10"/>
+  <text class="secText" x="450" y="1017" text-anchor="middle">衔接：第5章 平均指标 = 标志总量 / 总体总量</text>
+
+  <path class="line" d="M450,910 L450,980"/>
+
+  <!-- 标注 -->
+  <text class="kpText" x="450" y="1100" text-anchor="middle" font-size="13">韩兆洲《统计学原理（第7版）》· 第4章思维导图</text>
+</svg>

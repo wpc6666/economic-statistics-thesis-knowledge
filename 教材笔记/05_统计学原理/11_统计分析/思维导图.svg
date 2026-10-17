@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1500" font-family="PingFang SC, Hiragino Sans GB, Microsoft YaHei, sans-serif">
+  <defs>
+    <style>
+      .root { fill: #06b6d4; }
+      .l2   { fill: #0e7490; }
+      .l3   { fill: #ecfeff; stroke: #0e7490; stroke-width: 1.5; }
+      .txt-root { fill: #ffffff; font-size: 22px; font-weight: 700; }
+      .txt-l2   { fill: #ffffff; font-size: 16px; font-weight: 600; }
+      .txt-l3   { fill: #164e63; font-size: 13px; }
+      .line { stroke: #06b6d4; stroke-width: 1.8; fill: none; }
+    </style>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="900" height="1500" fill="#f0fdfa"/>
+
+  <!-- 根节点 -->
+  <rect class="root" x="300" y="30" width="300" height="60" rx="12"/>
+  <text class="txt-root" x="450" y="67" text-anchor="middle">第11章 统计分析</text>
+
+  <!-- ===== 第一节 综合评价法简述 ===== -->
+  <line class="line" x1="450" y1="90" x2="150" y2="150"/>
+  <rect class="l2" x="40" y="130" width="220" height="44" rx="8"/>
+  <text class="txt-l2" x="150" y="158" text-anchor="middle">一、综合评价法简述</text>
+
+  <line class="line" x1="150" y1="174" x2="150" y2="210"/>
+  <rect class="l3" x="30" y="210" width="240" height="34" rx="6"/>
+  <text class="txt-l3" x="150" y="232" text-anchor="middle">KP01 综合评价总览（互链大牛库07）</text>
+
+  <line class="line" x1="150" y1="244" x2="150" y2="270"/>
+  <rect class="l3" x="30" y="270" width="240" height="34" rx="6"/>
+  <text class="txt-l3" x="150" y="292" text-anchor="middle">AHP / TOPSIS / 熵值法 / 模糊 / 灰色</text>
+
+  <!-- ===== 第二节 常用经济社会统计指标 ===== -->
+  <line class="line" x1="450" y1="90" x2="450" y2="130"/>
+  <rect class="l2" x="310" y="130" width="280" height="44" rx="8"/>
+  <text class="txt-l2" x="450" y="158" text-anchor="middle">二、常用经济社会统计指标</text>
+
+  <line class="line" x1="450" y1="174" x2="450" y2="200"/>
+
+  <!-- KP02 GDP/GNP -->
+  <line class="line" x1="450" y1="200" x2="330" y2="220"/>
+  <rect class="l3" x="220" y="220" width="220" height="34" rx="6"/>
+  <text class="txt-l3" x="330" y="242" text-anchor="middle">KP02 GDP与GNP（三面等值）</text>
+
+  <!-- KP03 三次产业 -->
+  <line class="line" x1="450" y1="200" x2="580" y2="220"/>
+  <rect class="l3" x="470" y="220" width="220" height="34" rx="6"/>
+  <text class="txt-l3" x="580" y="242" text-anchor="middle">KP03 三次产业划分</text>
+
+  <!-- KP04 恩格尔系数 -->
+  <line class="line" x1="450" y1="254" x2="330" y2="290"/>
+  <rect class="l3" x="220" y="290" width="220" height="34" rx="6"/>
+  <text class="txt-l3" x="330" y="312" text-anchor="middle">KP04 恩格尔系数（食品/总支出）</text>
+
+  <!-- KP05 基尼系数 -->
+  <line class="line" x1="450" y1="254" x2="580" y2="290"/>
+  <rect class="l3" x="470" y="290" width="220" height="34" rx="6"/>
+  <text class="txt-l3" x="580" y="312" text-anchor="middle">KP05 基尼系数（0.4警戒线）</text>
+
+  <!-- KP06 CPI -->
+  <line class="line" x1="450" y1="324" x2="330" y2="360"/>
+  <rect class="l3" x="220" y="360" width="220" height="34" rx="6"/>
+  <text class="txt-l3" x="330" y="382" text-anchor="middle">KP06 通货膨胀率与CPI</text>
+
+  <!-- KP07 失业率 -->
+  <line class="line" x1="450" y1="324" x2="580" y2="360"/>
+  <rect class="l3" x="470" y="360" width="220" height="34" rx="6"/>
+  <text class="txt-l3" x="580" y="382" text-anchor="middle">KP07 失业率（登记 vs 调查）</text>
+
+  <!-- 其他指标小节点 -->
+  <line class="line" x1="450" y1="394" x2="450" y2="420"/>
+  <rect class="l3" x="280" y="420" width="340" height="34" rx="6"/>
+  <text class="txt-l3" x="450" y="442" text-anchor="middle">城镇化率 / R&amp;D强度 / 外贸依存度 / 区位商 / HDI</text>
+
+  <!-- ===== 第三节 统计分析报告概述 ===== -->
+  <line class="line" x1="450" y1="90" x2="750" y2="150"/>
+  <rect class="l2" x="640" y="130" width="220" height="44" rx="8"/>
+  <text class="txt-l2" x="750" y="158" text-anchor="middle">三、报告概述</text>
+
+  <line class="line" x1="750" y1="174" x2="750" y2="210"/>
+  <rect class="l3" x="630" y="210" width="240" height="34" rx="6"/>
+  <text class="txt-l3" x="750" y="232" text-anchor="middle">KP08 特点与四段式结构</text>
+
+  <line class="line" x1="750" y1="244" x2="750" y2="280"/>
+  <rect class="l3" x="630" y="280" width="240" height="34" rx="6"/>
+  <text class="txt-l3" x="750" y="302" text-anchor="middle">KP09 常见毛病（流水账/堆砌）</text>
+
+  <!-- ===== 第四节 统计工作报告 ===== -->
+  <line class="line" x1="450" y1="90" x2="150" y2="500"/>
+  <rect class="l2" x="40" y="480" width="220" height="44" rx="8"/>
+  <text class="txt-l2" x="150" y="508" text-anchor="middle">四、统计工作报告</text>
+
+  <line class="line" x1="150" y1="524" x2="150" y2="560"/>
+  <rect class="l3" x="20" y="560" width="260" height="34" rx="6"/>
+  <text class="txt-l3" x="150" y="582" text-anchor="middle">选题（针对性/时效性/效用性）</text>
+
+  <line class="line" x1="150" y1="594" x2="150" y2="620"/>
+  <rect class="l3" x="20" y="620" width="260" height="34" rx="6"/>
+  <text class="txt-l3" x="150" y="642" text-anchor="middle">取材（收集/鉴别/筛选/分组）</text>
+
+  <line class="line" x1="150" y1="654" x2="150" y2="680"/>
+  <rect class="l3" x="20" y="680" width="260" height="34" rx="6"/>
+  <text class="txt-l3" x="150" y="702" text-anchor="middle">写作（主题/标题/观点材料/修改）</text>
+
+  <!-- ===== 第五节 统计研究报告 ===== -->
+  <line class="line" x1="450" y1="90" x2="450" y2="490"/>
+  <rect class="l2" x="320" y="480" width="260" height="44" rx="8"/>
+  <text class="txt-l2" x="450" y="508" text-anchor="middle">五、统计研究报告</text>
+
+  <line class="line" x1="450" y1="524" x2="450" y2="560"/>
+  <rect class="l3" x="300" y="560" width="300" height="34" rx="6"/>
+  <text class="txt-l3" x="450" y="582" text-anchor="middle">11 件套结构（扉页→附录）</text>
+
+  <line class="line" x1="450" y1="594" x2="450" y2="620"/>
+  <rect class="l3" x="300" y="620" width="300" height="34" rx="6"/>
+  <text class="txt-l3" x="450" y="642" text-anchor="middle">摘要/引言/方法/结果/结论</text>
+
+  <line class="line" x1="450" y1="654" x2="450" y2="680"/>
+  <rect class="l3" x="300" y="680" width="300" height="34" rx="6"/>
+  <text class="txt-l3" x="450" y="702" text-anchor="middle">投稿论文：5 段式</text>
+
+  <!-- ===== 第六节 口头陈述报告 ===== -->
+  <line class="line" x1="450" y1="90" x2="750" y2="480"/>
+  <rect class="l2" x="640" y="480" width="220" height="44" rx="8"/>
+  <text class="txt-l2" x="750" y="508" text-anchor="middle">六、口头陈述报告</text>
+
+  <line class="line" x1="750" y1="524" x2="750" y2="560"/>
+  <rect class="l3" x="620" y="560" width="260" height="34" rx="6"/>
+  <text class="txt-l3" x="750" y="582" text-anchor="middle">为什么做（5 min）</text>
+
+  <line class="line" x1="750" y1="594" x2="750" y2="620"/>
+  <rect class="l3" x="620" y="620" width="260" height="34" rx="6"/>
+  <text class="txt-l3" x="750" y="642" text-anchor="middle">怎么做（5 min）</text>
+
+  <line class="line" x1="750" y1="654" x2="750" y2="680"/>
+  <rect class="l3" x="620" y="680" width="260" height="34" rx="6"/>
+  <text class="txt-l3" x="750" y="702" text-anchor="middle">发现什么+建议（10 min）</text>
+
+  <line class="line" x1="750" y1="714" x2="750" y2="740"/>
+  <rect class="l3" x="620" y="740" width="260" height="34" rx="6"/>
+  <text class="txt-l3" x="750" y="762" text-anchor="middle">问答（10 min）</text>
+
+  <!-- 底部：核心思想 -->
+  <line class="line" x1="450" y1="454" x2="450" y2="850"/>
+  <rect class="root" x="180" y="850" width="540" height="60" rx="12"/>
+  <text class="txt-root" x="450" y="878" text-anchor="middle">核心思想：统计报告 = 用数据论证观点</text>
+  <text class="txt-l3" x="450" y="900" text-anchor="middle" fill="#ffffff">基本情况 → 成绩/问题 → 原因分析 → 对策建议</text>
+
+  <!-- 互链提示 -->
+  <rect class="l3" x="180" y="950" width="540" height="120" rx="10"/>
+  <text class="txt-l3" x="450" y="978" text-anchor="middle" font-weight="600">互链大牛库</text>
+  <text class="txt-l3" x="450" y="1002" text-anchor="middle">· 07 综合评价方法（本章第一节深入展开）</text>
+  <text class="txt-l3" x="450" y="1024" text-anchor="middle">· 10 论文写作全流程（报告写作的学术版）</text>
+  <text class="txt-l3" x="450" y="1046" text-anchor="middle">· 12 毕业论文实战（统计研究报告的完整实战）</text>
+
+  <!-- 前置章节 -->
+  <rect class="l3" x="180" y="1100" width="540" height="100" rx="10"/>
+  <text class="txt-l3" x="450" y="1128" text-anchor="middle" font-weight="600">前置章节</text>
+  <text class="txt-l3" x="450" y="1152" text-anchor="middle">第4章 总量与相对指标 ｜ 第5章 平均与变异指标</text>
+  <text class="txt-l3" x="450" y="1174" text-anchor="middle">第9章 时间序列 ｜ 第10章 统计指数（CPI 即指数）</text>
+
+  <!-- 底部标签 -->
+  <text x="450" y="1300" text-anchor="middle" fill="#0e7490" font-size="14px" font-weight="600">韩兆洲《统计学原理（第7版）》第11–13章</text>
+  <text x="450" y="1325" text-anchor="middle" fill="#0e7490" font-size="12px">🩵 青色系 · PingFang SC · 竖版思维导图</text>
+</svg>

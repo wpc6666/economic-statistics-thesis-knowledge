@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="1200" viewBox="0 0 900 1200">
+<style>
+text { font-family: "PingFang SC","Microsoft YaHei",sans-serif; }
+.title { font-size: 20px; font-weight: bold; fill: #1a1a2e; text-anchor: middle; }
+.chapter { font-size: 14px; font-weight: bold; fill: #fff; text-anchor: middle; }
+.topic { font-size: 11px; fill: #333; }
+.box { rx: 6; }
+</style>
+<rect width="900" height="1200" fill="#fafbfc"/>
+<text x="450" y="35" class="title">计量经济学知识思维导图</text>
+<rect x="50" y="70" width="200" height="36" fill="#2c3e50" class="box"/>
+<text x="150" y="93" class="chapter">OLS基础</text>
+<rect x="280" y="111" width="350" height="20" fill="#ecf0f1" stroke="#bdc3c7" rx="3"/>
+<text x="295" y="125" class="topic">一元回归(Ch4)</text>
+<line x1="250" y1="88" x2="280" y2="121" stroke="#95a5a6" stroke-width="1"/>
+<rect x="280" y="133" width="350" height="20" fill="#ecf0f1" stroke="#bdc3c7" rx="3"/>
+<text x="295" y="147" class="topic">多元回归(Ch5)</text>
+<line x1="250" y1="88" x2="280" y2="143" stroke="#95a5a6" stroke-width="1"/>
+<rect x="280" y="155" width="350" height="20" fill="#ecf0f1" stroke="#bdc3c7" rx="3"/>
+<text x="295" y="169" class="topic">大样本理论(Ch6)</text>
+<line x1="250" y1="88" x2="280" y2="165" stroke="#95a5a6" stroke-width="1"/>
+<rect x="50" y="200" width="200" height="36" fill="#2980b9" class="box"/>
+<text x="150" y="223" class="chapter">三大问题诊断</text>
+<rect x="280" y="241" width="350" height="20" fill="#ecf0f1" stroke="#bdc3c7" rx="3"/>
+<text x="295" y="255" class="topic">异方差(Ch7)</text>
+<line x1="250" y1="218" x2="280" y2="251" stroke="#95a5a6" stroke-width="1"/>
+<rect x="280" y="263" width="350" height="20" fill="#ecf0f1" stroke="#bdc3c7" rx="3"/>
+<text x="295" y="277" class="topic">自相关(Ch8)</text>
+<line x1="250" y1="218" x2="280" y2="273" stroke="#95a5a6" stroke-width="1"/>
+<rect x="280" y="285" width="350" height="20" fill="#ecf0f1" stroke="#bdc3c7" rx="3"/>
+<text x="295" y="299" class="topic">模型设定(Ch9)</text>
+<line x1="250" y1="218" x2="280" y2="295" stroke="#95a5a6" stroke-width="1"/>
+<rect x="50" y="380" width="200" height="36" fill="#27ae60" class="box"/>
+<text x="150" y="403" class="chapter">内生性处理</text>
+<rect x="280" y="421" width="350" height="20" fill="#ecf0f1" stroke="#bdc3c7" rx="3"/>
+<text x="295" y="435" class="topic">工具变量2SLS(Ch10)</text>
+<line x1="250" y1="398" x2="280" y2="431" stroke="#95a5a6" stroke-width="1"/>
+<rect x="280" y="443" width="350" height="20" fill="#ecf0f1" stroke="#bdc3c7" rx="3"/>
+<text x="295" y="457" class="topic">弱IV/过度识别/Hausman</text>
+<line x1="250" y1="398" x2="280" y2="453" stroke="#95a5a6" stroke-width="1"/>
+<rect x="50" y="530" width="200" height="36" fill="#8e44ad" class="box"/>
+<text x="150" y="553" class="chapter">受限因变量</text>
+<rect x="280" y="571" width="350" height="20" fill="#ecf0f1" stroke="#bdc3c7" rx="3"/>
+<text x="295" y="585" class="topic">Logit/Probit(Ch11)</text>
+<line x1="250" y1="548" x2="280" y2="581" stroke="#95a5a6" stroke-width="1"/>
+<rect x="280" y="593" width="350" height="20" fill="#ecf0f1" stroke="#bdc3c7" rx="3"/>
+<text x="295" y="607" class="topic">MLE/边际效应</text>
+<line x1="250" y1="548" x2="280" y2="603" stroke="#95a5a6" stroke-width="1"/>
+<rect x="50" y="680" width="200" height="36" fill="#d35400" class="box"/>
+<text x="150" y="703" class="chapter">面板数据</text>
+<rect x="280" y="721" width="350" height="20" fill="#ecf0f1" stroke="#bdc3c7" rx="3"/>
+<text x="295" y="735" class="topic">固定效应FE(Ch12)</text>
+<line x1="250" y1="698" x2="280" y2="731" stroke="#95a5a6" stroke-width="1"/>
+<rect x="280" y="743" width="350" height="20" fill="#ecf0f1" stroke="#bdc3c7" rx="3"/>
+<text x="295" y="757" class="topic">随机效应RE</text>
+<line x1="250" y1="698" x2="280" y2="753" stroke="#95a5a6" stroke-width="1"/>
+<rect x="280" y="765" width="350" height="20" fill="#ecf0f1" stroke="#bdc3c7" rx="3"/>
+<text x="295" y="779" class="topic">Hausman检验</text>
+<line x1="250" y1="698" x2="280" y2="775" stroke="#95a5a6" stroke-width="1"/>
+<rect x="50" y="830" width="200" height="36" fill="#c0392b" class="box"/>
+<text x="150" y="853" class="chapter">时间序列</text>
+<rect x="280" y="871" width="350" height="20" fill="#ecf0f1" stroke="#bdc3c7" rx="3"/>
+<text x="295" y="885" class="topic">VAR/格兰杰(Ch13)</text>
+<line x1="250" y1="848" x2="280" y2="881" stroke="#95a5a6" stroke-width="1"/>
+<rect x="280" y="893" width="350" height="20" fill="#ecf0f1" stroke="#bdc3c7" rx="3"/>
+<text x="295" y="907" class="topic">单位根ADF(Ch14)</text>
+<line x1="250" y1="848" x2="280" y2="903" stroke="#95a5a6" stroke-width="1"/>
+<rect x="280" y="915" width="350" height="20" fill="#ecf0f1" stroke="#bdc3c7" rx="3"/>
+<text x="295" y="929" class="topic">协整/ECM</text>
+<line x1="250" y1="848" x2="280" y2="925" stroke="#95a5a6" stroke-width="1"/>
+<rect x="50" y="1000" width="200" height="36" fill="#16a085" class="box"/>
+<text x="150" y="1023" class="chapter">实证流程</text>
+<rect x="280" y="1041" width="350" height="20" fill="#ecf0f1" stroke="#bdc3c7" rx="3"/>
+<text x="295" y="1055" class="topic">选题→数据→建模→诊断→稳健性(Ch15)</text>
+<line x1="250" y1="1018" x2="280" y2="1051" stroke="#95a5a6" stroke-width="1"/>
+</svg>

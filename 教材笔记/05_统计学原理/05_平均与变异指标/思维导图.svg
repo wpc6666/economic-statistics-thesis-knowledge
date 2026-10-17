@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1500" width="900" height="1500" font-family="PingFang SC, Hiragino Sans GB, Microsoft YaHei, sans-serif">
+  <defs>
+    <style>
+      .root { fill: #0e7490; }
+      .sec { fill: #06b6d4; }
+      .kp  { fill: #ecfeff; stroke: #0e7490; stroke-width: 1.5; }
+      .key { fill: #cffafe; stroke: #0e7490; stroke-width: 1.5; }
+      .line { stroke: #0891b2; stroke-width: 2; fill: none; }
+      .rootText { fill: #ffffff; font-size: 22px; font-weight: 700; }
+      .secText { fill: #ffffff; font-size: 17px; font-weight: 600; }
+      .kpText { fill: #164e63; font-size: 13px; }
+    </style>
+  </defs>
+
+  <rect x="0" y="0" width="900" height="1500" fill="#f0fdff"/>
+
+  <!-- 根节点 -->
+  <rect class="root" x="220" y="30" width="460" height="70" rx="12" ry="12"/>
+  <text class="rootText" x="450" y="72" text-anchor="middle">第5章 平均指标与变异指标</text>
+
+  <!-- 三个二级节 -->
+  <rect class="sec" x="60" y="160" width="240" height="56" rx="10" ry="10"/>
+  <text class="secText" x="180" y="195" text-anchor="middle">第一节 平均指标（集中趋势）</text>
+
+  <rect class="sec" x="330" y="160" width="240" height="56" rx="10" ry="10"/>
+  <text class="secText" x="450" y="195" text-anchor="middle">第二节 变异指标（离中趋势）</text>
+
+  <rect class="sec" x="600" y="160" width="240" height="56" rx="10" ry="10"/>
+  <text class="secText" x="720" y="195" text-anchor="middle">第三节 Excel 描述统计</text>
+
+  <!-- 根到三节连线 -->
+  <path class="line" d="M450,100 L450,130 L180,130 L180,160"/>
+  <path class="line" d="M450,130 L450,160"/>
+  <path class="line" d="M450,130 L720,130 L720,160"/>
+
+  <!-- 第一节 KP：6个 -->
+  <rect class="kp" x="20" y="260" width="160" height="56" rx="8" ry="8"/>
+  <text class="kpText" x="100" y="285" text-anchor="middle">KP01 算术平均数</text>
+  <text class="kpText" x="100" y="303" text-anchor="middle">简单 / 加权</text>
+
+  <rect class="kp" x="190" y="260" width="160" height="56" rx="8" ry="8"/>
+  <text class="kpText" x="270" y="285" text-anchor="middle">KP02 调和平均数</text>
+  <text class="kpText" x="270" y="303" text-anchor="middle">已知标志总量</text>
+
+  <rect class="kp" x="20" y="340" width="160" height="56" rx="8" ry="8"/>
+  <text class="kpText" x="100" y="365" text-anchor="middle">KP03 几何平均数</text>
+  <text class="kpText" x="100" y="383" text-anchor="middle">平均发展速度</text>
+
+  <rect class="kp" x="190" y="340" width="160" height="56" rx="8" ry="8"/>
+  <text class="kpText" x="270" y="365" text-anchor="middle">KP04 众数 M₀</text>
+  <text class="kpText" x="270" y="383" text-anchor="middle">出现次数最多</text>
+
+  <rect class="kp" x="20" y="420" width="160" height="56" rx="8" ry="8"/>
+  <text class="kpText" x="100" y="445" text-anchor="middle">KP05 中位数 Mₑ</text>
+  <text class="kpText" x="100" y="463" text-anchor="middle">中间位置</text>
+
+  <rect class="kp" x="190" y="420" width="160" height="56" rx="8" ry="8"/>
+  <text class="kpText" x="270" y="445" text-anchor="middle">KP06 三者关系</text>
+  <text class="kpText" x="270" y="463" text-anchor="middle">对称/左偏/右偏</text>
+
+  <path class="line" d="M180,216 L180,240 L100,240 L100,260"/>
+  <path class="line" d="M180,240 L270,240 L270,260"/>
+  <path class="line" d="M100,316 L100,340"/>
+  <path class="line" d="M270,316 L270,340"/>
+  <path class="line" d="M100,396 L100,420"/>
+  <path class="line" d="M270,396 L270,420"/>
+
+  <!-- 第二节 KP：4个 -->
+  <rect class="kp" x="340" y="260" width="220" height="56" rx="8" ry="8"/>
+  <text class="kpText" x="450" y="285" text-anchor="middle">KP07 极差 R / 平均差 A.D.</text>
+  <text class="kpText" x="450" y="303" text-anchor="middle">粗略离散度量</text>
+
+  <rect class="key" x="340" y="340" width="220" height="66" rx="8" ry="8"/>
+  <text class="kpText" x="450" y="363" text-anchor="middle">KP08 方差与标准差</text>
+  <text class="kpText" x="450" y="383" text-anchor="middle">总体 σ²÷N / 样本 s²÷(n−1)</text>
+  <text class="kpText" x="450" y="399" text-anchor="middle">贝塞尔校正</text>
+
+  <rect class="key" x="340" y="426" width="220" height="56" rx="8" ry="8"/>
+  <text class="kpText" x="450" y="451" text-anchor="middle">KP09 离散系数 CV</text>
+  <text class="kpText" x="450" y="469" text-anchor="middle">s/x̄ ×100%</text>
+
+  <rect class="kp" x="340" y="502" width="220" height="56" rx="8" ry="8"/>
+  <text class="kpText" x="450" y="527" text-anchor="middle">KP10 偏度 SK / 峰度 β</text>
+  <text class="kpText" x="450" y="545" text-anchor="middle">分布形状</text>
+
+  <path class="line" d="M450,216 L450,260"/>
+  <path class="line" d="M450,316 L450,340"/>
+  <path class="line" d="M450,406 L450,426"/>
+  <path class="line" d="M450,482 L450,502"/>
+
+  <!-- 第三节 Excel -->
+  <rect class="kp" x="600" y="260" width="240" height="200" rx="8" ry="8"/>
+  <text class="kpText" x="720" y="290" text-anchor="middle" font-weight="600">Excel 描述统计</text>
+  <text class="kpText" x="720" y="318" text-anchor="middle">数据 → 数据分析</text>
+  <text class="kpText" x="720" y="338" text-anchor="middle">→ 描述统计</text>
+  <text class="kpText" x="720" y="368" text-anchor="middle">一键输出：</text>
+  <text class="kpText" x="720" y="388" text-anchor="middle">均值 / 中位数 / 众数</text>
+  <text class="kpText" x="720" y="408" text-anchor="middle">标准差 / 方差 / 极差</text>
+  <text class="kpText" x="720" y="428" text-anchor="middle">偏度 / 峰度 / 置信区间</text>
+
+  <path class="line" d="M720,216 L720,260"/>
+
+  <!-- 核心要点 -->
+  <rect class="root" x="100" y="620" width="700" height="100" rx="12" ry="12"/>
+  <text class="secText" x="450" y="655" text-anchor="middle">本章核心思想</text>
+  <text class="rootText" x="450" y="688" text-anchor="middle" font-size="15">集中趋势（平均数）+ 离中趋势（变异指标）= 完整描述一组数据</text>
+
+  <!-- 三种平均对比 -->
+  <rect class="kp" x="60" y="770" width="240" height="90" rx="8" ry="8"/>
+  <text class="kpText" x="180" y="800" text-anchor="middle" font-weight="600">对称分布</text>
+  <text class="kpText" x="180" y="825" text-anchor="middle">x̄ = Mₑ = M₀</text>
+  <text class="kpText" x="180" y="848" text-anchor="middle">首选算术平均数</text>
+
+  <rect class="kp" x="330" y="770" width="240" height="90" rx="8" ry="8"/>
+  <text class="kpText" x="450" y="800" text-anchor="middle" font-weight="600">右偏分布（收入）</text>
+  <text class="kpText" x="450" y="825" text-anchor="middle">x̄ &gt; Mₑ &gt; M₀</text>
+  <text class="kpText" x="450" y="848" text-anchor="middle">用中位数，避免"被平均"</text>
+
+  <rect class="kp" x="600" y="770" width="240" height="90" rx="8" ry="8"/>
+  <text class="kpText" x="720" y="800" text-anchor="middle" font-weight="600">偏态 / 极端值</text>
+  <text class="kpText" x="720" y="825" text-anchor="middle">均值被极端值拉偏</text>
+  <text class="kpText" x="720" y="848" text-anchor="middle">中位数更稳</text>
+
+  <path class="line" d="M450,720 L450,745 L180,745 L180,770"/>
+  <path class="line" d="M450,745 L450,770"/>
+  <path class="line" d="M450,745 L720,745 L720,770"/>
+
+  <!-- 变异指标家族 -->
+  <rect class="sec" x="100" y="920" width="700" height="50" rx="10" ry="10"/>
+  <text class="secText" x="450" y="952" text-anchor="middle">变异指标家族：R → A.D. → s²/s → CV → SK/β</text>
+
+  <rect class="kp" x="60" y="1010" width="150" height="70" rx="8" ry="8"/>
+  <text class="kpText" x="135" y="1038" text-anchor="middle">R 极差</text>
+  <text class="kpText" x="135" y="1060" text-anchor="middle">最粗略</text>
+
+  <rect class="kp" x="225" y="1010" width="150" height="70" rx="8" ry="8"/>
+  <text class="kpText" x="300" y="1038" text-anchor="middle">A.D. 平均差</text>
+  <text class="kpText" x="300" y="1060" text-anchor="middle">绝对值不便</text>
+
+  <rect class="key" x="390" y="1010" width="150" height="70" rx="8" ry="8"/>
+  <text class="kpText" x="465" y="1038" text-anchor="middle">s² / s</text>
+  <text class="kpText" x="465" y="1060" text-anchor="middle">最核心</text>
+
+  <rect class="key" x="555" y="1010" width="150" height="70" rx="8" ry="8"/>
+  <text class="kpText" x="630" y="1038" text-anchor="middle">CV 离散系数</text>
+  <text class="kpText" x="630" y="1060" text-anchor="middle">跨组比较</text>
+
+  <rect class="kp" x="720" y="1010" width="130" height="70" rx="8" ry="8"/>
+  <text class="kpText" x="785" y="1038" text-anchor="middle">SK / β</text>
+  <text class="kpText" x="785" y="1060" text-anchor="middle">分布形状</text>
+
+  <path class="line" d="M450,970 L450,990 L135,990 L135,1010"/>
+  <path class="line" d="M450,990 L300,990 L300,1010"/>
+  <path class="line" d="M450,990 L465,990 L465,1010"/>
+  <path class="line" d="M450,990 L630,990 L630,1010"/>
+  <path class="line" d="M450,990 L785,990 L785,1010"/>
+
+  <!-- 后续章节衔接 -->
+  <rect class="sec" x="150" y="1150" width="600" height="60" rx="10" ry="10"/>
+  <text class="secText" x="450" y="1187" text-anchor="middle">衔接：第6章 用 x̄ 和 s 估计总体 μ 和 σ</text>
+
+  <path class="line" d="M450,1080 L450,1150"/>
+
+  <!-- 标注 -->
+  <text class="kpText" x="450" y="1280" text-anchor="middle" font-size="13">韩兆洲《统计学原理（第7版）》· 第5章思维导图</text>
+  <text class="kpText" x="450" y="1310" text-anchor="middle" font-size="12">描述统计最高潮 → 推断统计基石</text>
+</svg>

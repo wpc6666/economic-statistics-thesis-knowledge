@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1500" font-family="PingFang SC, Hiragino Sans GB, Microsoft YaHei, sans-serif">
+  <defs>
+    <style>
+      .root { fill: #06b6d4; stroke: #0e7490; stroke-width: 2; }
+      .l2 { fill: #ecfeff; stroke: #06b6d4; stroke-width: 1.5; }
+      .l3 { fill: #f0fdfa; stroke: #0e7490; stroke-width: 1; }
+      .t-root { fill: #ffffff; font-size: 22px; font-weight: bold; text-anchor: middle; }
+      .t-l2 { fill: #164e63; font-size: 15px; font-weight: bold; text-anchor: middle; }
+      .t-l3 { fill: #164e63; font-size: 12px; text-anchor: middle; }
+      .line { stroke: #06b6d4; stroke-width: 1.5; fill: none; }
+    </style>
+  </defs>
+
+  <!-- 根节点 -->
+  <rect class="root" x="300" y="30" width="300" height="60" rx="12"/>
+  <text class="t-root" x="450" y="68">第9章 时间数列</text>
+
+  <!-- 第二节分支（水平分析，最复杂，放最上） -->
+  <rect class="l2" x="40" y="150" width="180" height="44" rx="8"/>
+  <text class="t-l2" x="130" y="177">第二节 水平分析</text>
+  <path class="line" d="M 380 90 Q 200 120 130 150"/>
+
+  <!-- 第二节 KP -->
+  <rect class="l3" x="20" y="220" width="140" height="30" rx="6"/>
+  <text class="t-l3" x="90" y="240">发展水平与序时平均</text>
+  <path class="line" d="M 110 194 L 90 220"/>
+
+  <rect class="l3" x="20" y="260" width="140" height="30" rx="6"/>
+  <text class="t-l3" x="90" y="280">时期数列：Σa/n</text>
+  <path class="line" d="M 110 194 L 90 260"/>
+
+  <rect class="l3" x="20" y="300" width="140" height="30" rx="6"/>
+  <text class="t-l3" x="90" y="320">首末折半法</text>
+  <path class="line" d="M 110 194 L 90 300"/>
+
+  <rect class="l3" x="20" y="340" width="140" height="30" rx="6"/>
+  <text class="t-l3" x="90" y="360">间隔不等加权</text>
+  <path class="line" d="M 110 194 L 90 340"/>
+
+  <rect class="l3" x="20" y="380" width="140" height="30" rx="6"/>
+  <text class="t-l3" x="90" y="400">相对数：ā/b̄</text>
+  <path class="line" d="M 110 194 L 90 380"/>
+
+  <rect class="l3" x="20" y="420" width="140" height="30" rx="6"/>
+  <text class="t-l3" x="90" y="440">增长量·平均增长量</text>
+  <path class="line" d="M 110 194 L 90 420"/>
+
+  <!-- 第一节分支 -->
+  <rect class="l2" x="680" y="150" width="180" height="44" rx="8"/>
+  <text class="t-l2" x="770" y="177">第一节 概述</text>
+  <path class="line" d="M 520 90 Q 700 120 770 150"/>
+
+  <rect class="l3" x="700" y="220" width="160" height="30" rx="6"/>
+  <text class="t-l3" x="780" y="240">时间+发展水平</text>
+  <path class="line" d="M 790 194 L 780 220"/>
+
+  <rect class="l3" x="700" y="260" width="160" height="30" rx="6"/>
+  <text class="t-l3" x="780" y="280">时期 vs 时点数列</text>
+  <path class="line" d="M 790 194 L 780 260"/>
+
+  <rect class="l3" x="700" y="300" width="160" height="30" rx="6"/>
+  <text class="t-l3" x="780" y="320">编制四原则</text>
+  <path class="line" d="M 790 194 L 780 300"/>
+
+  <!-- 第三节分支 -->
+  <rect class="l2" x="40" y="500" width="180" height="44" rx="8"/>
+  <text class="t-l2" x="130" y="527">第三节 速度分析</text>
+  <path class="line" d="M 380 90 Q 200 300 130 500"/>
+
+  <rect class="l3" x="20" y="570" width="140" height="30" rx="6"/>
+  <text class="t-l3" x="90" y="590">定基 vs 环比速度</text>
+  <path class="line" d="M 110 544 L 90 570"/>
+
+  <rect class="l3" x="20" y="610" width="140" height="30" rx="6"/>
+  <text class="t-l3" x="90" y="630">几何平均法</text>
+  <path class="line" d="M 110 544 L 90 610"/>
+
+  <rect class="l3" x="20" y="650" width="140" height="30" rx="6"/>
+  <text class="t-l3" x="90" y="670">方程法（累计法）</text>
+  <path class="line" d="M 110 544 L 90 650"/>
+
+  <rect class="l3" x="20" y="690" width="140" height="30" rx="6"/>
+  <text class="t-l3" x="90" y="710">增长1%绝对值</text>
+  <path class="line" d="M 110 544 L 90 690"/>
+
+  <!-- 第四节分支 -->
+  <rect class="l2" x="680" y="500" width="180" height="44" rx="8"/>
+  <text class="t-l2" x="770" y="527">第四节 波动理论</text>
+  <path class="line" d="M 520 90 Q 700 300 770 500"/>
+
+  <rect class="l3" x="700" y="570" width="160" height="30" rx="6"/>
+  <text class="t-l3" x="780" y="590">长期趋势 T</text>
+  <path class="line" d="M 790 544 L 780 570"/>
+
+  <rect class="l3" x="700" y="610" width="160" height="30" rx="6"/>
+  <text class="t-l3" x="780" y="630">季节变动 S</text>
+  <path class="line" d="M 790 544 L 780 610"/>
+
+  <rect class="l3" x="700" y="650" width="160" height="30" rx="6"/>
+  <text class="t-l3" x="780" y="670">循环 C / 随机 I</text>
+  <path class="line" d="M 790 544 L 780 650"/>
+
+  <rect class="l3" x="700" y="690" width="160" height="30" rx="6"/>
+  <text class="t-l3" x="780" y="710">Y=T·S·C·I</text>
+  <path class="line" d="M 790 544 L 780 690"/>
+
+  <!-- 第五节分支 -->
+  <rect class="l2" x="350" y="800" width="200" height="44" rx="8"/>
+  <text class="t-l2" x="450" y="827">第五节 Excel 实操</text>
+  <path class="line" d="M 450 90 L 450 800"/>
+
+  <rect class="l3" x="320" y="870" width="260" height="30" rx="6"/>
+  <text class="t-l3" x="450" y="890">啤酒例：算S→回归T→移动平均C→预测</text>
+  <path class="line" d="M 450 844 L 450 870"/>
+
+  <!-- 底部关键提醒 -->
+  <rect class="l2" x="150" y="1000" width="600" height="80" rx="10"/>
+  <text class="t-l2" x="450" y="1030">核心提醒</text>
+  <text class="t-l3" x="450" y="1055">序时平均：同一对象不同时间；一般平均：同一时间不同个体</text>
+  <text class="t-l3" x="450" y="1075">定基发展速度 = 环比连乘积；平均发展速度必须开 n 次方</text>
+
+  <rect class="l2" x="150" y="1120" width="600" height="60" rx="10"/>
+  <text class="t-l2" x="450" y="1148">跨章互链</text>
+  <text class="t-l3" x="450" y="1170">第5章 几何平均 · 第8章 最小二乘 · 大牛库09 ARIMA/GARCH</text>
+</svg>

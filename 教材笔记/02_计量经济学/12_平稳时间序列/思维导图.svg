@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 730" width="900" height="730" font-family="PingFang SC, Hiragino Sans GB, Microsoft YaHei, sans-serif">
+  <rect width="100%" height="100%" fill="#f0fdf4"/>
+  <rect x="300" y="30" width="300" height="60" rx="14" fill="#166534" stroke="#14532d" stroke-width="2"/>
+  <text x="450" y="68" text-anchor="middle" fill="#ffffff" font-size="20" font-weight="bold">第13章 平稳时间序列</text>
+  <path d="M450 90 L450 120 L180 120 L180 150" stroke="#166534" stroke-width="1.8" fill="none"/>
+  <rect x="40" y="150" width="280" height="50" rx="10" fill="#22c55e" stroke="#166534" stroke-width="1.5"/>
+  <text x="180" y="181" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">ARMA模型族</text>
+  <line x1="180" y1="200" x2="180" y2="210" stroke="#166534" stroke-width="1.2"/>
+  <rect x="40" y="210" width="280" height="42" rx="8" fill="#dcfce7" stroke="#22c55e" stroke-width="1.2"/>
+  <text x="180" y="236" text-anchor="middle" fill="#14532d" font-size="12">AR(p): yₜ=Σφᵢyₜ₋ᵢ+εₜ</text>
+  <line x1="180" y1="250" x2="180" y2="260" stroke="#166534" stroke-width="1.2"/>
+  <rect x="40" y="260" width="280" height="42" rx="8" fill="#dcfce7" stroke="#22c55e" stroke-width="1.2"/>
+  <text x="180" y="286" text-anchor="middle" fill="#14532d" font-size="12">MA(q): yₜ=εₜ+Σθⱼεₜ₋ⱼ</text>
+  <line x1="180" y1="300" x2="180" y2="310" stroke="#166534" stroke-width="1.2"/>
+  <rect x="40" y="310" width="280" height="42" rx="8" fill="#dcfce7" stroke="#22c55e" stroke-width="1.2"/>
+  <text x="180" y="336" text-anchor="middle" fill="#14532d" font-size="12">ARMA(p,q)混合</text>
+  <line x1="180" y1="350" x2="180" y2="360" stroke="#166534" stroke-width="1.2"/>
+  <rect x="40" y="360" width="280" height="42" rx="8" fill="#dcfce7" stroke="#22c55e" stroke-width="1.2"/>
+  <text x="180" y="386" text-anchor="middle" fill="#14532d" font-size="12">arima y, ar(p) ma(q)</text>
+  <line x1="180" y1="400" x2="180" y2="410" stroke="#166534" stroke-width="1.2"/>
+  <rect x="40" y="410" width="280" height="42" rx="8" fill="#dcfce7" stroke="#22c55e" stroke-width="1.2"/>
+  <text x="180" y="436" text-anchor="middle" fill="#14532d" font-size="12">前提:序列平稳</text>
+  <path d="M450 90 L450 120 L450 120 L450 150" stroke="#166534" stroke-width="1.8" fill="none"/>
+  <rect x="300" y="150" width="300" height="50" rx="10" fill="#22c55e" stroke="#166534" stroke-width="1.5"/>
+  <text x="450" y="181" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">ACF/PACF识别</text>
+  <line x1="450" y1="200" x2="450" y2="210" stroke="#166534" stroke-width="1.2"/>
+  <rect x="300" y="210" width="300" height="42" rx="8" fill="#dcfce7" stroke="#22c55e" stroke-width="1.2"/>
+  <text x="450" y="236" text-anchor="middle" fill="#14532d" font-size="12">AR(p): ACF拖尾,PACF p截尾</text>
+  <line x1="450" y1="250" x2="450" y2="260" stroke="#166534" stroke-width="1.2"/>
+  <rect x="300" y="260" width="300" height="42" rx="8" fill="#dcfce7" stroke="#22c55e" stroke-width="1.2"/>
+  <text x="450" y="286" text-anchor="middle" fill="#14532d" font-size="12">MA(q): ACF q截尾,PACF拖尾</text>
+  <line x1="450" y1="300" x2="450" y2="310" stroke="#166534" stroke-width="1.2"/>
+  <rect x="300" y="310" width="300" height="42" rx="8" fill="#dcfce7" stroke="#22c55e" stroke-width="1.2"/>
+  <text x="450" y="336" text-anchor="middle" fill="#14532d" font-size="12">ARMA: 两者都拖尾</text>
+  <line x1="450" y1="350" x2="450" y2="360" stroke="#166534" stroke-width="1.2"/>
+  <rect x="300" y="360" width="300" height="42" rx="8" fill="#dcfce7" stroke="#22c55e" stroke-width="1.2"/>
+  <text x="450" y="386" text-anchor="middle" fill="#14532d" font-size="12">Ljung-Box残差白噪声p&gt;0.05</text>
+  <line x1="450" y1="400" x2="450" y2="410" stroke="#166534" stroke-width="1.2"/>
+  <rect x="300" y="410" width="300" height="42" rx="8" fill="#dcfce7" stroke="#22c55e" stroke-width="1.2"/>
+  <text x="450" y="436" text-anchor="middle" fill="#14532d" font-size="12">AIC/BIC选最简洁模型</text>
+  <path d="M450 90 L450 120 L720 120 L720 150" stroke="#166534" stroke-width="1.8" fill="none"/>
+  <rect x="580" y="150" width="280" height="50" rx="10" fill="#22c55e" stroke="#166534" stroke-width="1.5"/>
+  <text x="720" y="181" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">VAR与格兰杰</text>
+  <line x1="720" y1="200" x2="720" y2="210" stroke="#166534" stroke-width="1.2"/>
+  <rect x="580" y="210" width="280" height="42" rx="8" fill="#dcfce7" stroke="#22c55e" stroke-width="1.2"/>
+  <text x="720" y="236" text-anchor="middle" fill="#14532d" font-size="12">VAR(p):每变量~自身+他变量滞后</text>
+  <line x1="720" y1="250" x2="720" y2="260" stroke="#166534" stroke-width="1.2"/>
+  <rect x="580" y="260" width="280" height="42" rx="8" fill="#dcfce7" stroke="#22c55e" stroke-width="1.2"/>
+  <text x="720" y="286" text-anchor="middle" fill="#14532d" font-size="12">varsoc选滞后阶</text>
+  <line x1="720" y1="300" x2="720" y2="310" stroke="#166534" stroke-width="1.2"/>
+  <rect x="580" y="310" width="280" height="42" rx="8" fill="#dcfce7" stroke="#22c55e" stroke-width="1.2"/>
+  <text x="720" y="336" text-anchor="middle" fill="#14532d" font-size="12">var y1 y2, lag(1/2)</text>
+  <line x1="720" y1="350" x2="720" y2="360" stroke="#166534" stroke-width="1.2"/>
+  <rect x="580" y="360" width="280" height="42" rx="8" fill="#dcfce7" stroke="#22c55e" stroke-width="1.2"/>
+  <text x="720" y="386" text-anchor="middle" fill="#14532d" font-size="12">IRF脉冲响应动态影响</text>
+  <line x1="720" y1="400" x2="720" y2="410" stroke="#166534" stroke-width="1.2"/>
+  <rect x="580" y="410" width="280" height="42" rx="8" fill="#dcfce7" stroke="#22c55e" stroke-width="1.2"/>
+  <text x="720" y="436" text-anchor="middle" fill="#14532d" font-size="12">vargranger=预测力非因果</text>
+  <rect x="80" y="500" width="740" height="80" rx="12" fill="#ffffff" stroke="#166534" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="450" y="528" text-anchor="middle" fill="#14532d" font-size="14" font-weight="bold">🔗 概念关系链</text>
+  <text x="450" y="552" text-anchor="middle" fill="#14532d" font-size="13">平稳序列 → ACF/PACF识别阶数 → ARMA/VAR → 残差白噪声诊断</text>
+  <text x="450" y="622" text-anchor="middle" fill="#166534" font-size="13" font-style="italic">💡 格兰杰因果≠经济因果,只是预测力</text>
+  <text x="450" y="682" text-anchor="middle" fill="#166534" font-size="11.5">📚 相关：第8章自相关｜第14章单位根协整｜大牛库09时间序列</text>
+</svg>

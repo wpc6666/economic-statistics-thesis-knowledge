@@ -1,0 +1,21 @@
+# Obsidian配置（不公开）
+.obsidian/workspace.json
+.obsidian/cache
+.obsidian/tranclusionsCache.json
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# 临时文件
+*.tmp
+*.bak
+*~
+
+# 原PDF文件（太大，不公开）
+原文件/**/*.pdf
+原文件/补充资料/**/*.pdf
+
+# 图片缓存
+assets/*.png
+assets/*.jpg
