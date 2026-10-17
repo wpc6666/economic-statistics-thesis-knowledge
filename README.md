@@ -9,7 +9,7 @@
 ### 🔗 相关链接
 
 - 👉 **在线阅读**：https://wpc6666.github.io/economic-statistics-thesis-knowledge/
-- 📚 **HKUST科研写作指南**：https://github.com/HKUSTDial/Supervisor-Skills（原库实时更新）
+- 📚 **HKUST科研写作指南**：[HKUSTDial/Supervisor-Skills](https://github.com/HKUSTDial/Supervisor-Skills)（原库实时更新）
 
 ---
 
