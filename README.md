@@ -148,3 +148,11 @@
 ---
 
 *最后更新：2026年10月*
+
+---
+
+## 🙏 致谢
+
+本知识库的写作框架参考了**香港科技大学李伯岩课题组**的科研写作指南，涵盖选题、论文写作、绘图、Vibe Research、案例剖析等内容。
+
+原始来源：[HKUSTDial/Supervisor-Skills](https://github.com/HKUSTDial/Supervisor-Skills)
