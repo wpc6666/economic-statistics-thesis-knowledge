@@ -224,7 +224,7 @@
                 '<a onclick="showWelcome()">首页</a> / ' + path.split("/").join(" / ");
             
             try {
-                const res = await fetch(path);
+                const res = await fetch(encodeURI(path));
                 let md = await res.text();
                 
                 // 解析wikilink
