@@ -210,9 +210,17 @@
                     });
                 });
                 
-                // 渲染mermaid图
+                // 渲染mermaid图，加上错误处理
                 if (window.mermaid) {
-                    mermaid.run({ querySelector: '.language-mermaid' });
+                    document.querySelectorAll('.language-mermaid').forEach(el => {
+                        try {
+                            mermaid.render('mermaid-' + Math.random().toString(36).substr(2, 9), el.textContent)
+                                .then(({svg}) => { el.innerHTML = svg; })
+                                .catch(() => { /* 语法错了就保持原样 */ });
+                        } catch(e) {
+                            // 保持原样
+                        }
+                    });
                 }
                 
                 // 触发MathJax渲染公式
