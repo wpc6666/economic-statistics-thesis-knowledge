@@ -5,44 +5,13 @@
   "00_质量检测报告.md": null,
   "KP融入大牛库写作规范.md": null,
   "README.md": null,
-  "assets": {},
+  "assets": {
+    "全学科方法选择总图.svg": null,
+    "综合思维导图.svg": null
+  },
+  "index.html": null,
+  "test.html": null,
   "原文件": {
-    "HKUSTDial Supervisor-Skills main handbook": {
-      "01_Preliminary": {
-        "1.1_如何评价一篇论文的质量.md": null
-      },
-      "02_Idea_Generation": {
-        "2.1_Idea的生命周期与能力匹配.md": null,
-        "2.2_想Idea的思路_更高更快更强.md": null,
-        "2.3_进阶_如何做颠覆式创新.md": null
-      },
-      "03_Paper_Writing": {
-        "3.1_完成一篇科研论文你需要做几件事情.md": null,
-        "3.2_Introduction写作的思考模型.md": null,
-        "3.3_技术类Full_Paper思考模板.md": null,
-        "3.4_Benchmark与Evaluation类论文思考模板.md": null,
-        "3.5_写作细节与Checklist.md": null
-      },
-      "04_Scientific_Plotting": {
-        "4.1_Motivated_Example_Figure.md": null,
-        "4.2_Solution_Overview_Figure.md": null,
-        "4.3_Experimental_Results_Figure.md": null,
-        "4.4_绘图Checklist与工具速查表.md": null
-      },
-      "05_Vibe_Research": {
-        "5.1_Vibe_Research与Vibe_Coding入门.md": null,
-        "5.2_李伯岩实战经验分享与会议纪要.md": null,
-        "assets": {
-          "5.1_vibe_research": {},
-          "5.2_meeting_notes": {}
-        }
-      },
-      "06_Case_Studies": {
-        "6.1_ICML_2025_Alpha-SQL写作剖析.md": null,
-        "6.2_ICLR_2025_AFlow写作剖析.md": null,
-        "6.3_VLDB_2026_LEAD写作剖析.md": null
-      }
-    },
     "README.md": null,
     "多元统计分析": {
       "何晓群_多元统计分析_全书.md": null
@@ -70,6 +39,7 @@
       "00_绪论": {
         "00_章节总结.md": null,
         "01_绪论_评价与综合评价.md": null,
+        "思维导图.svg": null,
         "知识点": {
           "KP01_评价与统计评价.md": null,
           "KP02_评价标准.md": null,
@@ -83,6 +53,7 @@
         "01_第一节_统计综合评价问题的提出.md": null,
         "02_第二节_综合评价的一般步骤.md": null,
         "03_第三节_综合评价方法的数学思想.md": null,
+        "思维导图.svg": null,
         "知识点": {
           "KP01_单指标评价及其局限.md": null,
           "KP02_多指标评价与整体性退步.md": null,
@@ -106,6 +77,7 @@
         "00_章节总结.md": null,
         "01_第一节_综合评价指标的概念.md": null,
         "02_第二节_指标的选择方法.md": null,
+        "思维导图.svg": null,
         "知识点": {
           "KP01_统计指标.md": null,
           "KP02_指标体系.md": null,
@@ -125,6 +97,7 @@
         "01_第一节_定性指标数量化.md": null,
         "02_第二节_逆向指标适度指标正向化.md": null,
         "03_第三节_定量指标的无量纲化.md": null,
+        "思维导图.svg": null,
         "知识点": {
           "KP01_定性指标及其类型.md": null,
           "KP02_次序指标定量化.md": null,
@@ -148,6 +121,7 @@
         "01_第一节_主观赋权法.md": null,
         "02_第二节_客观赋权法.md": null,
         "03_第三节_赋权方法的选择.md": null,
+        "思维导图.svg": null,
         "知识点": {
           "KP01_赋权的概念与分类.md": null,
           "KP02_专家评判法.md": null,
@@ -171,6 +145,7 @@
         "02_第二节_几何综合法.md": null,
         "03_第三节_混合综合法.md": null,
         "04_第四节_模型综合法.md": null,
+        "思维导图.svg": null,
         "知识点": {
           "KP01_线性综合法.md": null,
           "KP02_几何综合法.md": null,
@@ -192,6 +167,7 @@
         "02_第二节_综合指数评价法.md": null,
         "03_第三节_秩和比评价方法.md": null,
         "04_第四节_功效系数评价法.md": null,
+        "思维导图.svg": null,
         "知识点": {
           "KP01_综合评分法.md": null,
           "KP02_区间打分法.md": null,
@@ -209,6 +185,7 @@
         "00_章节总结.md": null,
         "01_第一节_灰色关联度分析方法.md": null,
         "02_第二节_灰色关联度分析在综合评价中的应用.md": null,
+        "思维导图.svg": null,
         "知识点": {
           "KP01_灰色系统与灰色要素.md": null,
           "KP02_灰色关联度的定义与几何意义.md": null,
@@ -227,6 +204,7 @@
         "01_第一节_模糊综合评价法的基本概念.md": null,
         "02_第二节_模糊综合评价方法的基本步骤.md": null,
         "03_第三节_舍去评语等级集的模糊综合评价方法.md": null,
+        "思维导图.svg": null,
         "知识点": {
           "KP01_模糊现象与模糊综合评价法.md": null,
           "KP02_模糊综合评价基本概念体系.md": null,
@@ -247,6 +225,7 @@
         "03_第三节_典型应用实例.md": null,
         "04_第四节_主成分综合评价方法的特点.md": null,
         "05_第五节_主成分综合评价方法的改进.md": null,
+        "思维导图.svg": null,
         "知识点": {
           "KP01_主成分分析的概念与基本思想.md": null,
           "KP02_主成分分析的数学原理.md": null,
@@ -269,6 +248,7 @@
         "02_第二节_因子分析综合评价的基本步骤.md": null,
         "03_第三节_因子分析与主成分分析的异同点.md": null,
         "04_第四节_因子分析与其他统计分析方法结合应用.md": null,
+        "思维导图.svg": null,
         "知识点": {
           "KP01_因子分析的概念与基本思想.md": null,
           "KP02_因子模型.md": null,
@@ -285,12 +265,18 @@
         }
       },
       "11_案例": {
+        "思维导图.svg": null,
         "案例一_企业入驻条件综合评价.md": null,
         "案例三_社会发展水平综合评价.md": null,
         "案例二_城市竞争力与房地产价格.md": null
       },
       "README.md": null,
-      "assets": {},
+      "assets": {
+        "全书思维导图.svg": null,
+        "思维导图.svg": null,
+        "方法对比总览.svg": null,
+        "方法选择决策树.svg": null
+      },
       "小白增补规范.md": null,
       "笔记规范.md": null
     },
@@ -298,20 +284,24 @@
       "00_导论": {
         "00_章节总结.md": null,
         "01_什么是计量经济学.md": null,
-        "02_经济数据类型.md": null
+        "02_经济数据类型.md": null,
+        "思维导图.svg": null
       },
       "01_Stata入门": {
         "00_章节总结.md": null,
-        "01_Stata基本操作.md": null
+        "01_Stata基本操作.md": null,
+        "思维导图.svg": null
       },
       "02_数学回顾": {
         "00_章节总结.md": null,
         "01_概率与分布.md": null,
-        "02_统计推断思想.md": null
+        "02_统计推断思想.md": null,
+        "思维导图.svg": null
       },
       "03_一元线性回归": {
         "00_章节总结.md": null,
         "01_一元回归模型.md": null,
+        "思维导图.svg": null,
         "知识点": {
           "KP01_OLS估计量推导.md": null,
           "KP02_OLS正交性.md": null,
@@ -321,6 +311,7 @@
       },
       "04_多元线性回归": {
         "00_章节总结.md": null,
+        "思维导图.svg": null,
         "知识点": {
           "KP01_多元回归模型.md": null,
           "KP02_偏回归系数.md": null,
@@ -329,6 +320,7 @@
       },
       "05_大样本OLS": {
         "00_章节总结.md": null,
+        "思维导图.svg": null,
         "知识点": {
           "KP01_大样本理论.md": null,
           "KP02_假设检验.md": null
@@ -336,6 +328,7 @@
       },
       "06_异方差": {
         "00_章节总结.md": null,
+        "思维导图.svg": null,
         "知识点": {
           "KP01_异方差检验.md": null,
           "KP02_异方差处理.md": null,
@@ -344,6 +337,7 @@
       },
       "07_自相关": {
         "00_章节总结.md": null,
+        "思维导图.svg": null,
         "知识点": {
           "KP01_DW检验.md": null,
           "KP02_自相关处理.md": null,
@@ -352,6 +346,7 @@
       },
       "08_模型设定与数据问题": {
         "00_章节总结.md": null,
+        "思维导图.svg": null,
         "知识点": {
           "KP01_遗漏变量偏差.md": null,
           "KP02_多重共线性.md": null,
@@ -361,6 +356,7 @@
       },
       "09_工具变量法": {
         "00_章节总结.md": null,
+        "思维导图.svg": null,
         "知识点": {
           "KP01_内生性与工具变量.md": null,
           "KP02_两阶段最小二乘2SLS.md": null,
@@ -370,6 +366,7 @@
       },
       "10_二值选择模型": {
         "00_章节总结.md": null,
+        "思维导图.svg": null,
         "知识点": {
           "KP01_Logit与Probit.md": null,
           "KP02_最大似然估计.md": null
@@ -377,6 +374,7 @@
       },
       "11_面板数据": {
         "00_章节总结.md": null,
+        "思维导图.svg": null,
         "知识点": {
           "KP01_固定效应模型.md": null,
           "KP02_随机效应模型.md": null,
@@ -385,6 +383,7 @@
       },
       "12_平稳时间序列": {
         "00_章节总结.md": null,
+        "思维导图.svg": null,
         "知识点": {
           "KP01_VAR模型.md": null,
           "KP02_ARMA模型.md": null
@@ -392,26 +391,34 @@
       },
       "13_单位根与协整": {
         "00_章节总结.md": null,
+        "思维导图.svg": null,
         "知识点": {
           "KP01_单位根检验ADF.md": null,
           "KP02_协整与ECM.md": null
         }
       },
       "14_实证研究指南": {
-        "00_实证研究流程.md": null
+        "00_实证研究流程.md": null,
+        "思维导图.svg": null
       },
       "README.md": null,
-      "assets": {},
+      "assets": {
+        "全书思维导图.svg": null,
+        "思维导图.svg": null,
+        "方法选择决策图.svg": null
+      },
       "笔记规范.md": null
     },
     "03_时间序列": {
       "01_时序分析简介": {
         "00_章节总结.md": null,
         "01_什么是时间序列.md": null,
-        "02_R语言基础.md": null
+        "02_R语言基础.md": null,
+        "思维导图.svg": null
       },
       "02_平稳时间序列": {
         "00_章节总结.md": null,
+        "思维导图.svg": null,
         "知识点": {
           "KP01_严平稳与宽平稳.md": null,
           "KP02_自协方差与ACF.md": null,
@@ -421,6 +428,7 @@
       },
       "03_ARMA模型": {
         "00_章节总结.md": null,
+        "思维导图.svg": null,
         "知识点": {
           "KP01_AR模型.md": null,
           "KP02_MA模型.md": null,
@@ -431,6 +439,7 @@
       },
       "04_确定性时序分析": {
         "00_章节总结.md": null,
+        "思维导图.svg": null,
         "知识点": {
           "KP01_Wold与Cramer分解.md": null,
           "KP02_趋势拟合与平滑.md": null,
@@ -439,6 +448,7 @@
       },
       "05_ARIMA与异方差": {
         "00_章节总结.md": null,
+        "思维导图.svg": null,
         "知识点": {
           "KP01_ARIMA模型.md": null,
           "KP02_季节模型.md": null,
@@ -449,6 +459,7 @@
       },
       "06_多元时序与协整": {
         "00_章节总结.md": null,
+        "思维导图.svg": null,
         "知识点": {
           "KP01_虚假回归.md": null,
           "KP02_DF与ADF检验.md": null,
@@ -456,12 +467,17 @@
         }
       },
       "README.md": null,
-      "assets": {},
+      "assets": {
+        "全书思维导图.svg": null,
+        "思维导图.svg": null,
+        "模型识别决策图.svg": null
+      },
       "笔记规范.md": null
     },
     "04_多元统计": {
       "01_多元正态分布": {
         "00_章节总结.md": null,
+        "思维导图.svg": null,
         "知识点": {
           "KP01_均值向量与协方差阵.md": null,
           "KP02_统计距离.md": null,
@@ -470,6 +486,7 @@
       },
       "02_均值向量与协方差阵检验": {
         "00_章节总结.md": null,
+        "思维导图.svg": null,
         "知识点": {
           "KP01_均值向量检验.md": null,
           "KP02_两总体均值比较.md": null,
@@ -479,6 +496,7 @@
       },
       "03_聚类分析": {
         "00_章节总结.md": null,
+        "思维导图.svg": null,
         "知识点": {
           "KP01_相似性度量.md": null,
           "KP02_系统聚类法.md": null,
@@ -488,6 +506,7 @@
       },
       "04_判别分析": {
         "00_章节总结.md": null,
+        "思维导图.svg": null,
         "知识点": {
           "KP01_距离判别.md": null,
           "KP02_Bayes判别.md": null,
@@ -497,6 +516,7 @@
       },
       "05_主成分分析": {
         "00_章节总结.md": null,
+        "思维导图.svg": null,
         "知识点": {
           "KP01_PCA基本原理.md": null,
           "KP02_PCA性质与选择.md": null,
@@ -505,6 +525,7 @@
       },
       "06_因子分析": {
         "00_章节总结.md": null,
+        "思维导图.svg": null,
         "知识点": {
           "KP01_因子模型.md": null,
           "KP02_因子旋转.md": null,
@@ -514,18 +535,21 @@
       },
       "07_对应分析": {
         "00_章节总结.md": null,
+        "思维导图.svg": null,
         "知识点": {
           "KP01_对应分析.md": null
         }
       },
       "08_典型相关分析": {
         "00_章节总结.md": null,
+        "思维导图.svg": null,
         "知识点": {
           "KP01_典型相关分析.md": null
         }
       },
       "09_定性数据建模": {
         "00_章节总结.md": null,
+        "思维导图.svg": null,
         "知识点": {
           "KP01_对数线性模型.md": null,
           "KP02_Logistic回归.md": null
@@ -533,18 +557,24 @@
       },
       "10_多变量图表示法": {
         "00_章节总结.md": null,
+        "思维导图.svg": null,
         "知识点": {
           "KP01_多变量图表示.md": null
         }
       },
       "11_多维标度法": {
         "00_章节总结.md": null,
+        "思维导图.svg": null,
         "知识点": {
           "KP01_多维标度MDS.md": null
         }
       },
       "README.md": null,
-      "assets": {},
+      "assets": {
+        "全书思维导图.svg": null,
+        "思维导图.svg": null,
+        "方法选择决策图.svg": null
+      },
       "笔记规范.md": null
     },
     "05_统计学原理": {
@@ -553,6 +583,7 @@
         "01_第一节_统计的含义作用和任务.md": null,
         "02_第二节_统计学的研究对象方法和阶段.md": null,
         "03_第三节_统计学的若干基本概念.md": null,
+        "思维导图.svg": null,
         "知识点": {
           "KP01_统计总体与总体单位.md": null,
           "KP02_标志与指标.md": null,
@@ -569,6 +600,7 @@
         "03_第三节_统计调查的组织方式.md": null,
         "04_第四节_统计数据采集的方法.md": null,
         "05_第五节_调查问卷设计.md": null,
+        "思维导图.svg": null,
         "知识点": {
           "KP01_统计调查的种类.md": null,
           "KP02_调查方案六要素.md": null,
@@ -587,6 +619,7 @@
         "05_第五节_分布数列.md": null,
         "06_第六节_统计数据显示.md": null,
         "07_第七节_Excel频数分布表和直方图.md": null,
+        "思维导图.svg": null,
         "知识点": {
           "KP01_数据审核.md": null,
           "KP02_统计分组.md": null,
@@ -602,6 +635,7 @@
         "00_章节总结.md": null,
         "01_第一节_总量指标.md": null,
         "02_第二节_相对指标.md": null,
+        "思维导图.svg": null,
         "知识点": {
           "KP01_总量指标的概念与分类.md": null,
           "KP02_时期指标与时点指标.md": null,
@@ -618,6 +652,7 @@
         "01_第一节_平均指标.md": null,
         "02_第二节_变异指标.md": null,
         "03_第三节_Excel描述统计.md": null,
+        "思维导图.svg": null,
         "知识点": {
           "KP01_算术平均数简单与加权.md": null,
           "KP02_调和平均数.md": null,
@@ -640,6 +675,7 @@
         "04_第四节_参数估计.md": null,
         "05_第五节_抽样调查的组织形式.md": null,
         "06_第六节_Excel抽样调查.md": null,
+        "思维导图.svg": null,
         "知识点": {
           "KP01_抽样调查与随机原则.md": null,
           "KP02_总体与样本.md": null,
@@ -663,6 +699,7 @@
         "02_第二节_假设检验的基本思路与方法.md": null,
         "03_第三节_总体参数检验.md": null,
         "04_第四节_Excel假设检验.md": null,
+        "思维导图.svg": null,
         "知识点": {
           "KP01_假设检验的逻辑.md": null,
           "KP02_原假设与备择假设.md": null,
@@ -684,6 +721,7 @@
         "04_第四节_曲线相关与曲线回归.md": null,
         "05_第五节_应用注意问题.md": null,
         "06_第六节_Excel相关回归.md": null,
+        "思维导图.svg": null,
         "知识点": {
           "KP01_函数关系vs相关关系.md": null,
           "KP02_相关方向与相关形式.md": null,
@@ -706,6 +744,7 @@
         "03_第三节_时间数列的速度分析指标.md": null,
         "04_第四节_时间数列波动的基本理论.md": null,
         "05_第五节_Excel时间数列波动的测定.md": null,
+        "思维导图.svg": null,
         "知识点": {
           "KP01_时间数列两个基本要素.md": null,
           "KP02_时期数列与时点数列.md": null,
@@ -734,6 +773,7 @@
         "04_第四节_指数体系和因素分析.md": null,
         "05_第五节_指数数列.md": null,
         "06_第六节_常见的统计指数简介.md": null,
+        "思维导图.svg": null,
         "知识点": {
           "KP01_指数定义与作用.md": null,
           "KP02_个体指数vs总指数.md": null,
@@ -756,6 +796,7 @@
         "04_第四节_统计工作报告.md": null,
         "05_第五节_统计研究报告.md": null,
         "06_第六节_口头陈述报告.md": null,
+        "思维导图.svg": null,
         "知识点": {
           "KP01_综合评价法总览.md": null,
           "KP02_GDP与GNP.md": null,
@@ -773,222 +814,6 @@
     },
     "_tools": {}
   },
-  "科研写作指南_HKUST": {
-    "CHANGELOG.md": null,
-    "CONTRIBUTING.md": null,
-    "README.en.md": null,
-    "README.md": null,
-    "assets": {},
-    "handbook": {
-      "01_Preliminary": {
-        "1.1_如何评价一篇论文的质量.md": null
-      },
-      "02_Idea_Generation": {
-        "2.1_Idea的生命周期与能力匹配.md": null,
-        "2.2_想Idea的思路_更高更快更强.md": null,
-        "2.3_进阶_如何做颠覆式创新.md": null
-      },
-      "03_Paper_Writing": {
-        "3.1_完成一篇科研论文你需要做几件事情.md": null,
-        "3.2_Introduction写作的思考模型.md": null,
-        "3.3_技术类Full_Paper思考模板.md": null,
-        "3.4_Benchmark与Evaluation类论文思考模板.md": null,
-        "3.5_写作细节与Checklist.md": null
-      },
-      "04_Scientific_Plotting": {
-        "4.1_Motivated_Example_Figure.md": null,
-        "4.2_Solution_Overview_Figure.md": null,
-        "4.3_Experimental_Results_Figure.md": null,
-        "4.4_绘图Checklist与工具速查表.md": null
-      },
-      "05_Vibe_Research": {
-        "5.1_Vibe_Research与Vibe_Coding入门.md": null,
-        "5.2_李伯岩实战经验分享与会议纪要.md": null,
-        "assets": {
-          "5.1_vibe_research": {},
-          "5.2_meeting_notes": {}
-        }
-      },
-      "06_Case_Studies": {
-        "6.1_ICML_2025_Alpha-SQL写作剖析.md": null,
-        "6.2_ICLR_2025_AFlow写作剖析.md": null,
-        "6.3_VLDB_2026_LEAD写作剖析.md": null
-      }
-    },
-    "handbook-en": {
-      "01_Preliminary": {
-        "1.1_how-to-evaluate-paper-quality.md": null
-      },
-      "02_Idea_Generation": {
-        "2.1_idea-lifecycle-and-capability-matching.md": null,
-        "2.2_higher-faster-stronger.md": null,
-        "2.3_disruptive-innovation.md": null
-      },
-      "03_Paper_Writing": {
-        "3.1_the-essentials-of-a-research-paper.md": null,
-        "3.2_introduction-writing-flowchart.md": null,
-        "3.3_technical-paper-template.md": null,
-        "3.4_benchmark-paper-template.md": null,
-        "3.5_writing-details-and-checklist.md": null
-      },
-      "04_Scientific_Plotting": {
-        "4.1_motivated-example-figure.md": null,
-        "4.2_solution-overview-figure.md": null,
-        "4.3_experimental-results-figure.md": null,
-        "4.4_plotting-checklist-and-tools.md": null
-      },
-      "05_Vibe_Research": {
-        "5.1_vibe-research-and-vibe-coding.md": null,
-        "5.2_liboyan-practical-notes.md": null
-      },
-      "06_Case_Studies": {
-        "6.1_icml2025-alpha-sql-analysis.md": null,
-        "6.2_iclr2025-aflow-analysis.md": null,
-        "6.3_vldb2026-lead-analysis.md": null
-      }
-    },
-    "scripts": {},
-    "skills": {
-      "README.en.md": null,
-      "README.md": null,
-      "benchmark-paper-template": {
-        "SKILL.md": null,
-        "references": {
-          "benchmark-design.md": null,
-          "checklist.md": null,
-          "construction-pipeline.md": null,
-          "experiments.md": null,
-          "gap-analysis.md": null,
-          "instantiation-template.md": null,
-          "orchestrator-notes.md": null,
-          "paper-structure.md": null
-        }
-      },
-      "deep-research": {
-        "SKILL.md": null,
-        "references": {
-          "citation-protocol.md": null,
-          "hedge-calibration.md": null,
-          "output-structure.md": null,
-          "quality-gates.md": null,
-          "search-strategy.md": null,
-          "self-adversarial.md": null,
-          "synthesis-framework.md": null
-        }
-      },
-      "drawio-reconstruction": {
-        "README.md": null,
-        "README.zh-CN.md": null,
-        "SKILL.md": null,
-        "agents": {},
-        "assets": {
-          "cases": {}
-        },
-        "examples": {},
-        "scripts": {}
-      },
-      "figure-designer": {
-        "SKILL.md": null,
-        "references": {
-          "design-rules.md": null,
-          "experimental-results.md": null,
-          "motivated-example.md": null,
-          "solution-overview.md": null,
-          "tools.md": null
-        }
-      },
-      "idea-evaluator": {
-        "SKILL.md": null,
-        "references": {
-          "domain-evaluation-frameworks.md": null,
-          "fatal-flaws.md": null,
-          "five-dimensions.md": null,
-          "lifecycle-capability-matching.md": null,
-          "paradigm-elephant.md": null,
-          "paradigm-examples.md": null,
-          "paradigm-first-principles.md": null,
-          "paradigm-hamming.md": null,
-          "paradigm-shift-probe.md": null,
-          "paradigm-technology-cycle.md": null,
-          "worked-examples.md": null
-        }
-      },
-      "intro-drafter": {
-        "SKILL.md": null,
-        "references": {
-          "contribution-patterns.md": null,
-          "evidence-discipline.md": null,
-          "flowchart.md": null,
-          "paper-types.md": null,
-          "prose-delivery.md": null,
-          "running-example.md": null,
-          "worked-examples.md": null
-        }
-      },
-      "paper-polish": {
-        "SKILL.md": null,
-        "references": {
-          "academic-phrasebank.md": null,
-          "ai-tone-guardrails.md": null,
-          "section-conventions.md": null
-        }
-      },
-      "paper-writer": {
-        "SKILL.md": null,
-        "references": {
-          "academic-phrasebank.md": null,
-          "ai-tone-guardrails.md": null,
-          "citation-style.md": null,
-          "evidence-discipline.md": null,
-          "prose-delivery.md": null,
-          "section-conventions.md": null,
-          "section-guidance.md": null,
-          "verification-checklist.md": null,
-          "verification-ladder.md": null
-        }
-      },
-      "pre-submission-reviewer": {
-        "SKILL.md": null,
-        "references": {
-          "forbidden-patterns.md": null,
-          "grammar-rules.md": null,
-          "latex-rules.md": null,
-          "logic-and-structure.md": null,
-          "section-guides.md": null
-        }
-      },
-      "rebuttal-guidance": {
-        "SKILL.md": null,
-        "references": {
-          "checklist.md": null,
-          "concern-classification.md": null,
-          "mindset-library.md": null,
-          "mindset-matching-heuristics.md": null,
-          "response-templates.md": null,
-          "strategy-dimensions.md": null
-        }
-      },
-      "tech-paper-template": {
-        "SKILL.md": null,
-        "references": {
-          "consistency-checks.md": null,
-          "paper-types.md": null,
-          "thinking-template.md": null,
-          "worked-examples.md": null
-        }
-      },
-      "vibe-research-workflow": {
-        "SKILL.md": null,
-        "references": {
-          "behavior-guidelines.md": null,
-          "tool-selection.md": null,
-          "vibe-coding.md": null,
-          "vibe-figure.md": null,
-          "vibe-writing.md": null
-        }
-      }
-    }
-  },
   "经济统计学论文从0基础到精通": {
     "00_学前准备": {
       "01_经济统计学到底是学什么的.md": null,
@@ -996,7 +821,8 @@
       "03_数学要补到什么程度.md": null,
       "04_工具准备.md": null,
       "05_学习路线图.md": null,
-      "README.md": null
+      "README.md": null,
+      "思维导图.svg": null
     },
     "01_基础数学": {
       "01_什么是函数.md": null,
@@ -1007,7 +833,8 @@
       "06_期望和方差.md": null,
       "07_正态分布.md": null,
       "08_统计学常用符号速查.md": null,
-      "README.md": null
+      "README.md": null,
+      "思维导图.svg": null
     },
     "02_描述统计": {
       "00_章节总结.md": null,
@@ -1017,7 +844,8 @@
       "04_数据分布与可视化.md": null,
       "05_数据清洗.md": null,
       "06_总量与相对指标.md": null,
-      "README.md": null
+      "README.md": null,
+      "思维导图.svg": null
     },
     "03_相关与回归": {
       "00_章节总结.md": null,
@@ -1030,7 +858,8 @@
       "07_假设检验直觉.md": null,
       "08_t检验和F检验.md": null,
       "09_虚拟变量.md": null,
-      "README.md": null
+      "README.md": null,
+      "思维导图.svg": null
     },
     "04_回归三大问题": {
       "00_章节总结.md": null,
@@ -1039,7 +868,8 @@
       "03_自相关.md": null,
       "04_多重共线性.md": null,
       "05_三大问题诊断流程.md": null,
-      "README.md": null
+      "README.md": null,
+      "思维导图.svg": null
     },
     "05_内生性与面板": {
       "00_章节总结.md": null,
@@ -1050,14 +880,16 @@
       "05_面板数据是什么.md": null,
       "06_固定效应FE.md": null,
       "07_随机效应RE与Hausman检验.md": null,
-      "README.md": null
+      "README.md": null,
+      "思维导图.svg": null
     },
     "06_受限因变量": {
       "00_章节总结.md": null,
       "01_什么时候用Logit.md": null,
       "02_Logit模型.md": null,
       "03_Probit与Logit对比.md": null,
-      "README.md": null
+      "README.md": null,
+      "思维导图.svg": null
     },
     "07_综合评价方法": {
       "00_章节总结.md": null,
@@ -1071,7 +903,8 @@
       "08_灰色关联分析.md": null,
       "09_Excel熵值法计算.md": null,
       "10_距离方法选择指南.md": null,
-      "README.md": null
+      "README.md": null,
+      "思维导图.svg": null
     },
     "08_降维与分类": {
       "00_章节总结.md": null,
@@ -1080,7 +913,8 @@
       "03_因子分析.md": null,
       "04_聚类分析.md": null,
       "05_判别分析.md": null,
-      "README.md": null
+      "README.md": null,
+      "思维导图.svg": null
     },
     "09_时间序列": {
       "00_章节总结.md": null,
@@ -1093,7 +927,8 @@
       "07_协整与误差修正ECM.md": null,
       "08_GARCH模型.md": null,
       "09_基期报告期与指数方法选择.md": null,
-      "README.md": null
+      "README.md": null,
+      "思维导图.svg": null
     },
     "10_论文写作全流程": {
       "00_章节总结.md": null,
@@ -1105,7 +940,8 @@
       "06_稳健性检验.md": null,
       "07_结论与摘要.md": null,
       "08_技术路线图怎么做.md": null,
-      "README.md": null
+      "README.md": null,
+      "思维导图.svg": null
     },
     "11_方法选择决策": {
       "00_章节总结.md": null,
@@ -1114,7 +950,8 @@
       "03_常见方法误用.md": null,
       "04_Stata_R实操速查.md": null,
       "05_SPSS操作指引.md": null,
-      "README.md": null
+      "README.md": null,
+      "思维导图.svg": null
     },
     "12_毕业论文实战": {
       "00_章节总结.md": null,
@@ -1134,7 +971,8 @@
       "15_完整范文.md": null,
       "16_答辩流程与礼仪.md": null,
       "17_提交Checklist.md": null,
-      "README.md": null
+      "README.md": null,
+      "思维导图.svg": null
     },
     "README.md": null,
     "assets": {
