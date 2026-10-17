@@ -111,6 +111,8 @@
                     li.dataset.path = newPath.substring(1);
                     li.onclick = (e) => {
                         e.stopPropagation();
+                        // 手机端直接收起侧边栏
+                        document.getElementById('sidebar').classList.remove('open');
                         loadFile(li.dataset.path);
                         document.querySelectorAll('.file-tree li').forEach(l => l.classList.remove('active'));
                         li.classList.add('active');
