@@ -232,13 +232,19 @@
                 
                 // 渲染mermaid图，加上错误处理
                 if (window.mermaid) {
-                    document.querySelectorAll('.language-mermaid').forEach(el => {
+                    document.querySelectorAll('pre code.language-mermaid').forEach(el => {
+                        const pre = el.parentElement;
+                        const code = el.textContent;
                         try {
-                            mermaid.render('mermaid-' + Math.random().toString(36).substr(2, 9), el.textContent)
-                                .then(({svg}) => { el.innerHTML = svg; })
-                                .catch(() => { /* 语法错了就保持原样 */ });
+                            mermaid.render('mermaid-' + Math.random().toString(36).substr(2, 9), code)
+                                .then(({svg}) => { 
+                                    pre.innerHTML = svg; 
+                                })
+                                .catch((err) => { 
+                                    pre.innerHTML = '<div style="color:red;padding:10px;">Mermaid语法错误: ' + err.message + '</div><pre>' + code + '</pre>';
+                                });
                         } catch(e) {
-                            // 保持原样
+                            pre.innerHTML = '<div style="color:red;padding:10px;">Mermaid渲染失败: ' + e.message + '</div><pre>' + code + '</pre>';
                         }
                     });
                 }
