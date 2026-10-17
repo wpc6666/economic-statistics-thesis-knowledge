@@ -142,17 +142,11 @@
 
 ## 🙏 致谢
 
-- 教材作者：陈正伟、陈强、王燕、何晓群、韩兆洲
-- 所有知识点的整理者
+- **教材作者**：陈正伟、陈强、王燕、何晓群、韩兆洲
+- **科研写作框架**：参考香港科技大学李伯岩课题组的 [Supervisor-Skills](https://github.com/HKUSTDial/Supervisor-Skills)（选题、论文写作、绘图、Vibe Research、案例剖析）
+- **所有知识点的整理者与贡献者**
 
 ---
 
 *最后更新：2026年10月*
 
----
-
-## 🙏 致谢
-
-本知识库的写作框架参考了**香港科技大学李伯岩课题组**的科研写作指南，涵盖选题、论文写作、绘图、Vibe Research、案例剖析等内容。
-
-原始来源：[HKUSTDial/Supervisor-Skills](https://github.com/HKUSTDial/Supervisor-Skills)
