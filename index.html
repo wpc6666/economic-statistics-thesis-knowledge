@@ -216,7 +216,7 @@
                 let html = marked.parse(processedMd);
                 
                 // 把转义的$符号还原
-                html = html.replace(/\$\$/g, '$$').replace(/\$([^$]+)\$/g, '$$$1$$');
+                html = html.replace(/\\$/g, '$');
                 
                 document.getElementById('content').innerHTML = html;
                 
