@@ -111,6 +111,23 @@
         }
 
         loadFileTree();
+        
+        // 在文件树最前面加特殊链接
+        setTimeout(() => {
+            const fileTree = document.getElementById('fileTree');
+            
+            // GitHub仓库链接
+            const ghLi = document.createElement('li');
+            ghLi.style.cssText = 'padding: 10px; background: #f6f8fa; border-radius: 4px; margin-bottom: 10px;';
+            ghLi.innerHTML = '<a href="https://github.com/wpc6666/economic-statistics-thesis-knowledge" target="_blank" style="color: #24292e; text-decoration: none; font-weight: bold;">⭐ 前往GitHub仓库</a>';
+            fileTree.insertBefore(ghLi, fileTree.firstChild);
+            
+            // HKUST链接
+            const hkustLi = document.createElement('li');
+            hkustLi.style.cssText = 'padding: 10px; background: #e6f7e6; border-radius: 4px; margin-bottom: 10px;';
+            hkustLi.innerHTML = '<a href="https://github.com/HKUSTDial/Supervisor-Skills" target="_blank" style="color: #28a745; text-decoration: none; font-weight: bold;">📚 HKUST科研写作指南（原库实时更新）</a>';
+            fileTree.insertBefore(hkustLi, fileTree.firstChild);
+        }, 500);
     </script>
 </body>
 </html>
