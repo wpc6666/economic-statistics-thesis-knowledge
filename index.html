@@ -14,6 +14,15 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://wpc6666.github.io/economic-statistics-thesis-knowledge/">
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']]
+        }
+    };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -258,6 +267,11 @@
                         li.classList.add("active");
                     }
                 });
+                
+                // 触发MathJax渲染公式
+                if (window.MathJax && window.MathJax.typesetPromise) {
+                    window.MathJax.typesetPromise([document.getElementById("content")]);
+                }
             } catch (err) {
                 document.getElementById("content").innerHTML = 
                     `<h1>加载失败</h1><p>无法加载文件: ${path}</p><p>错误: ${err.message}</p>`;
