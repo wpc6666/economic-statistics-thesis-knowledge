@@ -6,12 +6,65 @@
   "KP融入大牛库写作规范.md": null,
   "README.md": null,
   "assets": {
+    "gen_master_map.py": null,
     "全学科方法选择总图.svg": null,
     "综合思维导图.svg": null
   },
+  "file-tree.json": null,
   "index.html": null,
+  "robots.txt": null,
+  "sitemap.xml": null,
   "test.html": null,
   "原文件": {
+    "HKUSTDial Supervisor-Skills main handbook": {
+      "01_Preliminary": {
+        "1.1_如何评价一篇论文的质量.md": null
+      },
+      "02_Idea_Generation": {
+        "2.1_Idea的生命周期与能力匹配.md": null,
+        "2.2_想Idea的思路_更高更快更强.md": null,
+        "2.3_进阶_如何做颠覆式创新.md": null
+      },
+      "03_Paper_Writing": {
+        "3.1_完成一篇科研论文你需要做几件事情.md": null,
+        "3.2_Introduction写作的思考模型.md": null,
+        "3.3_技术类Full_Paper思考模板.md": null,
+        "3.4_Benchmark与Evaluation类论文思考模板.md": null,
+        "3.5_写作细节与Checklist.md": null
+      },
+      "04_Scientific_Plotting": {
+        "4.1_Motivated_Example_Figure.md": null,
+        "4.2_Solution_Overview_Figure.md": null,
+        "4.3_Experimental_Results_Figure.md": null,
+        "4.4_绘图Checklist与工具速查表.md": null
+      },
+      "05_Vibe_Research": {
+        "5.1_Vibe_Research与Vibe_Coding入门.md": null,
+        "5.2_李伯岩实战经验分享与会议纪要.md": null,
+        "assets": {
+          "5.1_vibe_research": {
+            "image1.png": null,
+            "image10.png": null,
+            "image2.png": null,
+            "image3.png": null,
+            "image4.png": null,
+            "image5.png": null,
+            "image6.png": null,
+            "image7.png": null,
+            "image8.png": null,
+            "image9.png": null
+          },
+          "5.2_meeting_notes": {
+            "foundation_agents_vibe_research_overview.png": null
+          }
+        }
+      },
+      "06_Case_Studies": {
+        "6.1_ICML_2025_Alpha-SQL写作剖析.md": null,
+        "6.2_ICLR_2025_AFlow写作剖析.md": null,
+        "6.3_VLDB_2026_LEAD写作剖析.md": null
+      }
+    },
     "README.md": null,
     "多元统计分析": {
       "何晓群_多元统计分析_全书.md": null
@@ -27,6 +80,7 @@
     },
     "补充资料": {
       "贝塞尔修正": {
+        "样本方差的贝塞尔修正(为什么是n-1？).pdf": null,
         "贝塞尔修正_小白详解.md": null
       }
     },
@@ -272,6 +326,9 @@
       },
       "README.md": null,
       "assets": {
+        "gen_comparison.py": null,
+        "gen_decision_tree.py": null,
+        "gen_mindmap.py": null,
         "全书思维导图.svg": null,
         "思维导图.svg": null,
         "方法对比总览.svg": null,
@@ -812,7 +869,11 @@
       "README.md": null,
       "_写作规范.md": null
     },
-    "_tools": {}
+    "_tools": {
+      "gen_all_econometrics.py": null,
+      "gen_all_zonghe.py": null,
+      "gen_svg.py": null
+    }
   },
   "经济统计学论文从0基础到精通": {
     "00_学前准备": {
@@ -975,6 +1036,7 @@
       "思维导图.svg": null
     },
     "README.md": null,
+    "_gen_07_12.py": null,
     "assets": {
       "方法关系系谱图.md": null,
       "现有文件审计报告.md": null
