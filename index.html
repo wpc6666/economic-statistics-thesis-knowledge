@@ -220,27 +220,31 @@
                     }
                 });
                 
+                // 先提取mermaid代码块，用特殊标记替换
+                const mermaidBlocks = [];
+                md = md.replace(/```mermaid\n(.*?)```/gs, function(match, code) {
+                    const id = 'mermaid-' + Math.random().toString(36).substr(2, 9);
+                    mermaidBlocks.push({id: id, code: code.trim()});
+                    return '<div class="mermaid-placeholder" id="' + id + '"></div>';
+                });
+                
                 // 渲染markdown
                 let html = marked.parse(md);
                 document.getElementById('content').innerHTML = html;
                 
                 // 渲染mermaid
-                try {
-                    document.querySelectorAll('pre code.language-mermaid').forEach(function(el) {
-                        const pre = el.parentElement;
-                        const code = el.textContent;
-                        
-                        mermaid.render('mermaid-' + Math.random().toString(36).substr(2, 9), code)
-                            .then(function(result) { 
-                                pre.innerHTML = result.svg; 
-                            })
-                            .catch(function(err) { 
-                                pre.innerHTML = '<div style="color: #666; padding: 10px; background: #f5f5f5;">Mermaid代码:</div><pre>' + code + '</pre>';
-                            });
-                    });
-                } catch (e) {
-                    console.log('Mermaid渲染失败:', e);
-                }
+                mermaidBlocks.forEach(function(block) {
+                    const div = document.getElementById(block.id);
+                    if (!div) return;
+                    
+                    mermaid.render(block.id + '-svg', block.code)
+                        .then(function(result) { 
+                            div.innerHTML = result.svg; 
+                        })
+                        .catch(function(err) { 
+                            div.innerHTML = '<div style="color: #666; padding: 10px; background: #f5f5f5; border-radius: 4px;">Mermaid代码:</div><pre style="background: #f5f5f5; padding: 10px; border-radius: 4px; overflow-x: auto;">' + block.code + '</pre>';
+                        });
+                });
                 
                 // 渲染公式
                 if (window.MathJax && window.MathJax.typesetPromise) {
