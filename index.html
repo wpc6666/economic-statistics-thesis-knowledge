@@ -414,6 +414,15 @@
 
         // 初始化
         loadFileTree();
+        
+        // 在文件树最前面加一个GitHub仓库链接
+        setTimeout(() => {
+            const fileTree = document.getElementById("fileTree");
+            const ghLi = document.createElement("li");
+            ghLi.style.cssText = "padding: 10px; background: #f6f8fa; border-radius: 4px; margin-bottom: 10px; cursor: pointer;";
+            ghLi.innerHTML = '<a href="https://github.com/wpc6666/economic-statistics-thesis-knowledge" target="_blank" style="color: #24292e; text-decoration: none; font-weight: bold;">⭐ 前往GitHub仓库</a>';
+            fileTree.insertBefore(ghLi, fileTree.firstChild);
+        }, 500);
     </script>
 </body>
 </html>
