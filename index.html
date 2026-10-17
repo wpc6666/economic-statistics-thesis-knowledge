@@ -147,7 +147,8 @@
                 container.querySelectorAll('li.folder').forEach(li => {
                     li.addEventListener('click', (e) => {
                         e.stopPropagation();
-                        const ul = li.nextElementSibling;
+                        // 子ul在父li里面
+                        const ul = li.querySelector('ul');
                         if (ul) ul.classList.toggle('collapsed');
                     });
                 });
@@ -191,9 +192,10 @@
                     const nameNoExt = key.replace(/\.md$/, '');
                     html += `<li class="file" data-path="${currentPath}">${nameNoExt}</li>`;
                 } else if (typeof value === 'object') {
-                    // 文件夹
-                    html += `<li class="folder">${key}</li>`;
+                    // 文件夹：子ul放在父li里面
+                    html += `<li class="folder">${key}`;
                     html += buildTreeHtml(value, currentPath);
+                    html += `</li>`;
                 }
             });
             html += '</ul>';
@@ -271,6 +273,7 @@
                                 pre.innerHTML = svg; 
                             })
                             .catch((err) => { 
+                                // 渲染失败，直接显示代码，不再调用mermaid.run()
                                 pre.innerHTML = '<div style="color: #666; padding: 10px; background: #f5f5f5;">Mermaid代码:</div><pre>' + code + '</pre>';
                             });
                     });
