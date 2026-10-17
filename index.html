@@ -211,8 +211,31 @@
                     }
                 });
                 
+                // 先把公式提取出来，避免被marked转义
+                const formulas = [];
+                let mdWithoutFormulas = processedMd.replace(/\$\$([\s\S]*?)\$\$/g, (match, formula) => {
+                    formulas.push(formula);
+                    return `@@FORMULA_${formulas.length - 1}@@`;
+                });
+                mdWithoutFormulas = mdWithoutFormulas.replace(/\$([^$]+)\$/g, (match, formula) => {
+                    formulas.push(formula);
+                    return `@@FORMULA_${formulas.length - 1}@@`;
+                });
+                
                 // 渲染markdown
-                const html = marked.parse(processedMd);
+                let html = marked.parse(mdWithoutFormulas);
+                
+                // 把公式放回去
+                formulas.forEach((formula, i) => {
+                    if (formula.includes('\\')) {
+                        // 行间公式
+                        html = html.replace(`<p>@@FORMULA_${i}@@</p>`, `$$${formula}$$`);
+                    } else {
+                        // 行内公式
+                        html = html.replace(`@@FORMULA_${i}@@`, `$${formula}$`);
+                    }
+                });
+                
                 document.getElementById('content').innerHTML = html;
                 
                 // 渲染SVG - 把<img>标签转成内联SVG
