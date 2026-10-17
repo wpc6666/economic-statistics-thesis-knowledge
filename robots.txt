@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://wpc6666.github.io/economic-statistics-thesis-knowledge/sitemap.xml
