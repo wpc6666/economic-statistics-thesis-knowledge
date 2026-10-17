@@ -212,32 +212,13 @@
                     }
                 });
                 
-                // 先提取mermaid代码块，避免被marked转义
-                const mermaidBlocks = [];
-                let mdWithoutMermaid = processedMd.replace(/```mermaid\n([\s\S]*?)```/g, (match, code) => {
-                    mermaidBlocks.push(code);
-                    return `@@MERMAID_${mermaidBlocks.length - 1}@@`;
-                });
+                // 渲染markdown
+                let html = marked.parse(processedMd);
                 
-                // 渲染markdown - 多种方法自动切换
-                let html = '';
+                // 还原marked转义的字符
+                html = html.replace(/\\\\/g, '\\');  // 还原反斜杠
+                html = html.replace(/\\\$/g, '\$');   // 还原$符号
                 
-                try {
-                    // 方法1：标准marked.parse()
-                    html = marked.parse(mdWithoutMermaid);
-                } catch(e1) {
-                    // 方法2：还原转义字符
-                    html = marked.parse(mdWithoutMermaid);
-                    html = html.replace(/\\/g, '\\');
-                }
-                
-                // 把mermaid代码放回去
-                mermaidBlocks.forEach((code, i) => {
-                    html = html.replace(`<p>@@MERMAID_${i}@@</p>`, `<pre><code class="language-mermaid">${code}</code></pre>`);
-                    html = html.replace(`@@MERMAID_${i}@@`, `<pre><code class="language-mermaid">${code}</code></pre>`);
-                });
-                
-                document.getElementById('content').innerHTML = html;
                 
                 // 渲染SVG - 把<img>标签转成内联SVG
                 document.querySelectorAll('img[src$=".svg"]').forEach(img => {
