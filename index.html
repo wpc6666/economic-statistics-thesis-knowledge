@@ -176,14 +176,21 @@
             }
             
             document.getElementById('breadcrumb').textContent = '首页 / ' + path;
+            document.getElementById('content').innerHTML = '<p style="padding:20px;color:#666;">加载中...</p>';
             
             try {
-                const res = await fetch(encodeURI(path));
-                if (!res.ok) throw new Error('HTTP ' + res.status);
-                const md = await res.text();
+                // ===== 第1步：读取文件 =====
+                let res, md;
+                try {
+                    res = await fetch(encodeURI(path));
+                    if (!res.ok) throw new Error('HTTP ' + res.status);
+                    md = await res.text();
+                } catch(e) {
+                    document.getElementById('content').innerHTML = '<h1>加载失败</h1><p>无法读取文件: ' + path + '</p><p>错误: ' + e.message + '</p>';
+                    return;
+                }
                 
-                // 解析wikilink - 转成可点击的span，调用loadFile
-                // 建立文件名到完整路径的映射
+                // ===== 第2步：处理wikilink =====
                 const fileMap = {};
                 allFiles.forEach(f => {
                     const fileName = f.split('/').pop();
@@ -194,94 +201,122 @@
                 
                 let processedMd = md.replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, (match, target, display) => {
                     const targetClean = target.trim();
-                    
-                    // 从映射里找完整路径
                     let filePath = fileMap[targetClean];
                     if (!filePath) {
-                        // 模糊匹配
                         filePath = Object.keys(fileMap).find(k => k.includes(targetClean) || targetClean.includes(k));
                         if (filePath) filePath = fileMap[filePath];
                     }
-                    
                     if (filePath) {
                         const safePath = filePath.replace(/'/g, "\'");
                         return `<span style="color: #007acc; cursor: pointer; text-decoration: underline;" onclick="loadFile('${safePath}')">${display || target}</span>`;
                     } else {
-                        // 找不到就显示灰色
                         return `<span style="color: #999;">${display || target}</span>`;
                     }
                 });
                 
-                // 先提取公式，避免被marked转义
-                const formulas = [];
-                let mdWithoutFormulas = processedMd.replace(/\$\$([\s\S]*?)\$\$/g, (match, f) => {
-                    formulas.push({type: 'block', content: f});
-                    return `@@FORMULA_${formulas.length - 1}@@`;
-                });
-                mdWithoutFormulas = mdWithoutFormulas.replace(/\$([^$\n]+)\$/g, (match, f) => {
-                    formulas.push({type: 'inline', content: f});
-                    return `@@FORMULA_${formulas.length - 1}@@`;
-                });
+                // ===== 第3步：渲染markdown（多种方法自动切换） =====
+                let html = '';
                 
-                // 渲染markdown
-                let html = marked.parse(mdWithoutFormulas);
-                
-                // 把公式放回去
-                formulas.forEach((f, i) => {
-                    if (f.type === 'block') {
-                        html = html.replace(`<p>@@FORMULA_${i}@@</p>`, `$$${f.content}$$`);
-                    } else {
-                        html = html.replace(`@@FORMULA_${i}@@`, `$${f.content}$$`);
-                    }
-                });
-                
-                
-                
-                // 渲染SVG - 把<img>标签转成内联SVG
-                document.querySelectorAll('img[src$=".svg"]').forEach(img => {
-                    const src = img.getAttribute('src');
-                    fetch(src).then(r => r.text()).then(svg => {
-                        const div = document.createElement('div');
-                        div.innerHTML = svg;
-                        img.replaceWith(div.firstElementChild);
+                // 方法1：先提取公式，再渲染
+                try {
+                    const formulas = [];
+                    let mdWithoutFormulas = processedMd.replace(/\$\$([\s\S]*?)\$\$/g, (match, f) => {
+                        formulas.push({type: 'block', content: f});
+                        return `@@FORMULA_${formulas.length - 1}@@`;
                     });
-                });
-                
-                // 渲染mermaid图，加上错误处理
-                // 渲染mermaid图 - 多种方法自动切换
-                if (window.mermaid) {
-                    document.querySelectorAll('pre code.language-mermaid').forEach(el => {
-                        const pre = el.parentElement;
-                        const code = el.textContent;
-                        
-                        // 方法1：标准mermaid.render()
-                        try {
-                            mermaid.render('mermaid-' + Math.random().toString(36).substr(2, 9), code)
-                                .then(({svg}) => { 
-                                    pre.innerHTML = svg; 
-                                })
-                                .catch((err) => { 
-                                    // 方法1失败，尝试方法2：用mermaid.run()
-                                    try {
-                                        pre.innerHTML = '<div class="mermaid">' + code + '</div>';
-                                        mermaid.run({
-                                            nodes: [pre.querySelector('.mermaid')]
-                                        });
-                                    } catch(e2) {
-                                        // 方法2也失败，直接显示代码
-                                        pre.innerHTML = '<div style="color:#666;padding:10px;background:#f5f5f5;">Mermaid代码（渲染失败）:</div><pre>' + code + '</pre>';
-                                    }
-                                });
-                        } catch(e) {
-                            // 方法1同步失败，直接显示代码
-                            pre.innerHTML = '<div style="color:red;padding:10px;">Mermaid渲染失败: ' + e.message + '</div><pre>' + code + '</pre>';
+                    mdWithoutFormulas = mdWithoutFormulas.replace(/\$([^$\n]+)\$/g, (match, f) => {
+                        formulas.push({type: 'inline', content: f});
+                        return `@@FORMULA_${formulas.length - 1}@@`;
+                    });
+                    
+                    html = marked.parse(mdWithoutFormulas);
+                    
+                    formulas.forEach((f, i) => {
+                        if (f.type === 'block') {
+                            html = html.replace(`<p>@@FORMULA_${i}@@</p>`, `$$${f.content}$$`);
+                        } else {
+                            html = html.replace(`@@FORMULA_${i}@@`, `$${f.content}$$`);
                         }
                     });
+                    
+                    // 检查有没有残留的@@FORMULA
+                    if (html.includes('@@FORMULA_')) {
+                        throw new Error('公式提取失败');
+                    }
+                } catch(e1) {
+                    // 方法2：直接marked.parse()，然后还原转义
+                    try {
+                        html = marked.parse(processedMd);
+                        html = html.replace(/\\\\/g, '\\');
+                        html = html.replace(/\\\$/g, '\$');
+                    } catch(e2) {
+                        // 方法3：直接显示原始markdown
+                        html = '<pre>' + processedMd + '</pre>';
+                    }
                 }
                 
-                // 触发MathJax渲染公式
+                // ===== 第4步：设置到页面上 =====
+                document.getElementById('content').innerHTML = html;
+                
+                // ===== 第5步：渲染SVG =====
+                try {
+                    document.querySelectorAll('img[src$=".svg"]').forEach(img => {
+                        const src = img.getAttribute('src');
+                        fetch(src).then(r => r.text()).then(svg => {
+                            const div = document.createElement('div');
+                            div.innerHTML = svg;
+                            if (div.firstElementChild) {
+                                img.replaceWith(div.firstElementChild);
+                            }
+                        });
+                    });
+                } catch(e) {
+                    console.log('SVG渲染失败:', e);
+                }
+                
+                // ===== 第6步：渲染mermaid图（多种方法自动切换） =====
+                if (window.mermaid) {
+                    try {
+                        document.querySelectorAll('pre code.language-mermaid').forEach(el => {
+                            const pre = el.parentElement;
+                            const code = el.textContent;
+                            
+                            // 方法1：标准mermaid.render()
+                            try {
+                                mermaid.render('mermaid-' + Math.random().toString(36).substr(2, 9), code)
+                                    .then(({svg}) => { 
+                                        pre.innerHTML = svg; 
+                                    })
+                                    .catch((err) => { 
+                                        // 方法1失败，尝试方法2：用mermaid.run()
+                                        try {
+                                            pre.innerHTML = '<div class="mermaid">' + code + '</div>';
+                                            mermaid.run({
+                                                nodes: [pre.querySelector('.mermaid')]
+                                            });
+                                        } catch(e2) {
+                                            // 方法2也失败，直接显示代码
+                                            pre.innerHTML = '<div style="color:#666;padding:10px;background:#f5f5f5;">Mermaid代码:</div><pre>' + code + '</pre>';
+                                        }
+                                    });
+                            } catch(e) {
+                                pre.innerHTML = '<div style="color:#666;padding:10px;background:#f5f5f5;">Mermaid代码:</div><pre>' + code + '</pre>';
+                            }
+                        });
+                    } catch(e) {
+                        console.log('mermaid渲染失败:', e);
+                    }
+                }
+                
+                // ===== 第7步：渲染公式（MathJax） =====
                 if (window.MathJax && window.MathJax.typesetPromise) {
-                    window.MathJax.typesetPromise([document.getElementById('content')]);
+                    try {
+                        window.MathJax.typesetPromise([document.getElementById('content')]).catch(err => {
+                            console.log('MathJax渲染失败:', err);
+                        });
+                    } catch(e) {
+                        console.log('MathJax渲染失败:', e);
+                    }
                 }
                 
                 document.getElementById('content').scrollTop = 0;
@@ -289,7 +324,7 @@
                 document.getElementById('content').innerHTML = '<h1>加载失败</h1><p>无法加载文件: ' + path + '</p><p>错误: ' + err.message + '</p>';
             }
         }
-
+        
         loadFileTree();
     </script>
 </body>
