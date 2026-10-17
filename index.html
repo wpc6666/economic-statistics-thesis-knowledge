@@ -191,12 +191,9 @@
                             return fileName.includes(targetClean) || targetClean.includes(fileName);
                         });
                     }
-                    if (targetFile) {
-                        const safePath = targetFile.replace(/'/g, "\'");
-                        return `<span style="color: #007acc; cursor: pointer; text-decoration: underline;" onclick="loadFile('${safePath}')">${display || target}</span>`;
-                    } else {
-                        return `<span style="color: #999;">${display || target}</span>`;
-                    }
+                    // 不管能不能找到，都改成蓝色可点击
+                    const safePath = (targetFile || targetClean).replace(/'/g, "\'");
+                    return `<span style="color: #007acc; cursor: pointer; text-decoration: underline;" onclick="loadFile('${safePath}')">${display || target}</span>`;
                 });
                 
                 // 渲染markdown
