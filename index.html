@@ -210,20 +210,6 @@
                         return `<span style="color: #999;">${display || target}</span>`;
                     }
                 });
-                    }
-                    // 自动找对应的.md文件
-                    let filePath = targetFile;
-                    if (!filePath) {
-                        // 尝试加上.md后缀
-                        filePath = allFiles.find(f => f === targetClean + '.md' || f.endsWith('/' + targetClean + '.md'));
-                    }
-                    if (!filePath) {
-                        // 还是找不到，就用目标名加上.md
-                        filePath = targetClean + '.md';
-                    }
-                    const safePath = filePath.replace(/'/g, "\'");
-                    return `<span style="color: #007acc; cursor: pointer; text-decoration: underline;" onclick="loadFile('${safePath}')">${display || target}</span>`;
-                });
                 
                 // 渲染markdown
                 const html = marked.parse(processedMd);
