@@ -181,8 +181,11 @@
         }
         
         // 递归构建树的HTML
-        function buildTreeHtml(node, path = '') {
+        function buildTreeHtml(node, path = '', isTopLevel = false) {
             let html = '<ul>';
+            if (!isTopLevel) {
+                html = '<ul class="collapsed">';
+            }
             Object.keys(node).forEach(key => {
                 const value = node[key];
                 const currentPath = path ? path + '/' + key : key;
@@ -194,7 +197,7 @@
                 } else if (typeof value === 'object') {
                     // 文件夹：子ul放在父li里面，直接加onclick
                     html += `<li class="folder" onclick="this.querySelector('ul').classList.toggle('collapsed')">${key}`;
-                    html += buildTreeHtml(value, currentPath);
+                    html += buildTreeHtml(value, currentPath, false);
                     html += `</li>`;
                 }
             });
