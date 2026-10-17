@@ -212,30 +212,11 @@
                     }
                 });
                 
-                // 先把公式提取出来，避免被marked转义
-                const formulas = [];
-                let mdWithoutFormulas = processedMd.replace(/\$\$([\s\S]*?)\$\$/g, (match, formula) => {
-                    formulas.push(formula);
-                    return `@@FORMULA_${formulas.length - 1}@@`;
-                });
-                mdWithoutFormulas = mdWithoutFormulas.replace(/\$([^$]+)\$/g, (match, formula) => {
-                    formulas.push(formula);
-                    return `@@FORMULA_${formulas.length - 1}@@`;
-                });
-                
                 // 渲染markdown
-                let html = marked.parse(mdWithoutFormulas);
+                let html = marked.parse(processedMd);
                 
-                // 把公式放回去
-                formulas.forEach((formula, i) => {
-                    if (formula.includes('\\')) {
-                        // 行间公式
-                        html = html.replace(`<p>@@FORMULA_${i}@@</p>`, `$$${formula}$$`);
-                    } else {
-                        // 行内公式
-                        html = html.replace(`@@FORMULA_${i}@@`, `$${formula}$`);
-                    }
-                });
+                // 把转义的$符号还原
+                html = html.replace(/\$\$/g, '$$').replace(/\$([^$]+)\$/g, '$$$1$$');
                 
                 document.getElementById('content').innerHTML = html;
                 
