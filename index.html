@@ -218,6 +218,7 @@
                 // 还原marked转义的字符
                 html = html.replace(/\\\\/g, '\\');  // 还原反斜杠
                 html = html.replace(/\\\$/g, '\$');   // 还原$符号
+                document.getElementById('content').innerHTML = html;
                 
                 
                 // 渲染SVG - 把<img>标签转成内联SVG
