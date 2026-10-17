@@ -182,8 +182,10 @@
         
         // 递归构建树的HTML
         function buildTreeHtml(node, path = '', isTopLevel = false) {
-            let html = '<ul>';
-            if (!isTopLevel) {
+            let html;
+            if (isTopLevel) {
+                html = '<ul>';
+            } else {
                 html = '<ul class="collapsed">';
             }
             Object.keys(node).forEach(key => {
@@ -196,7 +198,7 @@
                     html += `<li class="file" data-path="${currentPath}">${nameNoExt}</li>`;
                 } else if (typeof value === 'object') {
                     // 文件夹：子ul放在父li里面，直接加onclick
-                    html += `<li class="folder" onclick="this.querySelector('ul').classList.toggle('collapsed')">${key}`;
+                    html += `<li class="folder" onclick="event.stopPropagation(); this.querySelector('ul').classList.toggle('collapsed')">${key}`;
                     html += buildTreeHtml(value, currentPath, false);
                     html += `</li>`;
                 }
