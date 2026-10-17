@@ -157,7 +157,7 @@
                 if (!res.ok) throw new Error('HTTP ' + res.status);
                 const md = await res.text();
                 
-                // 解析wikilink
+                // 解析wikilink - 转成可点击的span，调用loadFile
                 let processedMd = md.replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, (match, target, display) => {
                     const targetClean = target.trim();
                     let targetFile = allFiles.find(f => f === targetClean || f.endsWith('/' + targetClean));
@@ -168,9 +168,10 @@
                         });
                     }
                     if (targetFile) {
-                        return `[${display || target}](${targetFile})`;
+                        const safePath = targetFile.replace(/'/g, "\'");
+                        return `<span style="color: #007acc; cursor: pointer; text-decoration: underline;" onclick="loadFile('${safePath}')">${display || target}</span>`;
                     } else {
-                        return display || target;
+                        return `<span style="color: #999;">${display || target}</span>`;
                     }
                 });
                 
