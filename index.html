@@ -104,6 +104,7 @@
         }
         .file-tree li.hidden { display: none; }
         .file-tree ul.collapsed { display: none; }
+        .file-tree ul { display: block; }
         /* 主内容区 */
         .main {
             flex: 1;
@@ -321,7 +322,6 @@
                     li.className = "folder";
                     li.textContent = key;
                     const ul = document.createElement("ul");
-                    ul.classList.add("collapsed"); // 默认收起
                     li.onclick = (e) => {
                         e.stopPropagation();
                         ul.classList.toggle("collapsed");
