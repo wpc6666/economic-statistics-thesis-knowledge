@@ -1,0 +1,929 @@
+{
+  "00_互链映射规范.md": null,
+  "00_学习导航.md": null,
+  "00_总索引与学习规划.md": null,
+  "00_质量检测报告.md": null,
+  "KP融入大牛库写作规范.md": null,
+  "README.md": null,
+  "assets": {},
+  "原文件": {
+    "HKUSTDial Supervisor-Skills main handbook": {
+      "01_Preliminary": {
+        "1.1_如何评价一篇论文的质量.md": null
+      },
+      "02_Idea_Generation": {
+        "2.1_Idea的生命周期与能力匹配.md": null,
+        "2.2_想Idea的思路_更高更快更强.md": null,
+        "2.3_进阶_如何做颠覆式创新.md": null
+      },
+      "03_Paper_Writing": {
+        "3.1_完成一篇科研论文你需要做几件事情.md": null,
+        "3.2_Introduction写作的思考模型.md": null,
+        "3.3_技术类Full_Paper思考模板.md": null,
+        "3.4_Benchmark与Evaluation类论文思考模板.md": null,
+        "3.5_写作细节与Checklist.md": null
+      },
+      "04_Scientific_Plotting": {
+        "4.1_Motivated_Example_Figure.md": null,
+        "4.2_Solution_Overview_Figure.md": null,
+        "4.3_Experimental_Results_Figure.md": null,
+        "4.4_绘图Checklist与工具速查表.md": null
+      },
+      "05_Vibe_Research": {
+        "5.1_Vibe_Research与Vibe_Coding入门.md": null,
+        "5.2_李伯岩实战经验分享与会议纪要.md": null,
+        "assets": {
+          "5.1_vibe_research": {},
+          "5.2_meeting_notes": {}
+        }
+      },
+      "06_Case_Studies": {
+        "6.1_ICML_2025_Alpha-SQL写作剖析.md": null,
+        "6.2_ICLR_2025_AFlow写作剖析.md": null,
+        "6.3_VLDB_2026_LEAD写作剖析.md": null
+      }
+    },
+    "README.md": null,
+    "多元统计分析": {
+      "何晓群_多元统计分析_全书.md": null
+    },
+    "时间序列分析": {
+      "王燕_时间序列分析基于R_全书.md": null
+    },
+    "统计学原理": {
+      "韩兆洲_统计学原理第7版_全书.md": null
+    },
+    "综合评价": {
+      "陈正伟_综合评价技术及应用_全书.md": null
+    },
+    "补充资料": {
+      "贝塞尔修正": {
+        "贝塞尔修正_小白详解.md": null
+      }
+    },
+    "计量经济学": {
+      "陈强_计量经济学及Stata应用_全书.md": null
+    }
+  },
+  "教材笔记": {
+    "01_综合评价": {
+      "00_绪论": {
+        "00_章节总结.md": null,
+        "01_绪论_评价与综合评价.md": null,
+        "知识点": {
+          "KP01_评价与统计评价.md": null,
+          "KP02_评价标准.md": null,
+          "KP03_单指标评价及其局限.md": null,
+          "KP04_综合评价的定义与特点.md": null,
+          "KP05_综合评价的关键技术与作用.md": null
+        }
+      },
+      "01_综合评价的一般问题": {
+        "00_章节总结.md": null,
+        "01_第一节_统计综合评价问题的提出.md": null,
+        "02_第二节_综合评价的一般步骤.md": null,
+        "03_第三节_综合评价方法的数学思想.md": null,
+        "知识点": {
+          "KP01_单指标评价及其局限.md": null,
+          "KP02_多指标评价与整体性退步.md": null,
+          "KP03_综合评价的优势与作用.md": null,
+          "KP04_指标体系三层次结构.md": null,
+          "KP05_指标选择八项原则.md": null,
+          "KP06_同质性转换与无量纲化.md": null,
+          "KP07_汇总综合方法.md": null,
+          "KP08_汇总指标修正方法.md": null,
+          "KP09_乘积修正因子.md": null,
+          "KP10_代数和修正因子.md": null,
+          "KP11_权数概念与敏感性.md": null,
+          "KP12_综合指标汇总合成与评价值含义.md": null,
+          "KP13_综合评价分析五项内容.md": null,
+          "KP14_消除量纲即定量化.md": null,
+          "KP15_权数确定即因素分析.md": null,
+          "KP16_综合评价即两次空间投影.md": null
+        }
+      },
+      "02_指标体系建立": {
+        "00_章节总结.md": null,
+        "01_第一节_综合评价指标的概念.md": null,
+        "02_第二节_指标的选择方法.md": null,
+        "知识点": {
+          "KP01_统计指标.md": null,
+          "KP02_指标体系.md": null,
+          "KP03_评价指标与正逆中性指标.md": null,
+          "KP04_评价指标体系及其特征.md": null,
+          "KP05_评价指标体系选择思路与原则.md": null,
+          "KP06_定性选择法.md": null,
+          "KP07_定量选择法概述.md": null,
+          "KP08_系统聚类分析法.md": null,
+          "KP09_极小广义方差法.md": null,
+          "KP10_极大不相关法.md": null,
+          "KP11_主成分与因子分析法选指标.md": null
+        }
+      },
+      "03_指标无量纲化": {
+        "00_章节总结.md": null,
+        "01_第一节_定性指标数量化.md": null,
+        "02_第二节_逆向指标适度指标正向化.md": null,
+        "03_第三节_定量指标的无量纲化.md": null,
+        "知识点": {
+          "KP01_定性指标及其类型.md": null,
+          "KP02_次序指标定量化.md": null,
+          "KP03_等级指标定量化.md": null,
+          "KP04_主观指标定量化.md": null,
+          "KP05_指标方向分类与同向化问题.md": null,
+          "KP06_逆向指标正向化.md": null,
+          "KP07_适度指标正向化.md": null,
+          "KP08_直线型无量纲化与阈值比较法.md": null,
+          "KP09_中心化_均值化.md": null,
+          "KP10_规格化_极差正规化.md": null,
+          "KP11_标准化_ZScore.md": null,
+          "KP12_比重法.md": null,
+          "KP13_折线型无量纲化.md": null,
+          "KP14_曲线型无量纲化.md": null,
+          "KP15_无量纲化方法选择.md": null
+        }
+      },
+      "04_赋权方法": {
+        "00_章节总结.md": null,
+        "01_第一节_主观赋权法.md": null,
+        "02_第二节_客观赋权法.md": null,
+        "03_第三节_赋权方法的选择.md": null,
+        "知识点": {
+          "KP01_赋权的概念与分类.md": null,
+          "KP02_专家评判法.md": null,
+          "KP03_AHP概述与九标度.md": null,
+          "KP04_AHP判断矩阵与方根法.md": null,
+          "KP05_AHP一致性检验.md": null,
+          "KP06_AHP层次综合与总一致性.md": null,
+          "KP07_变异系数法.md": null,
+          "KP08_相关系数法.md": null,
+          "KP09_熵值法.md": null,
+          "KP10_坎蒂雷赋权法.md": null,
+          "KP11_主观赋权vs客观赋权.md": null,
+          "KP12_赋权原则与方法选择.md": null,
+          "KP13_组合赋权.md": null,
+          "KP14_组合赋权深化.md": null
+        }
+      },
+      "05_数值综合方法": {
+        "00_章节总结.md": null,
+        "01_第一节_线性综合法.md": null,
+        "02_第二节_几何综合法.md": null,
+        "03_第三节_混合综合法.md": null,
+        "04_第四节_模型综合法.md": null,
+        "知识点": {
+          "KP01_线性综合法.md": null,
+          "KP02_几何综合法.md": null,
+          "KP03_混合综合法.md": null,
+          "KP04_模型综合法.md": null,
+          "KP05_投入产出分析法.md": null,
+          "KP06_系统控制论方法.md": null,
+          "KP07_空间距离评价法.md": null,
+          "KP08_马田系统MTS.md": null,
+          "KP09_数据包络分析DEA.md": null,
+          "KP10_随机方程模型综合法.md": null,
+          "KP11_模糊方程模型综合法.md": null,
+          "KP12_组合评价法.md": null
+        }
+      },
+      "06_常规综合评价方法": {
+        "00_章节总结.md": null,
+        "01_第一节_综合评分法.md": null,
+        "02_第二节_综合指数评价法.md": null,
+        "03_第三节_秩和比评价方法.md": null,
+        "04_第四节_功效系数评价法.md": null,
+        "知识点": {
+          "KP01_综合评分法.md": null,
+          "KP02_区间打分法.md": null,
+          "KP03_区间增量法.md": null,
+          "KP04_综合指数评价法.md": null,
+          "KP05_评价标准值xi0的选择.md": null,
+          "KP06_秩和比RSR评价法.md": null,
+          "KP07_等级化处理.md": null,
+          "KP08_功效系数评价法.md": null,
+          "KP09_功效函数.md": null,
+          "KP10_四种常规综合评价方法对比.md": null
+        }
+      },
+      "07_灰色关联度": {
+        "00_章节总结.md": null,
+        "01_第一节_灰色关联度分析方法.md": null,
+        "02_第二节_灰色关联度分析在综合评价中的应用.md": null,
+        "知识点": {
+          "KP01_灰色系统与灰色要素.md": null,
+          "KP02_灰色关联度的定义与几何意义.md": null,
+          "KP03_原始数据无量纲化_初值化与均值化.md": null,
+          "KP04_参考序列与比较序列.md": null,
+          "KP05_两级最大差与最小差.md": null,
+          "KP06_关联系数与分辨系数.md": null,
+          "KP07_关联度与关联序.md": null,
+          "KP08_理想最优参考序列构造.md": null,
+          "KP09_灰色关联综合评价步骤与评价系数.md": null,
+          "KP10_灰色关联度vs模糊综合评价.md": null
+        }
+      },
+      "08_模糊综合评价": {
+        "00_章节总结.md": null,
+        "01_第一节_模糊综合评价法的基本概念.md": null,
+        "02_第二节_模糊综合评价方法的基本步骤.md": null,
+        "03_第三节_舍去评语等级集的模糊综合评价方法.md": null,
+        "知识点": {
+          "KP01_模糊现象与模糊综合评价法.md": null,
+          "KP02_模糊综合评价基本概念体系.md": null,
+          "KP03_隶属函数与隶属度.md": null,
+          "KP04_因素集U与评语等级集V.md": null,
+          "KP05_模糊关系矩阵R与单因素评价.md": null,
+          "KP06_模糊合成算子.md": null,
+          "KP07_最大隶属原则与评价结果处理.md": null,
+          "KP08_置信度模糊评价模型.md": null,
+          "KP09_舍去评语等级集的模糊综合评价.md": null,
+          "KP10_主导产业选择_模糊综合应用.md": null
+        }
+      },
+      "09_主成分分析": {
+        "00_章节总结.md": null,
+        "01_第一节_主成分分析的原理.md": null,
+        "02_第二节_主成分分析综合评价步骤.md": null,
+        "03_第三节_典型应用实例.md": null,
+        "04_第四节_主成分综合评价方法的特点.md": null,
+        "05_第五节_主成分综合评价方法的改进.md": null,
+        "知识点": {
+          "KP01_主成分分析的概念与基本思想.md": null,
+          "KP02_主成分分析的数学原理.md": null,
+          "KP03_主成分分析法的作用.md": null,
+          "KP04_主成分分析综合评价的步骤.md": null,
+          "KP05_数据标准化与相关系数矩阵.md": null,
+          "KP06_特征值方差贡献率与累积贡献率.md": null,
+          "KP07_主成分个数的确定原则.md": null,
+          "KP08_主成分含义的解释.md": null,
+          "KP09_综合评价值F的构造.md": null,
+          "KP10_主成分综合评价方法的特点.md": null,
+          "KP11_均值化无量纲化改进.md": null,
+          "KP12_主成分旋转改进.md": null,
+          "KP13_非线性主成分分析.md": null
+        }
+      },
+      "10_因子分析": {
+        "00_章节总结.md": null,
+        "01_第一节_因子分析的基本原理.md": null,
+        "02_第二节_因子分析综合评价的基本步骤.md": null,
+        "03_第三节_因子分析与主成分分析的异同点.md": null,
+        "04_第四节_因子分析与其他统计分析方法结合应用.md": null,
+        "知识点": {
+          "KP01_因子分析的概念与基本思想.md": null,
+          "KP02_因子模型.md": null,
+          "KP03_因子载荷矩阵A的统计意义.md": null,
+          "KP04_因子载荷矩阵的估计.md": null,
+          "KP05_因子旋转.md": null,
+          "KP06_因子得分Thomson法.md": null,
+          "KP07_因子分析综合评价的步骤.md": null,
+          "KP08_公共因子数的确定.md": null,
+          "KP09_因子分析与主成分分析的异同.md": null,
+          "KP10_因子分析与其他方法结合应用.md": null,
+          "KP11_市场景气指数的因子分析构建.md": null,
+          "KP12_数据预处理与异常值检验.md": null
+        }
+      },
+      "11_案例": {
+        "案例一_企业入驻条件综合评价.md": null,
+        "案例三_社会发展水平综合评价.md": null,
+        "案例二_城市竞争力与房地产价格.md": null
+      },
+      "README.md": null,
+      "assets": {},
+      "小白增补规范.md": null,
+      "笔记规范.md": null
+    },
+    "02_计量经济学": {
+      "00_导论": {
+        "00_章节总结.md": null,
+        "01_什么是计量经济学.md": null,
+        "02_经济数据类型.md": null
+      },
+      "01_Stata入门": {
+        "00_章节总结.md": null,
+        "01_Stata基本操作.md": null
+      },
+      "02_数学回顾": {
+        "00_章节总结.md": null,
+        "01_概率与分布.md": null,
+        "02_统计推断思想.md": null
+      },
+      "03_一元线性回归": {
+        "00_章节总结.md": null,
+        "01_一元回归模型.md": null,
+        "知识点": {
+          "KP01_OLS估计量推导.md": null,
+          "KP02_OLS正交性.md": null,
+          "KP03_拟合优度R2.md": null,
+          "KP04_一元回归Stata解读.md": null
+        }
+      },
+      "04_多元线性回归": {
+        "00_章节总结.md": null,
+        "知识点": {
+          "KP01_多元回归模型.md": null,
+          "KP02_偏回归系数.md": null,
+          "KP03_多元回归Stata.md": null
+        }
+      },
+      "05_大样本OLS": {
+        "00_章节总结.md": null,
+        "知识点": {
+          "KP01_大样本理论.md": null,
+          "KP02_假设检验.md": null
+        }
+      },
+      "06_异方差": {
+        "00_章节总结.md": null,
+        "知识点": {
+          "KP01_异方差检验.md": null,
+          "KP02_异方差处理.md": null,
+          "KP03_稳健标准误.md": null
+        }
+      },
+      "07_自相关": {
+        "00_章节总结.md": null,
+        "知识点": {
+          "KP01_DW检验.md": null,
+          "KP02_自相关处理.md": null,
+          "KP03_NeweyWest_HAC.md": null
+        }
+      },
+      "08_模型设定与数据问题": {
+        "00_章节总结.md": null,
+        "知识点": {
+          "KP01_遗漏变量偏差.md": null,
+          "KP02_多重共线性.md": null,
+          "KP03_虚拟变量.md": null,
+          "KP04_函数形式检验.md": null
+        }
+      },
+      "09_工具变量法": {
+        "00_章节总结.md": null,
+        "知识点": {
+          "KP01_内生性与工具变量.md": null,
+          "KP02_两阶段最小二乘2SLS.md": null,
+          "KP03_弱工具变量.md": null,
+          "KP04_过度识别与Hausman.md": null
+        }
+      },
+      "10_二值选择模型": {
+        "00_章节总结.md": null,
+        "知识点": {
+          "KP01_Logit与Probit.md": null,
+          "KP02_最大似然估计.md": null
+        }
+      },
+      "11_面板数据": {
+        "00_章节总结.md": null,
+        "知识点": {
+          "KP01_固定效应模型.md": null,
+          "KP02_随机效应模型.md": null,
+          "KP03_Hausman检验.md": null
+        }
+      },
+      "12_平稳时间序列": {
+        "00_章节总结.md": null,
+        "知识点": {
+          "KP01_VAR模型.md": null,
+          "KP02_ARMA模型.md": null
+        }
+      },
+      "13_单位根与协整": {
+        "00_章节总结.md": null,
+        "知识点": {
+          "KP01_单位根检验ADF.md": null,
+          "KP02_协整与ECM.md": null
+        }
+      },
+      "14_实证研究指南": {
+        "00_实证研究流程.md": null
+      },
+      "README.md": null,
+      "assets": {},
+      "笔记规范.md": null
+    },
+    "03_时间序列": {
+      "01_时序分析简介": {
+        "00_章节总结.md": null,
+        "01_什么是时间序列.md": null,
+        "02_R语言基础.md": null
+      },
+      "02_平稳时间序列": {
+        "00_章节总结.md": null,
+        "知识点": {
+          "KP01_严平稳与宽平稳.md": null,
+          "KP02_自协方差与ACF.md": null,
+          "KP03_白噪声与纯随机性检验.md": null,
+          "KP04_PACF偏自相关.md": null
+        }
+      },
+      "03_ARMA模型": {
+        "00_章节总结.md": null,
+        "知识点": {
+          "KP01_AR模型.md": null,
+          "KP02_MA模型.md": null,
+          "KP03_ARMA模型.md": null,
+          "KP04_建模六步法.md": null,
+          "KP05_模型预测.md": null
+        }
+      },
+      "04_确定性时序分析": {
+        "00_章节总结.md": null,
+        "知识点": {
+          "KP01_Wold与Cramer分解.md": null,
+          "KP02_趋势拟合与平滑.md": null,
+          "KP03_季节效应分析.md": null
+        }
+      },
+      "05_ARIMA与异方差": {
+        "00_章节总结.md": null,
+        "知识点": {
+          "KP01_ARIMA模型.md": null,
+          "KP02_季节模型.md": null,
+          "KP03_残差自回归.md": null,
+          "KP04_ARCH模型.md": null,
+          "KP05_GARCH模型.md": null
+        }
+      },
+      "06_多元时序与协整": {
+        "00_章节总结.md": null,
+        "知识点": {
+          "KP01_虚假回归.md": null,
+          "KP02_DF与ADF检验.md": null,
+          "KP03_协整与ECM.md": null
+        }
+      },
+      "README.md": null,
+      "assets": {},
+      "笔记规范.md": null
+    },
+    "04_多元统计": {
+      "01_多元正态分布": {
+        "00_章节总结.md": null,
+        "知识点": {
+          "KP01_均值向量与协方差阵.md": null,
+          "KP02_统计距离.md": null,
+          "KP03_多元正态分布.md": null
+        }
+      },
+      "02_均值向量与协方差阵检验": {
+        "00_章节总结.md": null,
+        "知识点": {
+          "KP01_均值向量检验.md": null,
+          "KP02_两总体均值比较.md": null,
+          "KP03_多总体MANOVA.md": null,
+          "KP04_协方差阵检验.md": null
+        }
+      },
+      "03_聚类分析": {
+        "00_章节总结.md": null,
+        "知识点": {
+          "KP01_相似性度量.md": null,
+          "KP02_系统聚类法.md": null,
+          "KP03_K均值聚类.md": null,
+          "KP04_有序样品聚类.md": null
+        }
+      },
+      "04_判别分析": {
+        "00_章节总结.md": null,
+        "知识点": {
+          "KP01_距离判别.md": null,
+          "KP02_Bayes判别.md": null,
+          "KP03_Fisher判别.md": null,
+          "KP04_判别与聚类对比.md": null
+        }
+      },
+      "05_主成分分析": {
+        "00_章节总结.md": null,
+        "知识点": {
+          "KP01_PCA基本原理.md": null,
+          "KP02_PCA性质与选择.md": null,
+          "KP03_PCA与因子分析对比.md": null
+        }
+      },
+      "06_因子分析": {
+        "00_章节总结.md": null,
+        "知识点": {
+          "KP01_因子模型.md": null,
+          "KP02_因子旋转.md": null,
+          "KP03_因子得分.md": null,
+          "KP04_PCA与FA对比.md": null
+        }
+      },
+      "07_对应分析": {
+        "00_章节总结.md": null,
+        "知识点": {
+          "KP01_对应分析.md": null
+        }
+      },
+      "08_典型相关分析": {
+        "00_章节总结.md": null,
+        "知识点": {
+          "KP01_典型相关分析.md": null
+        }
+      },
+      "09_定性数据建模": {
+        "00_章节总结.md": null,
+        "知识点": {
+          "KP01_对数线性模型.md": null,
+          "KP02_Logistic回归.md": null
+        }
+      },
+      "10_多变量图表示法": {
+        "00_章节总结.md": null,
+        "知识点": {
+          "KP01_多变量图表示.md": null
+        }
+      },
+      "11_多维标度法": {
+        "00_章节总结.md": null,
+        "知识点": {
+          "KP01_多维标度MDS.md": null
+        }
+      },
+      "README.md": null,
+      "assets": {},
+      "笔记规范.md": null
+    },
+    "05_统计学原理": {
+      "01_绪论": {
+        "00_章节总结.md": null,
+        "01_第一节_统计的含义作用和任务.md": null,
+        "02_第二节_统计学的研究对象方法和阶段.md": null,
+        "03_第三节_统计学的若干基本概念.md": null,
+        "知识点": {
+          "KP01_统计总体与总体单位.md": null,
+          "KP02_标志与指标.md": null,
+          "KP03_变异与变量.md": null,
+          "KP04_指标体系.md": null,
+          "KP05_统计研究方法与大数定理.md": null,
+          "KP06_统计研究环节.md": null
+        }
+      },
+      "02_统计数据采集": {
+        "00_章节总结.md": null,
+        "01_第一节_统计调查的概述与种类.md": null,
+        "02_第二节_统计调查方案的设计.md": null,
+        "03_第三节_统计调查的组织方式.md": null,
+        "04_第四节_统计数据采集的方法.md": null,
+        "05_第五节_调查问卷设计.md": null,
+        "知识点": {
+          "KP01_统计调查的种类.md": null,
+          "KP02_调查方案六要素.md": null,
+          "KP03_五种调查组织方式对比.md": null,
+          "KP04_数据采集方法.md": null,
+          "KP05_问卷设计原则.md": null,
+          "KP06_问卷结构与问题措辞.md": null
+        }
+      },
+      "03_统计数据整理": {
+        "00_章节总结.md": null,
+        "01_第一节_统计整理的意义和程序.md": null,
+        "02_第二节_统计数据审核.md": null,
+        "03_第三节_统计数据分组.md": null,
+        "04_第四节_统计数据汇总.md": null,
+        "05_第五节_分布数列.md": null,
+        "06_第六节_统计数据显示.md": null,
+        "07_第七节_Excel频数分布表和直方图.md": null,
+        "知识点": {
+          "KP01_数据审核.md": null,
+          "KP02_统计分组.md": null,
+          "KP03_组限与组中值.md": null,
+          "KP04_斯特吉斯经验公式.md": null,
+          "KP05_频数分布数列.md": null,
+          "KP06_累计次数分布.md": null,
+          "KP07_统计表结构.md": null,
+          "KP08_统计图.md": null
+        }
+      },
+      "04_总量与相对指标": {
+        "00_章节总结.md": null,
+        "01_第一节_总量指标.md": null,
+        "02_第二节_相对指标.md": null,
+        "知识点": {
+          "KP01_总量指标的概念与分类.md": null,
+          "KP02_时期指标与时点指标.md": null,
+          "KP03_实物价值劳动量指标.md": null,
+          "KP04_计划完成相对数.md": null,
+          "KP05_结构相对数与比例相对数.md": null,
+          "KP06_比较相对数与动态相对数.md": null,
+          "KP07_强度相对数.md": null,
+          "KP08_六种相对数对比.md": null
+        }
+      },
+      "05_平均与变异指标": {
+        "00_章节总结.md": null,
+        "01_第一节_平均指标.md": null,
+        "02_第二节_变异指标.md": null,
+        "03_第三节_Excel描述统计.md": null,
+        "知识点": {
+          "KP01_算术平均数简单与加权.md": null,
+          "KP02_调和平均数.md": null,
+          "KP03_几何平均数.md": null,
+          "KP04_众数.md": null,
+          "KP05_中位数.md": null,
+          "KP06_均值中位数众数关系.md": null,
+          "KP07_极差与平均差.md": null,
+          "KP08_方差与标准差.md": null,
+          "KP09_离散系数.md": null,
+          "KP10_偏态与峰度.md": null,
+          "KP11_贝塞尔修正.md": null
+        }
+      },
+      "06_抽样与参数估计": {
+        "00_章节总结.md": null,
+        "01_第一节_抽样调查的概念和作用.md": null,
+        "02_第二节_抽样的基本概念.md": null,
+        "03_第三节_抽样分布.md": null,
+        "04_第四节_参数估计.md": null,
+        "05_第五节_抽样调查的组织形式.md": null,
+        "06_第六节_Excel抽样调查.md": null,
+        "知识点": {
+          "KP01_抽样调查与随机原则.md": null,
+          "KP02_总体与样本.md": null,
+          "KP03_参数与统计量.md": null,
+          "KP04_重复抽样与不重复抽样.md": null,
+          "KP05_抽样分布.md": null,
+          "KP06_样本均值的抽样分布与标准误.md": null,
+          "KP07_中心极限定理.md": null,
+          "KP08_样本成数的抽样分布.md": null,
+          "KP09_点估计与优良标准.md": null,
+          "KP10_区间估计与置信区间.md": null,
+          "KP11_总体均值区间估计.md": null,
+          "KP12_总体成数区间估计.md": null,
+          "KP13_样本量的确定.md": null,
+          "KP14_抽样组织形式.md": null
+        }
+      },
+      "07_假设检验": {
+        "00_章节总结.md": null,
+        "01_第一节_假设检验概述.md": null,
+        "02_第二节_假设检验的基本思路与方法.md": null,
+        "03_第三节_总体参数检验.md": null,
+        "04_第四节_Excel假设检验.md": null,
+        "知识点": {
+          "KP01_假设检验的逻辑.md": null,
+          "KP02_原假设与备择假设.md": null,
+          "KP03_两类错误.md": null,
+          "KP04_显著性水平.md": null,
+          "KP05_单尾检验与双尾检验.md": null,
+          "KP06_P值.md": null,
+          "KP07_总体均值Z检验.md": null,
+          "KP08_总体均值t检验.md": null,
+          "KP09_总体比例检验.md": null,
+          "KP10_检验与置信区间的关系.md": null
+        }
+      },
+      "08_相关与回归": {
+        "00_章节总结.md": null,
+        "01_第一节_相关与回归基本概念.md": null,
+        "02_第二节_单相关与一元线性回归.md": null,
+        "03_第三节_复相关与多元线性回归.md": null,
+        "04_第四节_曲线相关与曲线回归.md": null,
+        "05_第五节_应用注意问题.md": null,
+        "06_第六节_Excel相关回归.md": null,
+        "知识点": {
+          "KP01_函数关系vs相关关系.md": null,
+          "KP02_相关方向与相关形式.md": null,
+          "KP03_相关系数r的直觉.md": null,
+          "KP04_相关系数手算.md": null,
+          "KP05_相关系数显著性检验.md": null,
+          "KP06_相关分析vs回归分析.md": null,
+          "KP07_一元线性回归模型.md": null,
+          "KP08_最小二乘法OLS.md": null,
+          "KP09_拟合优度R2.md": null,
+          "KP10_多元线性回归与偏回归系数.md": null,
+          "KP11_曲线回归与线性化.md": null,
+          "KP12_相关不等于因果与应用注意.md": null
+        }
+      },
+      "09_时间序列分析": {
+        "00_章节总结.md": null,
+        "01_第一节_时间数列概述.md": null,
+        "02_第二节_时间数列的水平分析指标.md": null,
+        "03_第三节_时间数列的速度分析指标.md": null,
+        "04_第四节_时间数列波动的基本理论.md": null,
+        "05_第五节_Excel时间数列波动的测定.md": null,
+        "知识点": {
+          "KP01_时间数列两个基本要素.md": null,
+          "KP02_时期数列与时点数列.md": null,
+          "KP03_时间数列编制原则.md": null,
+          "KP04_发展水平与序时平均数.md": null,
+          "KP05_时期数列序时平均数.md": null,
+          "KP06_时点数列序时平均数_连续登记.md": null,
+          "KP07_首末折半法.md": null,
+          "KP08_间隔不等时点序列序时平均数.md": null,
+          "KP09_相对数与平均数时间数列序时平均数.md": null,
+          "KP10_增长量与平均增长量.md": null,
+          "KP11_发展速度与增长速度.md": null,
+          "KP12_平均发展速度_几何平均法.md": null,
+          "KP13_平均发展速度_方程法.md": null,
+          "KP14_增长百分之一绝对值.md": null,
+          "KP15_长期趋势测定.md": null,
+          "KP16_季节波动测定.md": null,
+          "KP17_循环与不规则波动.md": null
+        }
+      },
+      "10_统计指数": {
+        "00_章节总结.md": null,
+        "01_第一节_指数的概念分类和作用.md": null,
+        "02_第二节_综合指数.md": null,
+        "03_第三节_平均指数.md": null,
+        "04_第四节_指数体系和因素分析.md": null,
+        "05_第五节_指数数列.md": null,
+        "06_第六节_常见的统计指数简介.md": null,
+        "知识点": {
+          "KP01_指数定义与作用.md": null,
+          "KP02_个体指数vs总指数.md": null,
+          "KP03_数量指标指数vs质量指标指数.md": null,
+          "KP04_同度量因素.md": null,
+          "KP05_拉氏综合指数.md": null,
+          "KP06_派氏综合指数.md": null,
+          "KP07_拉氏vs派氏对比.md": null,
+          "KP08_加权算术平均指数.md": null,
+          "KP09_加权调和平均指数.md": null,
+          "KP10_指数体系与因素分析.md": null,
+          "KP11_常见统计指数_CPI等.md": null
+        }
+      },
+      "11_统计分析": {
+        "00_章节总结.md": null,
+        "01_第一节_综合评价法简述.md": null,
+        "02_第二节_常用经济社会统计指标.md": null,
+        "03_第三节_统计分析报告概述.md": null,
+        "04_第四节_统计工作报告.md": null,
+        "05_第五节_统计研究报告.md": null,
+        "06_第六节_口头陈述报告.md": null,
+        "知识点": {
+          "KP01_综合评价法总览.md": null,
+          "KP02_GDP与GNP.md": null,
+          "KP03_三次产业划分.md": null,
+          "KP04_恩格尔系数.md": null,
+          "KP05_基尼系数与洛伦兹曲线.md": null,
+          "KP06_通货膨胀率与CPI.md": null,
+          "KP07_失业率.md": null,
+          "KP08_统计分析报告的特点与结构.md": null,
+          "KP09_统计分析报告常见毛病.md": null
+        }
+      },
+      "README.md": null,
+      "_写作规范.md": null
+    },
+    "_tools": {}
+  },
+  "经济统计学论文从0基础到精通": {
+    "00_学前准备": {
+      "01_经济统计学到底是学什么的.md": null,
+      "02_毕业论文到底长什么样.md": null,
+      "03_数学要补到什么程度.md": null,
+      "04_工具准备.md": null,
+      "05_学习路线图.md": null,
+      "README.md": null
+    },
+    "01_基础数学": {
+      "01_什么是函数.md": null,
+      "02_什么是导数和斜率.md": null,
+      "03_求和号Σ是什么.md": null,
+      "04_什么是矩阵和向量.md": null,
+      "05_概率是什么.md": null,
+      "06_期望和方差.md": null,
+      "07_正态分布.md": null,
+      "08_统计学常用符号速查.md": null,
+      "README.md": null
+    },
+    "02_描述统计": {
+      "00_章节总结.md": null,
+      "01_数据长什么样.md": null,
+      "02_集中趋势.md": null,
+      "03_离散程度.md": null,
+      "04_数据分布与可视化.md": null,
+      "05_数据清洗.md": null,
+      "06_总量与相对指标.md": null,
+      "README.md": null
+    },
+    "03_相关与回归": {
+      "00_章节总结.md": null,
+      "01_相关系数.md": null,
+      "02_什么是回归.md": null,
+      "03_OLS斜率从零推导.md": null,
+      "04_OLS截距和拟合值.md": null,
+      "05_多元线性回归.md": null,
+      "06_拟合优度R².md": null,
+      "07_假设检验直觉.md": null,
+      "08_t检验和F检验.md": null,
+      "09_虚拟变量.md": null,
+      "README.md": null
+    },
+    "04_回归三大问题": {
+      "00_章节总结.md": null,
+      "01_经典假设五条.md": null,
+      "02_异方差.md": null,
+      "03_自相关.md": null,
+      "04_多重共线性.md": null,
+      "05_三大问题诊断流程.md": null,
+      "README.md": null
+    },
+    "05_内生性与面板": {
+      "00_章节总结.md": null,
+      "01_什么是内生性.md": null,
+      "02_遗漏变量偏误.md": null,
+      "03_工具变量IV.md": null,
+      "04_两阶段最小二乘2SLS.md": null,
+      "05_面板数据是什么.md": null,
+      "06_固定效应FE.md": null,
+      "07_随机效应RE与Hausman检验.md": null,
+      "README.md": null
+    },
+    "06_受限因变量": {
+      "00_章节总结.md": null,
+      "01_什么时候用Logit.md": null,
+      "02_Logit模型.md": null,
+      "03_Probit与Logit对比.md": null,
+      "README.md": null
+    },
+    "07_综合评价方法": {
+      "00_章节总结.md": null,
+      "01_综合评价是什么.md": null,
+      "02_指标无量纲化.md": null,
+      "03_熵值法.md": null,
+      "04_AHP层次分析法.md": null,
+      "05_TOPSIS法.md": null,
+      "06_熵值法-TOPSIS组合.md": null,
+      "07_模糊综合评价.md": null,
+      "08_灰色关联分析.md": null,
+      "09_Excel熵值法计算.md": null,
+      "10_距离方法选择指南.md": null,
+      "README.md": null
+    },
+    "08_降维与分类": {
+      "00_章节总结.md": null,
+      "01_为什么要降维.md": null,
+      "02_主成分分析PCA.md": null,
+      "03_因子分析.md": null,
+      "04_聚类分析.md": null,
+      "05_判别分析.md": null,
+      "README.md": null
+    },
+    "09_时间序列": {
+      "00_章节总结.md": null,
+      "01_时间序列是什么.md": null,
+      "02_平稳性.md": null,
+      "03_自相关与ACF.md": null,
+      "04_ARMA模型.md": null,
+      "05_ARIMA建模流程.md": null,
+      "06_ADF单位根检验.md": null,
+      "07_协整与误差修正ECM.md": null,
+      "08_GARCH模型.md": null,
+      "09_基期报告期与指数方法选择.md": null,
+      "README.md": null
+    },
+    "10_论文写作全流程": {
+      "00_章节总结.md": null,
+      "01_怎么选题.md": null,
+      "02_文献综述怎么做.md": null,
+      "03_数据从哪来.md": null,
+      "04_实证部分怎么写.md": null,
+      "05_结果怎么读怎么写.md": null,
+      "06_稳健性检验.md": null,
+      "07_结论与摘要.md": null,
+      "08_技术路线图怎么做.md": null,
+      "README.md": null
+    },
+    "11_方法选择决策": {
+      "00_章节总结.md": null,
+      "01_方法选择决策树.md": null,
+      "02_15种论文方法组合套路.md": null,
+      "03_常见方法误用.md": null,
+      "04_Stata_R实操速查.md": null,
+      "05_SPSS操作指引.md": null,
+      "README.md": null
+    },
+    "12_毕业论文实战": {
+      "00_章节总结.md": null,
+      "01_重庆财经学院格式要求.md": null,
+      "02_三线表怎么做.md": null,
+      "03_参考文献GB-T7714.md": null,
+      "05_引言怎么写.md": null,
+      "06_实证部分错误vs正确.md": null,
+      "07_答辩50问.md": null,
+      "08_答辩PPT怎么做.md": null,
+      "09_查重与降重.md": null,
+      "10_论文写作时间线.md": null,
+      "11_开题报告怎么写.md": null,
+      "12_完整范文结构.md": null,
+      "13_完整案例走一遍.md": null,
+      "14_填空式论文模板.md": null,
+      "15_完整范文.md": null,
+      "16_答辩流程与礼仪.md": null,
+      "17_提交Checklist.md": null,
+      "README.md": null
+    },
+    "README.md": null,
+    "assets": {
+      "方法关系系谱图.md": null,
+      "现有文件审计报告.md": null
+    }
+  }
+}
