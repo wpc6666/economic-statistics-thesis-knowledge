@@ -133,62 +133,64 @@
             try {
                 const res = await fetch('file-tree.json');
                 if (!res.ok) throw new Error('HTTP ' + res.status);
-                allFiles = await res.json();
-                renderFileTree(allFiles);
+                const treeData = await res.json();
+                
+                // 收集所有文件路径，放到allFiles数组里（供wikilink使用）
+                allFiles = [];
+                collectFiles(treeData, '');
+                
+                // 渲染文件树
+                const container = document.getElementById('fileTree');
+                container.innerHTML = buildTreeHtml(treeData, '');
+                
+                // 绑定点击事件
+                container.querySelectorAll('li.folder').forEach(li => {
+                    li.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        const ul = li.nextElementSibling;
+                        if (ul) ul.classList.toggle('collapsed');
+                    });
+                });
+                container.querySelectorAll('li.file').forEach(li => {
+                    li.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        document.querySelectorAll('li.file').forEach(l => l.classList.remove('active'));
+                        li.classList.add('active');
+                        loadFile(li.dataset.path);
+                    });
+                });
             } catch (err) {
                 document.getElementById('fileTree').innerHTML = '<p style="color: red; padding: 10px;">加载文件树失败: ' + err.message + '</p>';
             }
         }
         
-        function renderFileTree(files) {
-            // 构建树形结构
-            const tree = {};
-            files.forEach(path => {
-                const parts = path.split('/');
-                let current = tree;
-                parts.forEach((part, i) => {
-                    if (i === parts.length - 1) {
-                        current[part] = path;
-                    } else {
-                        if (!current[part]) current[part] = {};
-                        current = current[part];
-                    }
-                });
-            });
-            
-            // 渲染
-            const container = document.getElementById('fileTree');
-            container.innerHTML = buildTreeHtml(tree);
-            
-            // 绑定点击事件
-            container.querySelectorAll('li.folder').forEach(li => {
-                li.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    const ul = li.nextElementSibling;
-                    if (ul) ul.classList.toggle('collapsed');
-                });
-            });
-            container.querySelectorAll('li.file').forEach(li => {
-                li.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    document.querySelectorAll('li.file').forEach(l => l.classList.remove('active'));
-                    li.classList.add('active');
-                    loadFile(li.dataset.path);
-                });
+        // 递归收集所有文件路径
+        function collectFiles(node, path) {
+            Object.keys(node).forEach(key => {
+                const value = node[key];
+                const currentPath = path ? path + '/' + key : key;
+                if (value === null || typeof value === 'string') {
+                    // 文件
+                    allFiles.push(currentPath);
+                } else {
+                    // 文件夹
+                    collectFiles(value, currentPath);
+                }
             });
         }
         
+        // 递归构建树的HTML
         function buildTreeHtml(node, path = '') {
             let html = '<ul>';
             Object.keys(node).forEach(key => {
                 const value = node[key];
                 const currentPath = path ? path + '/' + key : key;
                 
-                if (typeof value === 'string') {
+                if (value === null) {
                     // 文件
                     const nameNoExt = key.replace(/\.md$/, '');
-                    html += `<li class="file" data-path="${value}">${nameNoExt}</li>`;
-                } else {
+                    html += `<li class="file" data-path="${currentPath}">${nameNoExt}</li>`;
+                } else if (typeof value === 'object') {
                     // 文件夹
                     html += `<li class="folder">${key}</li>`;
                     html += buildTreeHtml(value, currentPath);
