@@ -212,13 +212,29 @@
                     }
                 });
                 
-                // 渲染markdown
-                let html = marked.parse(processedMd);
+                // 先提取公式，避免被marked转义
+                const formulas = [];
+                let mdWithoutFormulas = processedMd.replace(/\$\$([\s\S]*?)\$\$/g, (match, f) => {
+                    formulas.push({type: 'block', content: f});
+                    return `@@FORMULA_${formulas.length - 1}@@`;
+                });
+                mdWithoutFormulas = mdWithoutFormulas.replace(/\$([^$\n]+)\$/g, (match, f) => {
+                    formulas.push({type: 'inline', content: f});
+                    return `@@FORMULA_${formulas.length - 1}@@`;
+                });
                 
-                // 还原marked转义的字符
-                html = html.replace(/\\\\/g, '\\');  // 还原反斜杠
-                html = html.replace(/\\\$/g, '\$');   // 还原$符号
-                document.getElementById('content').innerHTML = html;
+                // 渲染markdown
+                let html = marked.parse(mdWithoutFormulas);
+                
+                // 把公式放回去
+                formulas.forEach((f, i) => {
+                    if (f.type === 'block') {
+                        html = html.replace(`<p>@@FORMULA_${i}@@</p>`, `$$${f.content}$$`);
+                    } else {
+                        html = html.replace(`@@FORMULA_${i}@@`, `$${f.content}$$`);
+                    }
+                });
+                
                 
                 
                 // 渲染SVG - 把<img>标签转成内联SVG
