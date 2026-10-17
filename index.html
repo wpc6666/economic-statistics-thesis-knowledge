@@ -146,6 +146,11 @@
         }
 
         async function loadFile(path) {
+            // 手机端自动收起侧边栏
+            if (window.innerWidth <= 768) {
+                document.getElementById('sidebar').classList.remove('open');
+            }
+            
             document.getElementById('breadcrumb').textContent = '首页 / ' + path;
             
             try {
