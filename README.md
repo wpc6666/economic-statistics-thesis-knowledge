@@ -6,6 +6,13 @@
 
 ---
 
+### 🔗 相关链接
+
+- 👉 **在线阅读**：https://wpc6666.github.io/economic-statistics-thesis-knowledge/
+- 📚 **HKUST科研写作指南**：https://github.com/HKUSTDial/Supervisor-Skills（原库实时更新）
+
+---
+
 ## 🎯 这是什么？
 
 这是一个**完全自包含**的经济统计学论文写作知识库，包含：
