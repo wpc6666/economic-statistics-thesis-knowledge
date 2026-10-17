@@ -212,44 +212,30 @@
                     }
                 });
                 
+                // 先提取mermaid代码块，避免被marked转义
+                const mermaidBlocks = [];
+                let mdWithoutMermaid = processedMd.replace(/```mermaid\n([\s\S]*?)```/g, (match, code) => {
+                    mermaidBlocks.push(code);
+                    return `@@MERMAID_${mermaidBlocks.length - 1}@@`;
+                });
+                
                 // 渲染markdown - 多种方法自动切换
                 let html = '';
                 
                 try {
                     // 方法1：标准marked.parse()
-                    html = marked.parse(processedMd);
-                    // 检查有没有@@FORMULA残留
-                    if (html.includes('@@FORMULA_')) {
-                        throw new Error('公式提取失败');
-                    }
+                    html = marked.parse(mdWithoutMermaid);
                 } catch(e1) {
-                    try {
-                        // 方法2：先提取公式再渲染
-                        const formulas = [];
-                        let processed = processedMd.replace(/\$\$([\s\S]*?)\$\$/g, (match, f) => {
-                            formulas.push({type: 'block', content: f});
-                            return `@@FORMULA_${formulas.length - 1}@@`;
-                        });
-                        processed = processed.replace(/\$([^$\n]+)\$/g, (match, f) => {
-                            formulas.push({type: 'inline', content: f});
-                            return `@@FORMULA_${formulas.length - 1}@@`;
-                        });
-                        
-                        html = marked.parse(processed);
-                        
-                        formulas.forEach((f, i) => {
-                            if (f.type === 'block') {
-                                html = html.replace(`<p>@@FORMULA_${i}@@</p>`, `$$${f.content}$$`);
-                            } else {
-                                html = html.replace(`@@FORMULA_${i}@@`, `$${f.content}$$`);
-                            }
-                        });
-                    } catch(e2) {
-                        // 方法3：还原转义字符
-                        html = marked.parse(processedMd);
-                        html = html.replace(/\\/g, '\\');
-                    }
+                    // 方法2：还原转义字符
+                    html = marked.parse(mdWithoutMermaid);
+                    html = html.replace(/\\/g, '\\');
                 }
+                
+                // 把mermaid代码放回去
+                mermaidBlocks.forEach((code, i) => {
+                    html = html.replace(`<p>@@MERMAID_${i}@@</p>`, `<pre><code class="language-mermaid">${code}</code></pre>`);
+                    html = html.replace(`@@MERMAID_${i}@@`, `<pre><code class="language-mermaid">${code}</code></pre>`);
+                });
                 
                 document.getElementById('content').innerHTML = html;
                 
