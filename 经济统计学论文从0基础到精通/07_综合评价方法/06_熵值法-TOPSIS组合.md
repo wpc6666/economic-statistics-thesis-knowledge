@@ -1,5 +1,8 @@
 # 06 熵值法-TOPSIS 组合：本科论文最常用套路
 
+<div style="text-align:right;margin:10px 0;"><a href="../../exam.html" target="_blank" style="display:inline-block;padding:6px 16px;background:#2563eb;color:#fff;border-radius:6px;text-decoration:none;font-size:14px;">📝 开始做题</a></div>
+
+
 ## 一、为什么要学这个？
 
 **这是你论文里最可能直接用的一章。**

@@ -1,5 +1,8 @@
 # 04 AHP 层次分析法：专家两两比较，给指标赋权重
 
+<div style="text-align:right;margin:10px 0;"><a href="../../exam.html" target="_blank" style="display:inline-block;padding:6px 16px;background:#2563eb;color:#fff;border-radius:6px;text-decoration:none;font-size:14px;">📝 开始做题</a></div>
+
+
 ## 一、为什么要学这个？
 
 **场景**：你论文要评价"城市宜居性"，选了 3 个指标：空气质量、交通便利、生活成本。

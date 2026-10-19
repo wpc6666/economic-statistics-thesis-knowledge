@@ -1,5 +1,8 @@
 # KP02 主成分性质与个数选择
 
+<div style="text-align:right;margin:10px 0;"><a href="../../../../exam.html" target="_blank" style="display:inline-block;padding:6px 16px;background:#2563eb;color:#fff;border-radius:6px;text-decoration:none;font-size:14px;">📝 开始做题</a></div>
+
+
 ## 1. 是什么
 
 **定义**：主成分的性质描述了各主成分之间的统计关系及其与原始变量的联系；主成分个数选择则是决定保留多少个主成分才能在"降维"与"保留信息"之间取得平衡。

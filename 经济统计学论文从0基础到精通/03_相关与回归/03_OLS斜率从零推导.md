@@ -1,5 +1,8 @@
 # 03 OLS 斜率从零推导（本章最重要的一篇）
 
+<div style="text-align:right;margin:10px 0;"><a href="../../exam.html" target="_blank" style="display:inline-block;padding:6px 16px;background:#2563eb;color:#fff;border-radius:6px;text-decoration:none;font-size:14px;">📝 开始做题</a></div>
+
+
 > 这一篇是整本书的核心。
 > 你会从"最小化残差平方和"这个目标出发，**一步一步**推出来斜率 b̂ 的公式。
 > 不跳步，每一步都说"这一步是因为……"。

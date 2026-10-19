@@ -1,5 +1,8 @@
 # KP02 · Logistic 回归
 
+<div style="text-align:right;margin:10px 0;"><a href="../../../../exam.html" target="_blank" style="display:inline-block;padding:6px 16px;background:#2563eb;color:#fff;border-radius:6px;text-decoration:none;font-size:14px;">📝 开始做题</a></div>
+
+
 ## 1. 是什么
 
 **定义**：当因变量 $y$ 只取 0/1 两个值时，对发生概率 $p=P(y=1)$ 做 Logit 变换 $\ln\frac{p}{1-p}$，再用自变量的线性组合去拟合该变换值，从而得到事件发生概率与自变量关系的回归模型。

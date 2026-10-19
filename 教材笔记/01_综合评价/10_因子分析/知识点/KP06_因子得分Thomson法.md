@@ -1,5 +1,8 @@
 # KP06 · 因子得分（Thomson 回归法）
 
+<div style="text-align:right;margin:10px 0;"><a href="../../../../exam.html" target="_blank" style="display:inline-block;padding:6px 16px;background:#2563eb;color:#fff;border-radius:6px;text-decoration:none;font-size:14px;">📝 开始做题</a></div>
+
+
 ## 一、是什么
 
 [[KP03_PCA与因子分析对比|因子分析]]前面把指标表示为公因子的线性组合（$x_i=\sum_j a_{ij}F_j$）。实际应用中常需反过来——把公因子表示为原始指标的线性组合，以计算每个样本的公因子得分：

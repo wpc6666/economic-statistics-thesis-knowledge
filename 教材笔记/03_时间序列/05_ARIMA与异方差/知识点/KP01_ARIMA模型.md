@@ -1,5 +1,8 @@
 # KP01 ARIMA模型
 
+<div style="text-align:right;margin:10px 0;"><a href="../../../../exam.html" target="_blank" style="display:inline-block;padding:6px 16px;background:#2563eb;color:#fff;border-radius:6px;text-decoration:none;font-size:14px;">📝 开始做题</a></div>
+
+
 ## 1. 是什么
 
 **ARIMA(p,d,q)**（自回归积分移动平均模型）：将非平稳序列经过d阶差分转化为平稳序列后，对平稳序列拟合[[KP03_ARMA模型|ARMA]](p,q)模型。

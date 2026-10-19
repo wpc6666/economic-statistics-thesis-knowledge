@@ -1,5 +1,8 @@
 # KP01 AR模型
 
+<div style="text-align:right;margin:10px 0;"><a href="../../../../exam.html" target="_blank" style="display:inline-block;padding:6px 16px;background:#2563eb;color:#fff;border-radius:6px;text-decoration:none;font-size:14px;">📝 开始做题</a></div>
+
+
 ## 1. 是什么
 
 **定义：** $p$阶自回归模型AR(p)用序列自身的历史值来线性回归当前值：

@@ -1,5 +1,8 @@
 # KP03 [[02_主成分分析PCA|主成分分析]] vs 因子分析
 
+<div style="text-align:right;margin:10px 0;"><a href="../../../../exam.html" target="_blank" style="display:inline-block;padding:6px 16px;background:#2563eb;color:#fff;border-radius:6px;text-decoration:none;font-size:14px;">📝 开始做题</a></div>
+
+
 ## 1. 是什么
 
 **定义**：主成分分析（PCA）与因子分析（FA）是两种最常用的降维方法，但它们的建模思路有本质区别。PCA 是"变量的线性组合"，FA 是"变量由隐藏因子生成"。

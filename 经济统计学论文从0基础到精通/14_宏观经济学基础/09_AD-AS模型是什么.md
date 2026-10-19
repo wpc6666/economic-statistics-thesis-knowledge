@@ -1,5 +1,8 @@
 # 09 AD-AS 模型是什么？（小白版）
 
+<div style="text-align:right;margin:10px 0;"><a href="../../exam.html" target="_blank" style="display:inline-block;padding:6px 16px;background:#2563eb;color:#fff;border-radius:6px;text-decoration:none;font-size:14px;">📝 开始做题</a></div>
+
+
 ## 一、为什么要学这个？
 
 IS-LM 模型里价格 P 是固定的。现实里物价在变——疫情后美国通胀冲到 9%，中国 2023 年 CPI 长期在 0 附近。**AD-AS 模型就是放开价格，让物价和产出一起决定**。

@@ -1,5 +1,8 @@
 # 第五节 Excel 时间数列波动的测定
 
+<div style="text-align:right;margin:10px 0;"><a href="../../../exam.html" target="_blank" style="display:inline-block;padding:6px 16px;background:#2563eb;color:#fff;border-radius:6px;text-decoration:none;font-size:14px;">📝 开始做题</a></div>
+
+
 > 所属：[[00_章节总结|第9章 时间数列]]
 
 本节讲了哪几件事：

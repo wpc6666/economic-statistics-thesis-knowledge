@@ -1,5 +1,8 @@
 # 05 ARIMA 建模流程：Box-Jenkins 五步法
 
+<div style="text-align:right;margin:10px 0;"><a href="../../exam.html" target="_blank" style="display:inline-block;padding:6px 16px;background:#2563eb;color:#fff;border-radius:6px;text-decoration:none;font-size:14px;">📝 开始做题</a></div>
+
+
 ## 一、为什么要学这个？
 
 上一节我们学了 [[04_ARMA模型|ARMA]] 的数学形式。但**实际建一个 ARIMA 模型，不是把公式套进去就完事**，有一套标准流程叫 **Box-Jenkins 方法**。

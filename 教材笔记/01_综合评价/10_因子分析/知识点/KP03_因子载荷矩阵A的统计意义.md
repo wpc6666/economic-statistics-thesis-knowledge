@@ -1,5 +1,8 @@
 # KP03 · 因子载荷矩阵 A 的统计意义
 
+<div style="text-align:right;margin:10px 0;"><a href="../../../../exam.html" target="_blank" style="display:inline-block;padding:6px 16px;background:#2563eb;color:#fff;border-radius:6px;text-decoration:none;font-size:14px;">📝 开始做题</a></div>
+
+
 ## 一、是什么
 
 因子载荷矩阵 $A=(a_{ij})$ 有三层统计意义：载荷 $a_{ij}$、共同度 $h_i^2$、公因子方差贡献 $g_j$ 与方差贡献率 $a_j$。

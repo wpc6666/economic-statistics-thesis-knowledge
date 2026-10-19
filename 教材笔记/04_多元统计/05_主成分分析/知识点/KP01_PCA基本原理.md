@@ -1,5 +1,8 @@
 # KP01 [[02_主成分分析PCA|主成分分析]]基本原理
 
+<div style="text-align:right;margin:10px 0;"><a href="../../../../exam.html" target="_blank" style="display:inline-block;padding:6px 16px;background:#2563eb;color:#fff;border-radius:6px;text-decoration:none;font-size:14px;">📝 开始做题</a></div>
+
+
 ## 1. 是什么
 
 **定义**：主成分分析（Principal Component Analysis, PCA）是通过正交变换，将一组具有相关性的变量转换为少数几个不相关的综合指标（主成分），使得这些综合指标尽可能多地保留原始变量的信息。

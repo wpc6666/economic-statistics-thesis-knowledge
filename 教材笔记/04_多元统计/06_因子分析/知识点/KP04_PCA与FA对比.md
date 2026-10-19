@@ -1,5 +1,8 @@
 # KP04 PCA 与[[KP03_PCA与因子分析对比|因子分析]]对比（重点）
 
+<div style="text-align:right;margin:10px 0;"><a href="../../../../exam.html" target="_blank" style="display:inline-block;padding:6px 16px;background:#2563eb;color:#fff;border-radius:6px;text-decoration:none;font-size:14px;">📝 开始做题</a></div>
+
+
 ## 1. 是什么
 
 **定义**：[[02_主成分分析PCA|主成分分析]]（PCA）与因子分析（FA）是两种最常用的降维方法，但从建模哲学、数学模型到结果解释都有本质区别。本章是第5章和第6章的对比总结，是考试和实际应用的重点。

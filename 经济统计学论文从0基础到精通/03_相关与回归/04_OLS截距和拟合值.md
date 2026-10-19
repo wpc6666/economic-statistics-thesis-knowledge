@@ -1,5 +1,8 @@
 # 04 OLS 截距、拟合值和残差
 
+<div style="text-align:right;margin:10px 0;"><a href="../../exam.html" target="_blank" style="display:inline-block;padding:6px 16px;background:#2563eb;color:#fff;border-radius:6px;text-decoration:none;font-size:14px;">📝 开始做题</a></div>
+
+
 > 📖 这一篇用的模型就是[[../../教材笔记/05_统计学原理/08_相关与回归/知识点/KP07_一元线性回归模型|KP07 一元线性回归模型]]：总体里真实的那条线是 $y = \beta_0 + \beta_1 x + \varepsilon$，我们用样本估计出来的是 $\hat{y} = \hat{a} + \hat{b}x$。下面的"拟合值 ŷ"和"残差 e"就是连接这两条线的桥。
 
 ## 一、为什么要学这个？

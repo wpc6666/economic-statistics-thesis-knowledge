@@ -1,5 +1,8 @@
 # 04 ARMA 模型：自回归 + 移动平均
 
+<div style="text-align:right;margin:10px 0;"><a href="../../exam.html" target="_blank" style="display:inline-block;padding:6px 16px;background:#2563eb;color:#fff;border-radius:6px;text-decoration:none;font-size:14px;">📝 开始做题</a></div>
+
+
 ## 一、为什么要学这个？
 
 你已经有一个平稳的时间序列了（比如股票日收益率、月度 CPI 同比增速），你想：

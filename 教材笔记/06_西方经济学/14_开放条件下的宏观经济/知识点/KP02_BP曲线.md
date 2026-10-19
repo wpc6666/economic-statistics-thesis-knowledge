@@ -1,5 +1,8 @@
 # KP02 BP曲线：国际收支平衡
 
+<div style="text-align:right;margin:10px 0;"><a href="../../../../exam.html" target="_blank" style="display:inline-block;padding:6px 16px;background:#2563eb;color:#fff;border-radius:6px;text-decoration:none;font-size:14px;">📝 开始做题</a></div>
+
+
 > 所属：[[00_章节总结|第十四章 开放条件下的宏观经济]]
 
 ## 1. 一句话先懂（小白版）
@@ -144,7 +147,7 @@ $$r = 1 + 0.001Y$$
 
 **同章关联：** [[KP01_汇率与国际收支|汇率]] ｜ [[KP03_蒙代尔弗莱明模型|蒙代尔-弗莱明]] ｜ [[KP04_三元悖论|三元悖论]]
 
-**跨章关联：** [[../11_IS-LM模型/知识点/KP03_LM曲线|LM曲线]]
+**跨章关联：** [[../../11_IS-LM模型/知识点/KP03_LM曲线|LM曲线]]
 
 **📖 原书原文：** [[../../../../原文件/经济学/西方经济学下册_宏观_全书|《西方经济学》下册 第十四章]]
 

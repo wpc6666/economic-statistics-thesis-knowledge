@@ -1,5 +1,8 @@
 # KP08 最小二乘法 OLS：为什么是"平方"，$\beta_1$ 公式怎么来的
 
+<div style="text-align:right;margin:10px 0;"><a href="../../../../exam.html" target="_blank" style="display:inline-block;padding:6px 16px;background:#2563eb;color:#fff;border-radius:6px;text-decoration:none;font-size:14px;">📝 开始做题</a></div>
+
+
 > 所属：[[00_章节总结|第8章 相关与回归]] ｜ 节：[[02_第二节_单相关与一元线性回归]]
 
 ## 1. 一句话先懂（小白版）

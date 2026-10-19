@@ -1,5 +1,8 @@
 # KP02 自协方差与ACF
 
+<div style="text-align:right;margin:10px 0;"><a href="../../../../exam.html" target="_blank" style="display:inline-block;padding:6px 16px;background:#2563eb;color:#fff;border-radius:6px;text-decoration:none;font-size:14px;">📝 开始做题</a></div>
+
+
 ## 1. 是什么
 
 **定义：** 自协方差函数 $\gamma(k)$ 度量同一序列在间隔 $k$ 期的两个取值之间的线性相关程度；[[03_自相关|自相关]]系数 $\rho_k$（ACF）是[[KP11_标准化_ZScore|标准化]]后的自协方差，取值范围 $[-1, 1]$。

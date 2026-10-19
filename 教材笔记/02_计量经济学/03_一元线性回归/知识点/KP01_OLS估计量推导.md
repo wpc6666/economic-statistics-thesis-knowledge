@@ -1,5 +1,8 @@
 # KP01 OLS估计量推导
 
+<div style="text-align:right;margin:10px 0;"><a href="../../../../exam.html" target="_blank" style="display:inline-block;padding:6px 16px;background:#2563eb;color:#fff;border-radius:6px;text-decoration:none;font-size:14px;">📝 开始做题</a></div>
+
+
 ## 1. 是什么
 
 **普通最小二乘法（OLS）**：选择截距和斜率，使得所有样本点到回归直线的**残差平方和**最小。

@@ -1,5 +1,8 @@
 # KP04 一元回归 Stata 输出解读
 
+<div style="text-align:right;margin:10px 0;"><a href="../../../../exam.html" target="_blank" style="display:inline-block;padding:6px 16px;background:#2563eb;color:#fff;border-radius:6px;text-decoration:none;font-size:14px;">📝 开始做题</a></div>
+
+
 ## 1. 是什么
 
 **读懂 Stata 的 `reg` 命令输出**：把回归输出表里的每个数字都对应到一个概念，知道它是什么意思、怎么读、怎么解释。

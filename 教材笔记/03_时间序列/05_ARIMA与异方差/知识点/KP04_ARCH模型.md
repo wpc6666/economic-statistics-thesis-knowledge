@@ -1,5 +1,8 @@
 # KP04 ARCH模型
 
+<div style="text-align:right;margin:10px 0;"><a href="../../../../exam.html" target="_blank" style="display:inline-block;padding:6px 16px;background:#2563eb;color:#fff;border-radius:6px;text-decoration:none;font-size:14px;">📝 开始做题</a></div>
+
+
 ## 1. 是什么
 
 **ARCH(q)**（自回归条件[[02_异方差|异方差]]模型）：模型化金融时间序列中常见的"波动率聚集"现象——大波动后跟着大波动，小波动后跟着小波动。
@@ -155,7 +158,7 @@ $$h_t = 0.001437 + 0.07954\varepsilon_{t-1}^2 + 0.2231\varepsilon_{t-2}^2 + 0.27
 [[KP05_GARCH模型|GARCH模型]]｜[[KP01_ARIMA模型|ARIMA模型（管均值）]]
 
 **跨章/跨课关联：**
-[[../../../02_计量经济学/06_异方差/知识点/KP01_异方差与White检验|计量视角·异方差检验]]
+[[../../../02_计量经济学/06_异方差/知识点/KP01_异方差检验|计量视角·异方差检验]]
 
 **🐮 大牛库深入：**
 [[../../../../经济统计学论文从0基础到精通/09_时间序列/08_GARCH模型|大牛库·GARCH]]

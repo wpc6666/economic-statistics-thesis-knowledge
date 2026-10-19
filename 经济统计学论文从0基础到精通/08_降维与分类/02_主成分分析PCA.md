@@ -1,5 +1,8 @@
 # 02 主成分分析 PCA：找方差最大的方向
 
+<div style="text-align:right;margin:10px 0;"><a href="../../exam.html" target="_blank" style="display:inline-block;padding:6px 16px;background:#2563eb;color:#fff;border-radius:6px;text-decoration:none;font-size:14px;">📝 开始做题</a></div>
+
+
 ## 一、为什么要学这个？
 
 上一节我们知道"100 个指标要压成 3 个"。但怎么压？凭什么用 $0.7X_1 + 0.7X_2$ 这个权重，而不是 $0.5X_1 + 0.5X_2$？

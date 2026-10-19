@@ -1,5 +1,8 @@
 # KP02 名义GDP、实际GDP与GDP平减指数
 
+<div style="text-align:right;margin:10px 0;"><a href="../../../../exam.html" target="_blank" style="display:inline-block;padding:6px 16px;background:#2563eb;color:#fff;border-radius:6px;text-decoration:none;font-size:14px;">📝 开始做题</a></div>
+
+
 > 所属：[[00_章节总结|第九章 宏观经济基本指标]]
 
 ## 1. 一句话先懂（小白版）
@@ -87,7 +90,7 @@ $$\text{平减指数}_{2024} = \frac{1600}{1260} \times 100 = \mathbf{126.98}$$
 
 **同章关联：** [[KP01_GDP的含义与核算|GDP的含义与核算]] ｜ [[KP03_CPI消费价格指数|CPI消费价格指数]] ｜ [[KP05_失业类型与自然失业率|自然失业率与潜在GDP]]
 
-**跨章关联：** [[../12_AD-AS模型/知识点/KP01_AD总需求曲线|AD曲线与价格水平]] ｜ [[../16_经济增长/知识点/KP01_增长核算方程|增长核算]]
+**跨章关联：** [[../../12_AD-AS模型/知识点/KP01_AD总需求曲线|AD曲线与价格水平]] ｜ [[../../16_经济增长/知识点/KP01_增长核算方程|增长核算]]
 
 **📖 原书原文：** [[../../../../原文件/经济学/西方经济学下册_宏观_全书|《西方经济学》下册 第九章]]
 

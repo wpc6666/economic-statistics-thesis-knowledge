@@ -1,5 +1,8 @@
 # KP06 相关分析 vs 回归分析
 
+<div style="text-align:right;margin:10px 0;"><a href="../../../../exam.html" target="_blank" style="display:inline-block;padding:6px 16px;background:#2563eb;color:#fff;border-radius:6px;text-decoration:none;font-size:14px;">📝 开始做题</a></div>
+
+
 > 所属：[[00_章节总结|第8章 相关与回归]] ｜ 节：[[01_第一节_相关与回归基本概念]]
 
 ## 1. 一句话先懂（小白版）

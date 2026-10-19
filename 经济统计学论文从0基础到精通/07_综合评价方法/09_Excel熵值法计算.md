@@ -1,5 +1,8 @@
 # 09 Excel 计算指引：熵值法手算，含单元格公式
 
+<div style="text-align:right;margin:10px 0;"><a href="../../exam.html" target="_blank" style="display:inline-block;padding:6px 16px;background:#2563eb;color:#fff;border-radius:6px;text-decoration:none;font-size:14px;">📝 开始做题</a></div>
+
+
 > 上一篇讲了熵值法的理论和公式（见 [03 熵值法]([[03_熵值法]].md)），这一篇解决一个实际问题：**不用 Stata、不用 [[05_SPSS操作指引|SPSS]]，只用 Excel，怎么一格一格把权重和综合得分算出来。**
 >
 > 答辩时老师问"这个权重怎么来的"，你直接点开 Excel 给他看公式——每一步都可追溯，比"用软件算的"更有说服力。

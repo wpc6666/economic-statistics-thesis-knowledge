@@ -1,5 +1,8 @@
 # 第六节 Excel 相关与回归分析
 
+<div style="text-align:right;margin:10px 0;"><a href="../../../exam.html" target="_blank" style="display:inline-block;padding:6px 16px;background:#2563eb;color:#fff;border-radius:6px;text-decoration:none;font-size:14px;">📝 开始做题</a></div>
+
+
 > 所属：[[00_章节总结|第8章 相关与回归]]
 
 本节是原书对 Excel 操作的总结性介绍，具体案例已在第二节（例 8-1）和第三节（例 8-4）中展示。

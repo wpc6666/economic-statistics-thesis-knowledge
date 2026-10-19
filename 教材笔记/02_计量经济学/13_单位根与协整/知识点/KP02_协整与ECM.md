@@ -1,5 +1,8 @@
 # KP02 [[07_协整与误差修正ECM|协整与误差修正]]模型 ECM
 
+<div style="text-align:right;margin:10px 0;"><a href="../../../../exam.html" target="_blank" style="display:inline-block;padding:6px 16px;background:#2563eb;color:#fff;border-radius:6px;text-decoration:none;font-size:14px;">📝 开始做题</a></div>
+
+
 ## 一句话直觉
 
 > **两个喝醉的人手拉手走路——各自摇摇晃晃（随机游走），但两人之间的距离始终稳定（协整关系）。误差修正模型就是描述"偏离均衡后多快拉回来"。**

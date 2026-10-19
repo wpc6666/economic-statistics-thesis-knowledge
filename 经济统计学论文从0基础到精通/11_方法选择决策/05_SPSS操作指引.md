@@ -1,5 +1,8 @@
 # 05 SPSS 操作指引（零基础照做）
 
+<div style="text-align:right;margin:10px 0;"><a href="../../exam.html" target="_blank" style="display:inline-block;padding:6px 16px;background:#2563eb;color:#fff;border-radius:6px;text-decoration:none;font-size:14px;">📝 开始做题</a></div>
+
+
 ## 一、这是什么
 
 SPSS 是一个"点菜单就能跑统计"的软件，不用写代码。综合评价里它主要负责四件事：

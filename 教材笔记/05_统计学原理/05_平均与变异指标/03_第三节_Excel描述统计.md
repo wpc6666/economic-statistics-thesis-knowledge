@@ -1,5 +1,8 @@
 # 第三节 Excel 描述统计
 
+<div style="text-align:right;margin:10px 0;"><a href="../../../exam.html" target="_blank" style="display:inline-block;padding:6px 16px;background:#2563eb;color:#fff;border-radius:6px;text-decoration:none;font-size:14px;">📝 开始做题</a></div>
+
+
 > 所属：[[00_章节总结|第5章 平均指标与变异指标]]
 
 ## 本节内容

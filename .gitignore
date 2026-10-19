@@ -19,3 +19,7 @@ Thumbs.db
 # 图片缓存
 assets/*.png
 assets/*.jpg
+
+# Node.js 临时验证环境
+tools/mermaid_check/node_modules/
+tools/mermaid_check/package-lock.json

@@ -1,5 +1,8 @@
 # KP03 K-means 聚类
 
+<div style="text-align:right;margin:10px 0;"><a href="../../../../exam.html" target="_blank" style="display:inline-block;padding:6px 16px;background:#2563eb;color:#fff;border-radius:6px;text-decoration:none;font-size:14px;">📝 开始做题</a></div>
+
+
 > 直觉：先猜 K 个中心，把每个点划给最近中心；再把中心挪到组内均值处；重复直到稳定。像磁铁吸铁屑——磁铁位置一变，铁屑重新分组。
 
 ## 1. 是什么

@@ -1,5 +1,8 @@
 # KP01 DW检验
 
+<div style="text-align:right;margin:10px 0;"><a href="../../../../exam.html" target="_blank" style="display:inline-block;padding:6px 16px;background:#2563eb;color:#fff;border-radius:6px;text-decoration:none;font-size:14px;">📝 开始做题</a></div>
+
+
 ## 1. 是什么
 
 DW（Durbin-Watson）检验是检验一阶[[03_自相关|自相关]]的经典方法。DW统计量直接由[[KP02_OLS正交性|OLS]]残差计算：

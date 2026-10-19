@@ -1,5 +1,8 @@
 # KP01 · 多维标度法 MDS
 
+<div style="text-align:right;margin:10px 0;"><a href="../../../../exam.html" target="_blank" style="display:inline-block;padding:6px 16px;background:#2563eb;color:#fff;border-radius:6px;text-decoration:none;font-size:14px;">📝 开始做题</a></div>
+
+
 ## 1. 是什么
 
 **定义**：多维标度法（Multidimensional Scaling, MDS）是一类**从样品间距离矩阵 $D=(d_{ij})$ 出发，反推出样品在低维空间（通常二维）中坐标位置**的统计方法，使低维空间中样品间的欧氏距离尽量接近原始距离。

@@ -1,5 +1,8 @@
 # KP02 MA模型
 
+<div style="text-align:right;margin:10px 0;"><a href="../../../../exam.html" target="_blank" style="display:inline-block;padding:6px 16px;background:#2563eb;color:#fff;border-radius:6px;text-decoration:none;font-size:14px;">📝 开始做题</a></div>
+
+
 ## 1. 是什么
 
 **定义：** $q$阶移动平均模型MA(q)用当前和过去的随机扰动的线性组合来表示当前序列值：

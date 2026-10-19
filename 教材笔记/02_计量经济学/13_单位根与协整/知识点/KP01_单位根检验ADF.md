@@ -1,5 +1,8 @@
 # KP01 单位根检验 ADF
 
+<div style="text-align:right;margin:10px 0;"><a href="../../../../exam.html" target="_blank" style="display:inline-block;padding:6px 16px;background:#2563eb;color:#fff;border-radius:6px;text-decoration:none;font-size:14px;">📝 开始做题</a></div>
+
+
 ## 一句话直觉
 
 > **随机游走就是"喝醉的人走路"——每一步都是随机的，走得越远越不知道自己在哪。ADF检验就是判断这个序列到底是"喝醉了"还是"清醒的"。**

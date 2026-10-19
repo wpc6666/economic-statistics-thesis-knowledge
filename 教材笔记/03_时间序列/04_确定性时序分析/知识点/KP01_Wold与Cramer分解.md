@@ -1,5 +1,8 @@
 # KP01 Wold与Cramer分解
 
+<div style="text-align:right;margin:10px 0;"><a href="../../../../exam.html" target="_blank" style="display:inline-block;padding:6px 16px;background:#2563eb;color:#fff;border-radius:6px;text-decoration:none;font-size:14px;">📝 开始做题</a></div>
+
+
 ## 1. 是什么
 
 **Wold分解定理**（1938年）：任何离散平稳过程$\{x_t\}$都可以分解为两个不相关的平稳序列之和——一个确定性序列$\{V_t\}$，一个随机序列$\{\xi_t\}$，其中随机序列是白噪声的无穷线性组合。

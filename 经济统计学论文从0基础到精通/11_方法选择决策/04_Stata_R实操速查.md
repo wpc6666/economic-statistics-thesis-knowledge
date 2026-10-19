@@ -1,5 +1,8 @@
 # 04 Stata / R 实操速查（从导数据到出结果）
 
+<div style="text-align:right;margin:10px 0;"><a href="../../exam.html" target="_blank" style="display:inline-block;padding:6px 16px;background:#2563eb;color:#fff;border-radius:6px;text-decoration:none;font-size:14px;">📝 开始做题</a></div>
+
+
 ## 一、为什么要学这个
 
 前面 01-03 章教了你"选什么方法"，这一章教你"怎么用软件把方法跑出来"。

@@ -1,5 +1,8 @@
 # 2. Stata基本操作
 
+<div style="text-align:right;margin:10px 0;"><a href="../../../exam.html" target="_blank" style="display:inline-block;padding:6px 16px;background:#2563eb;color:#fff;border-radius:6px;text-decoration:none;font-size:14px;">📝 开始做题</a></div>
+
+
 ## 概述
 
 本章通过 grilic_small.xls 数据集（30名美国年轻男子的教育投资回报率数据），手把手教你 Stata 的核心操作：导入数据、审视数据、画图、统计分析、生成变量、日志管理。
@@ -275,7 +278,7 @@ log close
 
 **同章关联：** [[00_章节总结|章节总结]]
 
-**跨章实操导航：** [[../03_一元线性回归/知识点/KP01_一元回归模型|一元回归Stata实操]]｜[[../09_工具变量法/知识点/KP02_两阶段最小二乘2SLS|2SLS的Stata命令]]｜[[../11_面板数据/知识点/KP01_固定效应模型|面板FE的Stata命令]]
+**跨章实操导航：** [[../03_一元线性回归/知识点/KP04_一元回归Stata解读|一元回归Stata实操]]｜[[../09_工具变量法/知识点/KP02_两阶段最小二乘2SLS|2SLS的Stata命令]]｜[[../11_面板数据/知识点/KP01_固定效应模型|面板FE的Stata命令]]
 
 **🐮 大牛库深入：** [[../../../经济统计学论文从0基础到精通/11_方法选择决策/04_Stata_R实操速查|Stata/R实操速查表]]｜[[../../../经济统计学论文从0基础到精通/11_方法选择决策/05_SPSS操作指引|SPSS操作指引]]
 

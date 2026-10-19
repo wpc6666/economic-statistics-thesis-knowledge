@@ -1,5 +1,8 @@
 # KP05 GARCH模型
 
+<div style="text-align:right;margin:10px 0;"><a href="../../../../exam.html" target="_blank" style="display:inline-block;padding:6px 16px;background:#2563eb;color:#fff;border-radius:6px;text-decoration:none;font-size:14px;">📝 开始做题</a></div>
+
+
 ## 1. 是什么
 
 **GARCH(p,q)**（广义自回归条件[[02_异方差|异方差]]模型）：在ARCH(q)基础上，增加条件方差本身的自回归项，用更少参数捕捉长期波动率聚集。
@@ -170,7 +173,7 @@ plot(fore)
 [[KP04_ARCH模型|ARCH模型]]｜[[KP01_ARIMA模型|ARIMA（均值方程）]]
 
 **跨章/跨课关联：**
-[[../../../02_计量经济学/06_异方差/知识点/KP01_异方差与White检验|计量视角·异方差]]
+[[../../../02_计量经济学/06_异方差/知识点/KP01_异方差检验|计量视角·异方差]]
 
 **🐮 大牛库深入：**
 [[../../../../经济统计学论文从0基础到精通/09_时间序列/08_GARCH模型|大牛库·GARCH波动聚集]]

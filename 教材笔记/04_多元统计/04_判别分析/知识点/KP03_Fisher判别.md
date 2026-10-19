@@ -1,5 +1,8 @@
 # KP03 Fisher 判别
 
+<div style="text-align:right;margin:10px 0;"><a href="../../../../exam.html" target="_blank" style="display:inline-block;padding:6px 16px;background:#2563eb;color:#fff;border-radius:6px;text-decoration:none;font-size:14px;">📝 开始做题</a></div>
+
+
 > 直觉：把多维数据投影到一条直线上，让两类投影后的中心距离最大、各自内部最紧凑。投影方向就是"最好的判别方向"。
 
 ## 1. 是什么

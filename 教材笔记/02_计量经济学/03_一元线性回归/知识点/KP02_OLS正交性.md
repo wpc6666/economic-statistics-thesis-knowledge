@@ -1,5 +1,8 @@
 # KP02 OLS正交性
 
+<div style="text-align:right;margin:10px 0;"><a href="../../../../exam.html" target="_blank" style="display:inline-block;padding:6px 16px;background:#2563eb;color:#fff;border-radius:6px;text-decoration:none;font-size:14px;">📝 开始做题</a></div>
+
+
 ## 1. 是什么
 
 **OLS 正交性**：OLS 估计出来的残差向量 e，与解释变量向量 x、常数向量 l（全1向量）、拟合值向量 ŷ 都正交（内积为零）。

@@ -1,5 +1,8 @@
 # 17 毕业论文提交 Checklist
 
+<div style="text-align:right;margin:10px 0;"><a href="../../exam.html" target="_blank" style="display:inline-block;padding:6px 16px;background:#2563eb;color:#fff;border-radius:6px;text-decoration:none;font-size:14px;">📝 开始做题</a></div>
+
+
 > 从选题到答辩的完整检查清单。每完成一项打一个勾。建议打印出来贴在桌前。
 > 这是最后一道关卡：全部打勾 = 可以安心提交。
 

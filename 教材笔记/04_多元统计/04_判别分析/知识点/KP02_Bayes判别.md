@@ -1,5 +1,8 @@
 # KP02 Bayes 判别
 
+<div style="text-align:right;margin:10px 0;"><a href="../../../../exam.html" target="_blank" style="display:inline-block;padding:6px 16px;background:#2563eb;color:#fff;border-radius:6px;text-decoration:none;font-size:14px;">📝 开始做题</a></div>
+
+
 > 直觉：[[KP01_距离判别|距离判别]]只看"离谁近"；Bayes 判别还看"哪类本来就多、错判谁代价大"。比如罕见病，即使检查结果像罕见病，也得先怀疑常见病。
 
 ## 1. 是什么

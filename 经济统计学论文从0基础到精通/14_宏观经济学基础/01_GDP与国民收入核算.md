@@ -1,5 +1,8 @@
 # 01 GDP 与国民收入核算是什么？（小白版）
 
+<div style="text-align:right;margin:10px 0;"><a href="../../exam.html" target="_blank" style="display:inline-block;padding:6px 16px;background:#2563eb;color:#fff;border-radius:6px;text-decoration:none;font-size:14px;">📝 开始做题</a></div>
+
+
 ## 一、为什么要学这个？
 
 你打开新闻："2024 年中国 GDP 增长 5%""重庆市 GDP 突破 3 万亿""美国 GDP 衰退"——这些词每天都在出现。**本科毕业论文做实证，十个题目有八个绕不开 GDP**：

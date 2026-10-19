@@ -1,5 +1,8 @@
 # KP03 ARMA模型
 
+<div style="text-align:right;margin:10px 0;"><a href="../../../../exam.html" target="_blank" style="display:inline-block;padding:6px 16px;background:#2563eb;color:#fff;border-radius:6px;text-decoration:none;font-size:14px;">📝 开始做题</a></div>
+
+
 ## 1. 是什么
 
 **定义：** ARMA(p,q)模型是AR(p)和MA(q)的有机组合——既用历史序列值回归当前值，又包含历史随机扰动的影响：

@@ -1,5 +1,8 @@
 # KP03 [[07_协整与误差修正ECM|协整与误差修正]]模型ECM
 
+<div style="text-align:right;margin:10px 0;"><a href="../../../../exam.html" target="_blank" style="display:inline-block;padding:6px 16px;background:#2563eb;color:#fff;border-radius:6px;text-decoration:none;font-size:14px;">📝 开始做题</a></div>
+
+
 ## 1. 是什么
 
 **协整**（cointegration）：两个或多个非平稳时间序列的某个线性组合是平稳的。虽然每个序列自身非平稳（随机游走），但它们之间存在长期均衡关系。

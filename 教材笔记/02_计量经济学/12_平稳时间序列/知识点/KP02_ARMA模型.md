@@ -1,5 +1,8 @@
 # KP02 ARMA模型
 
+<div style="text-align:right;margin:10px 0;"><a href="../../../../exam.html" target="_blank" style="display:inline-block;padding:6px 16px;background:#2563eb;color:#fff;border-radius:6px;text-decoration:none;font-size:14px;">📝 开始做题</a></div>
+
+
 ## 一句话直觉
 
 > **AR是"自己跟自己玩"（用过去的自己预测现在的自己），MA是"跟噪声玩"（用过去的干扰预测现在的自己），ARMA就是两者都玩。**

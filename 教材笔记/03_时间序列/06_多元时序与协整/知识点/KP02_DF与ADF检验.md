@@ -1,5 +1,8 @@
 # KP02 DF与ADF[[KP01_单位根检验ADF|单位根检验]]
 
+<div style="text-align:right;margin:10px 0;"><a href="../../../../exam.html" target="_blank" style="display:inline-block;padding:6px 16px;background:#2563eb;color:#fff;border-radius:6px;text-decoration:none;font-size:14px;">📝 开始做题</a></div>
+
+
 ## 1. 是什么
 
 **DF检验**（Dickey-Fuller检验）：检验时间序列是否存在单位根（即是否非平稳）。

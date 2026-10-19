@@ -1,5 +1,8 @@
 # 08 IS-LM 均衡与挤出效应是什么？（小白版，重点篇）
 
+<div style="text-align:right;margin:10px 0;"><a href="../../exam.html" target="_blank" style="display:inline-block;padding:6px 16px;background:#2563eb;color:#fff;border-radius:6px;text-decoration:none;font-size:14px;">📝 开始做题</a></div>
+
+
 ## 一、为什么要学这个？
 
 IS 曲线讲产品市场，LM 曲线讲货币市场。**两条线的交点**就是两个市场同时均衡的点——这个点决定了整个经济的均衡利率 $r^*$ 和均衡收入 $Y^*$。

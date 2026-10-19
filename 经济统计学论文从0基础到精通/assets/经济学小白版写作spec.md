@@ -1,5 +1,8 @@
 # 经济学概念·小白版写作风格 spec（所有 Subagent 必读）
 
+<div style="text-align:right;margin:10px 0;"><a href="../../exam.html" target="_blank" style="display:inline-block;padding:6px 16px;background:#2563eb;color:#fff;border-radius:6px;text-decoration:none;font-size:14px;">📝 开始做题</a></div>
+
+
 > 本 spec 是 13_微观 / 14_宏观 / 15_政经三个目录所有概念文件的**统一写作标准**。
 > 写完每一篇，对照本 spec 自检一遍再交付。
 

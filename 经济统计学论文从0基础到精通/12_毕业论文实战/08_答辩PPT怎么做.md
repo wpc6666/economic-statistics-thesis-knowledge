@@ -1,5 +1,8 @@
 # 08 答辩 PPT 怎么做（10-12 页结构）
 
+<div style="text-align:right;margin:10px 0;"><a href="../../exam.html" target="_blank" style="display:inline-block;padding:6px 16px;background:#2563eb;color:#fff;border-radius:6px;text-decoration:none;font-size:14px;">📝 开始做题</a></div>
+
+
 ## 一、为什么要学这个
 
 答辩 PPT 不是把论文搬进 PPT。它的作用是给评委听你讲的"提词器"——像新闻联播的字幕，只放最关键的一句话和最关键的一张图，你在旁边讲。

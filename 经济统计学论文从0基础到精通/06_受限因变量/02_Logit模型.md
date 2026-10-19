@@ -1,5 +1,8 @@
 # 02 Logit 模型：S 形曲线与几率比
 
+<div style="text-align:right;margin:10px 0;"><a href="../../exam.html" target="_blank" style="display:inline-block;padding:6px 16px;background:#2563eb;color:#fff;border-radius:6px;text-decoration:none;font-size:14px;">📝 开始做题</a></div>
+
+
 ## 一、为什么要学这个？
 
 上一篇我们看到 LPM（直接 [[04_OLS截距和拟合值|OLS]] 套 0/1）会让概率跑出 [0,1]。这一篇就来修这个毛病。

@@ -1,5 +1,8 @@
 # 03 自相关与 ACF：怎么读时序图的"时间结构"
 
+<div style="text-align:right;margin:10px 0;"><a href="../../exam.html" target="_blank" style="display:inline-block;padding:6px 16px;background:#2563eb;color:#fff;border-radius:6px;text-decoration:none;font-size:14px;">📝 开始做题</a></div>
+
+
 ## 一、为什么要学这个？
 
 上一节我们知道"时间序列相邻观测值是相关的"。但到底有多相关？是滞后 1 期相关，还是滞后 5 期相关？是自己跟自己相关，还是过去的冲击在影响现在？

@@ -401,7 +401,7 @@ a:hover{text-decoration:underline}
       .then(function () { libs.marked = true; })
       .catch(function () { throw new Error('marked 加载失败'); });
 
-    var pMermaid = loadScript(cdnPaths('mermaid@10.9.1/dist/mermaid.min.js'))
+    var pMermaid = loadScript(cdnPaths('mermaid@10.9.8/dist/mermaid.min.js'))
       .then(function () {
         libs.mermaid = true;
         try {

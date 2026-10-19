@@ -1,5 +1,8 @@
 # KP01 AD总需求曲线
 
+<div style="text-align:right;margin:10px 0;"><a href="../../../../exam.html" target="_blank" style="display:inline-block;padding:6px 16px;background:#2563eb;color:#fff;border-radius:6px;text-decoration:none;font-size:14px;">📝 开始做题</a></div>
+
+
 > 所属：[[00_章节总结|第十二章 AD-AS模型]]
 
 ## 1. 一句话先懂（小白版）
@@ -95,7 +98,7 @@ $$Y = \frac{1500 \times 100}{350P} = \frac{15000}{35P} = \frac{428.6}{P}$$
 
 **同章关联：** [[KP02_短期总供给曲线|短期AS]] ｜ [[KP03_长期总供给曲线|长期AS]] ｜ [[KP04_ADAS均衡与冲击|AD-AS均衡]]
 
-**跨章关联：** [[../11_IS-LM模型/知识点/KP03_LM曲线|LM曲线]] ｜ [[../15_宏观经济政策/知识点/KP01_财政政策|财政政策]]
+**跨章关联：** [[../../11_IS-LM模型/知识点/KP03_LM曲线|LM曲线]] ｜ [[../../15_宏观经济政策/知识点/KP01_财政政策工具与自动稳定器|财政政策]]
 
 **📖 原书原文：** [[../../../../原文件/经济学/西方经济学下册_宏观_全书|《西方经济学》下册 第十二章]]
 

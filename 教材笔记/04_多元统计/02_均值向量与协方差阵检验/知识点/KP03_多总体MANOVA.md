@@ -1,5 +1,8 @@
 # KP03 多总体均值检验（MANOVA）
 
+<div style="text-align:right;margin:10px 0;"><a href="../../../../exam.html" target="_blank" style="display:inline-block;padding:6px 16px;background:#2563eb;color:#fff;border-radius:6px;text-decoration:none;font-size:14px;">📝 开始做题</a></div>
+
+
 > 直觉：单因素方差分析 ANOVA 问"三组的一个均值是否相等"；MANOVA 问"三组的整条均值向量是否相等"。把 p 个指标打包成一个整体，看组间差异是否足够大。
 
 ## 1. 是什么

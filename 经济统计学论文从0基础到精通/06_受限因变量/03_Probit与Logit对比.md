@@ -1,5 +1,8 @@
 # 03 Probit 与 Logit 对比：两条长得几乎一样的 S 曲线
 
+<div style="text-align:right;margin:10px 0;"><a href="../../exam.html" target="_blank" style="display:inline-block;padding:6px 16px;background:#2563eb;color:#fff;border-radius:6px;text-decoration:none;font-size:14px;">📝 开始做题</a></div>
+
+
 ## 一、为什么要学这个？
 
 你在文献里会看到两种模型：

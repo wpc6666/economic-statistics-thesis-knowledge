@@ -1,5 +1,8 @@
 # KP01 VAR模型
 
+<div style="text-align:right;margin:10px 0;"><a href="../../../../exam.html" target="_blank" style="display:inline-block;padding:6px 16px;background:#2563eb;color:#fff;border-radius:6px;text-decoration:none;font-size:14px;">📝 开始做题</a></div>
+
+
 ## 一句话直觉
 
 > **VAR就是"联立方程组的简化版"——每个变量都是自己和别人滞后值的函数，不用区分谁是解释谁是被解释，大家互相影响。**

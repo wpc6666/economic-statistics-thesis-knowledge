@@ -1,5 +1,8 @@
 # KP03 多元回归Stata
 
+<div style="text-align:right;margin:10px 0;"><a href="../../../../exam.html" target="_blank" style="display:inline-block;padding:6px 16px;background:#2563eb;color:#fff;border-radius:6px;text-decoration:none;font-size:14px;">📝 开始做题</a></div>
+
+
 ## 1. 是什么
 
 在Stata中用 `regress`（缩写 `reg`）命令进行[[05_多元线性回归|多元线性回归]]，用 `predict` 进行预测。本章聚焦：如何跑多元回归、如何解读输出表、如何做预测。

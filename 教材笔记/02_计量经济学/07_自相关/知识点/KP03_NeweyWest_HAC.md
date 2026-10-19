@@ -1,5 +1,8 @@
 # KP03 Newey-West HAC
 
+<div style="text-align:right;margin:10px 0;"><a href="../../../../exam.html" target="_blank" style="display:inline-block;padding:6px 16px;background:#2563eb;color:#fff;border-radius:6px;text-decoration:none;font-size:14px;">📝 开始做题</a></div>
+
+
 ## 1. 是什么
 
 Newey-West HAC（Heteroskedasticity and Autocorrelation Consistent）标准误是时间序列回归中最常用的[[KP03_稳健标准误|稳健标准误]]，同时修正[[02_异方差|异方差]]和[[03_自相关|自相关]]两种问题。
