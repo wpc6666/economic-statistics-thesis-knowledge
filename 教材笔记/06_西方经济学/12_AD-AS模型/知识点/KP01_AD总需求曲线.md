@@ -48,6 +48,45 @@ IS-LM 里，实际货币供给是 $M/P$。当价格 $P$ 变化时：
 
 **财政政策和货币政策都叫"需求管理政策"**，因为它们都移动 AD。
 
+## 4.5 理论推导（AD 怎么从 IS-LM 消出来）
+
+> AD 曲线不是凭空画的，它就是 IS-LM 联立后消去利率 r、留下 Y 和 P 的关系。
+
+**思路**：IS 方程里没有 P，LM 方程里有 $M/P$。给不同的 P，LM 左右移动，与 IS 交出不同的 Y。把每对 $(P,Y)$ 记下来，就是 AD。
+
+**第一步：写 IS 和 LM**
+$$\text{IS:}\quad r=\frac{\alpha+\bar A}{b}-\frac{1-\beta}{b}Y$$
+$$\text{LM:}\quad r=\frac{k}{h}Y-\frac{M}{Ph}$$
+
+**第二步：右边相等，消去 r**
+$$\frac{\alpha+\bar A}{b}-\frac{1-\beta}{b}Y=\frac{k}{h}Y-\frac{M}{Ph}$$
+
+**第三步：把 Y 解出来，P 留在式中**
+$$\frac{\alpha+\bar A}{b}+\frac{M}{Ph}=\left(\frac{1-\beta}{b}+\frac{k}{h}\right)Y$$
+
+$$\boxed{AD:\quad Y=\frac{\frac{\alpha+\bar A}{b}+\frac{M}{Ph}}{\frac{1-\beta}{b}+\frac{k}{h}}}$$
+
+**结论**：式子中 $P$ 在分母、前面是正号 → $P$ 上升 → 第二项 $\dfrac{M}{Ph}$ 变小 → $Y$ 变小。所以 $Y$ 与 $P$ 反方向 → **AD 曲线向右下方倾斜**。
+
+## 4.6 数学推导（谁让 AD 移动）
+
+看上面 AD 方程分子：$\dfrac{\alpha+\bar A}{b}+\dfrac{M}{Ph}$。
+
+- **财政政策**：$\bar A=e+G-\beta T$。$G$ 上升或 $T$ 下降 → $\dfrac{\alpha+\bar A}{b}$ 变大 → 同一 $P$ 下 $Y$ 变大 → **AD 右移**。
+- **货币政策**：$M$ 上升 → $\dfrac{M}{Ph}$ 变大 → 同一 $P$ 下 $Y$ 变大 → **AD 右移**。
+- **价格 P 本身变化**：不改 AD 位置，而是**沿 AD 移动**（P 变 → LM 移 → Y 变）。
+
+**图形说明**：纵轴 $P$、横轴 $Y$，AD 从左上到右下。财政/货币扩张使整条 AD 右移；$P$ 变化只沿 AD 滑动。
+
+```mermaid
+graph TD
+    A[写IS方程 和LM方程] --> B[两式右边相等 消去r]
+    B --> C[把Y解出来 保留P]
+    C --> D[P在分母且为正]
+    D --> E[P上升则Y下降 即AD向右下]
+    E --> F[G或M上升使AD整条右移]
+```
+
 ## 5. 手算例子
 
 已知 IS：$Y = 1500 - 250r$，货币需求 $L = 0.5Y - 50r$，名义货币供给 $M = 500$。

@@ -54,6 +54,48 @@ $$\text{LM: } Y = \frac{M/P}{k} + \frac{h}{k}r$$
 | 紧财政 + 扩货币 | 左移 | 右移 | 大降 | 小变 | 降利率促投资 |
 | 双紧缩 | 左移 | 左移 | 不确定 | 大降 | 严重通胀 |
 
+## 4.5 理论推导与数学推导（IS-LM 联立怎么解）
+
+> 两个市场同时均衡，就是 IS 方程和 LM 方程联立，两个未知数 $Y$、$r$。
+
+**第一步：写出两条方程**
+
+$$\text{IS:}\quad Y=\frac{\alpha+\bar A-br}{1-\beta}\quad\Longleftrightarrow\quad r=\frac{\alpha+\bar A}{b}-\frac{1-\beta}{b}Y$$
+
+$$\text{LM:}\quad r=\frac{k}{h}Y-\frac{M}{Ph}$$
+
+其中 $\bar A=e+G-\beta T$（自主支出）。
+
+**第二步：两式右边相等**（同一均衡 $r$）
+
+$$\frac{\alpha+\bar A}{b}-\frac{1-\beta}{b}Y=\frac{k}{h}Y-\frac{M}{Ph}$$
+
+**第三步：把含 $Y$ 的项集中**
+
+$$\frac{\alpha+\bar A}{b}+\frac{M}{Ph}=\left(\frac{k}{h}+\frac{1-\beta}{b}\right)Y$$
+
+解出均衡收入：
+
+$$\boxed{Y^*=\frac{\frac{\alpha+\bar A}{b}+\frac{M}{Ph}}{\frac{k}{h}+\frac{1-\beta}{b}}}$$
+
+代回任一式得均衡利率 $r^*$。
+
+**第四步：用这个式子看政策效果**（曲线移动的数学本质）
+- $G$ 上升 → $\bar A$ 上升 → 分子变大 → $Y^*$ 上升；同时 $r^*$ 上升（IS 右移）。
+- $M$ 上升 → $\dfrac{M}{Ph}$ 变大 → $Y^*$ 上升、$r^*$ 下降（LM 右移）。
+- $G$、$M$ 同时上升：分子两项都增大 → $Y^*$ 必升；但 $\bar A$ 抬 $r$、$M$ 压 $r$ → $r^*$ 方向不定（见论述 6）。
+
+**图形说明**：横轴 $Y$、纵轴 $r$，IS 向右下、LM 向右上，两线交点即 $(Y^*,r^*)$。交点左上方：$I<S$ 且 $M/P>L$，产品过剩但货币过剩，调整方向由谁相对失衡更大决定。
+
+```mermaid
+graph TD
+    A[写出IS方程 和LM方程] --> B[两式右边相等 同一r]
+    B --> C[集中含Y项]
+    C --> D[解出均衡收入Y*]
+    D --> E[代回求均衡利率r*]
+    E --> F[G变移动IS M变移动LM]
+```
+
 ## 5. 手算例子
 
 **题目**：已知：
