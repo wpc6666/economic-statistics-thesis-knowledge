@@ -292,6 +292,53 @@ $$I_{it} = a + b \cdot G_{it} + c \cdot r_{it} + \text{控制变量} + \varepsil
 
 ---
 
+## 附：理论推导与数学推导（深度补充）
+
+### 一、理论推导（双市场同时均衡）
+
+**两个市场两条曲线**：
+- IS：产品市场均衡 $Y = \alpha(\bar{A} - dr)$。
+- LM：货币市场均衡 $r = \frac{k}{h}Y - \frac{1}{h}\frac{M}{P}$。
+
+**联立过程**：
+- 第一步：把 LM 的 r 代入 IS：$Y = \alpha(\bar{A} - d\left(\frac{k}{h}Y - \frac{1}{h}\frac{M}{P}\right))$。
+- 第二步：展开：$Y = \alpha\bar{A} - \frac{\alpha dk}{h}Y + \frac{\alpha d}{h}\frac{M}{P}$。
+- 第三步：含 Y 的项移到左边：$Y + \frac{\alpha dk}{h}Y = \alpha\bar{A} + \frac{\alpha d}{h}\frac{M}{P}$。
+- 第四步：左边提取 Y：$Y \cdot \frac{h + \alpha dk}{h} = \alpha\bar{A} + \frac{\alpha d}{h}\frac{M}{P}$。
+- 第五步：解出均衡 Y：
+$$Y^* = \frac{h\alpha\bar{A} + \alpha d(M/P)}{h + \alpha dk}$$
+
+### 二、挤出效应的数学表达
+
+**G 增加 ΔG，M/P 不变**：
+- $\bar{A}$ 增加 ΔG。
+- 均衡 Y 的变化：$\Delta Y = \frac{h\alpha}{h + \alpha dk}\Delta G$。
+- 与完全乘数 $\alpha\Delta G = \frac{\Delta G}{1-\beta}$ 对比：
+  $$\frac{\Delta Y}{\Delta G} = \frac{h\alpha}{h + \alpha dk} < \alpha$$
+- 差额 $\alpha - \frac{h\alpha}{h+\alpha dk} = \frac{\alpha^2 dk}{h+\alpha dk}$ 就是**被挤出的私人投资**。
+- 直觉：G 上升 → Y 上升 → 货币交易需求 L₁=kY 上升 → r 上升 → I=Ī-dr 下降。这就是挤出。
+
+**极限情形**：
+- 流动性陷阱 h→∞：$\frac{\Delta Y}{\Delta G} \to \alpha$，挤出为 0（货币政策无效，财政政策完全有效）。
+- 古典区间 h→0：$\frac{\Delta Y}{\Delta G} \to 0$，挤出为 100%（财政政策完全无效）。
+
+**mermaid 因果图**：
+```mermaid
+graph TD
+    A[G 增加] --> B[IS 右移]
+    B --> C[Y 上升]
+    C --> D[货币交易需求 kY 上升]
+    D --> E[r 上升]
+    E --> F[私人投资 I 下降]
+    F --> G[挤出效应]
+```
+
+### 三、生活实例
+
+**国家投 5 万亿建高铁** → 钢铁水泥订单暴涨 → 银行贷款需求暴增 → 贷款利率从 4% 涨到 6% → 本来想借钱开工厂的老板嫌贵不借了。政府把"私人的钱"挤出去了一部分——这就是挤出。
+
+---
+
 ## 📖 配套教材笔记
 - [[../../教材笔记/06_西方经济学/11_IS-LM模型/知识点/KP04_ISLM共同均衡|原KP·ISLM共同均衡]]
 - [[../../教材笔记/06_西方经济学/11_IS-LM模型/知识点/KP05_流动性陷阱与挤出效应|原KP·流动性陷阱与挤出效应]]
