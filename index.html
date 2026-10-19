@@ -1,280 +1,1041 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>经济统计学论文写作知识库</title>
-    <meta name="msvalidate.01" content="F519A4DA9F13C310A90496F067A99A78">
-    
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
-    
-    <script>
-    mermaid.initialize({ 
-        startOnLoad: false,
-        theme: 'default',
-        securityLevel: 'loose'
-    });
-    
-    window.MathJax = {
-        tex: {
-            inlineMath: [['$', '$'], ['\\(', '\\)']],
-            displayMath: [['$$', '$$'], ['\\[', '\\]']],
-            processEscapes: true
-        }
-    };
-    </script>
-    
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: -apple-system, sans-serif; display: flex; height: 100vh; background: #f5f5f5; }
-        
-        .sidebar { width: 300px; background: #fff; border-right: 1px solid #ddd; overflow-y: auto; flex-shrink: 0; }
-        .sidebar-header { padding: 15px; border-bottom: 1px solid #ddd; position: sticky; top: 0; background: #fff; }
-        .sidebar-header h1 { font-size: 16px; margin-bottom: 10px; }
-        .repo-btn { display: inline-block; padding: 6px 12px; background: #24292e; color: #fff; border-radius: 4px; text-decoration: none; font-size: 13px; margin-bottom: 5px; margin-right: 5px; }
-        .hkust-btn { background: #28a745; }
-        
-        .file-tree { padding: 10px; font-size: 13px; }
-        .file-tree ul { list-style: none; padding-left: 15px; }
-        .file-tree li { padding: 4px 0; cursor: pointer; color: #333; }
-        .file-tree li:hover { color: #007acc; }
-        .file-tree li.folder { font-weight: bold; }
-        .file-tree li.folder::before { content: "📁 "; }
-        .file-tree li.file::before { content: "📄 "; }
-        .file-tree li.active { background: #e3f2fd; color: #007acc; padding-left: 5px; border-radius: 3px; }
-        .file-tree ul.hidden { display: none; }
-        
-        .main { flex: 1; display: flex; flex-direction: column; padding: 20px; overflow: hidden; min-width: 0; }
-        .mobile-menu-btn { display: none; padding: 10px 15px; background: #007acc; color: #fff; border: none; border-radius: 4px; font-size: 14px; cursor: pointer; margin-bottom: 10px; }
-        .breadcrumb { background: #fff; padding: 10px 15px; border-radius: 4px; margin-bottom: 10px; font-size: 14px; color: #666; }
-        .content { flex: 1; background: #fff; padding: 30px; border-radius: 4px; overflow-y: auto; line-height: 1.8; color: #333; font-size: 16px; }
-        
-        .content h1, .content h2, .content h3 { margin: 20px 0 10px; }
-        .content h1 { font-size: 28px; border-bottom: 1px solid #eee; padding-bottom: 10px; }
-        .content h2 { font-size: 24px; }
-        .content h3 { font-size: 20px; }
-        .content p { margin: 10px 0; }
-        .content ul, .content ol { margin: 10px 0; padding-left: 30px; }
-        .content code { background: #f5f5f5; padding: 2px 6px; border-radius: 3px; font-size: 14px; }
-        .content pre { background: #f5f5f5; padding: 15px; border-radius: 4px; overflow-x: auto; margin: 15px 0; }
-        .content pre code { background: none; padding: 0; }
-        .content table { border-collapse: collapse; width: 100%; margin: 15px 0; }
-        .content th, .content td { border: 1px solid #ddd; padding: 8px 12px; }
-        
-        .footer { text-align: center; padding: 20px; color: #999; font-size: 14px; }
-        .footer a { color: #007acc; text-decoration: none; margin: 0 10px; }
-        
-        @media (max-width: 768px) {
-            body { flex-direction: column; }
-            .sidebar { position: fixed; left: 0; top: 0; bottom: 0; z-index: 100; transform: translateX(-100%); width: 80%; max-width: 300px; }
-            .sidebar.open { transform: translateX(0); }
-            .mobile-menu-btn { display: block; }
-            .main { padding: 10px; }
-            .content { padding: 15px; font-size: 15px; }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>经济统计学论文写作知识库</title>
+<meta name="description" content="经济统计学论文写作知识库：从 0 基础到精通，637 篇笔记、教材笔记与实证研究指南。">
+<meta name="msvalidate.01" content="F519A4DA9F13C310A90496F067A99A78">
+<meta name="theme-color" content="#0f172a" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<style>
+:root{
+  --bg:#f6f7f9; --bg-elev:#ffffff; --bg-sunken:#eef1f5;
+  --fg:#1f2328; --fg-mute:#656d76; --fg-faint:#8b949e;
+  --border:#e1e4e8; --border-strong:#d0d7de;
+  --accent:#2563eb; --accent-soft:#e8f0fe; --accent-fg:#ffffff;
+  --code-bg:#f3f4f6; --code-fg:#b3005e;
+  --mark:#fff3a3;
+  --shadow:0 1px 2px rgba(0,0,0,.05), 0 4px 14px rgba(0,0,0,.06);
+  --radius:10px;
+  --sidebar-w:312px;
+  --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
+  --sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#0d1117; --bg-elev:#161b22; --bg-sunken:#21262d;
+    --fg:#e6edf3; --fg-mute:#9da7b3; --fg-faint:#6e7681;
+    --border:#30363d; --border-strong:#3d444d;
+    --accent:#4493f8; --accent-soft:#0d2a4d; --accent-fg:#ffffff;
+    --code-bg:#1c2128; --code-fg:#ff9bb3;
+    --mark:#4a3d00;
+    --shadow:0 1px 2px rgba(0,0,0,.3), 0 4px 14px rgba(0,0,0,.4);
+  }
+}
+*,*::before,*::after{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0; background:var(--bg); color:var(--fg);
+  font-family:var(--sans); font-size:16px; line-height:1.75;
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+  display:flex; overflow:hidden;
+}
+a{color:var(--accent); text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* ───────── 侧栏 ───────── */
+.sidebar{
+  width:var(--sidebar-w); flex:0 0 var(--sidebar-w);
+  background:var(--bg-elev); border-right:1px solid var(--border);
+  display:flex; flex-direction:column; height:100%; min-height:0; z-index:60;
+}
+.sidebar-head{padding:14px 14px 10px; border-bottom:1px solid var(--border); flex:0 0 auto}
+.brand{display:flex; align-items:center; gap:9px; margin-bottom:11px}
+.brand-mark{
+  width:28px; height:28px; border-radius:8px; flex:0 0 auto;
+  background:linear-gradient(135deg,#2563eb,#7c3aed); color:#fff;
+  display:grid; place-items:center; font-size:15px; font-weight:700;
+}
+.brand-txt{min-width:0}
+.brand-txt b{display:block; font-size:14px; line-height:1.3; font-weight:650; letter-spacing:.01em}
+.brand-txt span{display:block; font-size:11.5px; color:var(--fg-faint); line-height:1.4}
+.search-wrap{position:relative}
+.search-wrap svg{position:absolute; left:9px; top:50%; transform:translateY(-50%); width:14px; height:14px; color:var(--fg-faint); pointer-events:none}
+#search{
+  width:100%; padding:7px 9px 7px 29px; font-size:13px; font-family:inherit;
+  color:var(--fg); background:var(--bg-sunken); border:1px solid var(--border);
+  border-radius:8px; outline:none; transition:border-color .15s, box-shadow .15s;
+}
+#search:focus{border-color:var(--accent); box-shadow:0 0 0 3px var(--accent-soft)}
+#search::placeholder{color:var(--fg-faint)}
+.sidebar-links{display:flex; gap:6px; margin-top:9px}
+.sidebar-links a{
+  flex:1; text-align:center; padding:5px 6px; font-size:12px; border-radius:7px;
+  background:var(--bg-sunken); color:var(--fg-mute); border:1px solid var(--border);
+  white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+}
+.sidebar-links a:hover{color:var(--accent); border-color:var(--accent); text-decoration:none}
+
+.tree-scroll{flex:1 1 auto; overflow-y:auto; overscroll-behavior:contain; padding:8px 6px 24px}
+.tree-scroll::-webkit-scrollbar{width:9px}
+.tree-scroll::-webkit-scrollbar-thumb{background:var(--border-strong); border-radius:9px; border:2px solid var(--bg-elev)}
+.tree-scroll::-webkit-scrollbar-track{background:transparent}
+.tree, .tree ul{list-style:none; margin:0; padding:0}
+.tree ul{padding-left:11px; margin-left:5px; border-left:1px solid var(--border)}
+.tree li{min-width:0}
+.node{
+  display:flex; align-items:center; gap:5px; width:100%; min-width:0;
+  padding:4px 7px; border:0; border-radius:6px; background:none; cursor:pointer;
+  font:inherit; font-size:12.9px; line-height:1.5; color:var(--fg-mute); text-align:left;
+}
+.node:hover{background:var(--bg-sunken); color:var(--fg)}
+.node .tw{flex:0 0 12px; display:grid; place-items:center; color:var(--fg-faint); transition:transform .14s ease}
+.node .ico{flex:0 0 14px; display:grid; place-items:center; color:var(--fg-faint)}
+.node .lbl{flex:1 1 auto; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.dir > .node{font-weight:600; color:var(--fg)}
+.dir.open > .node .tw{transform:rotate(90deg)}
+.dir:not(.open) > ul{display:none}
+.file.active > .node{background:var(--accent-soft); color:var(--accent); font-weight:600}
+.file.active > .node .ico{color:var(--accent)}
+.tree mark{background:var(--mark); color:inherit; border-radius:2px; padding:0 1px}
+.tree .hidden{display:none !important}
+.empty-hint{padding:14px 12px; color:var(--fg-faint); font-size:12.5px; text-align:center}
+
+/* ───────── 主区 ───────── */
+.main{flex:1 1 auto; display:flex; flex-direction:column; min-width:0; height:100%; min-height:0}
+.topbar{
+  flex:0 0 auto; display:flex; align-items:center; gap:10px;
+  padding:9px 16px; background:var(--bg-elev); border-bottom:1px solid var(--border);
+  padding-top:max(9px, env(safe-area-inset-top));
+}
+.icon-btn{
+  display:none; place-items:center; width:34px; height:34px; flex:0 0 auto;
+  border:1px solid var(--border); border-radius:8px; background:var(--bg-elev);
+  color:var(--fg-mute); cursor:pointer; padding:0;
+}
+.icon-btn:hover{color:var(--accent); border-color:var(--accent)}
+.icon-btn svg{width:17px; height:17px}
+.crumbs{flex:1 1 auto; min-width:0; font-size:12.8px; color:var(--fg-faint); overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.crumbs b{color:var(--fg); font-weight:600}
+.crumbs .sep{margin:0 5px; opacity:.5}
+.scroll{flex:1 1 auto; overflow-y:auto; overscroll-behavior:contain; scroll-behavior:smooth}
+.scroll::-webkit-scrollbar{width:11px}
+.scroll::-webkit-scrollbar-thumb{background:var(--border-strong); border-radius:11px; border:3px solid var(--bg)}
+.page{max-width:900px; margin:0 auto; padding:26px 26px 72px}
+.card{background:var(--bg-elev); border:1px solid var(--border); border-radius:var(--radius); box-shadow:var(--shadow); padding:30px 34px 36px}
+@media (max-width:820px){ .card{border-radius:0; border-left:0; border-right:0; box-shadow:none; margin:0; padding:20px 16px 32px} }
+
+/* ───────── 排版 ───────── */
+.md{font-size:16px; line-height:1.8; word-wrap:break-word; overflow-wrap:break-word}
+.md > :first-child{margin-top:0}
+.md > :last-child{margin-bottom:0}
+.md h1,.md h2,.md h3,.md h4,.md h5,.md h6{line-height:1.35; margin:1.7em 0 .6em; font-weight:650; scroll-margin-top:16px}
+.md h1{font-size:1.72em; padding-bottom:.35em; border-bottom:1px solid var(--border); margin-top:0}
+.md h2{font-size:1.38em; padding-bottom:.28em; border-bottom:1px solid var(--border)}
+.md h3{font-size:1.16em}
+.md h4{font-size:1.02em}
+.md h5,.md h6{font-size:.95em; color:var(--fg-mute)}
+.md p{margin:0 0 1em}
+.md ul,.md ol{margin:0 0 1em; padding-left:1.6em}
+.md li{margin:.28em 0}
+.md li > ul,.md li > ol{margin:.28em 0}
+.md hr{height:1px; border:0; background:var(--border); margin:2em 0}
+.md blockquote{
+  margin:0 0 1em; padding:.6em 1em; color:var(--fg-mute);
+  background:var(--bg-sunken); border-left:3px solid var(--border-strong); border-radius:0 6px 6px 0;
+}
+.md blockquote > :last-child{margin-bottom:0}
+.md strong{font-weight:650}
+.md del{color:var(--fg-faint)}
+.md code{
+  font-family:var(--mono); font-size:.875em; padding:.15em .38em;
+  background:var(--code-bg); color:var(--code-fg); border-radius:4px;
+  word-break:break-word;
+}
+.md pre{
+  margin:0 0 1em; padding:14px 16px; overflow-x:auto; -webkit-overflow-scrolling:touch;
+  background:var(--code-bg); border:1px solid var(--border); border-radius:8px; line-height:1.6;
+}
+.md pre code{background:none; color:var(--fg); padding:0; font-size:13px; white-space:pre}
+.md pre{max-width:100%}
+.md pre code{display:block; max-width:100%}
+.md .table-wrap{margin:0 0 1.2em; overflow-x:auto; -webkit-overflow-scrolling:touch; border:1px solid var(--border); border-radius:8px}
+.md .table-wrap > table{display:table; width:auto; min-width:100%}
+.md .table-wrap table{margin:0; border:0; min-width:100%; max-width:none}
+.md table{border-collapse:collapse; width:100%; margin:0 0 1.2em; font-size:14.5px; display:table}
+.md th,.md td{border-bottom:1px solid var(--border); padding:9px 13px; text-align:left; vertical-align:top}
+.md th{background:var(--bg-sunken); font-weight:650; white-space:nowrap}
+.md tr:last-child td{border-bottom:0}
+.md img{max-width:100%; height:auto; display:block; margin:1em auto; border-radius:6px}
+/* 公式：超长公式横向滚动，绝不撑破页面。
+   注意 MathJax 块级公式是 <mjx-container class="MathJax" jax="CHTML" display="true">，
+   行内公式无 display 属性；用 display 属性区分，且必须允许横向滚动。 */
+/* 公式溢出控制。
+   坑：MathJax 自带 CSS 用 mjx-container[jax="CHTML"][display="true"][width="full"]{display:flex}，
+   特异性(2属性+元素)高于普通类选择器，会把 display 改回 flex → 公式撑破页面。
+   所以这里必须 !important，并且选择器要带上属性提高特异性。 */
+.md mjx-container{display:inline-block !important; max-width:100% !important;
+  min-width:0 !important;      /* 关键：MathJax 内联写了 min-width:25.865em，min 会压过 max-width */
+  overflow-x:auto !important; overflow-y:hidden !important;
+  vertical-align:middle; -webkit-overflow-scrolling:touch}
+.md mjx-container[jax][display="true"], .md mjx-container[display="true"]{
+  display:block !important; margin:1em 0 !important; padding:2px 0;
+  max-width:100% !important; min-width:0 !important; width:auto !important;
+  overflow-x:auto !important; overflow-y:hidden !important; text-align:center}
+.md mjx-container[jax][display="true"][width="full"]{display:block !important; width:auto !important; min-width:0 !important}
+.md .katex-display{max-width:100%; overflow-x:auto; overflow-y:hidden}
+.md .katex{font-size:1.02em}
+.md figure{margin:1em 0}
+.md .mermaid-box{
+  margin:0 0 1.2em; padding:12px; overflow-x:auto; -webkit-overflow-scrolling:touch;
+  background:var(--bg-elev); border:1px solid var(--border); border-radius:8px;
+}
+.md .mermaid-box svg{max-width:100%; height:auto; display:block; margin:0 auto}
+.md .mermaid-err{
+  margin:0 0 1em; padding:11px 14px; border:1px solid var(--border); border-left:3px solid #d29922;
+  border-radius:0 8px 8px 0; background:var(--bg-sunken); font-size:13px; color:var(--fg-mute);
+}
+.md .mermaid-err pre{margin:8px 0 0; background:var(--code-bg)}
+.md .wikilink{color:var(--accent); cursor:pointer; border-bottom:1px dashed var(--accent); text-decoration:none}
+.md .wikilink:hover{text-decoration:none; background:var(--accent-soft)}
+.md .wikilink.missing{color:var(--fg-faint); border-bottom:1px dotted var(--fg-faint); cursor:help}
+.md a.md-link{cursor:pointer}
+.md a[href^="http"]::after{content:"↗"; font-size:.72em; margin-left:2px; opacity:.55; vertical-align:super}
+
+/* ───────── 状态 ───────── */
+.state{padding:64px 20px; text-align:center; color:var(--fg-mute)}
+.state .big{font-size:15px; margin-bottom:6px; color:var(--fg)}
+.state .sub{font-size:13px; color:var(--fg-faint)}
+.spinner{
+  width:22px; height:22px; margin:0 auto 12px; border-radius:50%;
+  border:2.5px solid var(--border); border-top-color:var(--accent);
+  animation:spin .7s linear infinite;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+.err-box{
+  margin:0 auto; max-width:520px; padding:18px 20px; text-align:left;
+  background:var(--bg-elev); border:1px solid var(--border); border-left:3px solid #f85149; border-radius:0 8px 8px 0;
+}
+.err-box b{display:block; margin-bottom:6px; color:var(--fg)}
+.err-box code{font-family:var(--mono); font-size:12.5px; word-break:break-all; color:var(--fg-mute)}
+.toast{
+  position:fixed; left:50%; bottom:26px; transform:translate(-50%,16px);
+  padding:9px 18px; border-radius:999px; background:var(--fg); color:var(--bg-elev);
+  font-size:13px; opacity:0; pointer-events:none; transition:opacity .2s, transform .2s; z-index:200;
+}
+.toast.show{opacity:.94; transform:translate(-50%,0)}
+.backdrop{display:none; position:fixed; inset:0; background:rgba(0,0,0,.42); z-index:55; -webkit-tap-highlight-color:transparent}
+.backdrop.show{display:block}
+.sr{position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap}
+
+/* ───────── 手机 ───────── */
+@media (max-width:820px){
+  body{display:block; overflow:auto; height:auto}
+  .sidebar{
+    position:fixed; top:0; bottom:0; left:0; width:86%; max-width:330px;
+    transform:translateX(-102%); transition:transform .24s cubic-bezier(.4,0,.2,1);
+    box-shadow:0 0 24px rgba(0,0,0,.28); padding-bottom:env(safe-area-inset-bottom);
+  }
+  .sidebar.open{transform:translateX(0)}
+  .main{height:auto; min-height:100vh; display:block}
+  .topbar{position:sticky; top:0; z-index:40}
+  .icon-btn{display:grid}
+  .scroll{overflow:visible}
+  .page{padding:0 0 40px}
+  .md{font-size:15.5px}
+  .md h1{font-size:1.5em}
+  .md h2{font-size:1.28em}
+  .md pre{border-radius:0; margin-left:-16px; margin-right:-16px; border-left:0; border-right:0; padding:12px 16px}
+  .md .table-wrap{border-radius:0; margin-left:-16px; margin-right:-16px; border-left:0; border-right:0}
+  .md th,.md td{padding:8px 11px; font-size:13.5px}
+  .md .mermaid-box{border-radius:0; margin-left:-16px; margin-right:-16px; border-left:0; border-right:0; padding:8px}
+  .md img{border-radius:0}
+}
+@media (max-width:380px){
+  .brand-txt span{display:none}
+  .page{padding-left:0; padding-right:0}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation-duration:.01ms !important; transition-duration:.01ms !important}
+  .scroll{scroll-behavior:auto}
+}
+</style>
 </head>
 <body>
-    <div class="sidebar" id="sidebar">
-        <div class="sidebar-header">
-            <h1>知识库</h1>
-            <a href="https://github.com/wpc6666/economic-statistics-thesis-knowledge" target="_blank" class="repo-btn">本仓库</a>
-            <a href="https://github.com/HKUSTDial/Supervisor-Skills" target="_blank" class="repo-btn hkust-btn">HKUST</a>
-        </div>
-        <div class="file-tree" id="fileTree">
-            <p style="padding: 10px; color: #999;">加载中...</p>
-        </div>
+
+<div class="backdrop" id="backdrop"></div>
+
+<aside class="sidebar" id="sidebar" aria-label="文件目录">
+  <div class="sidebar-head">
+    <div class="brand">
+      <div class="brand-mark">经</div>
+      <div class="brand-txt">
+        <b>经济统计学论文写作知识库</b>
+        <span id="stat">从 0 基础到精通</span>
+      </div>
     </div>
-    
-    <div class="main">
-        <button class="mobile-menu-btn" id="mobileMenuBtn">☰ 目录</button>
-        <div class="breadcrumb" id="breadcrumb">首页</div>
-        <div class="content" id="content">
-            <h1>欢迎使用经济统计学论文写作知识库</h1>
-            <p>从左侧目录选择要查看的文件。</p>
-        </div>
-        <div class="footer">
-            <a href="https://github.com/wpc6666/economic-statistics-thesis-knowledge" target="_blank">⭐ 本仓库</a>
-            <a href="https://github.com/HKUSTDial/Supervisor-Skills" target="_blank">📚 HKUST科研写作指南</a>
-            <p>© 白澤 程 · 经济统计学论文写作知识库</p>
-        </div>
+    <div class="search-wrap">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4.2-4.2"/></svg>
+      <input id="search" type="search" placeholder="搜索文件名…" autocomplete="off" spellcheck="false" aria-label="搜索文件名">
     </div>
-    
-    <script>
-        let allFiles = [];
-        
-        // 加载文件树
-        async function loadFileTree() {
-            try {
-                const res = await fetch('file-tree.json');
-                if (!res.ok) throw new Error('HTTP ' + res.status);
-                const treeData = await res.json();
-                
-                // 收集所有文件路径
-                allFiles = [];
-                collectFiles(treeData, '');
-                
-                // 渲染文件树
-                const container = document.getElementById('fileTree');
-                container.innerHTML = buildTreeHtml(treeData, '', true);
-                
-                // 绑定文件夹点击事件
-                container.querySelectorAll('li.folder').forEach(li => {
-                    li.addEventListener('click', function(e) {
-                        e.stopPropagation();
-                        const ul = this.querySelector('ul');
-                        if (ul) {
-                            ul.classList.toggle('hidden');
-                        }
-                    });
-                });
-                
-                // 绑定文件点击事件
-                container.querySelectorAll('li.file').forEach(li => {
-                    li.addEventListener('click', function(e) {
-                        e.stopPropagation();
-                        document.querySelectorAll('li.file').forEach(l => l.classList.remove('active'));
-                        this.classList.add('active');
-                        loadFile(this.dataset.path);
-                    });
-                });
-                
-            } catch (err) {
-                document.getElementById('fileTree').innerHTML = '<p style="color: red; padding: 10px;">加载失败: ' + err.message + '</p>';
-            }
-        }
-        
-        // 递归收集文件路径
-        function collectFiles(node, path) {
-            Object.keys(node).forEach(key => {
-                const value = node[key];
-                const currentPath = path ? path + '/' + key : key;
-                if (value === null) {
-                    allFiles.push(currentPath);
-                } else if (typeof value === 'object') {
-                    collectFiles(value, currentPath);
-                }
-            });
-        }
-        
-        // 递归构建树的HTML
-        function buildTreeHtml(node, path, isTopLevel) {
-            let html = '<ul>';
-            if (!isTopLevel) {
-                html = '<ul class="hidden">';
-            }
-            
-            Object.keys(node).forEach(key => {
-                const value = node[key];
-                const currentPath = path ? path + '/' + key : key;
-                
-                if (value === null) {
-                    // 文件
-                    const nameNoExt = key.replace(/\.md$/, '');
-                    html += '<li class="file" data-path="' + currentPath + '">' + nameNoExt + '</li>';
-                } else if (typeof value === 'object') {
-                    // 文件夹
-                    html += '<li class="folder">' + key;
-                    html += buildTreeHtml(value, currentPath, false);
-                    html += '</li>';
-                }
-            });
-            
-            html += '</ul>';
-            return html;
-        }
-        
-        // 加载文件内容
-        async function loadFile(path) {
-            // 手机端收起侧边栏
-            if (window.innerWidth <= 768) {
-                document.getElementById('sidebar').classList.remove('open');
-            }
-            
-            document.getElementById('breadcrumb').textContent = '首页 / ' + path;
-            document.getElementById('content').innerHTML = '<p style="padding: 20px; color: #666;">加载中...</p>';
-            
-            try {
-                const res = await fetch(encodeURI(path));
-                if (!res.ok) throw new Error('HTTP ' + res.status);
-                let md = await res.text();
-                
-                // 处理wikilink
-                const fileMap = {};
-                allFiles.forEach(f => {
-                    const fileName = f.split('/').pop();
-                    const nameNoExt = fileName.replace(/\.md$/, '');
-                    fileMap[nameNoExt] = f;
-                });
-                
-                md = md.replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, function(match, target, display) {
-                    const targetClean = target.trim();
-                    let filePath = fileMap[targetClean];
-                    if (filePath) {
-                        const safePath = filePath.replace(/'/g, "\\'");
-                        return '<span style="color: #007acc; cursor: pointer; text-decoration: underline;" onclick="loadFile(\'' + safePath + '\')">' + (display || target) + '</span>';
-                    } else {
-                        return '<span style="color: #999;">' + (display || target) + '</span>';
-                    }
-                });
-                
-                // 先提取mermaid代码块，用特殊标记替换
-                const mermaidBlocks = [];
-                md = md.replace(/```mermaid\n(.*?)```/gs, function(match, code) {
-                    const id = 'MERMAID_PLACEHOLDER_' + mermaidBlocks.length;
-                    mermaidBlocks.push(code.trim());
-                    return id;
-                });
-                
-                // 渲染markdown
-                let html = marked.parse(md);
-                
-                // 把特殊标记替换回div
-                mermaidBlocks.forEach(function(code, index) {
-                    const id = 'MERMAID_PLACEHOLDER_' + index;
-                    html = html.replace(id, '<div id="mermaid-' + index + '"></div>');
-                });
-                
-                document.getElementById('content').innerHTML = html;
-                
-                // 逐个渲染mermaid
-                mermaidBlocks.forEach(function(code, index) {
-                    const div = document.getElementById('mermaid-' + index);
-                    if (!div) return;
-                    
-                    mermaid.render('mermaid-svg-' + index, code)
-                        .then(function(result) { 
-                            div.innerHTML = result.svg; 
-                        })
-                        .catch(function(err) { 
-                            div.innerHTML = '<div style="color: #666; padding: 10px; background: #f5f5f5; border-radius: 4px;">Mermaid代码:</div><pre style="background: #f5f5f5; padding: 10px; border-radius: 4px; overflow-x: auto; font-size: 12px;">' + code + '</pre>';
-                        });
-                });
-                
-                // 渲染公式
-                if (window.MathJax && window.MathJax.typesetPromise) {
-                    try {
-                        window.MathJax.typesetPromise([document.getElementById('content')]);
-                    } catch (e) {
-                        console.log('MathJax渲染失败:', e);
-                    }
-                }
-                
-                document.getElementById('content').scrollTop = 0;
-            } catch (err) {
-                document.getElementById('content').innerHTML = '<h1>加载失败</h1><p>无法加载文件: ' + path + '</p><p>错误: ' + err.message + '</p>';
-            }
-        }
-        
-        // 移动端菜单
-        document.getElementById('mobileMenuBtn').addEventListener('click', function() {
-            document.getElementById('sidebar').classList.toggle('open');
+    <div class="sidebar-links">
+      <a href="https://github.com/wpc6666/economic-statistics-thesis-knowledge" target="_blank" rel="noopener">本仓库</a>
+      <a href="https://github.com/HKUSTDial/Supervisor-Skills" target="_blank" rel="noopener">HKUST 指南</a>
+      <a href="#" id="randomLink" title="随机看一篇">随机</a>
+    </div>
+  </div>
+  <div class="tree-scroll" id="treeScroll">
+    <div class="tree" id="tree"><div class="empty-hint"><div class="spinner"></div>加载目录…</div></div>
+  </div>
+</aside>
+
+<div class="main">
+  <div class="topbar">
+    <button class="icon-btn" id="menuBtn" aria-label="打开目录" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+    <div class="crumbs" id="crumbs">首页</div>
+    <button class="icon-btn" id="topBtn" aria-label="回到顶部" style="display:none">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+    </button>
+  </div>
+  <div class="scroll" id="scroll">
+    <div class="page"><div class="card"><div class="md" id="content"></div></div></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ════════════════════════════════════════════════════════════
+   知识库阅读器
+   关键修复（相对上一版）：
+   1. 链接/图片按「md 所在目录」解析 —— 上一版按页面根解析，
+      .md 链接全部 404（GitHub 深色 404 页 = 用户说的"跳转显示黑色"），
+      37 张图片也全部 404。
+   2. 站内跳转拦截，不再离开阅读器。
+   3. mermaid 占位符用不可碰撞的串，id 全局唯一，逐块 try/catch。
+   4. 表格套横滑容器；mermaid/图片限宽。
+   5. CDN 三级兜底 + 超时提示。
+   ════════════════════════════════════════════════════════════ */
+(function () {
+  'use strict';
+
+  var $ = function (id) { return document.getElementById(id); };
+  var contentEl = $('content'), treeEl = $('tree'), crumbsEl = $('crumbs');
+  var scrollEl = $('scroll'), sidebarEl = $('sidebar'), backdropEl = $('backdrop');
+  var searchEl = $('search'), statEl = $('stat'), toastEl = $('toast');
+  var menuBtn = $('menuBtn'), topBtn = $('topBtn');
+
+  var allFiles = [];          // 全部 .md 相对路径
+  var fileByBase = {};        // basename(无扩展) -> 相对路径（wikilink 用）
+  var fileByLower = {};       // 小写 basename -> 路径（容错）
+  var pathSet = {};           // 全部相对路径集合（判断目标是否存在）
+  var currentPath = '';
+  var mermaidSeq = 0;
+  var loadingToken = 0;
+
+  /* ───────── 工具 ───────── */
+  function dirname(p) { var i = p.lastIndexOf('/'); return i < 0 ? '' : p.slice(0, i); }
+  function basename(p) { var i = p.lastIndexOf('/'); return i < 0 ? p : p.slice(i + 1); }
+  function stripExt(n) { return n.replace(/\.(md|markdown)$/i, ''); }
+
+  // 把相对路径按基准目录归一化，去掉 ./ 与 ../
+  function resolvePath(base, rel) {
+    if (!rel) return '';
+    if (/^[a-z]+:\/\//i.test(rel) || rel.charAt(0) === '/' || rel.charAt(0) === '#') return null;
+    var stack = base ? base.split('/') : [];
+    rel.split('/').forEach(function (seg) {
+      if (seg === '' || seg === '.') return;
+      if (seg === '..') { stack.pop(); return; }
+      stack.push(seg);
+    });
+    return stack.join('/');
+  }
+
+  function safeDecode(s) { try { return decodeURIComponent(s); } catch (e) { return s; } }
+
+  function toast(msg, ms) {
+    toastEl.textContent = msg;
+    toastEl.classList.add('show');
+    clearTimeout(toast._t);
+    toast._t = setTimeout(function () { toastEl.classList.remove('show'); }, ms || 1800);
+  }
+
+  /* ───────── 依赖加载（三级 CDN 兜底） ───────── */
+  var CDN = [
+    'https://cdn.jsdelivr.net/npm/',
+    'https://fastly.jsdelivr.net/npm/',
+    'https://unpkg.com/'
+  ];
+  function loadScript(paths, timeoutMs) {
+    // paths: 依次尝试的相对路径数组（同一库的不同 CDN）
+    return new Promise(function (resolve, reject) {
+      var i = 0;
+      (function next() {
+        if (i >= paths.length) return reject(new Error('全部 CDN 均失败'));
+        var url = paths[i++];
+        var s = document.createElement('script');
+        var done = false;
+        var timer = setTimeout(function () {
+          if (done) return;
+          done = true; s.remove(); next();
+        }, timeoutMs || 12000);
+        s.src = url;
+        s.onload = function () { if (done) return; done = true; clearTimeout(timer); resolve(url); };
+        s.onerror = function () { if (done) return; done = true; clearTimeout(timer); s.remove(); next(); };
+        document.head.appendChild(s);
+      })();
+    });
+  }
+  function cdnPaths(pkg) { return CDN.map(function (b) { return b + pkg; }); }
+
+  var libs = { marked: false, mermaid: false, mathjax: false };
+  var libsReady = Promise.resolve(null);   // marked 就绪信号，首次渲染前必须等它
+
+  function bootLibs() {
+    // marked + mermaid 同步等待；MathJax 异步不阻塞首屏
+    var pMarked = loadScript(cdnPaths('marked@12.0.2/marked.min.js'))
+      .then(function () { libs.marked = true; })
+      .catch(function () { throw new Error('marked 加载失败'); });
+
+    var pMermaid = loadScript(cdnPaths('mermaid@10.9.1/dist/mermaid.min.js'))
+      .then(function () {
+        libs.mermaid = true;
+        try {
+          window.mermaid.initialize({
+            startOnLoad: false,
+            theme: window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default',
+            securityLevel: 'loose',
+            fontFamily: '-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif',
+            flowchart: { htmlLabels: true, useMaxWidth: true },
+            themeVariables: { fontSize: '15px' }
+          });
+        } catch (e) { /* 忽略 */ }
+      })
+      .catch(function () { libs.mermaid = false; });
+
+    var pMath = loadScript(cdnPaths('mathjax@3.2.2/es5/tex-mml-chtml.js'), 20000)
+      .then(function () { libs.mathjax = true; })
+      .catch(function () { libs.mathjax = false; });
+
+    return { marked: pMarked, mermaid: pMermaid, mathjax: pMath };
+  }
+
+  /* ───────── 文件树 ───────── */
+  function collectFiles(node, path, out) {
+    Object.keys(node).forEach(function (k) {
+      var v = node[k];
+      var p = path ? path + '/' + k : k;
+      if (v === null) {
+        if (/\.md$/i.test(k)) out.push(p);
+        pathSet[p] = true;
+      } else if (typeof v === 'object') {
+        collectFiles(v, p, out);
+      }
+    });
+  }
+
+  // 目录优先 + 中文数字自然排序
+  function sortKeys(node) {
+    return Object.keys(node).sort(function (a, b) {
+      var da = node[a] !== null, db = node[b] !== null;
+      if (da !== db) return da ? -1 : 1;              // 目录在前
+      return a.localeCompare(b, 'zh-Hans-CN', { numeric: true, sensitivity: 'base' });
+    });
+  }
+
+  function buildTree(node, path) {
+    var ul = document.createElement('ul');
+    ul.className = 'tree';
+    sortKeys(node).forEach(function (k) {
+      var v = node[k];
+      var p = path ? path + '/' + k : k;
+      var li = document.createElement('li');
+      if (v === null) {
+        if (!/\.md$/i.test(k)) return;                // 只列 md
+        li.className = 'file';
+        li.dataset.path = p;
+        var b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'node';
+        b.innerHTML = '<span class="ico">' + ICON_DOC + '</span><span class="lbl"></span>';
+        b.querySelector('.lbl').textContent = stripExt(k);
+        b.title = p;
+        b.addEventListener('click', function () { go(p); });
+        li.appendChild(b);
+      } else {
+        li.className = 'dir';
+        var fb = document.createElement('button');
+        fb.type = 'button';
+        fb.className = 'node';
+        fb.setAttribute('aria-expanded', 'false');
+        fb.innerHTML = '<span class="tw">' + ICON_CHEV + '</span><span class="ico">' + ICON_DIR + '</span><span class="lbl"></span>';
+        fb.querySelector('.lbl').textContent = k;
+        fb.title = p;
+        fb.addEventListener('click', function () {
+          var open = li.classList.toggle('open');
+          fb.setAttribute('aria-expanded', open ? 'true' : 'false');
         });
-        
-        // 初始加载
-        loadFileTree();
-    </script>
+        li.appendChild(fb);
+        li.appendChild(buildTree(v, p));
+      }
+      ul.appendChild(li);
+    });
+    return ul;
+  }
+
+  var ICON_CHEV = '<svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>';
+  var ICON_DIR = '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>';
+  var ICON_DOC = '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/></svg>';
+
+  function renderTree(data) {
+    treeEl.innerHTML = '';
+    treeEl.appendChild(buildTree(data, ''));
+    statEl.textContent = allFiles.length + ' 篇笔记 · 从 0 基础到精通';
+  }
+
+  /* ───────── 搜索 ───────── */
+  var searchTimer;
+  searchEl.addEventListener('input', function () {
+    clearTimeout(searchTimer);
+    searchTimer = setTimeout(function () { applyFilter(searchEl.value.trim()); }, 140);
+  });
+
+  function applyFilter(q) {
+    var items = treeEl.querySelectorAll('li.file');
+    if (!q) {
+      items.forEach(function (li) { li.classList.remove('hidden'); });
+      treeEl.querySelectorAll('li.dir').forEach(function (d) { d.classList.remove('hidden'); });
+      treeEl.querySelectorAll('.node .lbl').forEach(function (l) { l.innerHTML = escapeHtml(l.dataset.orig || l.textContent); });
+      treeEl.querySelectorAll('.empty-hint').forEach(function (e) { e.remove(); });
+      // 恢复折叠状态：全部收起
+      treeEl.querySelectorAll('li.dir').forEach(function (d) { d.classList.remove('open'); });
+      if (currentPath) revealActive(currentPath, false);
+      return;
+    }
+    var low = q.toLowerCase();
+    var hit = 0;
+    items.forEach(function (li) {
+      var name = li.dataset.path.toLowerCase();
+      var match = name.indexOf(low) >= 0;
+      li.classList.toggle('hidden', !match);
+      if (match) hit++;
+    });
+    // 命中的文件展开所有祖先
+    treeEl.querySelectorAll('li.dir').forEach(function (d) { d.classList.remove('hidden'); });
+    items.forEach(function (li) {
+      if (li.classList.contains('hidden')) return;
+      var p = li.parentElement;
+      while (p && p !== treeEl) {
+        if (p.classList && p.classList.contains('dir')) p.classList.add('open');
+        p = p.parentElement;
+      }
+    });
+    if (!hit) {
+      if (!treeEl.querySelector('.empty-hint')) {
+        var d = document.createElement('div');
+        d.className = 'empty-hint';
+        d.textContent = '没有匹配「' + q + '」的文件';
+        treeEl.appendChild(d);
+      }
+    } else {
+      treeEl.querySelectorAll('.empty-hint').forEach(function (e) { e.remove(); });
+    }
+  }
+
+  function escapeHtml(s) {
+    return String(s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+
+  /* ───────── 路由 ───────── */
+  function go(path, replace) {
+    var h = '#/' + encodeURI(path);
+    if (location.hash === h) { loadFile(path); return; }
+    if (replace) history.replaceState(null, '', h);
+    else location.hash = h;
+  }
+
+  function pathFromHash() {
+    var h = location.hash || '';
+    if (h.indexOf('#/') !== 0) return '';
+    var p = safeDecode(h.slice(2));
+    // 安全：不允许跳出仓库
+    if (p.indexOf('..') >= 0) return '';
+    return p;
+  }
+
+  window.addEventListener('hashchange', function () {
+    var p = pathFromHash();
+    if (p && p !== currentPath) loadFile(p);
+    else if (!p) showWelcome();
+  });
+
+  function revealActive(path, scroll) {
+    treeEl.querySelectorAll('li.file.active').forEach(function (li) { li.classList.remove('active'); });
+    var li = treeEl.querySelector('li.file[data-path="' + cssEscape(path) + '"]');
+    if (!li) {
+      // 文件可能被搜索过滤掉了：清掉过滤再试
+      if (searchEl.value) { searchEl.value = ''; applyFilter(''); li = treeEl.querySelector('li.file[data-path="' + cssEscape(path) + '"]'); }
+    }
+    if (!li) return;
+    li.classList.add('active');
+    var p = li.parentElement;
+    while (p && p !== treeEl) {
+      if (p.classList && p.classList.contains('dir')) p.classList.add('open');
+      p = p.parentElement;
+    }
+    if (scroll !== false) {
+      var sc = $('treeScroll');
+      var r = li.getBoundingClientRect(), sr = sc.getBoundingClientRect();
+      if (r.top < sr.top + 8 || r.bottom > sr.bottom - 8) {
+        li.scrollIntoView({ block: 'center' });
+      }
+    }
+  }
+  function cssEscape(s) { return String(s).replace(/["\\]/g, '\\$&'); }
+
+  /* ───────── 面包屑 ───────── */
+  function setCrumbs(path) {
+    var parts = path.split('/');
+    var name = stripExt(parts.pop());
+    var dirs = parts;
+    var html = '<b>' + escapeHtml(name) + '</b>';
+    if (dirs.length) {
+      html += '<span class="sep">·</span>' + escapeHtml(dirs.join(' / '));
+    }
+    crumbsEl.innerHTML = html;
+    document.title = name + ' · 经济统计学论文写作知识库';
+  }
+
+  /* ───────── 状态渲染 ───────── */
+  function showLoading() {
+    contentEl.innerHTML = '<div class="state"><div class="spinner"></div><div class="sub">加载中…</div></div>';
+  }
+  function showError(title, detail, retryPath) {
+    contentEl.innerHTML =
+      '<div class="state"><div class="err-box"><b>' + escapeHtml(title) + '</b>' +
+      (detail ? '<div class="sub" style="margin-bottom:8px">' + escapeHtml(detail) + '</div>' : '') +
+      '<code>' + escapeHtml(retryPath || '') + '</code></div></div>';
+  }
+  function showWelcome() {
+    currentPath = '';
+    crumbsEl.innerHTML = '首页';
+    document.title = '经济统计学论文写作知识库';
+    contentEl.innerHTML = WELCOME_HTML;
+    treeEl.querySelectorAll('li.file.active').forEach(function (li) { li.classList.remove('active'); });
+    bindWelcome();
+  }
+
+  var WELCOME_HTML = [
+    '<h1>经济统计学论文写作知识库</h1>',
+    '<p>从 0 基础到精通的完整笔记体系：基础数学、统计方法、计量经济学、Stata/R 实操、论文写作全流程。</p>',
+    '<h2>怎么用</h2>',
+    '<ul>',
+    '<li><b>左侧目录</b>点开文件夹逐层浏览；顶部搜索框可按文件名过滤。</li>',
+    '<li><b>站内跳转</b>：正文里的蓝色链接直接在本页打开，不再跳出阅读器。</li>',
+    '<li><b>收藏某一页</b>：地址栏会带 <code>#/路径</code>，复制即可分享。</li>',
+    '</ul>',
+    '<h2>推荐入口</h2>',
+    '<ul id="welcomeLinks"><li>加载中…</li></ul>',
+    '<h2>说明</h2>',
+    '<p>公式用 MathJax 渲染，流程图用 Mermaid 渲染。若某个图显示为「源码」提示，说明该图的 Mermaid 语法有误，不影响其他内容。</p>'
+  ].join('');
+
+  function bindWelcome() {
+    var box = $('welcomeLinks');
+    if (!box) return;
+    var picks = [
+      '经济统计学论文从0基础到精通/README.md',
+      '00_学习导航.md',
+      '00_总索引与学习规划.md',
+      '经济统计学论文从0基础到精通/01_基础数学/README.md',
+      '经济统计学论文从0基础到精通/12_毕业论文实战/README.md'
+    ].filter(function (p) { return pathSet[p]; });
+    if (!picks.length) { box.innerHTML = '<li>用左侧目录开始浏览</li>'; return; }
+    box.innerHTML = picks.map(function (p) {
+      return '<li><a class="wikilink" data-go="' + escapeHtml(p) + '">' + escapeHtml(stripExt(basename(p)) === 'README' ? dirname(p) : stripExt(basename(p))) + '</a></li>';
+    }).join('');
+    box.querySelectorAll('[data-go]').forEach(function (a) {
+      a.addEventListener('click', function (e) { e.preventDefault(); go(a.dataset.go); });
+    });
+  }
+
+  /* ───────── markdown 预处理 ───────── */
+  // 把 [[X]].md 这种畸形写法归一成 [[X]]
+  function normalizeWiki(md) {
+    return md.replace(/\[\[([^\]|]+)\]\]\.md/g, '[[$1]]');
+  }
+
+  // 抽取 mermaid 代码块，用不可碰撞的占位符替换
+  /* 公式保护：marked 会把 _ 和 * 当强调语法吃掉，
+     所以先把 $...$ / $$...$$ 抽成占位符，解析完再换回来。 */
+  function extractMath(md) {
+    var blocks = [];
+    var token = '@@MATHBLK_' + Math.random().toString(36).slice(2, 9) + '_';
+    // 先块级 $$...$$（可跨行），再行内 $...$（不跨行、不匹配已转义的 \$）
+    md = md.replace(/\$\$([\s\S]+?)\$\$/g, function (m, tex) {
+      var i = blocks.length;
+      blocks.push({ tex: tex.trim(), display: true });
+      return '\n\n' + token + i + 'X\n\n';
+    });
+    md = md.replace(/(^|[^\\$])\$([^$\n]+?)\$(?!\$)/g, function (m, pre, tex) {
+      if (!tex.trim()) return m;
+      var i = blocks.length;
+      blocks.push({ tex: tex.trim(), display: false });
+      return pre + token + i + 'Y';
+    });
+    return { md: md, blocks: blocks, token: token };
+  }
+
+  function restoreMath(html, ex) {
+    if (!ex.blocks.length) return html;
+    return html.replace(new RegExp(ex.token + '(\\d+)([XY])', 'g'), function (m, idx, kind) {
+      var b = ex.blocks[+idx];
+      if (!b) return m;
+      var tex = escapeHtml(b.tex);
+      if (kind === 'X' || b.display) {
+        return '\\[' + tex + '\\]';
+      }
+      return '\\(' + tex + '\\)';
+    });
+  }
+
+  function extractMermaid(md) {
+    var blocks = [];
+    var token = '@@MERMAID_' + Math.random().toString(36).slice(2, 9) + '_';
+    var re = /```[ \t]*mermaid[ \t]*\r?\n([\s\S]*?)```/gi;
+    md = md.replace(re, function (m, code) {
+      var idx = blocks.length;
+      blocks.push(code.replace(/^\s+|\s+$/g, ''));
+      // 用独占一行的 HTML 注释占位，markdown 会原样保留
+      return '\n\n<!--' + token + idx + '-->\n\n';
+    });
+    return { md: md, blocks: blocks, token: token };
+  }
+
+  // 处理 [[wikilink]]
+  function convertWikiLinks(md, base) {
+    return md.replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, function (m, target, display) {
+      var t = target.trim();
+      var label = (display || target).trim();
+      var resolved = resolveWiki(t, base);
+      if (resolved) {
+        return '<a class="wikilink" data-go="' + escapeHtml(resolved) + '">' + escapeHtml(label) + '</a>';
+      }
+      return '<span class="wikilink missing" title="找不到：' + escapeHtml(t) + '">' + escapeHtml(label) + '</span>';
+    });
+  }
+
+  function resolveWiki(t, base) {
+    // 1) 相对路径（含 / 或 .md）
+    if (t.indexOf('/') >= 0 || /\.md$/i.test(t)) {
+      var p = resolvePath(base, /\.md$/i.test(t) ? t : t + '.md');
+      if (p && pathSet[p]) return p;
+      var p2 = resolvePath(base, t);
+      if (p2 && pathSet[p2]) return p2;
+    }
+    // 2) basename 精确
+    var key = stripExt(t);
+    if (fileByBase[key]) return fileByBase[key];
+    // 3) 小写
+    if (fileByLower[key.toLowerCase()]) return fileByLower[key.toLowerCase()];
+    return null;
+  }
+
+  /* ───────── 渲染 ───────── */
+  function renderMarkdown(md, base) {
+    var ex = extractMermaid(md);
+    var mx = extractMath(ex.md);          // 公式先抽走，避免 _ * 被当强调
+    var src = normalizeWiki(mx.md);
+    src = convertWikiLinks(src, base);
+
+    var html;
+    if (libs.marked && window.marked) {
+      try {
+        window.marked.setOptions({ gfm: true, breaks: false, headerIds: true, mangle: false });
+        html = window.marked.parse(src);
+      } catch (e) {
+        html = '<p>Markdown 解析失败：' + escapeHtml(e.message) + '</p><pre>' + escapeHtml(src) + '</pre>';
+      }
+    } else {
+      html = '<p style="color:#d29922">Markdown 解析库未加载，显示纯文本：</p><pre>' + escapeHtml(src) + '</pre>';
+    }
+
+    // 公式占位符还原成 MathJax 分隔符
+    html = restoreMath(html, mx);
+
+    // 把 mermaid 占位注释换回容器
+    ex.blocks.forEach(function (code, i) {
+      var re = new RegExp('<!--' + ex.token + i + '-->');
+      var box = '<div class="mermaid-box" data-mermaid="' + i + '"></div>';
+      if (re.test(html)) html = html.replace(re, box);
+      else html = html.replace(new RegExp('\\s*<!--' + ex.token + i + '-->\\s*'), '\n' + box + '\n');
+    });
+
+    return { html: html, blocks: ex.blocks };
+  }
+
+  function postProcess(container, base) {
+    // 1) 图片按 md 所在目录解析
+    container.querySelectorAll('img').forEach(function (img) {
+      var s = img.getAttribute('src');
+      if (!s) return;
+      if (/^(https?:|data:|blob:)/i.test(s)) { img.loading = 'lazy'; return; }
+      var p = resolvePath(base, safeDecode(s.split('#')[0]));
+      if (p) img.src = encodeURI(p);
+      img.loading = 'lazy';
+      img.decoding = 'async';
+      img.addEventListener('error', function () {
+        var ph = document.createElement('div');
+        ph.className = 'mermaid-err';
+        ph.textContent = '图片无法加载：' + safeDecode(s);
+        if (img.parentElement) img.parentElement.replaceChild(ph, img);
+      }, { once: true });
+    });
+
+    // 2) 链接按 md 所在目录解析；站内 md 走内部跳转
+    container.querySelectorAll('a[href]').forEach(function (a) {
+      var href = a.getAttribute('href');
+      if (!href || href.charAt(0) === '#' || /^(https?:|mailto:|tel:)/i.test(href)) {
+        if (/^https?:/i.test(href)) { a.target = '_blank'; a.rel = 'noopener'; }
+        return;
+      }
+      var hashPart = '';
+      var hi = href.indexOf('#');
+      if (hi >= 0) { hashPart = href.slice(hi); href = href.slice(0, hi); }
+      var dec = safeDecode(href);
+      var p = resolvePath(base, dec);
+      if (!p) return;
+
+      if (/\.md$/i.test(p)) {
+        if (pathSet[p]) {
+          a.className = (a.className ? a.className + ' ' : '') + 'md-link';
+          a.setAttribute('data-go', p);
+          a.removeAttribute('href');
+          a.addEventListener('click', function (e) { e.preventDefault(); go(p); });
+        } else {
+          a.className = (a.className ? a.className + ' ' : '') + 'md-link';
+          a.removeAttribute('href');
+          a.style.color = 'var(--fg-faint)';
+          a.title = '目标文件不存在：' + p;
+          a.addEventListener('click', function (e) { e.preventDefault(); toast('目标不存在：' + p, 2400); });
+        }
+      } else if (pathSet[p] || /\.(svg|png|jpe?g|gif|webp|pdf)$/i.test(p)) {
+        a.href = encodeURI(p) + hashPart;
+        a.target = '_blank';
+        a.rel = 'noopener';
+      } else {
+        // 未知目标：保持原样但按正确基准解析
+        a.href = encodeURI(p) + hashPart;
+      }
+    });
+
+    // 3) wikilink 点击
+    container.querySelectorAll('a.wikilink[data-go]').forEach(function (a) {
+      a.addEventListener('click', function (e) { e.preventDefault(); go(a.dataset.go); });
+    });
+
+    // 4) 表格套横滑容器
+    container.querySelectorAll('table').forEach(function (tb) {
+      if (tb.parentElement && tb.parentElement.classList.contains('table-wrap')) return;
+      var w = document.createElement('div');
+      w.className = 'table-wrap';
+      tb.parentNode.insertBefore(w, tb);
+      w.appendChild(tb);
+    });
+
+    // 5) 给标题加 id（marked 老版本可能没加）
+    container.querySelectorAll('h1,h2,h3,h4').forEach(function (h, i) {
+      if (!h.id) h.id = 'h-' + i;
+    });
+  }
+
+  function renderMermaid(container, blocks) {
+    if (!blocks.length) return Promise.resolve();
+    if (!libs.mermaid || !window.mermaid) {
+      container.querySelectorAll('.mermaid-box').forEach(function (box, i) {
+        box.className = 'mermaid-err';
+        box.textContent = '流程图库未加载，以下为源码：';
+        var pre = document.createElement('pre');
+        pre.textContent = blocks[i] || '';
+        box.appendChild(pre);
+      });
+      return Promise.resolve();
+    }
+    var jobs = [];
+    container.querySelectorAll('.mermaid-box').forEach(function (box) {
+      var i = Number(box.dataset.mermaid);
+      var code = blocks[i];
+      if (!code) return;
+      var id = 'mmd-' + (++mermaidSeq) + '-' + i;
+      jobs.push(
+        window.mermaid.render(id, code).then(function (res) {
+          box.innerHTML = res.svg;
+          var svg = box.querySelector('svg');
+          if (svg) {
+            svg.removeAttribute('height');
+            svg.style.maxWidth = '100%';
+            svg.style.height = 'auto';
+          }
+        }).catch(function (err) {
+          box.className = 'mermaid-err';
+          box.textContent = '流程图渲染失败（语法可能有误）：' + ((err && err.message) || '') ;
+          var pre = document.createElement('pre');
+          pre.textContent = code;
+          box.appendChild(pre);
+          // 清理 mermaid 可能残留的临时节点
+          var junk = document.getElementById('d' + id);
+          if (junk) junk.remove();
+        })
+      );
+    });
+    return Promise.all(jobs);
+  }
+
+  function typesetMath(container) {
+    if (!libs.mathjax || !window.MathJax) return Promise.resolve();
+    var MJ = window.MathJax;
+    var start = MJ.startup && MJ.startup.promise ? MJ.startup.promise : Promise.resolve();
+    return start.then(function () {
+      if (MJ.typesetPromise) return MJ.typesetPromise([container]);
+    }).catch(function () { /* 公式失败不影响正文 */ });
+  }
+
+  /* ───────── 加载文件 ───────── */
+  function loadFile(path) {
+    var token = ++loadingToken;
+    currentPath = path;
+    setCrumbs(path);
+    revealActive(path);
+    closeSidebar();
+    showLoading();
+    scrollEl.scrollTop = 0;
+
+    var url = encodeURI(path);
+    fetch(url, { cache: 'no-cache' })
+      .then(function (res) {
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        return res.text();
+      })
+      .then(function (md) {
+        if (token !== loadingToken) return;   // 已被更新的请求取代
+        var base = dirname(path);
+        // 等 marked 就绪（首次渲染时可能还没加载完），否则公式/表格全丢
+        return libsReady.then(function () {
+          if (token !== loadingToken) return;
+          var r = renderMarkdown(md, base);
+          contentEl.innerHTML = r.html;
+          postProcess(contentEl, base);
+          var p1 = renderMermaid(contentEl, r.blocks);
+          var p2 = p1.then(function () { return typesetMath(contentEl); });
+          return p2.then(function () { if (token === loadingToken) afterRender(path); });
+        });
+      })
+      .catch(function (err) {
+        if (token !== loadingToken) return;
+        showError('文件加载失败', err.message + '（可能是网络中断或该文件已被移动）', path);
+      });
+  }
+
+  function afterRender(path) {
+    // 高亮当前文件在树里可见
+    revealActive(path);
+  }
+
+  /* ───────── 侧栏开关 ───────── */
+  function openSidebar() {
+    sidebarEl.classList.add('open');
+    backdropEl.classList.add('show');
+    menuBtn.setAttribute('aria-expanded', 'true');
+  }
+  function closeSidebar() {
+    sidebarEl.classList.remove('open');
+    backdropEl.classList.remove('show');
+    menuBtn.setAttribute('aria-expanded', 'false');
+  }
+  menuBtn.addEventListener('click', function () {
+    if (sidebarEl.classList.contains('open')) closeSidebar(); else openSidebar();
+  });
+  backdropEl.addEventListener('click', closeSidebar);
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeSidebar();
+    // "/" 聚焦搜索
+    if (e.key === '/' && document.activeElement !== searchEl) {
+      e.preventDefault();
+      if (window.innerWidth <= 820) openSidebar();
+      searchEl.focus();
+      searchEl.select();
+    }
+  });
+
+  /* ───────── 回到顶部 ───────── */
+  window.addEventListener('scroll', onScrollPassive, { passive: true });
+  scrollEl.addEventListener('scroll', onScrollPassive, { passive: true });
+  function onScrollPassive() {
+    var y = window.pageYOffset || scrollEl.scrollTop || 0;
+    topBtn.style.display = y > 600 ? 'grid' : 'none';
+  }
+  topBtn.addEventListener('click', function () {
+    scrollEl.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  /* ───────── 随机 ───────── */
+  $('randomLink').addEventListener('click', function (e) {
+    e.preventDefault();
+    if (!allFiles.length) return;
+    var p = allFiles[Math.floor(Math.random() * allFiles.length)];
+    go(p);
+  });
+
+  /* ───────── 启动 ───────── */
+  function init() {
+    var lp = bootLibs();
+    // 关键：必须等 marked 就绪再首次渲染，否则会落到「纯文本」降级分支，
+    // 公式与表格全部丢失（实测竞态：marked 已加载但 libs.marked 仍 false）。
+    // mermaid / mathjax 失败不阻塞，正文仍可读。
+    libsReady = lp.marked.catch(function () { return null; });
+
+    fetch('file-tree.json', { cache: 'no-cache' })
+      .then(function (res) {
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        return res.json();
+      })
+      .then(function (data) {
+        allFiles = [];
+        pathSet = {};
+        collectFiles(data, '', allFiles);
+        fileByBase = {};
+        fileByLower = {};
+        allFiles.forEach(function (p) {
+          var k = stripExt(basename(p));
+          if (!fileByBase[k]) fileByBase[k] = p;
+          var kl = k.toLowerCase();
+          if (!fileByLower[kl]) fileByLower[kl] = p;
+        });
+        renderTree(data);
+
+        var p = pathFromHash();
+        if (p) {
+          if (pathSet[p]) loadFile(p);
+          else { showError('文件不存在', '地址里的路径在仓库里找不到', p); }
+        } else {
+          showWelcome();
+        }
+      })
+      .catch(function (err) {
+        treeEl.innerHTML = '<div class="empty-hint" style="color:#f85149">目录加载失败：' + escapeHtml(err.message) + '</div>';
+        showError('目录加载失败', err.message, 'file-tree.json');
+      });
+  }
+
+  init();
+})();
+</script>
 </body>
 </html>
