@@ -732,6 +732,7 @@ a { color: var(--accent); text-decoration: none; }
 
 <div class="tabs">
   <button class="tab active" data-tab="choice">选择题</button>
+  <button class="tab" data-tab="random">🎲 随机50题</button>
   <button class="tab" data-tab="short">简答题</button>
   <button class="tab" data-tab="essay">论述题</button>
   <button class="tab" data-tab="mock">模拟卷</button>
@@ -763,6 +764,11 @@ a { color: var(--accent); text-decoration: none; }
     </div>
 
     <div id="choiceArea"></div>
+  </div>
+
+  <!-- 随机50题标签页 -->
+  <div id="tab-random" class="tab-content hidden">
+    <div id="randomArea"></div>
   </div>
 
   <!-- 简答题标签页 -->
@@ -867,6 +873,27 @@ a { color: var(--accent); text-decoration: none; }
     return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
   }
 
+  // Fisher-Yates 洗牌（返回新数组，不改原数组）
+  function shuffleArray(arr) {
+    const a = arr.slice();
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      const t = a[i]; a[i] = a[j]; a[j] = t;
+    }
+    return a;
+  }
+
+  // 把一道选择题的选项打乱：返回 [{display:'A', original:'A', text:'...'}, ...]
+  // display 是打乱后位置上显示的 A/B/C/D；original 是题库里的原始字母（用于判对错、写 DB）
+  function buildShuffledOptions(q) {
+    const letters = ['A','B','C','D'].filter(function(l){ return q.options[l]; });
+    const pool = letters.map(function(l){ return { original: l, text: q.options[l] }; });
+    const shuffled = shuffleArray(pool);
+    return shuffled.map(function(item, i) {
+      return { display: 'ABCD'[i], original: item.original, text: item.text };
+    });
+  }
+
   function getChapters(subject, type) {
     if (type === 'choice') return DATA.choice[subject].chapters;
     return DATA.subjective[subject].chapters;
@@ -936,6 +963,7 @@ a { color: var(--accent); text-decoration: none; }
       document.getElementById('tab-' + tabName).classList.remove('hidden');
 
       if (tabName === 'choice') renderChoice();
+      else if (tabName === 'random') renderRandomHome();
       else if (tabName === 'short') renderSubjective('short');
       else if (tabName === 'essay') renderSubjective('essay');
       else if (tabName === 'mock') renderMockList();
@@ -974,6 +1002,23 @@ a { color: var(--accent); text-decoration: none; }
     }).join('');
   }
 
+  function refreshChoiceChapterProgress() {
+    const allQ = choiceState.currentQuestions;
+    if (!allQ.length) return;
+    let done = 0, correct = 0;
+    const p = DB.loadProgress();
+    allQ.forEach(function(q) {
+      const r = p.choice[q.id];
+      if (r && r.done) {
+        done++;
+        if (r.correct) correct++;
+      }
+    });
+    document.getElementById('choiceProgressText').textContent = '已做 ' + done + ' / ' + allQ.length;
+    document.getElementById('choiceProgressFill').style.width = (done / allQ.length * 100) + '%';
+    document.getElementById('choiceAccuracy').textContent = done ? ('正确率 ' + Math.round(correct/done*100) + '%') : '正确率 --';
+  }
+
   function renderChoice() {
     const subject = choiceState.subject;
     const chapters = DATA.choice[subject].chapters;
@@ -982,28 +1027,17 @@ a { color: var(--accent); text-decoration: none; }
     const chapter = chapters[choiceState.chapterIdx];
     if (!chapter) return;
 
-    // 收集当前章节所有题目
+    // 收集当前章节所有题目，然后乱序（每次进入本章题目顺序都不同）
     let allQ = [];
     chapter.kps.forEach(function(kp) {
       kp.questions.forEach(function(q) {
         allQ.push(Object.assign({}, q, { kpName: kp.name, kpId: kp.id }));
       });
     });
-    choiceState.currentQuestions = allQ;
+    choiceState.currentQuestions = shuffleArray(allQ);
+    choiceState.qIdx = 0;
 
-    // 更新章节内进度
-    let done = 0, correct = 0;
-    allQ.forEach(function(q) {
-      const r = DB.loadProgress().choice[q.id];
-      if (r && r.done) {
-        done++;
-        if (r.correct) correct++;
-      }
-    });
-    document.getElementById('choiceProgressText').textContent = '已做 ' + done + ' / ' + allQ.length;
-    document.getElementById('choiceProgressFill').style.width = allQ.length ? (done / allQ.length * 100) + '%' : '0%';
-    document.getElementById('choiceAccuracy').textContent = done ? ('正确率 ' + Math.round(correct/done*100) + '%') : '正确率 --';
-
+    refreshChoiceChapterProgress();
     renderChoiceQuestion();
   }
 
@@ -1016,6 +1050,7 @@ a { color: var(--accent); text-decoration: none; }
     }
     const q = qs[choiceState.qIdx];
     const recorded = DB.loadProgress().choice[q.id];
+    const opts = buildShuffledOptions(q);
 
     let html = `
       <div class="question-card">
@@ -1027,21 +1062,19 @@ a { color: var(--accent); text-decoration: none; }
         <div class="options-list">
     `;
 
-    ['A','B','C','D'].forEach(function(letter) {
-      if (q.options[letter]) {
-        let cls = 'option-btn';
-        if (recorded && recorded.done) {
-          cls += ' disabled';
-          if (letter === q.answer) cls += ' correct';
-          else if (letter === recorded.selected) cls += ' wrong';
-        }
-        html += `
-          <button class="${cls}" data-letter="${letter}">
-            <span class="opt-letter">${letter}</span>
-            <span>${escapeHtml(q.options[letter])}</span>
-          </button>
-        `;
+    opts.forEach(function(o) {
+      let cls = 'option-btn';
+      if (recorded && recorded.done) {
+        cls += ' disabled';
+        if (o.original === q.answer) cls += ' correct';
+        else if (o.original === recorded.selected) cls += ' wrong';
       }
+      html += `
+        <button class="${cls}" data-letter="${o.original}">
+          <span class="opt-letter">${o.display}</span>
+          <span>${escapeHtml(o.text)}</span>
+        </button>
+      `;
     });
 
     html += '</div>';
@@ -1053,7 +1086,7 @@ a { color: var(--accent); text-decoration: none; }
             ${recorded.correct ? '✓ 回答正确' : '✗ 回答错误'}
           </span>
           <div class="explanation-box">
-            <div class="exp-title">正确答案：${q.answer}</div>
+            <div class="exp-title">正确答案：${q.answer}. ${escapeHtml(q.options[q.answer] || '')}</div>
             <div>${escapeHtml(q.explanation)}</div>
           </div>
         </div>
@@ -1075,11 +1108,12 @@ a { color: var(--accent); text-decoration: none; }
     if (!recorded || !recorded.done) {
       area.querySelectorAll('.option-btn').forEach(function(btn) {
         btn.addEventListener('click', function() {
-          const letter = btn.dataset.letter;
+          const letter = btn.dataset.letter; // original 原始字母
           const correct = letter === q.answer;
           // 写本地+云端（recordChoice 内部自动更新错题统计）
           DB.recordChoice(q.id, { done: true, correct: correct, selected: letter });
           updateGlobalProgress();
+          refreshChoiceChapterProgress();
           renderChoiceQuestion();
         });
       });
@@ -1101,6 +1135,257 @@ a { color: var(--accent); text-decoration: none; }
         renderChoiceQuestion();
         window.scrollTo({top: 0, behavior: 'smooth'});
       }
+    });
+  }
+
+  // ---------- 随机50题 ----------
+  const RANDOM_QUIZ_SIZE = 50;
+  let randomState = {
+    queue: [],      // [{qid, q}] 本次抽中的题目
+    idx: 0,         // 当前第几题
+    correct: 0,     // 本次答对
+    answered: 0,    // 本次已答
+    finished: false,
+    wrongList: []   // 本次错题 [{qid, stem, yourSel, rightAns, explanation}]
+  };
+
+  function renderRandomHome() {
+    const area = document.getElementById('randomArea');
+
+    // 已结束 → 成绩页
+    if (randomState.finished) {
+      area.innerHTML = renderRandomResult();
+      bindRandomResult(area);
+      return;
+    }
+    // 未开始 → 引导页
+    if (!randomState.queue.length) {
+      const totalChoiceQids = Object.keys(qIndex).filter(function(qid){ return qIndex[qid].type === 'choice'; });
+      area.innerHTML = `
+        <div class="question-card" style="text-align:center; padding:40px 20px;">
+          <div style="font-size:40px; margin-bottom:14px;">🎲</div>
+          <div style="font-size:18px; font-weight:600; margin-bottom:8px;">随机 ${RANDOM_QUIZ_SIZE} 题挑战</div>
+          <div class="text-mute" style="margin-bottom:20px;">
+            从全部选择题题库（共 ${totalChoiceQids.length} 题）中随机抽取 ${RANDOM_QUIZ_SIZE} 道<br>
+            题目顺序、选项顺序每次都会打乱，答错自动记入错题本
+          </div>
+          <button class="show-answer-btn" id="randomStartBtn" style="max-width:260px; margin:0 auto;">开始挑战</button>
+        </div>
+      `;
+      document.getElementById('randomStartBtn').addEventListener('click', startRandomQuiz);
+      return;
+    }
+    // 进行中 → 当前题
+    area.innerHTML = renderRandomQuestion();
+    bindRandomQuestion(area);
+  }
+
+  function startRandomQuiz() {
+    const allQids = Object.keys(qIndex).filter(function(qid){ return qIndex[qid].type === 'choice'; });
+    const shuffled = shuffleArray(allQids);
+    const picked = shuffled.slice(0, Math.min(RANDOM_QUIZ_SIZE, shuffled.length));
+    randomState.queue = picked.map(function(qid) {
+      return { qid: qid, q: qIndex[qid].q };
+    });
+    randomState.idx = 0;
+    randomState.correct = 0;
+    randomState.answered = 0;
+    randomState.finished = false;
+    randomState.wrongList = [];
+    renderRandomHome();
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  }
+
+  function randomStatsHtml() {
+    const total = randomState.queue.length;
+    const acc = randomState.answered > 0 ? Math.round(randomState.correct / randomState.answered * 100) : null;
+    return `
+      <div class="exam-header" style="display:flex; justify-content:space-around; text-align:center; padding:12px;">
+        <div>
+          <div style="font-size:20px; font-weight:700; font-variant-numeric:tabular-nums;">${randomState.answered}<span style="color:var(--fg-faint); font-size:14px;">/${total}</span></div>
+          <div class="gp-label">已做</div>
+        </div>
+        <div>
+          <div style="font-size:20px; font-weight:700; color:var(--green); font-variant-numeric:tabular-nums;">${randomState.correct}</div>
+          <div class="gp-label">答对</div>
+        </div>
+        <div>
+          <div style="font-size:20px; font-weight:700; color:${acc===null?'var(--fg-faint)':(acc>=60?'var(--green)':'var(--red)')}; font-variant-numeric:tabular-nums;">${acc===null?'--':acc+'%'}</div>
+          <div class="gp-label">正确率</div>
+        </div>
+      </div>
+    `;
+  }
+
+  function renderRandomQuestion() {
+    const item = randomState.queue[randomState.idx];
+    const q = item.q;
+    const opts = buildShuffledOptions(q);
+    const total = randomState.queue.length;
+
+    let optsHtml = '';
+    opts.forEach(function(o) {
+      optsHtml += `
+        <button class="option-btn" data-original="${o.original}">
+          <span class="opt-letter">${o.display}</span>
+          <span>${escapeHtml(o.text)}</span>
+        </button>
+      `;
+    });
+
+    return `
+      ${randomStatsHtml()}
+      <div class="progress-info">
+        <span>第 ${randomState.idx + 1} / ${total} 题</span>
+        <div class="progress-bar"><div class="progress-fill" style="width:${(randomState.idx/total*100)}%"></div></div>
+        <span style="color:var(--fg-faint);">随机抽题</span>
+      </div>
+      <div class="question-card">
+        <div class="question-meta">
+          <span>${escapeHtml((qIndex[item.qid].chapterName) || '')}</span>
+          <span>#${randomState.idx + 1}</span>
+        </div>
+        <div class="question-stem">${escapeHtml(q.stem)}</div>
+        <div class="options-list" id="randomOptions">${optsHtml}</div>
+        <div id="randomFeedback"></div>
+      </div>
+    `;
+  }
+
+  function bindRandomQuestion(area) {
+    const item = randomState.queue[randomState.idx];
+    const q = item.q;
+    area.querySelectorAll('#randomOptions .option-btn').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        const sel = btn.dataset.original;
+        const correct = sel === q.answer;
+        randomState.answered++;
+        if (correct) randomState.correct++;
+        else {
+          randomState.wrongList.push({
+            qid: item.qid, stem: q.stem,
+            yourSel: sel, rightAns: q.answer,
+            rightText: q.options[q.answer], yourText: q.options[sel],
+            explanation: q.explanation,
+            chapter: qIndex[item.qid].chapterName
+          });
+        }
+        // 写库：联动错题本 + 全局进度
+        DB.recordChoice(item.qid, { done: true, correct: correct, selected: sel });
+        updateGlobalProgress();
+
+        // 高亮选项
+        area.querySelectorAll('#randomOptions .option-btn').forEach(function(b) {
+          b.classList.add('disabled');
+          const orig = b.dataset.original;
+          if (orig === q.answer) b.classList.add('correct');
+          else if (orig === sel && !correct) b.classList.add('wrong');
+        });
+
+        const isLast = randomState.idx >= randomState.queue.length - 1;
+        const fb = document.getElementById('randomFeedback');
+        fb.innerHTML = `
+          <div class="mt-12">
+            <span class="answer-badge ${correct ? 'correct' : 'wrong'}">
+              ${correct ? '✓ 回答正确' : '✗ 回答错误'}
+            </span>
+            <div class="explanation-box">
+              <div class="exp-title">正确答案：${q.answer}. ${escapeHtml(q.options[q.answer] || '')}</div>
+              <div>${escapeHtml(q.explanation)}</div>
+            </div>
+            <button class="show-answer-btn" id="randomNextBtn" style="margin-top:12px;">${isLast ? '查看成绩 →' : '下一题 →'}</button>
+          </div>
+        `;
+        // 实时刷新统计栏（不重渲染整个题，只更新数字，避免用户滚动位置跳）
+        refreshRandomStatsOnly();
+        document.getElementById('randomNextBtn').addEventListener('click', function() {
+          if (isLast) {
+            randomState.finished = true;
+          } else {
+            randomState.idx++;
+          }
+          renderRandomHome();
+          window.scrollTo({top: 0, behavior: 'smooth'});
+        });
+      });
+    });
+  }
+
+  // 只更新顶部统计数字，不重渲染题目
+  function refreshRandomStatsOnly() {
+    const total = randomState.queue.length;
+    const acc = randomState.answered > 0 ? Math.round(randomState.correct / randomState.answered * 100) : null;
+    const header = document.querySelector('#randomArea .exam-header');
+    if (!header) return;
+    header.innerHTML = `
+      <div>
+        <div style="font-size:20px; font-weight:700; font-variant-numeric:tabular-nums;">${randomState.answered}<span style="color:var(--fg-faint); font-size:14px;">/${total}</span></div>
+        <div class="gp-label">已做</div>
+      </div>
+      <div>
+        <div style="font-size:20px; font-weight:700; color:var(--green); font-variant-numeric:tabular-nums;">${randomState.correct}</div>
+        <div class="gp-label">答对</div>
+      </div>
+      <div>
+        <div style="font-size:20px; font-weight:700; color:${acc===null?'var(--fg-faint)':(acc>=60?'var(--green)':'var(--red)')}; font-variant-numeric:tabular-nums;">${acc===null?'--':acc+'%'}</div>
+        <div class="gp-label">正确率</div>
+      </div>
+    `;
+    // 同时更新进度条
+    const bar = document.querySelector('#randomArea .progress-fill');
+    if (bar) bar.style.width = (randomState.answered / total * 100) + '%';
+  }
+
+  function renderRandomResult() {
+    const total = randomState.queue.length;
+    const acc = Math.round(randomState.correct / total * 100);
+    const score = randomState.correct * 2; // 50题×2分=100分
+    let verdict = '';
+    if (acc >= 90) verdict = '🏆 太棒了，接近满分！';
+    else if (acc >= 75) verdict = '🎉 优秀，继续保持！';
+    else if (acc >= 60) verdict = '💪 及格了，错题再巩固下';
+    else verdict = '📚 还需努力，多看错题本';
+
+    let wrongHtml = '';
+    if (randomState.wrongList.length) {
+      wrongHtml = '<div style="margin-top:18px;"><div style="font-weight:600; margin-bottom:10px;">本次错题（' + randomState.wrongList.length + '）</div>';
+      randomState.wrongList.forEach(function(w, i) {
+        wrongHtml += `
+          <div class="wrong-item">
+            <div class="wi-meta">第 ${i+1} 题 · ${escapeHtml(w.chapter||'')}</div>
+            <div class="wi-stem">${escapeHtml(w.stem)}</div>
+            <div class="wi-wrong-ans">✗ 你的答案：${w.yourSel}. ${escapeHtml(w.yourText||'')}</div>
+            <div class="wi-right-ans">✓ 正确答案：${w.rightAns}. ${escapeHtml(w.rightText||'')}</div>
+            ${w.explanation ? '<div class="ref-content" style="margin-top:8px; font-size:13px;">' + escapeHtml(w.explanation) + '</div>' : ''}
+          </div>
+        `;
+      });
+      wrongHtml += '</div>';
+    } else {
+      wrongHtml = '<div style="text-align:center; margin-top:18px; color:var(--green); font-size:15px;">🎉 全部答对，一道错题都没有！</div>';
+    }
+
+    return `
+      <div class="question-card" style="text-align:center; padding:30px 20px;">
+        <div style="font-size:15px; color:var(--fg-mute);">本次随机 ${total} 题成绩</div>
+        <div style="font-size:56px; font-weight:800; margin:10px 0; color:${acc>=60?'var(--green)':'var(--red)'}; font-variant-numeric:tabular-nums;">${score}<span style="font-size:20px; color:var(--fg-faint);"> 分</span></div>
+        <div style="font-size:15px; margin-bottom:6px;">${randomState.correct} / ${total} 正确 · 正确率 <b>${acc}%</b></div>
+        <div class="text-mute">${verdict}</div>
+      </div>
+      ${wrongHtml}
+      <div class="nav-row" style="margin-top:18px;">
+        <button class="nav-btn" id="randomAgainBtn">🔄 再来一组</button>
+        <button class="nav-btn" id="randomExitBtn" style="color:var(--fg-mute); background:var(--bg-sunken); border-color:var(--border-strong);">返回选择题</button>
+      </div>
+    `;
+  }
+
+  function bindRandomResult(area) {
+    document.getElementById('randomAgainBtn').addEventListener('click', startRandomQuiz);
+    document.getElementById('randomExitBtn').addEventListener('click', function() {
+      // 重置回引导态，切到选择题 tab
+      randomState = { queue: [], idx: 0, correct: 0, answered: 0, finished: false, wrongList: [] };
+      document.querySelector('.tab[data-tab="choice"]').click();
     });
   }
 
@@ -1551,7 +1836,7 @@ a { color: var(--accent); text-decoration: none; }
           <div class="mt-12">
             ${badge}
             <div class="explanation-box">
-              <div class="exp-title">正确答案：${q.answer}</div>
+              <div class="exp-title">正确答案：${q.answer}. ${escapeHtml(q.options[q.answer] || '')}</div>
               <div>${escapeHtml(q.explanation)}</div>
             </div>
             <button class="show-answer-btn" id="wpNextQ" style="margin-top:12px;">${practiceIdx + 1 >= practiceQueue.length ? '完成练习' : '下一题 →'}</button>
@@ -1632,17 +1917,16 @@ a { color: var(--accent); text-decoration: none; }
     if (!m) { practiceIdx++; return renderPracticeView(); }
     const q = m.q;
     const pct = Math.round(practiceIdx / practiceQueue.length * 100);
+    const opts = buildShuffledOptions(q);
 
     let optsHtml = '';
-    ['A','B','C','D'].forEach(function(letter) {
-      if (q.options[letter]) {
-        optsHtml += `
-          <button class="option-btn" data-letter="${letter}">
-            <span class="opt-letter">${letter}</span>
-            <span>${escapeHtml(q.options[letter])}</span>
-          </button>
-        `;
-      }
+    opts.forEach(function(o) {
+      optsHtml += `
+        <button class="option-btn" data-letter="${o.original}">
+          <span class="opt-letter">${o.display}</span>
+          <span>${escapeHtml(o.text)}</span>
+        </button>
+      `;
     });
 
     return `
