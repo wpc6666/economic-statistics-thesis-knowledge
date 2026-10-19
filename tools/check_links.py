@@ -63,6 +63,10 @@ for md_path in ROOT.rglob("*.md"):
         if not target:
             continue
 
+        # 跳过示例占位符链接（如 [[path|text]] 这类文档说明里的写法，非真链接）
+        if re.match(r'^(path|text|xxx|example|foo|bar)$', target, re.IGNORECASE):
+            continue
+
         # 归一化：去掉 .md 后缀
         if target.endswith(".md"):
             target = target[:-3]
