@@ -1,1 +1,6 @@
-{}
+{
+  "cssTheme": "Typewriter",
+  "theme": "moonstone",
+  "baseFontSizeAction": true,
+  "translucency": false
+}
