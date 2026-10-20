@@ -707,6 +707,39 @@ a:hover{text-decoration:underline}
   // 抽取 mermaid 代码块，用不可碰撞的占位符替换
   /* 公式保护：marked 会把 _ 和 * 当强调语法吃掉，
      所以先把 $...$ / $$...$$ 抽成占位符，解析完再换回来。 */
+  /* 代码块与行内代码先抽走，避免里面的 [[...]] 被当成双链。
+     真实案例：Python 代码 df[['edu', 'tenure']] 会被 convertWikiLinks
+     匹配成双链，页面上显示成「找不到：'edu', 'tenure'」。 */
+  function extractCode(md) {
+    var blocks = [];
+    var token = '@@CODEBLK_' + Math.random().toString(36).slice(2, 9) + '_';
+    // 围栏代码块 ```lang ... ``` （含缩进的）
+    md = md.replace(/^([ \t]*)```([^\n`]*)\r?\n([\s\S]*?)^\1```[ \t]*$/gm, function (m, indent, lang, body) {
+      var i = blocks.length;
+      blocks.push({ lang: lang.trim(), body: body });
+      return indent + token + i + 'Z';
+    });
+    // 行内代码 `...`（不跨行、不匹配多反引号）
+    md = md.replace(/(`+)([^`\n]+?)\1/g, function (m, ticks, body) {
+      var i = blocks.length;
+      blocks.push({ lang: '', body: body, inline: true });
+      return token + i + 'W';
+    });
+    return { md: md, blocks: blocks, token: token };
+  }
+
+  function restoreCode(html, ex) {
+    if (!ex.blocks.length) return html;
+    return html.replace(new RegExp(ex.token + '(\\d+)([ZW])', 'g'), function (m, idx, kind) {
+      var b = ex.blocks[+idx];
+      if (!b) return m;
+      var body = escapeHtml(b.body);
+      if (kind === 'W') return '<code>' + body + '</code>';
+      var cls = b.lang ? ' class="language-' + escapeHtml(b.lang) + '"' : '';
+      return '<pre><code' + cls + '>' + body + '</code></pre>';
+    });
+  }
+
   function extractMath(md) {
     var blocks = [];
     var token = '@@MATHBLK_' + Math.random().toString(36).slice(2, 9) + '_';
@@ -768,6 +801,12 @@ a:hover{text-decoration:underline}
         anchor = t.slice(hashIdx + 1).trim();
         t = t.slice(0, hashIdx).trim();
       }
+      // 同页锚点 [[#标题]]：Obsidian 里跳到本文档的某个标题，全库 128 处。
+      // t 为空表示「就是当前这一篇」，不是失效链接。
+      if (!t && anchor) {
+        return '<a class="wikilink same-page" data-anchor="' + escapeHtml(anchor) + '">'
+             + escapeHtml(label) + '</a>';
+      }
       var resolved = resolveWiki(t, base);
       if (resolved) {
         var attrs = 'data-go="' + escapeHtml(resolved) + '"';
@@ -798,7 +837,8 @@ a:hover{text-decoration:underline}
   /* ───────── 渲染 ───────── */
   function renderMarkdown(md, base) {
     var ex = extractMermaid(md);
-    var mx = extractMath(ex.md);          // 公式先抽走，避免 _ * 被当强调
+    var cd = extractCode(ex.md);          // 代码块先抽走，避免 [[...]] 被当双链
+    var mx = extractMath(cd.md);          // 公式再抽走，避免 _ * 被当强调
     var src = normalizeWiki(mx.md);
     src = convertWikiLinks(src, base);
 
@@ -813,6 +853,9 @@ a:hover{text-decoration:underline}
     } else {
       html = '<p style="color:#d29922">Markdown 解析库未加载，显示纯文本：</p><pre>' + escapeHtml(src) + '</pre>';
     }
+
+    // 代码块还原（在公式之前，免得代码里的 $ 被当公式）
+    html = restoreCode(html, cd);
 
     // 公式占位符还原成 MathJax 分隔符
     html = restoreMath(html, mx);
@@ -844,6 +887,15 @@ a:hover{text-decoration:underline}
         ph.textContent = '图片无法加载：' + safeDecode(s);
         if (img.parentElement) img.parentElement.replaceChild(ph, img);
       }, { once: true });
+    });
+
+    // 1.5) 同页锚点双链 [[#标题]]：点了滚到本文档的那个标题
+    container.querySelectorAll('a.wikilink.same-page').forEach(function (a) {
+      var anc = a.getAttribute('data-anchor') || '';
+      a.addEventListener('click', function (e) {
+        e.preventDefault();
+        scrollToAnchor(anc);
+      });
     });
 
     // 2) 链接按 md 所在目录解析；站内 md 走内部跳转
