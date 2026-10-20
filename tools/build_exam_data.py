@@ -14,6 +14,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 NOTES_DIR = ROOT / "教材笔记"
 OUTPUT = ROOT / "data.js"
+EXPL_OUTPUT = ROOT / "data-expl.js"
 
 # ---------- 工具函数 ----------
 
@@ -719,13 +720,33 @@ def main():
         })
         print(f"  [模拟] {mock_data['title']}: 简答 {short_cnt}, 论述 {essay_cnt}, 共 {len(mock_data['questions'])} 题")
 
-    # 输出 data.js
-    js_content = "// 自动生成，请勿手动编辑\n// 生成时间: " + __import__('datetime').datetime.now().strftime('%Y-%m-%d %H:%M:%S') + "\n"
-    js_content += "window.EXAM_DATA = " + json.dumps(data, ensure_ascii=False, indent=2) + ";\n"
+    # 拆出解析文本：解析占整个 data.js 的一半，但只有点了"查看解析"才需要
+    # 拆走后首屏要下的 data.js 从 4.3MB 降到约 1.7MB
+    explanations = {}
+    for sub in ('west_econ', 'pol_econ'):
+        for ch in data['choice'][sub]['chapters']:
+            for kp in ch['kps']:
+                for q in kp['questions']:
+                    if 'explanation' in q:
+                        explanations[q['id']] = q.pop('explanation')
 
+    # 输出 data.js（题目主体）
+    stamp = __import__('datetime').datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    js_content = ("// 自动生成，请勿手动编辑\n// 生成时间: " + stamp + "\n")
+    js_content += "window.EXAM_DATA = " + json.dumps(
+        data, ensure_ascii=False, separators=(',', ':')) + ";\n"
     OUTPUT.write_text(js_content, encoding='utf-8')
+
+    # 输出 data-expl.js（解析文本，按需加载）
+    expl_content = ("// 自动生成，请勿手动编辑——选择题解析，按需加载\n// 生成时间: " + stamp + "\n")
+    expl_content += "window.EXAM_EXPL = " + json.dumps(
+        explanations, ensure_ascii=False, separators=(',', ':')) + ";\n"
+    EXPL_OUTPUT.write_text(expl_content, encoding='utf-8')
+
     print(f"\n输出文件: {OUTPUT}")
     print(f"文件大小: {OUTPUT.stat().st_size / 1024:.1f} KB")
+    print(f"解析文件: {EXPL_OUTPUT}")
+    print(f"文件大小: {EXPL_OUTPUT.stat().st_size / 1024:.1f} KB（{len(explanations)} 条）")
 
     # 打印统计
     print("\n========== 统计 ==========")

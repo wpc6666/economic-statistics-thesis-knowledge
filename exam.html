@@ -949,6 +949,38 @@ a { color: var(--accent); text-decoration: none; }
     });
   })();
 
+  // ---------- 解析文本：按需加载 ----------
+  // 解析占整个题库数据的一半，但只有答完题才需要，单独放 data-expl.js。
+  // 首屏只下 data.js（约 1.7MB），答第一道题时后台再补 2.2MB 解析。
+  var explState = { loading: false, loaded: false, cbs: [] };
+  function loadExplanation(cb) {
+    if (window.EXAM_EXPL) explState.loaded = true;
+    if (explState.loaded) { if (cb) cb(); return; }
+    if (cb) explState.cbs.push(cb);
+    if (explState.loading) return;
+    explState.loading = true;
+    var s = document.createElement('script');
+    s.src = 'data-expl.js';
+    s.onload = function () {
+      explState.loaded = true; explState.loading = false;
+      var q = explState.cbs; explState.cbs = [];
+      q.forEach(function (f) { try { f(); } catch (e) {} });
+    };
+    s.onerror = function () {
+      explState.loading = false; explState.cbs = [];
+      console.warn('解析文件加载失败，暂显示占位');
+    };
+    document.head.appendChild(s);
+  }
+
+  // 取解析：优先内联，其次查按需加载的表
+  function explOf(q) {
+    if (!q) return '';
+    if (q.explanation) return q.explanation;
+    if (window.EXAM_EXPL && q.id && window.EXAM_EXPL[q.id]) return window.EXAM_EXPL[q.id];
+    return '';
+  }
+
   // ---------- 工具函数 ----------
   function escapeHtml(str) {
     if (!str) return '';
@@ -1235,7 +1267,7 @@ a { color: var(--accent); text-decoration: none; }
           </span>
           <div class="explanation-box">
             <div class="exp-title">正确答案：${q.answer}. ${escapeHtml(q.options[q.answer] || '')}</div>
-            <div>${renderMd(q.explanation)}</div>
+            <div>${renderMd(explOf(q))}</div>
           </div>
         </div>
       `;
@@ -1255,6 +1287,7 @@ a { color: var(--accent); text-decoration: none; }
 
     // 绑定选项点击
     if (!recorded || !recorded.done) {
+      loadExplanation();
       area.querySelectorAll('.option-btn').forEach(function(btn) {
         btn.addEventListener('click', function() {
           const letter = btn.dataset.letter; // original 原始字母
@@ -1404,6 +1437,7 @@ a { color: var(--accent); text-decoration: none; }
   function bindRandomQuestion(area) {
     const item = randomState.queue[randomState.idx];
     const q = item.q;
+    loadExplanation();
     area.querySelectorAll('#randomOptions .option-btn').forEach(function(btn) {
       btn.addEventListener('click', function() {
         const sel = btn.dataset.original;
@@ -1415,7 +1449,7 @@ a { color: var(--accent); text-decoration: none; }
             qid: item.qid, stem: q.stem,
             yourSel: sel, rightAns: q.answer,
             rightText: q.options[q.answer], yourText: q.options[sel],
-            explanation: q.explanation,
+            explanation: explOf(q),
             chapter: qIndex[item.qid].chapterName
           });
         }
@@ -1440,7 +1474,7 @@ a { color: var(--accent); text-decoration: none; }
             </span>
             <div class="explanation-box">
               <div class="exp-title">正确答案：${q.answer}. ${escapeHtml(q.options[q.answer] || '')}</div>
-              <div>${renderMd(q.explanation)}</div>
+              <div>${renderMd(explOf(q))}</div>
             </div>
             <button class="show-answer-btn" id="randomNextBtn" style="margin-top:12px;">${isLast ? '查看成绩 →' : '下一题 →'}</button>
           </div>
@@ -1990,7 +2024,7 @@ a { color: var(--accent); text-decoration: none; }
             ${badge}
             <div class="explanation-box">
               <div class="exp-title">正确答案：${q.answer}. ${escapeHtml(q.options[q.answer] || '')}</div>
-              <div>${renderMd(q.explanation)}</div>
+              <div>${renderMd(explOf(q))}</div>
             </div>
             <button class="show-answer-btn" id="wpNextQ" style="margin-top:12px;">${practiceIdx + 1 >= practiceQueue.length ? '完成练习' : '下一题 →'}</button>
           </div>
@@ -2235,6 +2269,13 @@ a { color: var(--accent); text-decoration: none; }
     initAuthUI();
     updateGlobalProgress();
     renderChoice();
+  }
+
+  // 首屏渲染完成后，趁空闲提前把解析拉下来（用户答题时无感）
+  if (window.requestIdleCallback) {
+    requestIdleCallback(function () { loadExplanation(); }, { timeout: 4000 });
+  } else {
+    setTimeout(function () { loadExplanation(); }, 2500);
   }
 
   // 首屏立刻渲染（不等 CDN）；库到齐后再增强公式与图表
