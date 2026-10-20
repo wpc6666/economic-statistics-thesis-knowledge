@@ -697,12 +697,12 @@ a { color: var(--accent); text-decoration: none; }
 .md-body blockquote { border-left: 3px solid var(--accent); margin: 8px 0; padding: 4px 12px; background: var(--accent-soft); }
 .katex { font-size: 1.05em; }
 </style>
-<!-- 引入 markdown 渲染、mermaid 图、KaTeX 公式（渐进增强，加载失败不影响基本功能）-->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
-<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+<!-- 引入 markdown 渲染、mermaid 图、KaTeX 公式（国内CDN，加载更快）-->
+<link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script src="https://cdn.bootcdn.net/ajax/libs/marked/12.0.0/marked.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/mermaid/10.9.1/mermaid.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
 <script>
   // 初始化 mermaid（如果加载成功）
   if (window.mermaid) {
@@ -921,6 +921,7 @@ a { color: var(--accent); text-decoration: none; }
   // 渲染后处理：扫描容器里的 mermaid 图和 KaTeX 公式
   function enhanceMd(container) {
     if (!container) return;
+    
     // mermaid：把 <pre><code class="language-mermaid"> 转成 <div class="mermaid">
     if (window.mermaid) {
       container.querySelectorAll('pre code.language-mermaid').forEach(function(el) {
@@ -929,8 +930,22 @@ a { color: var(--accent); text-decoration: none; }
         div.textContent = el.textContent;
         el.closest('pre').replaceWith(div);
       });
-      try { mermaid.run({ nodes: container.querySelectorAll('.mermaid') }); } catch (e) {}
+      // 还有可能是 ```mermaid 开头的代码块，marked解析后可能class不对
+      container.querySelectorAll('pre code').forEach(function(el) {
+        if (el.textContent.trim().startsWith('graph ') || el.textContent.trim().startsWith('flowchart ')) {
+          var div = document.createElement('div');
+          div.className = 'mermaid';
+          div.textContent = el.textContent;
+          el.closest('pre').replaceWith(div);
+        }
+      });
+      try { 
+        mermaid.run({ nodes: container.querySelectorAll('.mermaid') }); 
+      } catch (e) {
+        console.warn('mermaid render error:', e);
+      }
     }
+    
     // KaTeX 公式
     if (window.renderMathInElement) {
       try {
@@ -943,7 +958,9 @@ a { color: var(--accent); text-decoration: none; }
           ],
           throwOnError: false
         });
-      } catch (e) {}
+      } catch (e) {
+        console.warn('katex render error:', e);
+      }
     }
   }
 
