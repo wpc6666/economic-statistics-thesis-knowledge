@@ -15,7 +15,7 @@ import json
 import subprocess
 from collections import defaultdict
 
-ROOT = "/Users/wangpengcheng/IT/03_知识库/综合评价"
+ROOT = "/Users/wangpengcheng/IT/02_知识库/综合评价"
 CHECK_DIR = os.path.join(ROOT, "tools", "mermaid_check")
 
 FENCE_RE = re.compile(r"(```[ \t]*mermaid[ \t]*\r?\n)(.*?)(```)", re.DOTALL | re.IGNORECASE)

@@ -2,10 +2,10 @@
 # -*- coding: utf-8 -*-
 """批量生成 01_综合评价 12 章思维导图 SVG"""
 import sys
-sys.path.insert(0, '/Users/wangpengcheng/IT/综合评价/教材笔记/_tools')
+sys.path.insert(0, '/Users/wangpengcheng/IT/02_知识库/综合评价/tools')
 from gen_svg import generate
 
-BASE = '/Users/wangpengcheng/IT/综合评价/教材笔记/01_综合评价'
+BASE = '/Users/wangpengcheng/IT/02_知识库/综合评价/教材笔记/01_综合评价'
 
 chapters = [
     # ========== 00 绪论 ==========

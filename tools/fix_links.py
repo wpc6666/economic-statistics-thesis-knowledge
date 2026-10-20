@@ -10,7 +10,7 @@ import re
 from pathlib import Path
 from collections import defaultdict
 
-ROOT = Path("/Users/wangpengcheng/IT/03_知识库/综合评价")
+ROOT = Path("/Users/wangpengcheng/IT/02_知识库/综合评价")
 
 # 收集所有md文件的完整路径（相对路径，无后缀）
 all_md_relpaths = set()  # 如 "教材笔记/01_综合评价/README"

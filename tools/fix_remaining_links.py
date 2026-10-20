@@ -5,7 +5,7 @@ import os
 import re
 from pathlib import Path
 
-ROOT = Path("/Users/wangpengcheng/IT/03_知识库/综合评价")
+ROOT = Path("/Users/wangpengcheng/IT/02_知识库/综合评价")
 
 changed_files = {}  # rel_path -> [ (old, new) ]
 

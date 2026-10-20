@@ -6,7 +6,7 @@ import re
 import json
 from collections import Counter, defaultdict
 
-ROOT = "/Users/wangpengcheng/IT/03_知识库/综合评价"
+ROOT = "/Users/wangpengcheng/IT/02_知识库/综合评价"
 
 # 匹配 ```mermaid ... ``` 代码块（支持可选空格）
 FENCE_RE = re.compile(r"```[ \t]*mermaid[ \t]*\r?\n(.*?)```", re.DOTALL | re.IGNORECASE)

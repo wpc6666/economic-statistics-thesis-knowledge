@@ -3,7 +3,7 @@
 """第二批断链精确修复"""
 from pathlib import Path
 
-ROOT = Path("/Users/wangpengcheng/IT/03_知识库/综合评价")
+ROOT = Path("/Users/wangpengcheng/IT/02_知识库/综合评价")
 
 EXACT = [
     # --- 贝塞尔修正_小白详解.md（带显示名）---

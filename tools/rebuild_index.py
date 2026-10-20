@@ -5,7 +5,7 @@ import json
 import os
 from pathlib import Path
 
-ROOT = Path("/Users/wangpengcheng/IT/03_知识库/综合评价")
+ROOT = Path("/Users/wangpengcheng/IT/02_知识库/综合评价")
 
 EXCLUDE_DIRS = {".git", ".obsidian", ".github", ".DS_Store", "__pycache__", "_tools", "node_modules"}
 EXCLUDE_FILES = {".DS_Store", ".gitignore", "00_学习导航.md", "00_总索引与学习规划.md", "00_质量检测报告.md", "exam.html.bak"}

@@ -6,7 +6,7 @@ import re
 from pathlib import Path
 from collections import defaultdict
 
-ROOT = Path("/Users/wangpengcheng/IT/03_知识库/综合评价")
+ROOT = Path("/Users/wangpengcheng/IT/02_知识库/综合评价")
 
 # ── 排除目录（非用户实际看的内容）──
 EXCLUDE_DIRS = {".git", ".obsidian", "tools", "_tools", "原文件"}

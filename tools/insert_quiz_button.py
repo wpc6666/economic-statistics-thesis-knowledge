@@ -9,7 +9,7 @@
 import os
 import re
 
-ROOT = '/Users/wangpengcheng/IT/03_知识库/综合评价'
+ROOT = '/Users/wangpengcheng/IT/02_知识库/综合评价'
 SCAN_DIRS = ['教材笔记', '经济统计学论文从0基础到精通']
 EXCLUDE_NAMES = {'README.md', '00_章节总结.md'}
 BUTTON_MARKER = '开始做题'  # 幂等标记

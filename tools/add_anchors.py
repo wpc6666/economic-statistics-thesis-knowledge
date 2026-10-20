@@ -7,7 +7,7 @@ import re
 from pathlib import Path
 from collections import defaultdict
 
-ROOT = Path("/Users/wangpengcheng/IT/03_知识库/综合评价")
+ROOT = Path("/Users/wangpengcheng/IT/02_知识库/综合评价")
 
 # ── 工具：中文数字转阿拉伯 ──
 CN_NUM = {'零':0,'一':1,'二':2,'三':3,'四':4,'五':5,'六':6,'七':7,'八':8,'九':9,

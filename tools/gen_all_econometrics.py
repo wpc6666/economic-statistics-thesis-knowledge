@@ -2,10 +2,10 @@
 # -*- coding: utf-8 -*-
 """批量生成计量经济学 01-14 章思维导图 SVG"""
 import sys
-sys.path.insert(0, '/Users/wangpengcheng/IT/综合评价/教材笔记/_tools')
+sys.path.insert(0, '/Users/wangpengcheng/IT/02_知识库/综合评价/tools')
 from gen_svg import generate
 
-BASE = '/Users/wangpengcheng/IT/综合评价/教材笔记/02_计量经济学'
+BASE = '/Users/wangpengcheng/IT/02_知识库/综合评价/教材笔记/02_计量经济学'
 
 CHAPTERS = [
     # 01 Stata入门

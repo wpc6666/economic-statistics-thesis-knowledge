@@ -10,7 +10,7 @@ import re
 from pathlib import Path
 from urllib.parse import unquote
 
-ROOT = Path("/Users/wangpengcheng/IT/03_知识库/综合评价")
+ROOT = Path("/Users/wangpengcheng/IT/02_知识库/综合评价")
 
 # ---------- slugify（与 index.html 的 slugify 近似）----------
 def slugify(s: str) -> str:

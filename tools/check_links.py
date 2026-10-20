@@ -6,7 +6,7 @@ import re
 from pathlib import Path
 from collections import defaultdict
 
-ROOT = Path("/Users/wangpengcheng/IT/03_知识库/综合评价")
+ROOT = Path("/Users/wangpengcheng/IT/02_知识库/综合评价")
 
 # 收集所有 md 和 svg 文件（Obsidian 会把 .svg 也当可链接目标）
 all_md_files = set()
