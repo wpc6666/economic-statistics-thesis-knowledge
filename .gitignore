@@ -23,3 +23,6 @@ assets/*.jpg
 # Node.js 临时验证环境
 tools/mermaid_check/node_modules/
 tools/mermaid_check/package-lock.json
+
+# 临时内部工具目录
+_tools/

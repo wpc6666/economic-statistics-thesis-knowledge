@@ -875,10 +875,23 @@ a:hover{text-decoration:underline}
     });
 
     // 5) 给标题加 id（marked 老版本可能没加），并记 data-anchor=标题原文
-    container.querySelectorAll('h1,h2,h3,h4').forEach(function (h, i) {
+    //    同时解析 {#xxx} 自定义锚点（Python Markdown / Obsidian 风格）
+    container.querySelectorAll('h1,h2,h3,h4,h5,h6').forEach(function (h, i) {
       var txt = h.textContent.trim();
+      // 提取并移除 {#xxx}
+      var m = txt.match(/^(.*?)\s*\{#([^}]+)\}\s*$/);
+      var customId = '';
+      if (m) {
+        txt = m[1].trim();
+        customId = m[2];
+        h.textContent = txt;
+      }
       h.setAttribute('data-anchor', txt);
-      if (!h.id) h.id = slugify(txt) || ('h-' + i);
+      if (customId) {
+        h.id = customId;
+      } else if (!h.id) {
+        h.id = slugify(txt) || ('h-' + i);
+      }
     });
 
     // 6) 处理 Obsidian 块ID：段落/行尾的 ^xxx 转成元素 id

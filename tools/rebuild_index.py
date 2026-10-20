@@ -7,8 +7,8 @@ from pathlib import Path
 
 ROOT = Path("/Users/wangpengcheng/IT/03_知识库/综合评价")
 
-EXCLUDE_DIRS = {".git", ".obsidian", ".github", ".DS_Store", "__pycache__"}
-EXCLUDE_FILES = {".DS_Store", ".gitignore"}
+EXCLUDE_DIRS = {".git", ".obsidian", ".github", ".DS_Store", "__pycache__", "tools", "_tools", "node_modules"}
+EXCLUDE_FILES = {".DS_Store", ".gitignore", "00_学习导航.md", "00_总索引与学习规划.md", "00_质量检测报告.md", "exam.html.bak"}
 
 # ========== 1. 重建 file-tree.json ==========
 def build_tree(dir_path: Path):
