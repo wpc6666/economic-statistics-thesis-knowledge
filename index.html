@@ -744,6 +744,11 @@ a:hover{text-decoration:underline}
     var re = /```[ \t]*mermaid[ \t]*\r?\n([\s\S]*?)```/gi;
     md = md.replace(re, function (m, code) {
       var idx = blocks.length;
+      // 剥掉引用块前缀（"> " / ">> " / ">   "）——
+      // 全库 1579 处 mermaid 写在 "> ```mermaid" 里，不剥离的话
+      // 每行都带 "> "，mermaid 会报
+      // "No diagram type detected matching given configuration"
+      code = code.replace(/^[ \t]*>+[ \t]?/gm, '');
       blocks.push(code.replace(/^\s+|\s+$/g, ''));
       // 用独占一行的 HTML 注释占位，markdown 会原样保留
       return '\n\n<!--' + token + idx + '-->\n\n';
