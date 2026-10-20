@@ -201,6 +201,8 @@ a:hover{text-decoration:underline}
 .md .wikilink{color:var(--accent); cursor:pointer; border-bottom:1px dashed var(--accent); text-decoration:none}
 .md .wikilink:hover{text-decoration:none; background:var(--accent-soft)}
 .md .wikilink.missing{color:var(--fg-faint); border-bottom:1px dotted var(--fg-faint); cursor:help}
+.md .anchor-flash{animation:anchorFlash 1.6s ease-out}
+@keyframes anchorFlash{0%{background:var(--mark); box-shadow:0 0 0 4px var(--mark)}100%{background:transparent; box-shadow:0 0 0 0 transparent}}
 .md a.md-link{cursor:pointer}
 .md a[href^="http"]::after{content:"↗"; font-size:.72em; margin-left:2px; opacity:.55; vertical-align:super}
 
@@ -336,6 +338,7 @@ a:hover{text-decoration:underline}
   var currentPath = '';
   var mermaidSeq = 0;
   var loadingToken = 0;
+  var pendingAnchor = '';
 
   /* ───────── 工具 ───────── */
   function dirname(p) { var i = p.lastIndexOf('/'); return i < 0 ? '' : p.slice(0, i); }
@@ -553,26 +556,34 @@ a:hover{text-decoration:underline}
   }
 
   /* ───────── 路由 ───────── */
-  function go(path, replace) {
+  function go(path, anchor, replace) {
     var h = '#/' + encodeURI(path);
-    if (location.hash === h) { loadFile(path); return; }
+    if (anchor) h += '#' + encodeURIComponent(anchor);
+    if (location.hash === h) { loadFile(path, anchor); return; }
     if (replace) history.replaceState(null, '', h);
     else location.hash = h;
   }
 
   function pathFromHash() {
     var h = location.hash || '';
-    if (h.indexOf('#/') !== 0) return '';
-    var p = safeDecode(h.slice(2));
+    if (h.indexOf('#/') !== 0) return { path: '', anchor: '' };
+    var rest = h.slice(2);
+    // 第一个 # 之后是锚点（注意：path 本身不含 #）
+    var ai = rest.indexOf('#');
+    var p, anchor = '';
+    if (ai >= 0) { p = rest.slice(0, ai); anchor = safeDecode(rest.slice(ai + 1)); }
+    else p = rest;
+    p = safeDecode(p);
     // 安全：不允许跳出仓库
-    if (p.indexOf('..') >= 0) return '';
-    return p;
+    if (p.indexOf('..') >= 0) return { path: '', anchor: '' };
+    return { path: p, anchor: anchor };
   }
 
   window.addEventListener('hashchange', function () {
-    var p = pathFromHash();
-    if (p && p !== currentPath) loadFile(p);
-    else if (!p) showWelcome();
+    var r = pathFromHash();
+    if (r.path && r.path !== currentPath) loadFile(r.path, r.anchor);
+    else if (r.path && r.path === currentPath && r.anchor) scrollToAnchor(r.anchor);
+    else if (!r.path) showWelcome();
   });
 
   function revealActive(path, scroll) {
@@ -723,15 +734,25 @@ a:hover{text-decoration:underline}
     return md.replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, function (m, target, display) {
       var t = target.trim();
       var label = (display || target).trim();
+      // 拆分锚点：文件.md#标题 或 文件.md#^块ID
+      var anchor = '';
+      var hashIdx = t.indexOf('#');
+      if (hashIdx >= 0) {
+        anchor = t.slice(hashIdx + 1).trim();
+        t = t.slice(0, hashIdx).trim();
+      }
       var resolved = resolveWiki(t, base);
       if (resolved) {
-        return '<a class="wikilink" data-go="' + escapeHtml(resolved) + '">' + escapeHtml(label) + '</a>';
+        var attrs = 'data-go="' + escapeHtml(resolved) + '"';
+        if (anchor) attrs += ' data-anchor="' + escapeHtml(anchor) + '"';
+        return '<a class="wikilink" ' + attrs + '>' + escapeHtml(label) + '</a>';
       }
-      return '<span class="wikilink missing" title="找不到：' + escapeHtml(t) + '">' + escapeHtml(label) + '</span>';
+      return '<span class="wikilink missing" title="找不到：' + escapeHtml(target) + '">' + escapeHtml(label) + '</span>';
     });
   }
 
   function resolveWiki(t, base) {
+    if (!t) return null;
     // 1) 相对路径（含 / 或 .md）
     if (t.indexOf('/') >= 0 || /\.md$/i.test(t)) {
       var p = resolvePath(base, /\.md$/i.test(t) ? t : t + '.md');
@@ -816,8 +837,9 @@ a:hover{text-decoration:underline}
         if (pathSet[p]) {
           a.className = (a.className ? a.className + ' ' : '') + 'md-link';
           a.setAttribute('data-go', p);
+          if (hashPart) a.setAttribute('data-anchor', safeDecode(hashPart.slice(1)));
           a.removeAttribute('href');
-          a.addEventListener('click', function (e) { e.preventDefault(); go(p); });
+          a.addEventListener('click', function (e) { e.preventDefault(); go(p, a.dataset.anchor || ''); });
         } else {
           a.className = (a.className ? a.className + ' ' : '') + 'md-link';
           a.removeAttribute('href');
@@ -837,7 +859,10 @@ a:hover{text-decoration:underline}
 
     // 3) wikilink 点击
     container.querySelectorAll('a.wikilink[data-go]').forEach(function (a) {
-      a.addEventListener('click', function (e) { e.preventDefault(); go(a.dataset.go); });
+      a.addEventListener('click', function (e) {
+        e.preventDefault();
+        go(a.dataset.go, a.dataset.anchor || '');
+      });
     });
 
     // 4) 表格套横滑容器
@@ -849,9 +874,22 @@ a:hover{text-decoration:underline}
       w.appendChild(tb);
     });
 
-    // 5) 给标题加 id（marked 老版本可能没加）
+    // 5) 给标题加 id（marked 老版本可能没加），并记 data-anchor=标题原文
     container.querySelectorAll('h1,h2,h3,h4').forEach(function (h, i) {
-      if (!h.id) h.id = 'h-' + i;
+      var txt = h.textContent.trim();
+      h.setAttribute('data-anchor', txt);
+      if (!h.id) h.id = slugify(txt) || ('h-' + i);
+    });
+
+    // 6) 处理 Obsidian 块ID：段落/行尾的 ^xxx 转成元素 id
+    //    渲染时 marked 会把 ^xxx 留在文本里，这里清理并挂到父元素
+    container.querySelectorAll('p, li, blockquote').forEach(function (el) {
+      var m = el.innerHTML.match(/^(.*?)\s*\^([A-Za-z0-9_-]+)\s*$/);
+      if (m) {
+        el.id = m[2];
+        el.setAttribute('data-block-id', m[2]);
+        el.innerHTML = m[1];
+      }
     });
   }
 
@@ -907,9 +945,10 @@ a:hover{text-decoration:underline}
   }
 
   /* ───────── 加载文件 ───────── */
-  function loadFile(path) {
+  function loadFile(path, anchor) {
     var token = ++loadingToken;
     currentPath = path;
+    pendingAnchor = anchor || '';
     setCrumbs(path);
     revealActive(path);
     closeSidebar();
@@ -933,13 +972,54 @@ a:hover{text-decoration:underline}
           postProcess(contentEl, base);
           var p1 = renderMermaid(contentEl, r.blocks);
           var p2 = p1.then(function () { return typesetMath(contentEl); });
-          return p2.then(function () { if (token === loadingToken) afterRender(path); });
+          return p2.then(function () {
+            if (token === loadingToken) {
+              afterRender(path);
+              if (pendingAnchor) { var a = pendingAnchor; pendingAnchor = ''; scrollToAnchor(a); }
+            }
+          });
         });
       })
       .catch(function (err) {
         if (token !== loadingToken) return;
         showError('文件加载失败', err.message + '（可能是网络中断或该文件已被移动）', path);
       });
+  }
+
+  // 滚动到锚点：支持 Obsidian 的 #标题 和 #^块ID 两种格式
+  function scrollToAnchor(anchor) {
+    if (!anchor) return;
+    var target = null;
+    if (anchor.charAt(0) === '^') {
+      // Obsidian 块ID：^xxx
+      var bid = anchor.slice(1);
+      target = contentEl.querySelector('[id="' + cssEscape(bid) + '"]') ||
+               contentEl.querySelector('[data-block-id="' + cssEscape(bid) + '"]');
+    } else {
+      // 标题锚点：先试 slug，再试 data-anchor（标题原文），再模糊匹配
+      var slug = slugify(anchor);
+      target = contentEl.querySelector('#' + cssEscape(slug));
+      if (!target) target = contentEl.querySelector('[data-anchor="' + cssEscape(anchor) + '"]');
+      if (!target) {
+        var heads = contentEl.querySelectorAll('h1,h2,h3,h4,h5,h6');
+        for (var i = 0; i < heads.length; i++) {
+          var txt = heads[i].textContent.trim();
+          if (txt === anchor || heads[i].getAttribute('data-anchor') === anchor) { target = heads[i]; break; }
+        }
+      }
+    }
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      target.classList.add('anchor-flash');
+      setTimeout(function () { target.classList.remove('anchor-flash'); }, 1600);
+    }
+  }
+
+  // 简易 slugify：与 Obsidian/marked 近似（小写、空格转-、去特殊字符）
+  function slugify(s) {
+    return String(s).trim().toLowerCase()
+      .replace(/[^\w\一-龥\s-]/g, '')
+      .replace(/\s+/g, '-');
   }
 
   function afterRender(path) {
@@ -1020,10 +1100,10 @@ a:hover{text-decoration:underline}
         });
         renderTree(data);
 
-        var p = pathFromHash();
-        if (p) {
-          if (pathSet[p]) loadFile(p);
-          else { showError('文件不存在', '地址里的路径在仓库里找不到', p); }
+        var r0 = pathFromHash();
+        if (r0.path) {
+          if (pathSet[r0.path]) loadFile(r0.path, r0.anchor);
+          else { showError('文件不存在', '地址里的路径在仓库里找不到', r0.path); }
         } else {
           showWelcome();
         }
