@@ -110,6 +110,8 @@ a:hover{text-decoration:underline}
   padding:9px 16px; background:var(--bg-elev); border-bottom:1px solid var(--border);
   padding-top:max(9px, env(safe-area-inset-top));
 }
+.exam-btn{color:var(--accent)}
+.exam-btn:hover{background:var(--accent-soft)}
 .icon-btn{
   display:none; place-items:center; width:34px; height:34px; flex:0 0 auto;
   border:1px solid var(--border); border-radius:8px; background:var(--bg-elev);
@@ -286,6 +288,7 @@ a:hover{text-decoration:underline}
       <a href="https://github.com/wpc6666/economic-statistics-thesis-knowledge" target="_blank" rel="noopener">本仓库</a>
       <a href="https://github.com/HKUSTDial/Supervisor-Skills" target="_blank" rel="noopener">HKUST 指南</a>
       <a href="#" id="randomLink" title="随机看一篇">随机</a>
+      <a href="exam.html" title="选择题 / 考研真题 / 模拟卷">刷题</a>
     </div>
   </div>
   <div class="tree-scroll" id="treeScroll">
@@ -299,6 +302,9 @@ a:hover{text-decoration:underline}
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
     </button>
     <div class="crumbs" id="crumbs">首页</div>
+    <a class="icon-btn exam-btn" href="exam.html" title="题库" aria-label="打开题库">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+    </a>
     <button class="icon-btn" id="topBtn" aria-label="回到顶部" style="display:none">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
     </button>
@@ -689,9 +695,14 @@ a:hover{text-decoration:underline}
 
   /* ───────── markdown 预处理 ───────── */
   // 把 [[X]].md 这种畸形写法归一成 [[X]]
-  function normalizeWiki(md) {
-    return md.replace(/\[\[([^\]|]+)\]\]\.md/g, '[[$1]]');
-  }
+    function normalizeWiki(md) {
+      md = md.replace(/\[\[([^\]|]+)\]\]\.md/g, '[[$1]]');
+      /* Obsidian 表格里竖线必须写成 \|，否则表格会被切断。
+         但渲染时 \| 会让双链目标末尾多一个反斜杠，导致解析失败。
+         这里只处理 [[...]] 内部的 \|，表格分隔用的竖线不受影响。 */
+      md = md.replace(/\[\[([^\]]*)\\\|([^\]]*)\]\]/g, '[[$1|$2]]');
+      return md;
+    }
 
   // 抽取 mermaid 代码块，用不可碰撞的占位符替换
   /* 公式保护：marked 会把 _ 和 * 当强调语法吃掉，

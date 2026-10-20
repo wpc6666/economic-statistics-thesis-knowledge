@@ -40,9 +40,9 @@ graph TD
 
 ## 这一章的路线
 
-1. [`[[01_什么时候用Logit]].md`]([[01_什么时候用Logit]].md) —— Y 是 0/1 时，为什么不能直接 OLS？
-2. [`[[02_Logit模型]].md`]([[02_Logit模型]].md) —— S 形 logistic 函数、几率比 odds ratio、Stata 输出怎么读
-3. [`[[03_Probit与Logit对比]].md`]([[03_Probit与Logit对比]].md) —— Probit 用[[07_正态分布|正态分布]]，两者怎么选
+1. [[01_什么时候用Logit]] —— Y 是 0/1 时，为什么不能直接 OLS？
+2. [[02_Logit模型]] —— S 形 logistic 函数、几率比 odds ratio、Stata 输出怎么读
+3. [[03_Probit与Logit对比]] —— Probit 用[[07_正态分布|正态分布]]，两者怎么选
 4. [`00_章节总结.md`](00_章节总结.md) —— OLS vs LPM vs Logit vs Probit 对比表
 
 ---

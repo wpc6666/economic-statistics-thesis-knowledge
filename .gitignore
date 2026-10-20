@@ -26,3 +26,7 @@ tools/mermaid_check/package-lock.json
 
 # 临时内部工具目录
 _tools/
+
+# Python 编译缓存
+__pycache__/
+*.py[cod]

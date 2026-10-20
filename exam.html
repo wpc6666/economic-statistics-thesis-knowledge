@@ -212,6 +212,13 @@ a { color: var(--accent); text-decoration: none; }
   display: flex;
   justify-content: space-between;
 }
+.kp-link {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px dashed var(--accent);
+  cursor: pointer;
+}
+.kp-link:hover { background: var(--accent-soft); }
 .question-stem {
   font-size: 16px;
   font-weight: 500;
@@ -697,17 +704,65 @@ a { color: var(--accent); text-decoration: none; }
 .md-body blockquote { border-left: 3px solid var(--accent); margin: 8px 0; padding: 4px 12px; background: var(--accent-soft); }
 .katex { font-size: 1.05em; }
 </style>
-<!-- 引入 markdown 渲染、mermaid 图、KaTeX 公式（国内CDN）-->
-<link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/KaTeX/0.16.9/katex.min.css">
-<script src="https://cdn.bootcdn.net/ajax/libs/marked/12.0.0/marked.min.js"></script>
-<script src="https://cdn.bootcdn.net/ajax/libs/mermaid/10.9.1/mermaid.min.js"></script>
-<script src="https://cdn.bootcdn.net/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
-<script src="https://cdn.bootcdn.net/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<!-- markdown / mermaid / KaTeX：异步加载，绝不阻塞首屏。
+     旧版用 4 个同步 <script src>，bootcdn 慢时整页白屏（用户说的"加载有炸弹"）。
+     现在：先渲染题目，库到了再增强；多源兜底，单个 CDN 挂掉不影响。-->
 <script>
-  // 初始化 mermaid
-  if (window.mermaid) {
-    mermaid.initialize({ startOnLoad: false, theme: 'neutral', securityLevel: 'loose' });
+(function () {
+  var CDN = [
+    'https://cdn.bootcdn.net/ajax/libs/',
+    'https://cdn.jsdelivr.net/npm/',
+    'https://unpkg.com/'
+  ];
+  // bootcdn 用「库@版本/文件」，jsdelivr/unpkg 用 npm 包名，这里分开写
+  var PKGS = {
+    marked:  ['marked/12.0.0/marked.min.js', 'marked@12.0.2/marked.min.js'],
+    mermaid: ['mermaid/10.9.1/mermaid.min.js', 'mermaid@10.9.1/dist/mermaid.min.js'],
+    katex:   ['KaTeX/0.16.9/katex.min.js', 'katex@0.16.9/dist/katex.min.js'],
+    autoRender: ['KaTeX/0.16.9/contrib/auto-render.min.js', 'katex@0.16.9/dist/contrib/auto-render.min.js'],
+    katexCss: ['KaTeX/0.16.9/katex.min.css', 'katex@0.16.9/dist/katex.min.css']
+  };
+  window.__EXAM_LIBS_READY = Promise.resolve();
+
+  function loadOne(kind) {
+    var variants = PKGS[kind], i = 0;
+    return new Promise(function (resolve) {
+      (function next() {
+        if (i >= CDN.length * variants.length) return resolve(false);
+        var ci = i % CDN.length, vi = Math.floor(i / CDN.length);
+        var url = CDN[ci] + variants[vi];
+        i++;
+        var el;
+        if (/\.css$/.test(url)) {
+          el = document.createElement('link');
+          el.rel = 'stylesheet'; el.href = url;
+          el.onload = function () { resolve(true); };
+          el.onerror = function () { el.remove(); next(); };
+        } else {
+          el = document.createElement('script');
+          el.src = url; el.async = true;
+          el.onload = function () { resolve(true); };
+          el.onerror = function () { el.remove(); next(); };
+        }
+        document.head.appendChild(el);
+      })();
+    });
   }
+
+  var chain = loadOne('katexCss');
+  ['marked', 'mermaid', 'katex'].forEach(function (k) {
+    chain = chain.then(function () { return loadOne(k); });
+  });
+  window.__EXAM_LIBS_READY = chain
+    .then(function () { return loadOne('autoRender'); })
+    .then(function () {
+      if (window.mermaid) {
+        try { mermaid.initialize({ startOnLoad: false, theme: 'neutral', securityLevel: 'loose' }); } catch (e) {}
+      }
+      return true;
+    })
+    .catch(function () { return false; });
+})();
 </script>
 </head>
 <body>
@@ -878,17 +933,17 @@ a { color: var(--accent); text-decoration: none; }
       DATA.choice[sub].chapters.forEach(function(ch) {
         ch.kps.forEach(function(kp) {
           kp.questions.forEach(function(q) {
-            qIndex[q.id] = { q: q, type: 'choice', subject: sub, chapterName: ch.name, kpName: kp.name };
+            qIndex[q.id] = { q: q, type: 'choice', subject: sub, chapterName: ch.name, kpName: kp.name, kpFile: kp.file || '' };
           });
         });
       });
       // 主观题
       DATA.subjective[sub].chapters.forEach(function(ch) {
         (ch.short_questions || []).forEach(function(q) {
-          qIndex[q.id] = { q: q, type: 'short', subject: sub, chapterName: ch.name };
+          qIndex[q.id] = { q: q, type: 'short', subject: sub, chapterName: ch.name, kpFile: q.kp_file || '' };
         });
         (ch.essay_questions || []).forEach(function(q) {
-          qIndex[q.id] = { q: q, type: 'essay', subject: sub, chapterName: ch.name };
+          qIndex[q.id] = { q: q, type: 'essay', subject: sub, chapterName: ch.name, kpFile: q.kp_file || '' };
         });
       });
     });
@@ -1122,7 +1177,7 @@ a { color: var(--accent); text-decoration: none; }
     let allQ = [];
     chapter.kps.forEach(function(kp) {
       kp.questions.forEach(function(q) {
-        allQ.push(Object.assign({}, q, { kpName: kp.name, kpId: kp.id }));
+        allQ.push(Object.assign({}, q, { kpName: kp.name, kpId: kp.id, kpFile: kp.file || '' }));
       });
     });
     choiceState.currentQuestions = shuffleArray(allQ);
@@ -1146,7 +1201,9 @@ a { color: var(--accent); text-decoration: none; }
     let html = `
       <div class="question-card">
         <div class="question-meta">
-          <span>${escapeHtml(q.kpId)} · ${escapeHtml(q.kpName)}</span>
+          <span>${escapeHtml(q.kpId)} · ${q.kpFile
+            ? `<a class="kp-link" href="index.html#/${encodeURI(q.kpFile)}" title="打开知识点原文">${escapeHtml(q.kpName)}</a>`
+            : escapeHtml(q.kpName)}</span>
           <span>第 ${choiceState.qIdx + 1} / ${qs.length} 题</span>
         </div>
         <div class="question-stem">${escapeHtml(q.stem)}</div>
@@ -1544,7 +1601,9 @@ a { color: var(--accent); text-decoration: none; }
     let html = `
       <div class="question-card">
         <div class="question-meta">
-          <span>${type === 'short' ? '简答题' : '论述题'} · ${escapeHtml(getChapters(subjState.subject, type)[subjState.chapterIdx].name)}</span>
+          <span>${type === 'short' ? '简答题' : '论述题'} · ${escapeHtml(getChapters(subjState.subject, type)[subjState.chapterIdx].name)}${q.kp_file
+            ? ` · <a class="kp-link" href="index.html#/${encodeURI(q.kp_file)}" title="打开知识点原文">回知识点</a>`
+            : ''}</span>
           <span>第 ${subjState.qIdx + 1} / ${qs.length} 题</span>
         </div>
         <div class="question-stem">${escapeHtml(q.stem)}</div>
@@ -2178,7 +2237,13 @@ a { color: var(--accent); text-decoration: none; }
     renderChoice();
   }
 
+  // 首屏立刻渲染（不等 CDN）；库到齐后再增强公式与图表
   init();
+  if (window.__EXAM_LIBS_READY) {
+    window.__EXAM_LIBS_READY.then(function () {
+      try { if (typeof renderChoice === 'function') renderChoice(); } catch (e) {}
+    });
+  }
 })();
 </script>
 

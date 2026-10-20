@@ -1,8 +1,10 @@
 {
   "assets": {
-    "gen_master_map.py": null,
     "全学科方法选择总图.svg": null,
     "综合思维导图.svg": null
+  },
+  "tools": {
+    "曲线移动题模板规范.md": null
   },
   "原文件": {
     "HKUSTDial Supervisor-Skills main handbook": {
@@ -73,10 +75,8 @@
     },
     "补充资料": {
       "贝塞尔修正": {
-        "样本方差的贝塞尔修正(为什么是n-1？).pdf": null,
         "贝塞尔修正_小白详解.md": null
       },
-      "经济学主观题答题技巧_完整版.pdf": null,
       "首经贸801经济学考研大纲.md": null
     },
     "计量经济学": {
@@ -321,9 +321,6 @@
         "案例二_城市竞争力与房地产价格.md": null
       },
       "assets": {
-        "gen_comparison.py": null,
-        "gen_decision_tree.py": null,
-        "gen_mindmap.py": null,
         "全书思维导图.svg": null,
         "思维导图.svg": null,
         "方法对比总览.svg": null,
@@ -1433,19 +1430,10 @@
       "现有文件审计报告.md": null,
       "经济学小白版写作spec.md": null
     },
-    "README.md": null,
-    "_gen_07_12.py": null
+    "README.md": null
   },
   "00_总导航.md": null,
   "00_索引.md": null,
   "KP融入大牛库写作规范.md": null,
-  "README.md": null,
-  "data.js": null,
-  "db.js": null,
-  "exam.html": null,
-  "file-tree.json": null,
-  "googlefbef38d4f16a4ff1.html": null,
-  "index.html": null,
-  "robots.txt": null,
-  "sitemap.xml": null
+  "README.md": null
 }

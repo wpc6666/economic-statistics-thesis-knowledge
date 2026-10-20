@@ -21,8 +21,8 @@ def clean_md(text: str) -> str:
     """清理 markdown 链接 [[xxx]]，保留纯文本；保留 $...$ 公式原文"""
     if not text:
         return ""
-    # [[显示|链接]] -> 显示
-    text = re.sub(r'\[\[([^\]|]+)\|([^\]]+)\]\]', r'\1', text)
+    # [[路径|显示]] -> 显示（第二组才是给人看的文字）
+    text = re.sub(r'\[\[([^\]|]+)\|([^\]]+)\]\]', r'\2', text)
     # [[链接]] -> 链接
     text = re.sub(r'\[\[([^\]]+)\]\]', r'\1', text)
     # 去掉行首尾多余空格
@@ -37,6 +37,36 @@ def parse_chapter_name(dirname: str) -> str:
 
 
 # ---------- 选择题集解析 ----------
+
+def split_kp_title(title: str, chapter_dir: Path):
+    """从 KP 标题里分离：纯名字 / 知识点文件（仓库相对路径）。
+
+    标题形态：
+      KP01 资源稀缺性（[[知识点/KP01_资源稀缺性|回知识点]]）
+      KP01 完全竞争市场的特征（[[KP01_完全竞争市场的特征|回知识点]]）
+      KP99 曲线移动专项                     ← 没有 wikilink
+    """
+    name = clean_md(title).strip()
+    file_rel = None
+
+    m = re.search(r'\[\[([^\]|]+)(?:\|[^\]]*)?\]\]', title)
+    if m:
+        tgt = m.group(1).strip()
+        if not tgt.endswith('.md'):
+            tgt += '.md'
+        cand = (chapter_dir / tgt)
+        if cand.is_file():
+            file_rel = cand.relative_to(ROOT).as_posix()
+        else:
+            cand2 = (chapter_dir / '知识点' / os.path.basename(tgt))
+            if cand2.is_file():
+                file_rel = cand2.relative_to(ROOT).as_posix()
+
+    # 去掉标题末尾的（[[...]]）与（回知识点）这类括注
+    name = re.sub(r'（\s*\[\[[^\]]*\]\]\s*）\s*$', '', name).strip()
+    name = re.sub(r'（\s*回知识点\s*）\s*$', '', name).strip()
+    return name, file_rel
+
 
 def parse_choice_file(filepath: Path, subject: str, chapter_id: str, chapter_name: str):
     """
@@ -62,9 +92,11 @@ def parse_choice_file(filepath: Path, subject: str, chapter_id: str, chapter_nam
             if current_q and current_kp is not None:
                 current_kp['questions'].append(current_q)
                 current_q = None
+            _name, _file = split_kp_title(m_kp.group(2), filepath.parent)
             current_kp = {
                 'id': m_kp.group(1),
-                'name': clean_md(m_kp.group(2)),
+                'name': _name,
+                'file': _file,
                 'questions': []
             }
             kps.append(current_kp)
@@ -241,8 +273,28 @@ def parse_subjective_file(filepath: Path, subject: str, chapter_id: str, chapter
             i += 1
             continue
 
-        # **【双链接】** (不需要)
-        if re.match(r'^\*\*【双链接】\*\*\s*', stripped):
+        # **【双链接】** 🔗 [[知识点/KPxx|回知识点]] ｜ 📖 [[原书…]]
+        m_dual = re.match(r'^\*\*【双链接】\*\*\s*(.*)$', stripped)
+        if m_dual and current_q is not None:
+            body = m_dual.group(1)
+            # 优先取「知识点/KPxx」那条
+            kp_file = None
+            for wm in re.finditer(r'\[\[([^\]|]+)(?:\|[^\]]*)?\]\]', body):
+                tgt = wm.group(1).strip()
+                if '知识点/KP' not in tgt:
+                    continue
+                if not tgt.endswith('.md'):
+                    tgt += '.md'
+                cand = filepath.parent / tgt
+                if cand.is_file():
+                    kp_file = cand.relative_to(ROOT).as_posix()
+                    break
+                cand2 = filepath.parent / '知识点' / os.path.basename(tgt)
+                if cand2.is_file():
+                    kp_file = cand2.relative_to(ROOT).as_posix()
+                    break
+            if kp_file:
+                current_q['kp_file'] = kp_file
             current_field = None
             i += 1
             continue
