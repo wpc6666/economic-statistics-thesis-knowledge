@@ -7,10 +7,16 @@ from pathlib import Path
 
 ROOT = Path("/Users/wangpengcheng/IT/03_知识库/综合评价")
 
-EXCLUDE_DIRS = {".git", ".obsidian", ".github", ".DS_Store", "__pycache__", "tools", "_tools", "node_modules"}
+EXCLUDE_DIRS = {".git", ".obsidian", ".github", ".DS_Store", "__pycache__", "_tools", "node_modules"}
 EXCLUDE_FILES = {".DS_Store", ".gitignore", "00_学习导航.md", "00_总索引与学习规划.md", "00_质量检测报告.md", "exam.html.bak"}
 
 # ========== 1. 重建 file-tree.json ==========
+# 只收页面用得上的扩展名：
+#   .md  —— 侧栏目录树唯一渲染的内容（index.html:467 只列 md）
+#   .svg/.png —— pathSet 用来判断双链/图片目标是否存在（index.html:879）
+# 其他（.js/.html/.py/.pdf/...）页面不渲染，收进去只是白白增加 JSON 体积
+KEEP_EXTS = (".md", ".svg", ".png")
+
 def build_tree(dir_path: Path):
     tree = {}
     entries = sorted(os.listdir(dir_path), key=lambda x: (not (dir_path / x).is_dir(), x))
@@ -22,7 +28,7 @@ def build_tree(dir_path: Path):
             subtree = build_tree(p)
             if subtree:
                 tree[name] = subtree
-        else:
+        elif name.lower().endswith(KEEP_EXTS):
             tree[name] = None
     return tree
 
