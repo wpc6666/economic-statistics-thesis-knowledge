@@ -288,6 +288,7 @@ a { color: var(--accent); text-decoration: none; }
   line-height: 1.8;
   white-space: pre-wrap;
 }
+.exp-loading { color: var(--fg-mute, #888); font-size: 13px; font-style: italic; }
 .explanation-box .exp-title {
   font-weight: 600;
   color: var(--orange);
@@ -965,6 +966,7 @@ a { color: var(--accent); text-decoration: none; }
       explState.loaded = true; explState.loading = false;
       var q = explState.cbs; explState.cbs = [];
       q.forEach(function (f) { try { f(); } catch (e) {} });
+      try { hydrateExpl(document); } catch (e) {}
     };
     s.onerror = function () {
       explState.loading = false; explState.cbs = [];
@@ -979,6 +981,37 @@ a { color: var(--accent); text-decoration: none; }
     if (q.explanation) return q.explanation;
     if (window.EXAM_EXPL && q.id && window.EXAM_EXPL[q.id]) return window.EXAM_EXPL[q.id];
     return '';
+  }
+
+  // 把页面上还没填上解析的 .exp-body 回填（解析文件到达后调用）
+  function hydrateExpl(root) {
+    var scope = root || document;
+    var nodes = scope.querySelectorAll('.exp-body[data-qid]');
+    var filled = 0;
+    nodes.forEach(function (el) {
+      if (el.getAttribute('data-filled') === '1') return;
+      var qid = el.getAttribute('data-qid');
+      var txt = (window.EXAM_EXPL && window.EXAM_EXPL[qid]) || '';
+      if (!txt) return;
+      el.innerHTML = renderMd(txt);
+      el.setAttribute('data-filled', '1');
+      filled++;
+    });
+    if (filled) enhanceMd(scope);
+    return filled;
+  }
+
+  // 渲染解析区：数据在就直出，不在就给占位并登记回填
+  function explHtmlFor(q) {
+    if (!q) return '';
+    var txt = explOf(q);
+    if (txt) {
+      return '<div class="exp-body" data-qid="' + escapeHtml(q.id) + '" data-filled="1">'
+             + renderMd(txt) + '</div>';
+    }
+    loadExplanation(function () { hydrateExpl(document); });
+    return '<div class="exp-body" data-qid="' + escapeHtml(q.id) + '" data-filled="0">'
+           + '<span class="exp-loading">解析加载中…</span></div>';
   }
 
   // ---------- 工具函数 ----------
@@ -1267,7 +1300,7 @@ a { color: var(--accent); text-decoration: none; }
           </span>
           <div class="explanation-box">
             <div class="exp-title">正确答案：${q.answer}. ${escapeHtml(q.options[q.answer] || '')}</div>
-            <div>${renderMd(explOf(q))}</div>
+            <div>${explHtmlFor(q)}</div>
           </div>
         </div>
       `;
@@ -1474,7 +1507,7 @@ a { color: var(--accent); text-decoration: none; }
             </span>
             <div class="explanation-box">
               <div class="exp-title">正确答案：${q.answer}. ${escapeHtml(q.options[q.answer] || '')}</div>
-              <div>${renderMd(explOf(q))}</div>
+              <div>${explHtmlFor(q)}</div>
             </div>
             <button class="show-answer-btn" id="randomNextBtn" style="margin-top:12px;">${isLast ? '查看成绩 →' : '下一题 →'}</button>
           </div>
@@ -2024,7 +2057,7 @@ a { color: var(--accent); text-decoration: none; }
             ${badge}
             <div class="explanation-box">
               <div class="exp-title">正确答案：${q.answer}. ${escapeHtml(q.options[q.answer] || '')}</div>
-              <div>${renderMd(explOf(q))}</div>
+              <div>${explHtmlFor(q)}</div>
             </div>
             <button class="show-answer-btn" id="wpNextQ" style="margin-top:12px;">${practiceIdx + 1 >= practiceQueue.length ? '完成练习' : '下一题 →'}</button>
           </div>
