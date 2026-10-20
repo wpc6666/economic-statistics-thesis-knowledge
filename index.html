@@ -580,6 +580,17 @@ a:hover{text-decoration:underline}
   }
 
   window.addEventListener('hashchange', function () {
+    var h = location.hash || '';
+    // 兜底：hash 不是路由形式（#/path），但当前有文件打开时，把它当页内锚点滚动，
+    // 而不是直接 showWelcome——否则用户点页内锚点会被打回首页。
+    if (h.indexOf('#/') !== 0) {
+      if (currentPath && h.length > 1 && h.charAt(0) === '#') {
+        scrollToAnchor(safeDecode(h.slice(1)));
+        return;
+      }
+      showWelcome();
+      return;
+    }
     var r = pathFromHash();
     if (r.path && r.path !== currentPath) loadFile(r.path, r.anchor);
     else if (r.path && r.path === currentPath && r.anchor) scrollToAnchor(r.anchor);
@@ -822,10 +833,17 @@ a:hover{text-decoration:underline}
     // 2) 链接按 md 所在目录解析；站内 md 走内部跳转
     container.querySelectorAll('a[href]').forEach(function (a) {
       var href = a.getAttribute('href');
-      if (!href || href.charAt(0) === '#' || /^(https?:|mailto:|tel:)/i.test(href)) {
-        if (/^https?:/i.test(href)) { a.target = '_blank'; a.rel = 'noopener'; }
+      if (!href) return;
+      // 页内锚点：[...](#xxx) —— JS 接管，不碰 location.hash（否则会触发 hashchange 把页面打回欢迎页）
+      if (href.charAt(0) === '#' && href.length > 1) {
+        var selfAnchor = safeDecode(href.slice(1));
+        a.addEventListener('click', function (e) {
+          e.preventDefault();
+          scrollToAnchor(selfAnchor);
+        });
         return;
       }
+      if (/^(https?:|mailto:|tel:)/i.test(href)) { a.target = '_blank'; a.rel = 'noopener'; return; }
       var hashPart = '';
       var hi = href.indexOf('#');
       if (hi >= 0) { hashPart = href.slice(hi); href = href.slice(0, hi); }
@@ -999,7 +1017,7 @@ a:hover{text-decoration:underline}
       });
   }
 
-  // 滚动到锚点：支持 Obsidian 的 #标题 和 #^块ID 两种格式
+  // 滚动到锚点：支持 Obsidian 的 #标题、#^块ID、#自定义ID（如 {#s1}）三种格式
   function scrollToAnchor(anchor) {
     if (!anchor) return;
     var target = null;
@@ -1009,15 +1027,30 @@ a:hover{text-decoration:underline}
       target = contentEl.querySelector('[id="' + cssEscape(bid) + '"]') ||
                contentEl.querySelector('[data-block-id="' + cssEscape(bid) + '"]');
     } else {
-      // 标题锚点：先试 slug，再试 data-anchor（标题原文），再模糊匹配
-      var slug = slugify(anchor);
-      target = contentEl.querySelector('#' + cssEscape(slug));
+      // 1) 直接按 id 命中（覆盖 {#s1}、{#KP01} 等自定义锚点）
+      target = contentEl.querySelector('[id="' + cssEscape(anchor) + '"]');
+      // 2) 按 slug 命中（marked 自动生成的标题 id）
+      if (!target) {
+        var slug = slugify(anchor);
+        if (slug && slug !== anchor) target = contentEl.querySelector('#' + cssEscape(slug));
+      }
+      // 3) 按 data-anchor（标题原文）命中
       if (!target) target = contentEl.querySelector('[data-anchor="' + cssEscape(anchor) + '"]');
+      // 4) 遍历标题模糊匹配：先精确，再 data-anchor 精确，再前缀匹配
       if (!target) {
         var heads = contentEl.querySelectorAll('h1,h2,h3,h4,h5,h6');
         for (var i = 0; i < heads.length; i++) {
           var txt = heads[i].textContent.trim();
-          if (txt === anchor || heads[i].getAttribute('data-anchor') === anchor) { target = heads[i]; break; }
+          var da = heads[i].getAttribute('data-anchor') || '';
+          if (txt === anchor || da === anchor) { target = heads[i]; break; }
+        }
+      }
+      // 5) 前缀匹配（Obsidian 行为：#KP01 能命中 "## KP01 xxx（回知识点）"）
+      if (!target) {
+        var heads2 = contentEl.querySelectorAll('h1,h2,h3,h4,h5,h6');
+        for (var j = 0; j < heads2.length; j++) {
+          var t2 = (heads2[j].getAttribute('data-anchor') || heads2[j].textContent || '').trim();
+          if (t2.indexOf(anchor) === 0 || anchor.indexOf(t2) === 0) { target = heads2[j]; break; }
         }
       }
     }
@@ -1025,6 +1058,8 @@ a:hover{text-decoration:underline}
       target.scrollIntoView({ behavior: 'smooth', block: 'start' });
       target.classList.add('anchor-flash');
       setTimeout(function () { target.classList.remove('anchor-flash'); }, 1600);
+    } else {
+      toast('未找到锚点：' + anchor, 2400);
     }
   }
 
