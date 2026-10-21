@@ -515,8 +515,8 @@ a { color: var(--accent); text-decoration: none; }
   padding: 6px 8px;
 }
 .gp-item {
-  flex: 1;
-  min-width: max-content;
+  flex: 1 1 auto;
+  min-width: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -524,7 +524,8 @@ a { color: var(--accent); text-decoration: none; }
   border-right: 1px solid var(--border);
 }
 .gp-item:last-child { border-right: none; }
-.gp-label { font-size: 11px; color: var(--fg-faint); }
+.gp-label { font-size: 11px; color: var(--fg-faint); white-space: nowrap; }
+.gp-item > * { min-width: 0; }
 .gp-value { font-size: 13px; font-weight: 600; color: var(--fg); margin-top: 2px; }
 .gp-acc { font-size: 11px; color: var(--green); margin-top: 1px; }
 .gp-acc.zero { color: var(--red); }
@@ -916,6 +917,12 @@ body.has-side { padding-right: var(--sbw); }
 .md-body h1, .md-body h2, .md-body h3 { margin: 14px 0 8px; font-size: 15px; }
 .md-body blockquote { border-left: 3px solid var(--accent); margin: 8px 0; padding: 4px 12px; background: var(--accent-soft); }
 .katex { font-size: 1.05em; }
+/* KaTeX 会同时输出可见的 HTML 版和隐藏的 MathML 版，MathML 那层在窄屏不参与布局，
+   但它的 <semantics> 宽度会把整页 scrollWidth 撑大（320px 下实测多出 23px 横向滚动）。
+   这里把它彻底移出文档流，视觉零影响，横向溢出消失。 */
+.katex-mathml { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(1px,1px,1px,1px); }
+/* 行间公式在窄屏允许横向滚动，不撑破页面容器 */
+.katex-display { overflow-x: auto; overflow-y: hidden; }
 
 /* ---------- 背题（flashcard） ---------- */
 .fc-bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 12px; }
@@ -3415,38 +3422,24 @@ body.has-side { padding-right: var(--sbw); }
               escapeHtml((q.options && q.options[q.answer]) || '') + '</div>';
     } else {
       // 简答/论述题：背题要能看到完整答案，不只是框架
-      var _mk = function (title, body) {
+      // 正文一律留空，交给 fcFillMd 在 marked 就绪后按 markdown 渲染回填——
+      // 直接 escapeHtml 的话，**加粗** 与 $...$ 公式会以源码形式永久留在页面上。
+      var _mk = function (title, key) {
         return '<div class="fc-fw-title">' + title + '</div>' +
-               '<div class="fc-ans-body" data-lazy-md="1"><p>' +
-               escapeHtml(body).replace(/\n/g, '</p><p>') + '</p></div>';
+               '<div class="fc-ans-body fc-mdhost" data-md="' + key + '"></div>';
       };
-      if (q.derivation) html += _mk('核心推导', q.derivation);
-      if (q.why_points) html += _mk('为什么要答这几点', q.why_points);
-      if (q.how_to_analyze) html += _mk('如何分析题目', q.how_to_analyze);
+      if (q.derivation) html += _mk('核心推导', 'derivation');
+      if (q.why_points) html += _mk('为什么要答这几点', 'why_points');
+      if (q.how_to_analyze) html += _mk('如何分析题目', 'how_to_analyze');
       if (q.framework && q.framework.length) {
         html += '<div class="fc-fw-title">答题框架</div>' +
                 '<div class="md-body"><ul>' +
                 q.framework.map(function (t) { return '<li>' + escapeHtml(t) + '</li>'; }).join('') +
                 '</ul></div>';
       }
-      if (q.answer) {
-        html += '<div class="fc-fw-title">参考答案</div>' +
-                '<div class="fc-ans-body" data-lazy-md="1">' +
-                '<p>' + escapeHtml(q.answer).replace(/\n/g, '</p><p>') + '</p>' +
-                '</div>';
-      }
-      if (q.scoring) {
-        html += '<div class="fc-fw-title">评分标准</div>' +
-                '<div class="fc-ans-body">' +
-                '<p>' + escapeHtml(q.scoring).replace(/\n/g, '</p><p>') + '</p>' +
-                '</div>';
-      }
-      if (q.life_example) {
-        html += '<div class="fc-fw-title">生活实例</div>' +
-                '<div class="fc-ans-body">' +
-                '<p>' + escapeHtml(q.life_example).replace(/\n/g, '</p><p>') + '</p>' +
-                '</div>';
-      }
+      if (q.answer) html += _mk('参考答案', 'answer');
+      if (q.scoring) html += _mk('评分标准', 'scoring');
+      if (q.life_example) html += _mk('生活实例', 'life_example');
       var pits = extractPitfalls(q);
       if (pits.length) {
         html += '<div class="fc-fw-title">易错点</div>' +
@@ -3461,19 +3454,12 @@ body.has-side { padding-right: var(--sbw); }
     html += '<div class="fc-exp" data-qid="' + escapeHtml(q.id) + '"></div>';
     html += '</div>';
 
-    html += '<div class="fc-grade">' +
-      '<button class="fc-grade-btn g-again" data-grade="0">😵 没印象</button>' +
-      '<button class="fc-grade-btn g-hard" data-grade="1">🤔 模糊</button>' +
-      '<button class="fc-grade-btn g-known" data-grade="2">✅ 已掌握</button>' +
-    '</div>';
-
+    // 评分与翻页按钮全部放到右侧固定侧栏（sideActions），
+    // 卡片底部只保留「回知识点 / 去做题」这一个与当前题相关的跳转链接。
     html += '<div class="fc-nav">' +
-      '<button class="user-btn" id="fcPrev">← 上一张</button>' +
-      '<button class="user-btn" id="fcNext">下一张 →</button>' +
-      '<button class="user-btn" id="fcRandom">🎲 随机一张</button>' +
       (q.type === 'choice'
-        ? '<a class="user-btn" href="#" id="fcToChoice" style="text-align:center;text-decoration:none;line-height:1.6;padding-top:6px;">去做题</a>'
-        : '<a class="user-btn" href="index.html#/' + encodeURI(q.kpFile) + '" target="_blank" rel="noopener" style="text-align:center;text-decoration:none;line-height:1.6;padding-top:6px;">回知识点</a>') +
+        ? '<a class="user-btn" href="#" id="fcToChoice">去做题</a>'
+        : '<a class="user-btn" href="index.html#/' + encodeURI(q.kpFile) + '" target="_blank" rel="noopener">回知识点</a>') +
       '</div>';
 
     html += '</div>';
@@ -3524,30 +3510,33 @@ body.has-side { padding-right: var(--sbw); }
       expEl.setAttribute('data-loaded', '1');
     }
 
-    area.querySelectorAll('.fc-grade-btn').forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        fcGrade(parseInt(btn.dataset.grade, 10));
+    // ---- 简答/论述三块正文：同样等 marked 就绪再渲染 ----
+    // 这三块（核心推导/为什么要答这几点/如何分析题目）是 markdown + LaTeX 混排，
+    // 必须在 marked 到位后统一渲染，否则 ** 和 $ 会以源码形式漏出来。
+    var fillMd = function () {
+      if (!window.marked) return;
+      area.querySelectorAll('.fc-mdhost[data-md]').forEach(function (el) {
+        var key = el.getAttribute('data-md');
+        var txt = q[key];
+        if (!txt) return;
+        var out = renderMd(txt);
+        if (el.getAttribute('data-drawn') === out) return;
+        el.innerHTML = out;
+        el.setAttribute('data-drawn', out);
+        enhanceMd(el);
       });
-    });
-
-    var prev = document.getElementById('fcPrev');
-    if (prev) prev.addEventListener('click', function () {
-      fcState.current = fcAdjacent(pool, -1);
-      renderFlashcard();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-    var next = document.getElementById('fcNext');
-    if (next) next.addEventListener('click', function () {
-      fcState.current = fcAdjacent(pool, 1);
-      renderFlashcard();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-    var rnd = document.getElementById('fcRandom');
-    if (rnd) rnd.addEventListener('click', function () {
-      fcState.current = fcPick(pool);
-      renderFlashcard();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
+    };
+    var mdTries = 0;
+    var mdTimer = setInterval(function () {
+      mdTries++;
+      if (!area.isConnected || mdTries > 40) { clearInterval(mdTimer); return; }
+      if (window.marked) {
+        fillMd();
+        if (area.querySelector('.fc-mdhost[data-md][data-drawn]')) clearInterval(mdTimer);
+      }
+    }, 1000);
+    if (window.__EXAM_LIBS_READY) window.__EXAM_LIBS_READY.then(fillMd).catch(fillMd);
+    fillMd();
 
     var toChoice = document.getElementById('fcToChoice');
     if (toChoice) toChoice.addEventListener('click', function (e) {

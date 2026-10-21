@@ -36,6 +36,32 @@ SUBJECTS = {
 }
 
 
+def resolve_kp_file(text, md_path):
+    """从 md 正文里找 [[知识点/KPxx|...]] 引用，解析成相对 ROOT 的真实路径。
+
+    西经/政经的题目块里带 **【双链接】** \u9879\uff0c\u5f15\u7528\u76ee\u6807\u662f\u76f8\u5bf9\u4e8e\u672c md \u7684
+    \u77e5\u8bc6\u70b9\u6587\u4ef6\uff08\u5982 01_\u9700\u6c42\u4f9b\u7ed9\u4e0e\u5747\u8861\u4ef7\u683c/\u77e5\u8bc6\u70b9/KP01_xxx.md\uff09\u3002
+    \u4e0d\u80fd\u76f4\u63a5\u62ff\u6587\u4ef6\u540d\uff1a\u4e0d\u540c\u79d1\u76ee\u4e0b\u53ef\u80fd\u6709\u540c\u540d KPxx\uff0c
+    \u5fc5\u987b\u6309\u672c md \u6240\u5728\u76ee\u5f55\u5b9e\u9645\u5b58\u5728\u7684\u8def\u5f84\u53d6\u3002\u627e\u4e0d\u5230\u5c31\u8fd4\u56de\u7a7a\u4e32\uff0c\u4e0d\u731c\u3002
+    """
+    if not md_path:
+        return ""
+    base = Path(md_path).parent
+    for wm in re.finditer(r"\[\[([^\]|]+)(?:\|[^\]]*)?\]\]", text or ""):
+        tgt = wm.group(1).strip()
+        if "\u77e5\u8bc6\u70b9/KP" not in tgt:
+            continue
+        if not tgt.endswith(".md"):
+            tgt += ".md"
+        for cand in (base / tgt, base / "\u77e5\u8bc6\u70b9" / Path(tgt).name):
+            try:
+                if cand.is_file():
+                    return cand.relative_to(ROOT).as_posix()
+            except ValueError:
+                continue
+    return ""
+
+
 def clean_md(s):
     """去掉 markdown 强调符号，压缩空白"""
     if not s:
@@ -205,17 +231,17 @@ def parse_choice_kp(text, subject, chapter_id, chapter_name):
 
 # ---------- 主观题解析 ----------
 
-def parse_subjective_kaoyan(text, subject, chapter_id, chapter_name):
+def parse_subjective_kaoyan(text, subject, chapter_id, chapter_name, md_path=None):
     """考研真题集.md 格式（西经/政经）：## 一、简答题 + ### 简答 N：题干"""
-    return parse_subjective_common(text, subject, chapter_id, chapter_name, "kaoyan")
+    return parse_subjective_common(text, subject, chapter_id, chapter_name, "kaoyan", md_path)
 
 
-def parse_subjective_simple(text, subject, chapter_id, chapter_name):
+def parse_subjective_simple(text, subject, chapter_id, chapter_name, md_path=None):
     """简答题集.md 格式（5 新科）：## 第N章 + **N. 题干** + **答：**"""
-    return parse_subjective_common(text, subject, chapter_id, chapter_name, "simple")
+    return parse_subjective_common(text, subject, chapter_id, chapter_name, "simple", md_path)
 
 
-def parse_subjective_common(text, subject, chapter_id, chapter_name, mode):
+def parse_subjective_common(text, subject, chapter_id, chapter_name, mode, md_path=None):
     short_qs, essay_qs = [], []
     lines = text.split("\n")
 
@@ -333,6 +359,16 @@ def parse_subjective_common(text, subject, chapter_id, chapter_name, mode):
                 cur["life_example"] = re.sub(r"^\*\*【[^】]*】\*\*\s*", "", s)
                 i += 1
                 continue
+            # 【双链接】行里带着 [[知识点/KPxx|回知识点]]，把它解析成真实文件路径；
+            # 不先拦下来的话会被下面那个 "【" 分支当成废字段跳掉，
+            # 前端“回知识点”就只能拼出一个空链接。
+            if s.startswith("**【双链接】"):
+                if not cur.get("kp_file"):
+                    kf = resolve_kp_file(s, md_path)
+                    if kf:
+                        cur["kp_file"] = kf
+                i += 1
+                continue
             if s.startswith("**【") or s.startswith("---"):
                 field = None
                 i += 1
@@ -441,7 +477,7 @@ def build_subject(key):
         blocks = split_by_heading(txt, r"^##\s+第[0-9一二三四五六七八九十百]+章")
         for bidx, (btitle, bbody) in enumerate(blocks, 1):
             cname = clean_md(strip_quan(re.sub(r"^#+\s*", "", btitle.strip()))) or ("第%d章" % bidx)
-            subj = parse_subjective_simple(bbody, key, "C%02d" % bidx, cname)
+            subj = parse_subjective_simple(bbody, key, "C%02d" % bidx, cname, root_subj)
             if not subj["short_questions"] and not subj["essay_questions"]:
                 continue
             data["subjective"]["chapters"].append({
@@ -460,9 +496,9 @@ def build_subject(key):
         cname = parse_chapter_name(cid)
         txt = f.read_text(encoding="utf-8")
         if subj_cfg[1] == "simple":
-            subj = parse_subjective_simple(txt, key, cid, cname)
+            subj = parse_subjective_simple(txt, key, cid, cname, f)
         else:
-            subj = parse_subjective_kaoyan(txt, key, cid, cname)
+            subj = parse_subjective_kaoyan(txt, key, cid, cname, f)
         if not subj["short_questions"] and not subj["essay_questions"]:
             continue
         data["subjective"]["chapters"].append({
