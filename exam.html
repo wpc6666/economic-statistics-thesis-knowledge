@@ -768,7 +768,10 @@ a { color: var(--accent); text-decoration: none; }
     autoRender: ['KaTeX/0.16.9/contrib/auto-render.min.js', 'katex@0.16.9/dist/contrib/auto-render.min.js'],
     katexCss: ['KaTeX/0.16.9/katex.min.css', 'katex@0.16.9/dist/katex.min.css']
   };
-  window.__EXAM_LIBS_READY = Promise.resolve();
+  // 单个源的等待上限：超时就换下一个源。
+  // 没有超时的话，一旦某个 CDN 卡住（2.5MB 的 mermaid 很常见），
+  // 后面的 KaTeX 永远等不到，公式就全以源码漏出来。
+  var TIMEOUT = 8000;
 
   function loadOne(kind) {
     var variants = PKGS[kind], i = 0;
@@ -778,29 +781,44 @@ a { color: var(--accent); text-decoration: none; }
         var ci = i % CDN.length, vi = Math.floor(i / CDN.length);
         var url = CDN[ci] + variants[vi];
         i++;
-        var el;
+        var el, settled = false, timer;
+        function finish(ok) {
+          if (settled) return;
+          settled = true;
+          clearTimeout(timer);
+          if (!ok && el.parentNode) el.remove();
+          if (ok) resolve(true); else next();
+        }
         if (/\.css$/.test(url)) {
           el = document.createElement('link');
           el.rel = 'stylesheet'; el.href = url;
-          el.onload = function () { resolve(true); };
-          el.onerror = function () { el.remove(); next(); };
         } else {
           el = document.createElement('script');
-          el.src = url; el.async = true;
-          el.onload = function () { resolve(true); };
-          el.onerror = function () { el.remove(); next(); };
+          el.src = url;
         }
+        el.onload = function () { finish(true); };
+        el.onerror = function () { finish(false); };
+        timer = setTimeout(function () { finish(false); }, TIMEOUT);
         document.head.appendChild(el);
       })();
     });
   }
 
-  var chain = loadOne('katexCss');
-  ['marked', 'mermaid', 'katex'].forEach(function (k) {
-    chain = chain.then(function () { return loadOne(k); });
-  });
-  window.__EXAM_LIBS_READY = chain
-    .then(function () { return loadOne('autoRender'); })
+  // 各库并行加载：任何一个慢都不拖累其它库。
+  // 公式链（katex → autoRender）只依赖 katex 自己，
+  // 不能让 2.5MB 的 mermaid 卡住公式渲染——那是用户看到「公式变源码」的直接原因。
+  var katexP = loadOne('katex');
+  var mathP = katexP.then(function () { return loadOne('autoRender'); });
+  // 公式链单独暴露：它通常 5-6 秒就到，而 mermaid 可能要 25 秒以上。
+  // 让公式先渲染，不要被 mermaid 拖住。
+  window.__EXAM_MATH_READY = mathP;
+
+  window.__EXAM_LIBS_READY = Promise.all([
+    loadOne('katexCss'),
+    loadOne('marked'),
+    loadOne('mermaid'),
+    mathP
+  ])
     .then(function () {
       if (window.mermaid) {
         try { mermaid.initialize({ startOnLoad: false, theme: 'neutral', securityLevel: 'loose' }); } catch (e) {}
@@ -1115,7 +1133,26 @@ a { color: var(--accent); text-decoration: none; }
   // 渲染后处理：扫描容器里的 mermaid 图和 KaTeX 公式
   function enhanceMd(container) {
     if (!container) return;
-    
+
+    // 库还在异步加载：等 __EXAM_LIBS_READY 落定后对同一个容器重跑一次，
+    // 否则背题卡片会在 mermaid/KaTeX 到位前渲染完，图和公式以源码形式留在页面上。
+    // 公式与 mermaid 分别判断：mermaid 是 2.5MB 的大包，常比公式晚到好几秒，
+    // 用「两者都缺」做条件会让已经能渲染的公式白等。
+    if ((!window.mermaid || !window.renderMathInElement) && window.__EXAM_LIBS_READY
+        && !container.getAttribute('data-reenhance')) {
+      container.setAttribute('data-reenhance', '1');
+      // 公式链先到就先重跑：它通常 5-6 秒就绪，而 mermaid 可能 25 秒以上
+      var mathReady = window.__EXAM_MATH_READY || window.__EXAM_LIBS_READY;
+      mathReady.then(function () {
+        if (container.isConnected) enhanceMd(container);
+      }).catch(function () {});
+      // 全部库落定后再收尾一次（mermaid 到位），然后清标记
+      window.__EXAM_LIBS_READY.then(function () {
+        container.removeAttribute('data-reenhance');
+        if (container.isConnected) enhanceMd(container);
+      }).catch(function () {});
+    }
+
     // mermaid：把 <pre><code class="language-mermaid"> 转成 <div class="mermaid">
     if (window.mermaid) {
       container.querySelectorAll('pre code.language-mermaid').forEach(function(el) {
@@ -1133,10 +1170,14 @@ a { color: var(--accent); text-decoration: none; }
           el.closest('pre').replaceWith(div);
         }
       });
-      try { 
-        mermaid.run({ nodes: container.querySelectorAll('.mermaid') }); 
-      } catch (e) {
-        console.warn('mermaid render error:', e);
+      // 只渲染尚未处理过的节点：重复对已出图的节点调用 run() 会抛错并把错误塞回正文
+      var pending = container.querySelectorAll('.mermaid:not([data-processed])');
+      if (pending.length) {
+        try {
+          mermaid.run({ nodes: pending });
+        } catch (e) {
+          console.warn('mermaid render error:', e);
+        }
       }
     }
     
@@ -2501,13 +2542,17 @@ a { color: var(--accent); text-decoration: none; }
     html += '</div>';
     area.innerHTML = html;
 
-    enhanceMd(area.querySelector('.fc-answer'));
+    // 整个卡片一起增强：解析块 .fc-exp 与 .fc-answer 是兄弟节点，只增强 .fc-answer 会让
+    // 解析里的公式（$...$）和 mermaid 图以源码形式漏出来
+    enhanceMd(area);
     // 选择题解析在 data-expl.js 里才到齐：按需加载后回填这一块（主观题无解析，块留空不占位）
     var expEl = area.querySelector('.fc-exp');
     if (expEl && !expTxt && q.type === 'choice') {
       var qid = expEl.getAttribute('data-qid');
       expEl.innerHTML = '<span class="exp-loading">解析加载中…</span>';
-      loadExplanation(function () {
+      // marked 是异步 CDN 库：必须等它就位再 renderMd，
+      // 否则会走「整段转义 + 换行变 <br>」的兜底分支，公式和 mermaid 源码全漏出来
+      var drawExp = function () {
         var el = area.querySelector('.fc-exp[data-qid="' + qid + '"]');
         if (!el || el.getAttribute('data-loaded') === '1') return;
         var txt = (window.EXAM_EXPL && window.EXAM_EXPL[qid]) || '';
@@ -2515,7 +2560,10 @@ a { color: var(--accent); text-decoration: none; }
         el.innerHTML = renderMd(txt);
         el.setAttribute('data-loaded', '1');
         enhanceMd(el);
-      });
+      };
+      if (window.__EXAM_LIBS_READY) window.__EXAM_LIBS_READY.then(drawExp).catch(drawExp);
+      else drawExp();
+      loadExplanation(drawExp);
     } else if (expEl) {
       expEl.setAttribute('data-loaded', '1');
     }
