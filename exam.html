@@ -2518,10 +2518,10 @@ a { color: var(--accent); text-decoration: none; }
               q.framework.map(function (t) { return '<li>' + escapeHtml(t) + '</li>'; }).join('') +
               '</ul></div>';
     }
-    var expTxt = explOf(q);
-    html += '<div class="fc-exp" data-qid="' + escapeHtml(q.id) + '">' +
-            (expTxt ? renderMd(expTxt) : '') +
-            '</div>';
+    // 解析块一律留空，交给渲染完成后的统一回填：
+    // 这里如果直接 renderMd，会在 marked 就绪前走「整段转义」兜底分支，
+    // 而下面 !expTxt 的回填条件又不成立，兜底结果就永久留在页面上了。
+    html += '<div class="fc-exp" data-qid="' + escapeHtml(q.id) + '"></div>';
     html += '</div>';
 
     html += '<div class="fc-grade">' +
@@ -2547,21 +2547,40 @@ a { color: var(--accent); text-decoration: none; }
     enhanceMd(area);
     // 选择题解析在 data-expl.js 里才到齐：按需加载后回填这一块（主观题无解析，块留空不占位）
     var expEl = area.querySelector('.fc-exp');
-    if (expEl && !expTxt && q.type === 'choice') {
+    if (expEl && q.type === 'choice') {
       var qid = expEl.getAttribute('data-qid');
       expEl.innerHTML = '<span class="exp-loading">解析加载中…</span>';
       // marked 是异步 CDN 库：必须等它就位再 renderMd，
       // 否则会走「整段转义 + 换行变 <br>」的兜底分支，公式和 mermaid 源码全漏出来
       var drawExp = function () {
         var el = area.querySelector('.fc-exp[data-qid="' + qid + '"]');
-        if (!el || el.getAttribute('data-loaded') === '1') return;
+        if (!el) return;
         var txt = (window.EXAM_EXPL && window.EXAM_EXPL[qid]) || '';
         if (!txt) { el.innerHTML = ''; return; }
-        el.innerHTML = renderMd(txt);
+        // marked 未就绪时 renderMd 会退回「整段转义」，** 和围栏都会以源码留在页面上。
+        // 所以这里必须以「marked 是否到位」为准，而不是靠 data-loaded 标记：
+        // 标记只能防重复，不能证明上一次画的时候库已经在了。
+        if (!window.marked) return;
+        var html = renderMd(txt);
+        if (el.getAttribute('data-drawn') === html) return;
+        el.innerHTML = html;
+        el.setAttribute('data-drawn', html);
         el.setAttribute('data-loaded', '1');
         enhanceMd(el);
       };
-      if (window.__EXAM_LIBS_READY) window.__EXAM_LIBS_READY.then(drawExp).catch(drawExp);
+      // marked 可能比 __EXAM_MATH_READY 还晚到（CDN 抖动时全部库都会超时重试），
+      // 所以再加一层轮询兜底：库到位就重画，最多等 40 秒
+      var tries = 0;
+      var timer = setInterval(function () {
+        tries++;
+        var cur = area.querySelector('.fc-exp[data-qid="' + qid + '"]');
+        if (!cur || cur.getAttribute('data-loaded') === '1' || tries > 40) {
+          clearInterval(timer);
+          return;
+        }
+        drawExp();
+      }, 1000);
+      if (window.__EXAM_MATH_READY) window.__EXAM_MATH_READY.then(drawExp).catch(drawExp);
       else drawExp();
       loadExplanation(drawExp);
     } else if (expEl) {
