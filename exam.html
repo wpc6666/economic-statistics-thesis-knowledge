@@ -1537,13 +1537,30 @@ body.has-side { padding-right: var(--sbw); }
 
   // 渲染 markdown 文本：支持 markdown、mermaid 图、KaTeX 公式
   // 渐进增强：marked/mermaid/katex 任一未加载时退回纯文本
+  // 先把 $$...$$ 与 $...$ 从 markdown 里挖出来占位，避免 marked 把公式里的 _ * \ 当语法吃掉
+  function protectMath(src) {
+    var store = [];
+    var out = src.replace(/\$\$([\s\S]+?)\$\$/g, function (m) {
+      store.push(m); return '\u0000M' + (store.length - 1) + '\u0000';
+    }).replace(/\$([^\$\n]+?)\$/g, function (m) {
+      store.push(m); return '\u0000M' + (store.length - 1) + '\u0000';
+    });
+    return { text: out, store: store };
+  }
+  function restoreMath(html, store) {
+    return html.replace(/\u0000M(\d+)\u0000/g, function (m, i) {
+      var v = store[+i];
+      return v == null ? m : v;
+    });
+  }
   function renderMd(text) {
     if (!text) return '';
     var raw = String(text);
     var html;
     if (window.marked) {
       try {
-        html = marked.parse(raw);
+        var pm = protectMath(raw);
+        html = restoreMath(marked.parse(pm.text), pm.store);
       } catch (e) {
         html = '<p>' + escapeHtml(raw).replace(/\n/g, '<br>') + '</p>';
       }
