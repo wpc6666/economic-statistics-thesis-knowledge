@@ -68,6 +68,7 @@ a { color: var(--accent); text-decoration: none; }
   position: sticky;
   top: 0;
   z-index: 100;
+  transition: opacity .18s;
   background: var(--bg-elev);
   border-bottom: 1px solid var(--border);
   padding: 10px 14px;
@@ -306,15 +307,18 @@ a { color: var(--accent); text-decoration: none; }
 .answer-badge.correct { background: var(--green-soft); color: var(--green); }
 .answer-badge.wrong { background: var(--red-soft); color: var(--red); }
 
-/* 导航按钮 */
+/* 导航按钮：整体靠右排列 */
 .nav-row {
   display: flex;
   gap: 10px;
   margin-top: 16px;
+  justify-content: flex-end;
+  flex-wrap: wrap;
 }
 .nav-btn {
-  flex: 1;
-  padding: 12px;
+  flex: 0 1 auto;
+  min-width: 104px;
+  padding: 12px 18px;
   font-size: 15px;
   font-weight: 500;
   font-family: inherit;
@@ -732,9 +736,12 @@ a { color: var(--accent); text-decoration: none; }
 .fc-answer { margin-top: 16px; border-top: 1px dashed var(--border); padding-top: 14px; overflow-wrap: anywhere; word-break: break-word; }
 .fc-fw-title { font-size: 14px; font-weight: 600; color: var(--accent); margin: 8px 0 6px; }
 .fc-exp { margin-top: 10px; overflow-wrap: anywhere; word-break: break-word; }
+.fc-ans-body { font-size: 14px; line-height: 1.75; color: var(--fg); margin-top: 6px; overflow-wrap: anywhere; word-break: break-word; }
+.fc-ans-body p { margin: 0 0 8px; }
+.fc-ans-body p:last-child { margin-bottom: 0; }
 .fc-exp .exp-loading { font-size: 13px; color: var(--fg-faint); }
 .fc-answer-key { font-size: 14px; font-weight: 600; color: var(--green); margin-bottom: 8px; overflow-wrap: anywhere; }
-.fc-grade { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+.fc-grade { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; justify-content: flex-end; }
 .fc-grade-btn {
   flex: 1 1 30%; min-width: 0; padding: 11px 8px; border-radius: 8px; cursor: pointer;
   font-size: 14px; font-weight: 600; font-family: inherit;
@@ -744,8 +751,8 @@ a { color: var(--accent); text-decoration: none; }
 .fc-grade-btn.g-hard { border-color: var(--orange); color: var(--orange); background: var(--orange-soft); }
 .fc-grade-btn.g-known { border-color: var(--green); color: var(--green); background: var(--green-soft); }
 .fc-grade-btn:hover { opacity: 0.85; }
-.fc-nav { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
-.fc-nav .user-btn { flex: 1 1 40%; min-width: 0; }
+.fc-nav { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; justify-content: flex-end; }
+.fc-nav .user-btn { flex: 0 1 auto; min-width: 96px; }
 .fc-done { text-align: center; padding: 32px 12px; }
 .fc-done-title { font-size: 17px; font-weight: 600; margin-bottom: 8px; }
 .fc-done-sub { font-size: 13px; color: var(--fg-mute); margin-bottom: 16px; overflow-wrap: anywhere; }
@@ -1279,6 +1286,15 @@ a { color: var(--accent); text-decoration: none; }
     document.getElementById('gpWrong').textContent = '待复习 ' + wrongCnt;
   }
 
+  // ---------- 顶栏收起 ----------
+  // 点过任意 tab 就说明已经进入答题状态，顶栏不再占位；刷新页面时重新出现。
+  function hideTopBar() {
+    const bar = document.querySelector('.top-bar');
+    if (!bar || bar.getAttribute('data-hidden') === '1') return;
+    bar.setAttribute('data-hidden', '1');
+    bar.style.display = 'none';
+  }
+
   // ---------- 标签页切换 ----------
   document.querySelectorAll('.tab').forEach(function(tab) {
     tab.addEventListener('click', function() {
@@ -1287,6 +1303,10 @@ a { color: var(--accent); text-decoration: none; }
       const tabName = tab.dataset.tab;
       document.querySelectorAll('.tab-content').forEach(function(c) { c.classList.add('hidden'); });
       document.getElementById('tab-' + tabName).classList.remove('hidden');
+
+      // 进入答题后收起顶栏（返回主页/标题/登录），把竖直空间让给题面。
+      // 首屏保留顶栏，方便还没进来时能回主页或登录。
+      hideTopBar();
 
       if (tabName === 'choice') renderChoice();
       else if (tabName === 'random') renderRandomHome();
@@ -1383,7 +1403,7 @@ a { color: var(--accent); text-decoration: none; }
       <div class="question-card">
         <div class="question-meta">
           <span>${escapeHtml(q.kpId)} · ${q.kpFile
-            ? `<a class="kp-link" href="index.html#/${encodeURI(q.kpFile)}" title="打开知识点原文">${escapeHtml(q.kpName)}</a>`
+            ? `<a class="kp-link" href="index.html#/${encodeURI(q.kpFile)}" target="_blank" rel="noopener" title="打开知识点原文（新标签页）">${escapeHtml(q.kpName)}</a>`
             : escapeHtml(q.kpName)}</span>
           <span>第 ${choiceState.qIdx + 1} / ${qs.length} 题</span>
         </div>
@@ -1785,7 +1805,7 @@ a { color: var(--accent); text-decoration: none; }
       <div class="question-card">
         <div class="question-meta">
           <span>${type === 'short' ? '简答题' : '论述题'} · ${escapeHtml(getChapters(subjState.subject, type)[subjState.chapterIdx].name)}${q.kp_file
-            ? ` · <a class="kp-link" href="index.html#/${encodeURI(q.kp_file)}" title="打开知识点原文">回知识点</a>`
+            ? ` · <a class="kp-link" href="index.html#/${encodeURI(q.kp_file)}" target="_blank" rel="noopener" title="打开知识点原文（新标签页）">回知识点</a>`
             : ''}</span>
           <span>第 ${subjState.qIdx + 1} / ${qs.length} 题</span>
         </div>
@@ -2512,11 +2532,32 @@ a { color: var(--accent); text-decoration: none; }
     if (q.type === 'choice') {
       html += '<div class="fc-answer-key">正确答案：' + escapeHtml(q.answer) + '. ' +
               escapeHtml((q.options && q.options[q.answer]) || '') + '</div>';
-    } else if (q.framework && q.framework.length) {
-      html += '<div class="fc-fw-title">答题框架</div>' +
-              '<div class="md-body"><ul>' +
-              q.framework.map(function (t) { return '<li>' + escapeHtml(t) + '</li>'; }).join('') +
-              '</ul></div>';
+    } else {
+      // 简答/论述题：背题要能看到完整答案，不只是框架
+      if (q.framework && q.framework.length) {
+        html += '<div class="fc-fw-title">答题框架</div>' +
+                '<div class="md-body"><ul>' +
+                q.framework.map(function (t) { return '<li>' + escapeHtml(t) + '</li>'; }).join('') +
+                '</ul></div>';
+      }
+      if (q.answer) {
+        html += '<div class="fc-fw-title">参考答案</div>' +
+                '<div class="fc-ans-body" data-lazy-md="1">' +
+                '<p>' + escapeHtml(q.answer).replace(/\n/g, '</p><p>') + '</p>' +
+                '</div>';
+      }
+      if (q.scoring) {
+        html += '<div class="fc-fw-title">评分标准</div>' +
+                '<div class="fc-ans-body">' +
+                '<p>' + escapeHtml(q.scoring).replace(/\n/g, '</p><p>') + '</p>' +
+                '</div>';
+      }
+      if (q.life_example) {
+        html += '<div class="fc-fw-title">生活实例</div>' +
+                '<div class="fc-ans-body">' +
+                '<p>' + escapeHtml(q.life_example).replace(/\n/g, '</p><p>') + '</p>' +
+                '</div>';
+      }
     }
     // 解析块一律留空，交给渲染完成后的统一回填：
     // 这里如果直接 renderMd，会在 marked 就绪前走「整段转义」兜底分支，
@@ -2536,7 +2577,7 @@ a { color: var(--accent); text-decoration: none; }
       '<button class="user-btn" id="fcRandom">🎲 随机一张</button>' +
       (q.type === 'choice'
         ? '<a class="user-btn" href="#" id="fcToChoice" style="text-align:center;text-decoration:none;line-height:1.6;padding-top:6px;">去做题</a>'
-        : '<a class="user-btn" href="index.html#/' + encodeURI(q.kpFile) + '" style="text-align:center;text-decoration:none;line-height:1.6;padding-top:6px;">回知识点</a>') +
+        : '<a class="user-btn" href="index.html#/' + encodeURI(q.kpFile) + '" target="_blank" rel="noopener" style="text-align:center;text-decoration:none;line-height:1.6;padding-top:6px;">回知识点</a>') +
       '</div>';
 
     html += '</div>';
