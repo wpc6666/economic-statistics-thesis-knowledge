@@ -704,6 +704,51 @@ a { color: var(--accent); text-decoration: none; }
 .md-body h1, .md-body h2, .md-body h3 { margin: 14px 0 8px; font-size: 15px; }
 .md-body blockquote { border-left: 3px solid var(--accent); margin: 8px 0; padding: 4px 12px; background: var(--accent-soft); }
 .katex { font-size: 1.05em; }
+
+/* ---------- 背题（flashcard） ---------- */
+.fc-bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 12px; }
+.fc-chip {
+  font-size: 12px; color: var(--fg-mute); background: var(--bg-sunken);
+  border: 1px solid var(--border); border-radius: 999px; padding: 3px 10px;
+  white-space: nowrap;
+}
+.fc-chip b { color: var(--fg); font-weight: 600; }
+.fc-card {
+  background: var(--bg-elev); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 18px; box-shadow: var(--shadow); min-width: 0;
+}
+.fc-head { display: flex; flex-wrap: wrap; gap: 8px; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+.fc-type { font-size: 12px; font-weight: 600; color: var(--accent); background: var(--accent-soft); border-radius: 6px; padding: 2px 8px; }
+.fc-idx { font-size: 12px; color: var(--fg-faint); white-space: nowrap; }
+.fc-stem { font-size: 16px; line-height: 1.75; font-weight: 600; overflow-wrap: anywhere; word-break: break-word; }
+.fc-opt {
+  display: flex; gap: 8px; align-items: flex-start;
+  font-size: 14px; line-height: 1.65; margin: 6px 0; overflow-wrap: anywhere; word-break: break-word;
+}
+.fc-opt-key { flex: 0 0 auto; font-weight: 600; color: var(--fg-mute); }
+.fc-opt-text { min-width: 0; }
+.fc-opt-hit { border-color: var(--green); background: var(--green-soft); }
+.fc-opt-hit .fc-opt-key { color: var(--green); }
+.fc-answer { margin-top: 16px; border-top: 1px dashed var(--border); padding-top: 14px; overflow-wrap: anywhere; word-break: break-word; }
+.fc-fw-title { font-size: 14px; font-weight: 600; color: var(--accent); margin: 8px 0 6px; }
+.fc-exp { margin-top: 10px; overflow-wrap: anywhere; word-break: break-word; }
+.fc-exp .exp-loading { font-size: 13px; color: var(--fg-faint); }
+.fc-answer-key { font-size: 14px; font-weight: 600; color: var(--green); margin-bottom: 8px; overflow-wrap: anywhere; }
+.fc-grade { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+.fc-grade-btn {
+  flex: 1 1 30%; min-width: 0; padding: 11px 8px; border-radius: 8px; cursor: pointer;
+  font-size: 14px; font-weight: 600; font-family: inherit;
+  border: 1px solid var(--border-strong); background: var(--bg-elev); color: var(--fg);
+}
+.fc-grade-btn.g-again { border-color: var(--red); color: var(--red); background: var(--red-soft); }
+.fc-grade-btn.g-hard { border-color: var(--orange); color: var(--orange); background: var(--orange-soft); }
+.fc-grade-btn.g-known { border-color: var(--green); color: var(--green); background: var(--green-soft); }
+.fc-grade-btn:hover { opacity: 0.85; }
+.fc-nav { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.fc-nav .user-btn { flex: 1 1 40%; min-width: 0; }
+.fc-done { text-align: center; padding: 32px 12px; }
+.fc-done-title { font-size: 17px; font-weight: 600; margin-bottom: 8px; }
+.fc-done-sub { font-size: 13px; color: var(--fg-mute); margin-bottom: 16px; overflow-wrap: anywhere; }
 </style>
 <!-- markdown / mermaid / KaTeX：异步加载，绝不阻塞首屏。
      旧版用 4 个同步 <script src>，bootcdn 慢时整页白屏（用户说的"加载有炸弹"）。
@@ -818,6 +863,7 @@ a { color: var(--accent); text-decoration: none; }
   <button class="tab" data-tab="random">🎲 随机50题</button>
   <button class="tab" data-tab="short">简答题</button>
   <button class="tab" data-tab="essay">论述题</button>
+  <button class="tab" data-tab="fc">🧠 背题</button>
   <button class="tab" data-tab="mock">模拟卷</button>
   <button class="tab" data-tab="wrong">错题本</button>
 </div>
@@ -902,6 +948,34 @@ a { color: var(--accent); text-decoration: none; }
     </div>
 
     <div id="essayArea"></div>
+  </div>
+
+  <!-- 背题标签页 -->
+  <div id="tab-fc" class="tab-content hidden">
+    <div class="filter-bar">
+      <div class="filter-row">
+        <span class="filter-label">学科</span>
+        <select class="filter-select" id="fcSubject">
+          <option value="west_econ">西方经济学</option>
+          <option value="pol_econ">政治经济学</option>
+        </select>
+      </div>
+      <div class="filter-row">
+        <span class="filter-label">章节</span>
+        <select class="filter-select" id="fcChapter"></select>
+      </div>
+      <div class="filter-row">
+        <span class="filter-label">题型</span>
+        <select class="filter-select" id="fcType">
+          <option value="all">全部</option>
+          <option value="choice">选择题</option>
+          <option value="short">简答题</option>
+          <option value="essay">论述题</option>
+        </select>
+      </div>
+    </div>
+
+    <div id="fcArea"></div>
   </div>
 
   <!-- 模拟卷标签页 -->
@@ -1177,6 +1251,7 @@ a { color: var(--accent); text-decoration: none; }
       else if (tabName === 'random') renderRandomHome();
       else if (tabName === 'short') renderSubjective('short');
       else if (tabName === 'essay') renderSubjective('essay');
+      else if (tabName === 'fc') { initFcFilters(); renderFlashcard(); }
       else if (tabName === 'mock') renderMockList();
       else if (tabName === 'wrong') renderWrongBook();
     });
@@ -2168,6 +2243,343 @@ a { color: var(--accent); text-decoration: none; }
     `;
   }
 
+  // ---------- 背题（flashcard） ----------
+  // 只读错题本（DB.recordChoice 写错），自身状态单独存 localStorage，
+  // 不进 DB 的结构，避免改坏 Supabase 同步的 schema。
+  var FC_KEY = 'exam_flashcard_v1';
+  var FC_LEECH = 3;          // 连续 N 次「没印象」→ 转入错题本
+  var FC_MASTER = 2;         // 连续 N 次「已掌握」→ 移出背题队列
+  var FC_WEIGHT = { 0: 6, 1: 3, 2: 1 };   // 没印象 / 模糊 / 已掌握 的抽取权重
+
+  var fcState = { subject: 'west_econ', chapterIdx: -1, type: 'all', current: null, answered: false };
+  var fcMem = null;
+
+  function fcLoad() {
+    if (fcMem) return fcMem;
+    try { fcMem = JSON.parse(localStorage.getItem(FC_KEY) || '{}') || {}; }
+    catch (e) { fcMem = {}; }
+    return fcMem;
+  }
+  function fcSave() {
+    try { localStorage.setItem(FC_KEY, JSON.stringify(fcMem || {})); } catch (e) {}
+  }
+  function fcMeta(qid) {
+    var m = fcLoad()[qid];
+    return m || { s: 0, streak: 0, seen: 0, last: 0 };
+  }
+
+  // 卡片��池：当前学科（+章节/题型筛选）下的全部题目
+  function fcBuildPool() {
+    var pool = [];
+    var subj = fcState.subject;
+
+    if (fcState.type === 'all' || fcState.type === 'choice') {
+      var chs = DATA.choice[subj].chapters;
+      chs.forEach(function (ch, i) {
+        if (fcState.chapterIdx >= 0 && i !== fcState.chapterIdx) return;
+        ch.kps.forEach(function (kp) {
+          kp.questions.forEach(function (q) {
+            pool.push({
+              id: q.id, type: 'choice', stem: q.stem, options: q.options,
+              answer: q.answer, chapterName: ch.name,
+              kpName: kp.name, kpFile: kp.file || ''
+            });
+          });
+        });
+      });
+    }
+
+    if (fcState.type === 'all' || fcState.type === 'short' || fcState.type === 'essay') {
+      var schs = DATA.subjective[subj].chapters;
+      schs.forEach(function (ch, i) {
+        if (fcState.chapterIdx >= 0 && i !== fcState.chapterIdx) return;
+        ['short', 'essay'].forEach(function (t) {
+          if (fcState.type !== 'all' && fcState.type !== t) return;
+          (ch[t === 'short' ? 'short_questions' : 'essay_questions'] || []).forEach(function (q) {
+            pool.push({
+              id: q.id, type: t, stem: q.stem, options: null,
+              answer: q.answer || '', framework: q.framework || [],
+              kpFile: q.kp_file || '', chapterName: ch.name, kpName: ch.name
+            });
+          });
+        });
+      });
+    }
+    return pool;
+  }
+
+  // 加权随机抽下一张：越没记住权重越大，刚看过的降权，
+  // 同一道题不会被连续抽到两次（除非只剩一张）。
+  function fcPick(pool) {
+    var cands = pool.filter(function (c) {
+      var m = fcMeta(c.id);
+      return !(m.streak >= FC_MASTER);
+    });
+    if (!cands.length) return null;
+
+    if (cands.length > 1 && fcState.current) {
+      var filtered = cands.filter(function (c) { return c.id !== fcState.current.id; });
+      if (filtered.length) cands = filtered;
+    }
+
+    var now = Date.now(), bucket = [];
+    cands.forEach(function (c) {
+      var m = fcMeta(c.id);
+      var w = FC_WEIGHT[m.s] === undefined ? 6 : FC_WEIGHT[m.s];
+      // 反复记不住的题优先回炉：连续没印象次数越多权重越高，下一次必被抽回
+      if (m.streak < 0) w = w * (1 - m.streak);
+      if (m.last && now - m.last < 60000) w = Math.max(1, Math.floor(w / 3));
+      for (var k = 0; k < w; k++) bucket.push(c);
+    });
+    return bucket[Math.floor(Math.random() * bucket.length)] || cands[0];
+  }
+
+  function fcProgress(pool) {
+    var stat = { mastered: 0, learning: 0, fresh: 0, leech: 0, remain: 0 };
+    pool.forEach(function (c) {
+      var m = fcMeta(c.id);
+      if (m.streak >= FC_MASTER) stat.mastered++;
+      else {
+        stat.remain++;
+        if (!m.seen) stat.fresh++;
+        else { stat.learning++; if (m.streak <= -FC_LEECH) stat.leech++; }
+      }
+    });
+    return stat;
+  }
+
+  function initFcFilters() {
+    var subjSel = document.getElementById('fcSubject');
+    var chapSel = document.getElementById('fcChapter');
+    var typeSel = document.getElementById('fcType');
+    if (!subjSel || subjSel.dataset.bound === '1') return;
+    subjSel.dataset.bound = '1';
+
+    subjSel.addEventListener('change', function () {
+      fcState.subject = subjSel.value;
+      fcState.chapterIdx = -1;
+      fcUpdateChapters();
+      fcState.current = null;
+      renderFlashcard();
+    });
+    chapSel.addEventListener('change', function () {
+      fcState.chapterIdx = parseInt(chapSel.value, 10);
+      if (isNaN(fcState.chapterIdx)) fcState.chapterIdx = -1;
+      fcState.current = null;
+      renderFlashcard();
+    });
+    typeSel.addEventListener('change', function () {
+      fcState.type = typeSel.value;
+      fcState.current = null;
+      renderFlashcard();
+    });
+    fcUpdateChapters();
+  }
+
+  function fcUpdateChapters() {
+    var chapSel = document.getElementById('fcChapter');
+    if (!chapSel) return;
+    var chs = DATA.choice[fcState.subject].chapters;
+    var html = '<option value="-1">全部章节</option>';
+    chs.forEach(function (ch, i) {
+      html += '<option value="' + i + '">' + escapeHtml(ch.name) + '</option>';
+    });
+    chapSel.innerHTML = html;
+    chapSel.value = String(fcState.chapterIdx);
+  }
+
+  // 按「上一张 / 下一张」顺序取相邻卡片（顺序背诵用）
+  function fcAdjacent(pool, dir) {
+    if (!fcState.current) return fcPick(pool);
+    var joined = pool.filter(function (c) { return fcMeta(c.id).streak < FC_MASTER; });
+    var list = joined.length ? joined : pool;
+    var idx = -1;
+    list.forEach(function (c, i) { if (c.id === fcState.current.id) idx = i; });
+    if (idx < 0) return fcPick(pool);
+    return list[(idx + dir + list.length) % list.length];
+  }
+
+  function renderFlashcard() {
+    if (fcState.chapterIdx === undefined) fcState.chapterIdx = -1;
+    var area = document.getElementById('fcArea');
+    if (!area) return;
+
+    var pool = fcBuildPool();
+    var stat = fcProgress(pool);
+
+    if (!pool.length) {
+      area.innerHTML = '<div class="empty-state">当前筛选下暂无题目</div>';
+      return;
+    }
+
+    if (!fcState.current || !pool.some(function (c) { return c.id === fcState.current.id; })) {
+      fcState.current = fcPick(pool);
+    }
+
+    var bar =
+      '<div class="fc-bar">' +
+        '<span class="fc-chip">总数 <b>' + pool.length + '</b></span>' +
+        '<span class="fc-chip">已掌握 <b>' + stat.mastered + '</b></span>' +
+        '<span class="fc-chip">学习中 <b>' + stat.learning + '</b></span>' +
+        '<span class="fc-chip">未看过 <b>' + stat.fresh + '</b></span>' +
+        '<span class="fc-chip">待攻坚 <b>' + stat.leech + '</b></span>' +
+      '</div>';
+
+    if (!fcState.current) {
+      area.innerHTML = bar +
+        '<div class="fc-card fc-done">' +
+          '<div class="fc-done-title">🎉 本节题目全部掌握</div>' +
+          '<div class="fc-done-sub">连续答对 ' + FC_MASTER + ' 次即算掌握。想看一遍全部卡片可点下面的按钮。</div>' +
+          '<button class="user-btn" id="fcRestartBtn">重新过一遍</button>' +
+        '</div>';
+      var rb = document.getElementById('fcRestartBtn');
+      if (rb) rb.addEventListener('click', function () {
+        var mem = fcLoad();
+        pool.forEach(function (c) { if (mem[c.id]) mem[c.id].streak = 0; });
+        fcSave();
+        fcState.current = null;
+        renderFlashcard();
+      });
+      return;
+    }
+
+    var q = fcState.current;
+    var meta = fcMeta(q.id);
+    var typeName = q.type === 'choice' ? '选择题' : (q.type === 'short' ? '简答题' : '论述题');
+
+    // 背题：题干、答案、解析一次性铺开，不折叠、不用点「显示答案」
+    var html = bar + '<div class="fc-card">' +
+      '<div class="fc-head">' +
+        '<span class="fc-type">' + typeName + '</span>' +
+        '<span class="fc-idx">' + escapeHtml(q.chapterName) + ' · 已看 ' + meta.seen + ' 次' +
+          (meta.streak > 0 ? ' · 连对 ' + meta.streak : '') +
+          (meta.streak < 0 ? ' · 连错 ' + Math.abs(meta.streak) : '') + '</span>' +
+      '</div>' +
+      '<div class="fc-stem">' + escapeHtml(q.stem) + '</div>';
+
+    if (q.type === 'choice' && q.options) {
+      ['A', 'B', 'C', 'D'].forEach(function (L) {
+        if (!q.options[L]) return;
+        var hit = q.answer === L;
+        html += '<div class="fc-opt' + (hit ? ' fc-opt-hit' : '') + '">' +
+                '<span class="fc-opt-key">' + L + '.</span>' +
+                '<span class="fc-opt-text">' + escapeHtml(q.options[L]) + '</span></div>';
+      });
+    }
+
+    html += '<div class="fc-answer">';
+    if (q.type === 'choice') {
+      html += '<div class="fc-answer-key">正确答案：' + escapeHtml(q.answer) + '. ' +
+              escapeHtml((q.options && q.options[q.answer]) || '') + '</div>';
+    } else if (q.framework && q.framework.length) {
+      html += '<div class="fc-fw-title">答题框架</div>' +
+              '<div class="md-body"><ul>' +
+              q.framework.map(function (t) { return '<li>' + escapeHtml(t) + '</li>'; }).join('') +
+              '</ul></div>';
+    }
+    var expTxt = explOf(q);
+    html += '<div class="fc-exp" data-qid="' + escapeHtml(q.id) + '">' +
+            (expTxt ? renderMd(expTxt) : '') +
+            '</div>';
+    html += '</div>';
+
+    html += '<div class="fc-grade">' +
+      '<button class="fc-grade-btn g-again" data-grade="0">😵 没印象</button>' +
+      '<button class="fc-grade-btn g-hard" data-grade="1">🤔 模糊</button>' +
+      '<button class="fc-grade-btn g-known" data-grade="2">✅ 已掌握</button>' +
+    '</div>';
+
+    html += '<div class="fc-nav">' +
+      '<button class="user-btn" id="fcPrev">← 上一张</button>' +
+      '<button class="user-btn" id="fcNext">下一张 →</button>' +
+      '<button class="user-btn" id="fcRandom">🎲 随机一张</button>' +
+      (q.type === 'choice'
+        ? '<a class="user-btn" href="#" id="fcToChoice" style="text-align:center;text-decoration:none;line-height:1.6;padding-top:6px;">去做题</a>'
+        : '<a class="user-btn" href="index.html#/' + encodeURI(q.kpFile) + '" style="text-align:center;text-decoration:none;line-height:1.6;padding-top:6px;">回知识点</a>') +
+      '</div>';
+
+    html += '</div>';
+    area.innerHTML = html;
+
+    enhanceMd(area.querySelector('.fc-answer'));
+    // 选择题解析在 data-expl.js 里才到齐：按需加载后回填这一块（主观题无解析，块留空不占位）
+    var expEl = area.querySelector('.fc-exp');
+    if (expEl && !expTxt && q.type === 'choice') {
+      var qid = expEl.getAttribute('data-qid');
+      expEl.innerHTML = '<span class="exp-loading">解析加载中…</span>';
+      loadExplanation(function () {
+        var el = area.querySelector('.fc-exp[data-qid="' + qid + '"]');
+        if (!el || el.getAttribute('data-loaded') === '1') return;
+        var txt = (window.EXAM_EXPL && window.EXAM_EXPL[qid]) || '';
+        if (!txt) { el.innerHTML = ''; return; }
+        el.innerHTML = renderMd(txt);
+        el.setAttribute('data-loaded', '1');
+        enhanceMd(el);
+      });
+    } else if (expEl) {
+      expEl.setAttribute('data-loaded', '1');
+    }
+
+    area.querySelectorAll('.fc-grade-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        fcGrade(parseInt(btn.dataset.grade, 10));
+      });
+    });
+
+    var prev = document.getElementById('fcPrev');
+    if (prev) prev.addEventListener('click', function () {
+      fcState.current = fcAdjacent(pool, -1);
+      renderFlashcard();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    var next = document.getElementById('fcNext');
+    if (next) next.addEventListener('click', function () {
+      fcState.current = fcAdjacent(pool, 1);
+      renderFlashcard();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    var rnd = document.getElementById('fcRandom');
+    if (rnd) rnd.addEventListener('click', function () {
+      fcState.current = fcPick(pool);
+      renderFlashcard();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    var toChoice = document.getElementById('fcToChoice');
+    if (toChoice) toChoice.addEventListener('click', function (e) {
+      e.preventDefault();
+      document.querySelector('.tab[data-tab="choice"]').click();
+    });
+  }
+
+  function fcGrade(level) {
+    var q = fcState.current;
+    if (!q) return;
+    var mem = fcLoad();
+    var m = mem[q.id] || { s: 0, streak: 0, seen: 0, last: 0 };
+
+    m.s = level;
+    m.seen = (m.seen || 0) + 1;
+    m.last = Date.now();
+    // streak：正数=连续记住次数，负数=连续没印象次数（模糊只记状态，不动 streak）
+    if (level === 2) m.streak = Math.max(0, m.streak || 0) + 1;
+    else if (level === 0) m.streak = Math.min(0, m.streak || 0) - 1;
+
+    // 连续 FC_LEECH 次「没印象」→ 转入错题本集中攻坚（只走公开 API，自带连续对3次过关逻辑）
+    if (q.type === 'choice' && m.streak <= -FC_LEECH && !m.leechDone) {
+      DB.recordChoice(q.id, { done: true, correct: false, selected: '' });
+      m.leechDone = true;
+      updateGlobalProgress();
+    }
+    mem[q.id] = m;
+    fcSave();
+
+    var pool = fcBuildPool();
+    fcState.current = fcPick(pool);
+    renderFlashcard();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
   // ---------- 登录/注册 UI ----------
   let loginMode = 'login'; // 'login' 或 'register'
 
@@ -2292,6 +2704,7 @@ a { color: var(--accent); text-decoration: none; }
   // ---------- 初始化 ----------
   function init() {
     initChoiceFilters();
+    initFcFilters();
     initSubjectiveFilters('short');
     initSubjectiveFilters('essay');
 
