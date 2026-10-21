@@ -2559,6 +2559,30 @@ body.has-side { padding-right: var(--sbw); }
         <div class="reference-box ${seen ? 'visible' : ''}" id="${refId}">
     `;
 
+    if (q.derivation) {
+      html += `
+        <div class="ref-section">
+          <div class="ref-section-title">🔍 核心推导</div>
+          <div class="ref-content">${renderMd(q.derivation)}</div>
+        </div>
+      `;
+    }
+    if (q.why_points) {
+      html += `
+        <div class="ref-section">
+          <div class="ref-section-title">🧭 为什么要答这几点</div>
+          <div class="ref-content">${renderMd(q.why_points)}</div>
+        </div>
+      `;
+    }
+    if (q.how_to_analyze) {
+      html += `
+        <div class="ref-section">
+          <div class="ref-section-title">🪜 如何分析题目</div>
+          <div class="ref-content">${renderMd(q.how_to_analyze)}</div>
+        </div>
+      `;
+    }
     if (q.framework && q.framework.length) {
       html += `
         <div class="ref-section">
@@ -2779,6 +2803,30 @@ body.has-side { padding-right: var(--sbw); }
         <div class="reference-box" id="mockRefBox">
     `;
 
+    if (q.derivation) {
+      html += `
+        <div class="ref-section">
+          <div class="ref-section-title">🔍 核心推导</div>
+          <div class="ref-content">${renderMd(q.derivation)}</div>
+        </div>
+      `;
+    }
+    if (q.why_points) {
+      html += `
+        <div class="ref-section">
+          <div class="ref-section-title">🧭 为什么要答这几点</div>
+          <div class="ref-content">${renderMd(q.why_points)}</div>
+        </div>
+      `;
+    }
+    if (q.how_to_analyze) {
+      html += `
+        <div class="ref-section">
+          <div class="ref-section-title">🪜 如何分析题目</div>
+          <div class="ref-content">${renderMd(q.how_to_analyze)}</div>
+        </div>
+      `;
+    }
     if (q.framework && q.framework.length) {
       html += `
         <div class="ref-section">
@@ -3169,6 +3217,8 @@ body.has-side { padding-right: var(--sbw); }
               id: q.id, type: t, stem: q.stem, options: null,
               answer: q.answer || '', framework: q.framework || [],
               scoring: q.scoring || '', life_example: q.life_example || '',
+              derivation: q.derivation || '', why_points: q.why_points || '',
+              how_to_analyze: q.how_to_analyze || '',
               kpFile: q.kp_file || '', chapterName: ch.name, kpName: ch.name
             });
           });
@@ -3348,6 +3398,14 @@ body.has-side { padding-right: var(--sbw); }
               escapeHtml((q.options && q.options[q.answer]) || '') + '</div>';
     } else {
       // 简答/论述题：背题要能看到完整答案，不只是框架
+      var _mk = function (title, body) {
+        return '<div class="fc-fw-title">' + title + '</div>' +
+               '<div class="fc-ans-body" data-lazy-md="1"><p>' +
+               escapeHtml(body).replace(/\n/g, '</p><p>') + '</p></div>';
+      };
+      if (q.derivation) html += _mk('核心推导', q.derivation);
+      if (q.why_points) html += _mk('为什么要答这几点', q.why_points);
+      if (q.how_to_analyze) html += _mk('如何分析题目', q.how_to_analyze);
       if (q.framework && q.framework.length) {
         html += '<div class="fc-fw-title">答题框架</div>' +
                 '<div class="md-body"><ul>' +

@@ -290,6 +290,9 @@ def parse_subjective_common(text, subject, chapter_id, chapter_name, mode):
                 "answer": "",
                 "scoring": "",
                 "life_example": "",
+                "derivation": "",
+                "why_points": "",
+                "how_to_analyze": "",
                 "kp_file": "",
             }
             field = None
@@ -297,6 +300,21 @@ def parse_subjective_common(text, subject, chapter_id, chapter_name, mode):
             continue
 
         if cur is not None:
+            if s.startswith("**【核心推导】"):
+                field = "derivation"
+                cur["derivation"] = re.sub(r"^\*\*【[^】]*】\*\*\s*", "", s)
+                i += 1
+                continue
+            if s.startswith("**【为什么要答这几点】"):
+                field = "why"
+                cur["why_points"] = re.sub(r"^\*\*【[^】]*】\*\*\s*", "", s)
+                i += 1
+                continue
+            if s.startswith("**【如何分析题目】"):
+                field = "analyze"
+                cur["how_to_analyze"] = re.sub(r"^\*\*【[^】]*】\*\*\s*", "", s)
+                i += 1
+                continue
             if s.startswith("**【答题框架】"):
                 field = "framework"
                 i += 1
@@ -330,6 +348,12 @@ def parse_subjective_common(text, subject, chapter_id, chapter_name, mode):
                 cur["scoring"] += " " + s if s else ""
             elif field == "life":
                 cur["life_example"] += " " + s if s else ""
+            elif field == "derivation":
+                cur["derivation"] += "\n" + line.rstrip()
+            elif field == "why":
+                cur["why_points"] += "\n" + line.rstrip()
+            elif field == "analyze":
+                cur["how_to_analyze"] += "\n" + line.rstrip()
         i += 1
 
     save()
@@ -337,6 +361,9 @@ def parse_subjective_common(text, subject, chapter_id, chapter_name, mode):
         q["answer"] = q["answer"].strip()
         q["scoring"] = q["scoring"].strip()
         q["life_example"] = q["life_example"].strip()
+        for k in ("derivation", "why_points", "how_to_analyze"):
+            if k in q:
+                q[k] = q[k].strip()
     return {"short_questions": short_qs, "essay_questions": essay_qs}
 
 
