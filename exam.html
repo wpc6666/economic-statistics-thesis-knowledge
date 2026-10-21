@@ -1089,9 +1089,6 @@ body.has-side { padding-right: var(--sbw); }
     <input type="email" class="modal-input" id="loginEmail" placeholder="邮箱">
     <input type="password" class="modal-input" id="loginPassword" placeholder="密码" minlength="6">
     <button class="modal-submit" id="loginSubmit">登录</button>
-    <div class="modal-switch">
-      <a id="switchMode">没有账号？注册</a>
-    </div>
     <div class="modal-msg" id="loginMsg"></div>
   </div>
 </div>
@@ -1119,7 +1116,7 @@ body.has-side { padding-right: var(--sbw); }
 
 <div class="tabs">
   <button class="tab active" data-tab="choice">选择题</button>
-  <button class="tab" data-tab="random">🎲 随机50题</button>
+  <button class="tab" data-tab="random">🎲 随机30题</button>
   <button class="tab" data-tab="short">简答题</button>
   <button class="tab" data-tab="essay">论述题</button>
   <button class="tab" data-tab="fc">🧠 背题</button>
@@ -1137,6 +1134,11 @@ body.has-side { padding-right: var(--sbw); }
         <select class="filter-select" id="choiceSubject">
           <option value="west_econ">西方经济学</option>
           <option value="pol_econ">政治经济学</option>
+          <option value="zonghe">综合评价</option>
+          <option value="jiliang">计量经济学</option>
+          <option value="shixu">时间序列分析</option>
+          <option value="duoyuan">多元统计分析</option>
+          <option value="tongyuan">统计学原理</option>
         </select>
       </div>
       <div class="filter-row">
@@ -1154,7 +1156,7 @@ body.has-side { padding-right: var(--sbw); }
     <div id="choiceArea"></div>
   </div>
 
-  <!-- 随机50题标签页 -->
+  <!-- 随机30题标签页 -->
   <div id="tab-random" class="tab-content hidden">
     <div id="randomArea"></div>
   </div>
@@ -1167,6 +1169,11 @@ body.has-side { padding-right: var(--sbw); }
         <select class="filter-select" id="shortSubject">
           <option value="west_econ">西方经济学</option>
           <option value="pol_econ">政治经济学</option>
+          <option value="zonghe">综合评价</option>
+          <option value="jiliang">计量经济学</option>
+          <option value="shixu">时间序列分析</option>
+          <option value="duoyuan">多元统计分析</option>
+          <option value="tongyuan">统计学原理</option>
         </select>
       </div>
       <div class="filter-row">
@@ -1192,6 +1199,11 @@ body.has-side { padding-right: var(--sbw); }
         <select class="filter-select" id="essaySubject">
           <option value="west_econ">西方经济学</option>
           <option value="pol_econ">政治经济学</option>
+          <option value="zonghe">综合评价</option>
+          <option value="jiliang">计量经济学</option>
+          <option value="shixu">时间序列分析</option>
+          <option value="duoyuan">多元统计分析</option>
+          <option value="tongyuan">统计学原理</option>
         </select>
       </div>
       <div class="filter-row">
@@ -1217,6 +1229,11 @@ body.has-side { padding-right: var(--sbw); }
         <select class="filter-select" id="fcSubject">
           <option value="west_econ">西方经济学</option>
           <option value="pol_econ">政治经济学</option>
+          <option value="zonghe">综合评价</option>
+          <option value="jiliang">计量经济学</option>
+          <option value="shixu">时间序列分析</option>
+          <option value="duoyuan">多元统计分析</option>
+          <option value="tongyuan">统计学原理</option>
         </select>
       </div>
       <div class="filter-row">
@@ -1250,70 +1267,210 @@ body.has-side { padding-right: var(--sbw); }
 
 </div>
 
-<script src="data.js"></script>
+
 <script src="db.js"></script>
 <script>
 (function() {
   'use strict';
 
-  const DATA = window.EXAM_DATA;
+  // ---------- 科目注册表 + 按需加载 ----------
+  // 每科各拆成 data-<key>.js，
+  // 切到哪一科才下载哪一科，首屏不再背 2.7MB。
+  var SUBJECT_META = {
+    west_econ: { name: '西方经济学', file: 'data-west_econ.js', expl: 'data-expl-west_econ.js' },
+    pol_econ:  { name: '政治经济学', file: 'data-pol_econ.js',  expl: 'data-expl-pol_econ.js' },
+    zonghe:    { name: '综合评价',   file: 'data-zonghe.js', expl: 'data-expl-zonghe.js' },
+    jiliang:   { name: '计量经济学', file: 'data-jiliang.js', expl: 'data-expl-jiliang.js' },
+    shixu:     { name: '时间序列分析', file: 'data-shixu.js', expl: 'data-expl-shixu.js' },
+    duoyuan:   { name: '多元统计分析', file: 'data-duoyuan.js', expl: 'data-expl-duoyuan.js' },
+    tongyuan:  { name: '统计学原理', file: 'data-tongyuan.js', expl: 'data-expl-tongyuan.js' }
+  };
+  var SUBJECT_KEYS = Object.keys(SUBJECT_META);
+  // 选择题可用科目（全部）与主观题可用科目（有简答/论述的）
+  var SUBJECT_ORDER = SUBJECT_KEYS.slice();
+
+  // 已加载的科目数据：sub -> {name, choice:{chapters:[]}, subjective:{chapters:[]}}
+  var SUBJ_DATA = Object.create(null);
+  var SUBJ_EXPL = Object.create(null);      // sub -> {qid: 解析}
+  var subjLoading = Object.create(null);    // sub -> Promise
+
+  // 模拟卷单独一个文件，进模拟卷 tab 才下载
+  var mockLoading = null;
+  function loadMockPapers(cb) {
+    if (window.EXAM_MOCK_PAPERS) { if (cb) cb(); return Promise.resolve(); }
+    if (mockLoading) { if (cb) mockLoading.then(cb, function () {}); return mockLoading; }
+    mockLoading = new Promise(function (resolve, reject) {
+      var s = document.createElement('script');
+      s.src = 'data-mock.js';
+      s.async = true;
+      s.onload = function () { resolve(); if (cb) cb(); };
+      s.onerror = function () { mockLoading = null; reject(new Error('模拟卷加载失败')); };
+      document.head.appendChild(s);
+    });
+    return mockLoading;
+  }
+
+  // 兼容旧引用：DATA.choice[sub] / DATA.subjective[sub] / DATA.mock_papers
+  // 用 Proxy 懒取，切科目后自动能读到新加载的数据。
+  var DATA = {
+    get choice() {
+      var o = {};
+      SUBJECT_KEYS.forEach(function(sub) {
+        var d = SUBJ_DATA[sub];
+        o[sub] = (d && d.choice) || { chapters: [] };
+      });
+      return o;
+    },
+    get subjective() {
+      var o = {};
+      SUBJECT_KEYS.forEach(function(sub) {
+        var d = SUBJ_DATA[sub];
+        o[sub] = (d && d.subjective) || { chapters: [] };
+      });
+      return o;
+    },
+    get mock_papers() { return window.EXAM_MOCK_PAPERS || []; }
+  };
+
+  // 加载某科数据（幂等）：返回 Promise，已加载则立即 resolve
+  function loadSubject(sub) {
+    if (!SUBJECT_META[sub]) return Promise.resolve();
+    if (SUBJ_DATA[sub]) return Promise.resolve();
+    if (subjLoading[sub]) return subjLoading[sub];
+    var meta = SUBJECT_META[sub];
+    var p = new Promise(function(resolve, reject) {
+      var s = document.createElement('script');
+      s.src = meta.file;
+      s.async = true;
+      s.onload = function() {
+        var bucket = (window.EXAM_SUBJECT_DATA || {})[sub];
+        if (!bucket) { reject(new Error('科目数据缺失: ' + sub)); return; }
+        SUBJ_DATA[sub] = bucket;
+        buildIndexForSubject(sub);
+        resolve();
+      };
+      s.onerror = function() {
+        delete subjLoading[sub];
+        reject(new Error('科目数据加载失败: ' + meta.file));
+      };
+      document.head.appendChild(s);
+    });
+    subjLoading[sub] = p;
+    return p;
+  }
+
+  // 加载某科的选择题解析（幂等：下载中的请求会排队复用，不会重复插 <script>）
+  var explLoading = {};
+  var explQueue = {};
+  function loadSubjectExpl(sub, cb) {
+    var meta = SUBJECT_META[sub];
+    if (!meta) { if (cb) cb(); return; }
+    if (SUBJ_EXPL[sub]) { if (cb) cb(); return; }
+    if (explLoading[sub]) { if (cb) explQueue[sub].push(cb); return; }
+    explLoading[sub] = true;
+    explQueue[sub] = cb ? [cb] : [];
+    var s = document.createElement('script');
+    s.src = meta.expl;
+    s.async = true;
+    var done = function () {
+      explLoading[sub] = false;
+      var qs = explQueue[sub] || [];
+      explQueue[sub] = [];
+      qs.forEach(function (f) { try { f(); } catch (e) {} });
+    };
+    s.onload = function () {
+      SUBJ_EXPL[sub] = (window.EXAM_SUBJECT_EXPL || {})[sub] || {};
+      done();
+    };
+    s.onerror = function () { console.warn('解析文件加载失败: ' + meta.expl); done(); };
+    document.head.appendChild(s);
+  }
+
+  // 取某题解析文本
+  function explTextOf(sub, qid) {
+    if (SUBJ_EXPL[sub]) return SUBJ_EXPL[sub][qid] || '';
+    return '';
+  }
+
+  // 当前科目选择题是否已经加载到 qIndex
+  function subjectReady(sub) { return !!SUBJ_DATA[sub]; }
+
+  // 确保某科就绪后执行 cb：已就绪同步执行，未就绪先下载再执行
+  function ensureSubject(sub, cb, errCb) {
+    if (SUBJ_DATA[sub]) { if (cb) cb(); return; }
+    loadSubject(sub).then(
+      function () { if (cb) cb(); },
+      function (e) {
+        console.warn('[科目加载失败]', sub, e && e.message);
+        if (errCb) errCb(e);
+        else alert('科目数据加载失败，请检查网络后重试');
+      }
+    );
+  }
+
+  // 空闲时预取某科解析，答题时不用再等
+  function preloadSubjectExpl(sub) {
+    var kick = function () { loadSubjectExpl(sub, null); };
+    if (window.requestIdleCallback) requestIdleCallback(kick, { timeout: 6000 });
+    else setTimeout(kick, 2000);
+  }
 
   // ---------- 题目索引：qid → 题目对象 + 元信息 ----------
   // 用于错题本反查题目、全局统计
   const qIndex = {};
-  (function buildIndex() {
-    ['west_econ', 'pol_econ'].forEach(function(sub) {
-      // 选择题
-      DATA.choice[sub].chapters.forEach(function(ch) {
-        ch.kps.forEach(function(kp) {
-          kp.questions.forEach(function(q) {
-            qIndex[q.id] = { q: q, type: 'choice', subject: sub, chapterName: ch.name, kpName: kp.name, kpFile: kp.file || '' };
-          });
-        });
-      });
-      // 主观题
-      DATA.subjective[sub].chapters.forEach(function(ch) {
-        (ch.short_questions || []).forEach(function(q) {
-          qIndex[q.id] = { q: q, type: 'short', subject: sub, chapterName: ch.name, kpFile: q.kp_file || '' };
-        });
-        (ch.essay_questions || []).forEach(function(q) {
-          qIndex[q.id] = { q: q, type: 'essay', subject: sub, chapterName: ch.name, kpFile: q.kp_file || '' };
+  function buildIndexForSubject(sub) {
+    var d = SUBJ_DATA[sub];
+    if (!d) return;
+    (d.choice.chapters || []).forEach(function(ch) {
+      (ch.kps || []).forEach(function(kp) {
+        (kp.questions || []).forEach(function(q) {
+          qIndex[q.id] = { q: q, type: 'choice', subject: sub, chapterName: ch.name, kpName: kp.name, kpFile: kp.file || '' };
         });
       });
     });
-  })();
-
-  // ---------- 解析文本：按需加载 ----------
-  // 解析占整个题库数据的一半，但只有答完题才需要，单独放 data-expl.js。
-  // 首屏只下 data.js（约 1.7MB），答第一道题时后台再补 2.2MB 解析。
-  var explState = { loading: false, loaded: false, cbs: [] };
-  function loadExplanation(cb) {
-    if (window.EXAM_EXPL) explState.loaded = true;
-    if (explState.loaded) { if (cb) cb(); return; }
-    if (cb) explState.cbs.push(cb);
-    if (explState.loading) return;
-    explState.loading = true;
-    var s = document.createElement('script');
-    s.src = 'data-expl.js';
-    s.onload = function () {
-      explState.loaded = true; explState.loading = false;
-      var q = explState.cbs; explState.cbs = [];
-      q.forEach(function (f) { try { f(); } catch (e) {} });
-      try { hydrateExpl(document); } catch (e) {}
-    };
-    s.onerror = function () {
-      explState.loading = false; explState.cbs = [];
-      console.warn('解析文件加载失败，暂显示占位');
-    };
-    document.head.appendChild(s);
+    (d.subjective.chapters || []).forEach(function(ch) {
+      (ch.short_questions || []).forEach(function(q) {
+        qIndex[q.id] = { q: q, type: 'short', subject: sub, chapterName: ch.name, kpFile: q.kp_file || '' };
+      });
+      (ch.essay_questions || []).forEach(function(q) {
+        qIndex[q.id] = { q: q, type: 'essay', subject: sub, chapterName: ch.name, kpFile: q.kp_file || '' };
+      });
+    });
   }
+  ['west_econ', 'pol_econ'].forEach(buildIndexForSubject);
+
+  // ---------- 解析文本：按科目按需加载 ----------
+  // 解析体积和题库相当，但只有答完题才需要，按科目拆成 data-expl-<科目>.js。
+  // 切到哪一科才下哪一科的解析，不再拉 2.3MB 的全量文件。
 
   // 取解析：优先内联，其次查按需加载的表
   function explOf(q) {
     if (!q) return '';
     if (q.explanation) return q.explanation;
-    if (window.EXAM_EXPL && q.id && window.EXAM_EXPL[q.id]) return window.EXAM_EXPL[q.id];
+    if (!q.id) return '';
+    // 按 qid 前缀判断所属科目，避免跨科误取
+    var sub = subjectOfQid(q.id);
+    if (sub) {
+      var t = explTextOf(sub, q.id);
+      if (t) return t;
+    }
+    // 旧版合并解析文件（已停用），仅兼容浏览器缓存里残留的情况
+    if (window.EXAM_EXPL && window.EXAM_EXPL[q.id]) return window.EXAM_EXPL[q.id];
+    for (var i = 0; i < SUBJECT_KEYS.length; i++) {
+      var s = SUBJECT_KEYS[i];
+      if (SUBJ_EXPL[s] && SUBJ_EXPL[s][q.id]) return SUBJ_EXPL[s][q.id];
+    }
     return '';
+  }
+
+  // qid 首段即科目 key（west_econ_... / zonghe_... / jiliang_...）
+  function subjectOfQid(qid) {
+    if (!qid) return null;
+    for (var i = 0; i < SUBJECT_KEYS.length; i++) {
+      var s = SUBJECT_KEYS[i];
+      if (qid === s || qid.indexOf(s + '_') === 0) return s;
+    }
+    return null;
   }
 
   // 把页面上还没填上解析的 .exp-body 回填（解析文件到达后调用）
@@ -1324,7 +1481,11 @@ body.has-side { padding-right: var(--sbw); }
     nodes.forEach(function (el) {
       if (el.getAttribute('data-filled') === '1') return;
       var qid = el.getAttribute('data-qid');
-      var txt = (window.EXAM_EXPL && window.EXAM_EXPL[qid]) || '';
+      if (!qid) return;
+      // 用 qid 反查题目，才能按科目定位解析文件
+      var txt = '';
+      if (qIndex[qid] && qIndex[qid].q) txt = explOf(qIndex[qid].q);
+      if (!txt && window.EXAM_EXPL) txt = window.EXAM_EXPL[qid] || '';
       if (!txt) return;
       el.innerHTML = renderMd(txt);
       el.setAttribute('data-filled', '1');
@@ -1342,7 +1503,8 @@ body.has-side { padding-right: var(--sbw); }
       return '<div class="exp-body" data-qid="' + escapeHtml(q.id) + '" data-filled="1">'
              + renderMd(txt) + '</div>';
     }
-    loadExplanation(function () { hydrateExpl(document); });
+    var _sub = subjectOfQid(q.id);
+    if (_sub) loadSubjectExpl(_sub, function () { hydrateExpl(document); drawFcExpIfNeeded(); });
     return '<div class="exp-body" data-qid="' + escapeHtml(q.id) + '" data-filled="0">'
            + '<span class="exp-loading">解析加载中…</span></div>';
   }
@@ -1452,11 +1614,30 @@ body.has-side { padding-right: var(--sbw); }
             {left: '\\(', right: '\\)', display: false},
             {left: '\\[', right: '\\]', display: true}
           ],
+          // 已经渲染过公式的子树跳过：enhanceMd 会被重跑多次（库迟到），
+          // 重复对同一段 $...$ 调用会把 KaTeX 生成的 MathML 注释文本再渲染一遍，页面上出现三份重复公式。
+          ignoredTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+          ignoredClasses: ['katex', 'katex-display', 'no-math'],
           throwOnError: false
         });
       } catch (e) {
         console.warn('katex render error:', e);
       }
+    }
+
+    // mermaid 渲染时会把自己的 <style> 一起塞进容器（里面的 #mermaid-xxx 规则），
+    // 这些样式在 document.head 里已有一份，留在正文里只会让 textContent 读到一堆 CSS 噪声。
+    container.querySelectorAll('style').forEach(function (el) { el.remove(); });
+    // mermaid.run() 是异步的：它渲染完成后才把自己那份 <style> 插进容器，
+    // 所以再补几轮剥离（最多 6 秒），否则正文 textContent 里会混进 CSS 规则文本。
+    if (!container.getAttribute('data-style-swept')) {
+      container.setAttribute('data-style-swept', '1');
+      var sweeps = 0;
+      var sweepTimer = setInterval(function () {
+        sweeps++;
+        if (!container.isConnected || sweeps > 6) { clearInterval(sweepTimer); return; }
+        container.querySelectorAll('style').forEach(function (el) { el.remove(); });
+      }, 1000);
     }
   }
 
@@ -1472,6 +1653,14 @@ body.has-side { padding-right: var(--sbw); }
 
   // 把一道选择题的选项打乱：返回 [{display:'A', original:'A', text:'...'}, ...]
   // display 是打乱后位置上显示的 A/B/C/D；original 是题库里的原始字母（用于判对错、写 DB）
+  // 打乱后 q.answer（原始字母）对应的显示位置字母，用于「正确答案：X」文案
+  function displayLetterOf(opts, original) {
+    for (var i = 0; i < opts.length; i++) {
+      if (opts[i].original === original) return opts[i].display;
+    }
+    return original;
+  }
+
   function buildShuffledOptions(q) {
     const letters = ['A','B','C','D'].filter(function(l){ return q.options[l]; });
     const pool = letters.map(function(l){ return { original: l, text: q.options[l] }; });
@@ -1482,18 +1671,22 @@ body.has-side { padding-right: var(--sbw); }
   }
 
   function getChapters(subject, type) {
-    if (type === 'choice') return DATA.choice[subject].chapters;
-    return DATA.subjective[subject].chapters;
+    if (type === 'choice') return (DATA.choice[subject] || {}).chapters || [];
+    return (DATA.subjective[subject] || {}).chapters || [];
   }
 
   // ---------- 全局进度统计（顶部统计栏） ----------
+  // 全局统计只算已加载的科目 —— 未加载的科不计入分母，
+  // 否则首屏显示「已做 5 / 1565」会让人以为漏了很多。
   function countAllQuestions() {
     let choiceTotal = 0, shortTotal = 0, essayTotal = 0;
-    ['west_econ', 'pol_econ'].forEach(function(sub) {
-      DATA.choice[sub].chapters.forEach(function(ch) {
-        ch.kps.forEach(function(kp) { choiceTotal += kp.questions.length; });
+    SUBJECT_KEYS.forEach(function(sub) {
+      var d = SUBJ_DATA[sub];
+      if (!d) return;
+      (d.choice.chapters || []).forEach(function(ch) {
+        (ch.kps || []).forEach(function(kp) { choiceTotal += (kp.questions || []).length; });
       });
-      DATA.subjective[sub].chapters.forEach(function(ch) {
+      (d.subjective.chapters || []).forEach(function(ch) {
         shortTotal += (ch.short_questions || []).length;
         essayTotal += (ch.essay_questions || []).length;
       });
@@ -1702,12 +1895,12 @@ body.has-side { padding-right: var(--sbw); }
       sideSyncToggleLabel();
       sideClock(Date.now());
 
-      if (tabName === 'choice') renderChoice();
+      if (tabName === 'choice') { ensureSubject(choiceState.subject, function () { updateChapterOptions('choice'); renderChoice(); preloadSubjectExpl(choiceState.subject); }); }
       else if (tabName === 'random') renderRandomHome();
-      else if (tabName === 'short') renderSubjective('short');
-      else if (tabName === 'essay') renderSubjective('essay');
-      else if (tabName === 'fc') { initFcFilters(); renderFlashcard(); }
-      else if (tabName === 'mock') renderMockList();
+      else if (tabName === 'short') { ensureSubject(subjStates.short.subject, function () { updateChapterOptions('short'); renderSubjective('short'); }); }
+      else if (tabName === 'essay') { ensureSubject(subjStates.essay.subject, function () { updateChapterOptions('essay'); renderSubjective('essay'); }); }
+      else if (tabName === 'fc') { ensureSubject(fcState.subject, function () { initFcFilters(); fcUpdateChapters(); renderFlashcard(); }); }
+      else if (tabName === 'mock') loadMockPapers(function () { renderMockList(); });
       else if (tabName === 'wrong') renderWrongBook();
     });
   });
@@ -1720,11 +1913,16 @@ body.has-side { padding-right: var(--sbw); }
     const chapterSel = document.getElementById('choiceChapter');
 
     subjectSel.addEventListener('change', function() {
-      choiceState.subject = subjectSel.value;
+      var sub = subjectSel.value;
+      choiceState.subject = sub;
       choiceState.chapterIdx = 0;
       choiceState.qIdx = 0;
-      updateChapterOptions('choice');
-      renderChoice();
+      ensureSubject(sub, function() {
+        updateChapterOptions('choice');
+        renderChoice();
+        updateGlobalProgress();
+        preloadSubjectExpl(sub);
+      });
     });
 
     chapterSel.addEventListener('change', function() {
@@ -1762,7 +1960,7 @@ body.has-side { padding-right: var(--sbw); }
 
   function renderChoice() {
     const subject = choiceState.subject;
-    const chapters = DATA.choice[subject].chapters;
+    const chapters = (DATA.choice[subject] || {}).chapters || [];
     if (!chapters.length) return;
 
     const chapter = chapters[choiceState.chapterIdx];
@@ -1815,7 +2013,7 @@ body.has-side { padding-right: var(--sbw); }
         else if (o.original === recorded.selected) cls += ' wrong';
       }
       html += `
-        <button class="${cls}" data-letter="${o.original}">
+        <button class="${cls}" data-letter="${o.display}" data-original="${o.original}">
           <span class="opt-letter">${o.display}</span>
           <span>${escapeHtml(o.text)}</span>
         </button>
@@ -1831,7 +2029,7 @@ body.has-side { padding-right: var(--sbw); }
             ${recorded.correct ? '✓ 回答正确' : '✗ 回答错误'}
           </span>
           <div class="explanation-box">
-            <div class="exp-title">正确答案：${q.answer}. ${escapeHtml(q.options[q.answer] || '')}</div>
+            <div class="exp-title">正确答案：${displayLetterOf(opts, q.answer)}. ${escapeHtml(q.options[q.answer] || '')}</div>
             <div>${explHtmlFor(q)}</div>
           </div>
         </div>
@@ -1852,10 +2050,11 @@ body.has-side { padding-right: var(--sbw); }
 
     // 绑定选项点击
     if (!recorded || !recorded.done) {
-      loadExplanation();
+      // 按需加载：只下当前这一科的解析，不再拉 2.3MB 的全量文件
+      loadSubjectExpl(choiceState.subject, function () { hydrateExpl(area); });
       area.querySelectorAll('.option-btn').forEach(function(btn) {
         btn.addEventListener('click', function() {
-          const letter = btn.dataset.letter; // original 原始字母
+          const letter = btn.dataset.original; // 原始字母（显示位置可能被打乱）
           const correct = letter === q.answer;
           // 写本地+云端（recordChoice 内部自动更新错题统计）
           DB.recordChoice(q.id, { done: true, correct: correct, selected: letter });
@@ -1919,7 +2118,7 @@ body.has-side { padding-right: var(--sbw); }
     });
   }
 
-  // ---------- 随机50题 ----------
+  // ---------- 随机30题 ----------
   const RANDOM_QUIZ_SIZE = 30;
   let randomState = {
     subject: 'all', // 抽题科目：all / west_econ / pol_econ
@@ -2075,7 +2274,7 @@ body.has-side { padding-right: var(--sbw); }
   function bindRandomQuestion(area) {
     const item = randomState.queue[randomState.idx];
     const q = item.q;
-    loadExplanation();
+    loadSubjectExpl(randomState.subject && randomState.subject !== 'all' ? randomState.subject : subjectOfQid(q.id), function () { hydrateExpl(area); });
 
     // ---- 侧栏：题号答题卡 + 上一题/下一题 ----
     sideTitle('随机答题卡 · ' + randomState.queue.length + ' 题');
@@ -2134,7 +2333,7 @@ body.has-side { padding-right: var(--sbw); }
             </span>
             ${correct ? '' : `
             <div class="explanation-box">
-              <div class="exp-title">正确答案：${q.answer}. ${escapeHtml(q.options[q.answer] || '')}</div>
+              <div class="exp-title">正确答案：${displayLetterOf(opts, q.answer)}. ${escapeHtml(q.options[q.answer] || '')}</div>
               <div>${explHtmlFor(q)}</div>
             </div>
             <button class="show-answer-btn" id="randomNextBtn" style="margin-top:12px;">${isLast ? '查看成绩 →' : '下一题 →'}</button>`}
@@ -2199,7 +2398,7 @@ body.has-side { padding-right: var(--sbw); }
   function renderRandomResult() {
     const total = randomState.queue.length;
     const acc = Math.round(randomState.correct / total * 100);
-    const score = randomState.correct * 2; // 50题×2分=100分
+    const score = Math.round(randomState.correct / RANDOM_QUIZ_SIZE * 100); // 满分100
     let verdict = '';
     if (acc >= 90) verdict = '🏆 太棒了，接近满分！';
     else if (acc >= 75) verdict = '🎉 优秀，继续保持！';
@@ -2250,31 +2449,42 @@ body.has-side { padding-right: var(--sbw); }
   }
 
   // ---------- 主观题（简答/论述） ----------
-  let subjState = { type: 'short', subject: 'west_econ', chapterIdx: 0, qIdx: 0, currentQuestions: [] };
+  // 简答与论述各自独立的状态（两套下拉框互不干扰）
+  function newSubjState() { return { subject: 'west_econ', chapterIdx: 0, qIdx: 0, currentQuestions: [] }; }
+  let subjStates = { short: newSubjState(), essay: newSubjState() };
+  // 当前正在渲染的那一套（renderSubjectiveQuestion 里用）
+  let subjState = subjStates.short;
 
   function initSubjectiveFilters(type) {
     const subjectSel = document.getElementById(type + 'Subject');
     const chapterSel = document.getElementById(type + 'Chapter');
 
     subjectSel.addEventListener('change', function() {
-      subjState.subject = subjectSel.value;
-      subjState.chapterIdx = 0;
-      subjState.qIdx = 0;
-      updateChapterOptions(type);
-      renderSubjective(type);
+      var sub = subjectSel.value;
+      var st = subjStates[type];
+      st.subject = sub;
+      st.chapterIdx = 0;
+      st.qIdx = 0;
+      ensureSubject(sub, function() {
+        if (subjStates[type].subject !== sub) return; // 期间又切走了，丢弃这次渲染
+        updateChapterOptions(type);
+        renderSubjective(type);
+        updateGlobalProgress();
+      });
     });
 
     chapterSel.addEventListener('change', function() {
-      subjState.chapterIdx = parseInt(chapterSel.value) || 0;
-      subjState.qIdx = 0;
+      var st = subjStates[type];
+      st.chapterIdx = parseInt(chapterSel.value) || 0;
+      st.qIdx = 0;
       renderSubjective(type);
     });
   }
 
   function renderSubjective(type) {
-    subjState.type = type;
+    subjState = subjStates[type];
     const subject = subjState.subject;
-    const chapters = DATA.subjective[subject].chapters;
+    const chapters = (DATA.subjective[subject] || {}).chapters || [];
     if (!chapters.length) return;
 
     const chapter = chapters[subjState.chapterIdx];
@@ -2315,11 +2525,15 @@ body.has-side { padding-right: var(--sbw); }
   }
 
   function renderSubjectiveQuestion() {
-    const type = subjState.type;
+    const type = subjState === subjStates.essay ? 'essay' : 'short';
     const area = document.getElementById(type + 'Area');
     const qs = subjState.currentQuestions;
     if (!qs.length) {
-      area.innerHTML = '<div class="empty-state">本章暂无题目</div>';
+      const userName = (SUBJECT_META[subjState.subject] || {}).name || '本科目';
+      const label = type === 'short' ? '简答题' : '论述题';
+      area.innerHTML = '<div class="empty-state">'
+        + userName + ' 暂无' + label + '（该科目题库尚未收录这一题型，可切换到其他科目）'
+        + '</div>';
       return;
     }
     const q = qs[subjState.qIdx];
@@ -2767,7 +2981,7 @@ body.has-side { padding-right: var(--sbw); }
         const m = qIndex[item.qid];
         if (!m) return;
         const q = m.q;
-        const letter = obtn.dataset.letter;
+        const letter = obtn.dataset.original;
         const correct = letter === q.answer;
         DB.recordChoice(item.qid, { done: true, correct: correct, selected: letter });
         updateGlobalProgress();
@@ -2786,7 +3000,7 @@ body.has-side { padding-right: var(--sbw); }
           <div class="mt-12">
             ${badge}
             <div class="explanation-box">
-              <div class="exp-title">正确答案：${q.answer}. ${escapeHtml(q.options[q.answer] || '')}</div>
+              <div class="exp-title">正确答案：${displayLetterOf(opts, q.answer)}. ${escapeHtml(q.options[q.answer] || '')}</div>
               <div>${explHtmlFor(q)}</div>
             </div>
             <button class="show-answer-btn" id="wpNextQ" style="margin-top:12px;">${practiceIdx + 1 >= practiceQueue.length ? '完成练习' : '下一题 →'}</button>
@@ -2872,7 +3086,7 @@ body.has-side { padding-right: var(--sbw); }
     let optsHtml = '';
     opts.forEach(function(o) {
       optsHtml += `
-        <button class="option-btn" data-letter="${o.original}">
+        <button class="option-btn" data-letter="${o.display}" data-original="${o.original}">
           <span class="opt-letter">${o.display}</span>
           <span>${escapeHtml(o.text)}</span>
         </button>
@@ -2929,7 +3143,7 @@ body.has-side { padding-right: var(--sbw); }
     var subj = fcState.subject;
 
     if (fcState.type === 'all' || fcState.type === 'choice') {
-      var chs = DATA.choice[subj].chapters;
+      var chs = (DATA.choice[subj] || {}).chapters || [];
       chs.forEach(function (ch, i) {
         if (fcState.chapterIdx >= 0 && i !== fcState.chapterIdx) return;
         ch.kps.forEach(function (kp) {
@@ -2945,7 +3159,7 @@ body.has-side { padding-right: var(--sbw); }
     }
 
     if (fcState.type === 'all' || fcState.type === 'short' || fcState.type === 'essay') {
-      var schs = DATA.subjective[subj].chapters;
+      var schs = (DATA.subjective[subj] || {}).chapters || [];
       schs.forEach(function (ch, i) {
         if (fcState.chapterIdx >= 0 && i !== fcState.chapterIdx) return;
         ['short', 'essay'].forEach(function (t) {
@@ -3012,11 +3226,16 @@ body.has-side { padding-right: var(--sbw); }
     subjSel.dataset.bound = '1';
 
     subjSel.addEventListener('change', function () {
-      fcState.subject = subjSel.value;
+      var sub = subjSel.value;
+      fcState.subject = sub;
       fcState.chapterIdx = -1;
-      fcUpdateChapters();
       fcState.current = null;
-      renderFlashcard();
+      ensureSubject(sub, function () {
+        fcUpdateChapters();
+        renderFlashcard();
+        updateGlobalProgress();
+        preloadSubjectExpl(sub);
+      });
     });
     chapSel.addEventListener('change', function () {
       fcState.chapterIdx = parseInt(chapSel.value, 10);
@@ -3035,7 +3254,7 @@ body.has-side { padding-right: var(--sbw); }
   function fcUpdateChapters() {
     var chapSel = document.getElementById('fcChapter');
     if (!chapSel) return;
-    var chs = DATA.choice[fcState.subject].chapters;
+    var chs = (DATA.choice[fcState.subject] || {}).chapters || [];
     var html = '<option value="-1">全部章节</option>';
     chs.forEach(function (ch, i) {
       html += '<option value="' + i + '">' + escapeHtml(ch.name) + '</option>';
@@ -3188,7 +3407,7 @@ body.has-side { padding-right: var(--sbw); }
     // 整个卡片一起增强：解析块 .fc-exp 与 .fc-answer 是兄弟节点，只增强 .fc-answer 会让
     // 解析里的公式（$...$）和 mermaid 图以源码形式漏出来
     enhanceMd(area);
-    // 选择题解析在 data-expl.js 里才到齐：按需加载后回填这一块（主观题无解析，块留空不占位）
+    // 选择题解析在 data-expl-<科目>.js 里才到齐：按需加载后回填这一块（主观题无解析，块留空不占位）
     var expEl = area.querySelector('.fc-exp');
     if (expEl && q.type === 'choice') {
       var qid = expEl.getAttribute('data-qid');
@@ -3198,7 +3417,7 @@ body.has-side { padding-right: var(--sbw); }
       var drawExp = function () {
         var el = area.querySelector('.fc-exp[data-qid="' + qid + '"]');
         if (!el) return;
-        var txt = (window.EXAM_EXPL && window.EXAM_EXPL[qid]) || '';
+        var txt = explOf(q) || '';
         if (!txt) { el.innerHTML = ''; return; }
         // marked 未就绪时 renderMd 会退回「整段转义」，** 和围栏都会以源码留在页面上。
         // 所以这里必须以「marked 是否到位」为准，而不是靠 data-loaded 标记：
@@ -3225,7 +3444,7 @@ body.has-side { padding-right: var(--sbw); }
       }, 1000);
       if (window.__EXAM_MATH_READY) window.__EXAM_MATH_READY.then(drawExp).catch(drawExp);
       else drawExp();
-      loadExplanation(drawExp);
+      loadSubjectExpl(subjectOfQid(q.id), function () { drawExp(); });
     } else if (expEl) {
       expEl.setAttribute('data-loaded', '1');
     }
@@ -3319,7 +3538,6 @@ body.has-side { padding-right: var(--sbw); }
   }
 
   // ---------- 登录/注册 UI ----------
-  let loginMode = 'login'; // 'login' 或 'register'
 
   function refreshUserUI() {
     const emailEl = document.getElementById('userEmail');
@@ -3342,7 +3560,6 @@ body.has-side { padding-right: var(--sbw); }
     const logoutBtn = document.getElementById('logoutBtn');
     const modal = document.getElementById('loginModal');
     const modalTitle = document.getElementById('modalTitle');
-    const switchLink = document.getElementById('switchMode');
     const submitBtn = document.getElementById('loginSubmit');
     const msg = document.getElementById('loginMsg');
     const emailInput = document.getElementById('loginEmail');
@@ -3360,15 +3577,6 @@ body.has-side { padding-right: var(--sbw); }
       if (e.target === modal) modal.classList.remove('visible');
     });
 
-    // 切换 登录/注册
-    switchLink.addEventListener('click', function() {
-      loginMode = loginMode === 'login' ? 'register' : 'login';
-      modalTitle.textContent = loginMode === 'login' ? '登录' : '注册';
-      submitBtn.textContent = loginMode === 'login' ? '登录' : '注册';
-      switchLink.textContent = loginMode === 'login' ? '没有账号？注册' : '已有账号？去登录';
-      msg.textContent = '';
-    });
-
     // 提交
     submitBtn.addEventListener('click', async function() {
       const email = emailInput.value.trim();
@@ -3381,43 +3589,21 @@ body.has-side { padding-right: var(--sbw); }
       submitBtn.disabled = true;
       submitBtn.textContent = '处理中...';
       try {
-        if (loginMode === 'login') {
-          await DB.signIn(email, pwd);
-          msg.textContent = '登录成功';
-          msg.className = 'modal-msg success';
-          setTimeout(function() {
-            modal.classList.remove('visible');
-            refreshUserUI();
-            updateGlobalProgress();
-            renderChoice();
-          }, 600);
-        } else {
-          const data = await DB.signUp(email, pwd);
-          // 如果需要邮箱验证，data.user 存在但 session 为 null
-          if (data.session) {
-            msg.textContent = '注册成功，已自动登录';
-            msg.className = 'modal-msg success';
-            setTimeout(function() {
-              modal.classList.remove('visible');
-              refreshUserUI();
-              updateGlobalProgress();
-              renderChoice();
-            }, 800);
-          } else {
-            msg.textContent = '注册成功，请检查邮箱验证后再登录';
-            msg.className = 'modal-msg success';
-            loginMode = 'login';
-            modalTitle.textContent = '登录';
-            submitBtn.textContent = '登录';
-            switchLink.textContent = '没有账号？注册';
-          }
-        }
+        await DB.signIn(email, pwd);
+        msg.textContent = '登录成功';
+        msg.className = 'modal-msg success';
+        setTimeout(function() {
+          modal.classList.remove('visible');
+          refreshUserUI();
+          updateGlobalProgress();
+          renderChoice();
+        }, 600);
       } catch (e) {
         msg.textContent = e.message || '操作失败';
         msg.className = 'modal-msg error';
       } finally {
         submitBtn.disabled = false;
-        submitBtn.textContent = loginMode === 'login' ? '登录' : '注册';
+        submitBtn.textContent = '登录';
       }
     });
 
@@ -3440,26 +3626,42 @@ body.has-side { padding-right: var(--sbw); }
   }
 
   // ---------- 初始化 ----------
+  // 首屏只保证「西经」就绪（按需下载 data-west_econ.js），
+  // 其余 6 科等用户真的切过去时才拉 data-<key>.js。
   function init() {
     initChoiceFilters();
     initFcFilters();
     initSubjectiveFilters('short');
     initSubjectiveFilters('essay');
 
-    updateChapterOptions('choice');
-    updateChapterOptions('short');
-    updateChapterOptions('essay');
-
-    initAuthUI();
-    updateGlobalProgress();
-    renderChoice();
+    // 首屏只下西经选择题（约 250KB）；简答/论述/其他科目等切过去再下
+    ensureSubject('west_econ', function () {
+      updateChapterOptions('choice');
+      initAuthUI();
+      updateGlobalProgress();
+      renderChoice();
+    });
   }
 
   // 首屏渲染完成后，趁空闲提前把解析拉下来（用户答题时无感）
-  if (window.requestIdleCallback) {
-    requestIdleCallback(function () { loadExplanation(); }, { timeout: 4000 });
+  function idleKick(fn, delay) {
+    if (window.requestIdleCallback) requestIdleCallback(fn, { timeout: delay || 4000 });
+    else setTimeout(fn, (delay || 4000) - 1500);
+  }
+  idleKick(function () { loadSubjectExpl('west_econ'); }, 4000);
+  // 西经解析到齐后再把另外 4 个待用科目的数据在后台排队预取，
+  // 用户下次切科目基本是瞬开。download 走浏览器 HTTP 缓存，不重复流量。
+  // 只预热「最可能马上用的下一科」——政治经济学（西经之后的第二选择）。
+  // 其余 5 科共约 4MB，等用户真的切过去再下，不必用他的流量替别人铺路。
+  function warmSubjects() {
+    loadSubject('pol_econ').catch(function () {});
+  }
+  if ('requestIdleCallback' in window) {
+    setTimeout(function () {
+      requestIdleCallback(warmSubjects, { timeout: 15000 });
+    }, 12000);
   } else {
-    setTimeout(function () { loadExplanation(); }, 2500);
+    setTimeout(warmSubjects, 15000);
   }
 
   // 首屏立刻渲染（不等 CDN）；库到齐后再增强公式与图表
