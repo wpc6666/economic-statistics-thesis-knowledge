@@ -236,13 +236,14 @@ def parse_subjective_kaoyan(text, subject, chapter_id, chapter_name, md_path=Non
     return parse_subjective_common(text, subject, chapter_id, chapter_name, "kaoyan", md_path)
 
 
-def parse_subjective_simple(text, subject, chapter_id, chapter_name, md_path=None):
+def parse_subjective_simple(text, subject, chapter_id, chapter_name, md_path=None, full_text=None):
     """简答题集.md 格式（5 新科）：## 第N章 + **N. 题干** + **答：**"""
-    return parse_subjective_common(text, subject, chapter_id, chapter_name, "simple", md_path)
+    return parse_subjective_common(text, subject, chapter_id, chapter_name, "simple", md_path, full_text=full_text)
 
 
-def parse_subjective_common(text, subject, chapter_id, chapter_name, mode, md_path=None):
+def parse_subjective_common(text, subject, chapter_id, chapter_name, mode, md_path=None, full_text=None):
     short_qs, essay_qs = [], []
+    full_lines = (full_text if full_text is not None else text).split("\n")
     lines = text.split("\n")
 
     section = None      # 'short' / 'essay'
@@ -260,56 +261,89 @@ def parse_subjective_common(text, subject, chapter_id, chapter_name, mode, md_pa
         field = None
 
     if mode == "simple":
-        # 每道题：**N. 题干** ... **答：** ... 正文
-        for raw in lines:
-            s = raw.strip()
-            m_q = re.match(r"^\*\*(\d+)\.\s*(.+?)\*\*\s*$", s)
-            if m_q and not s.startswith("**答"):
-                save()
-                cur = {
-                    "id": "%s_%s_s%d" % (subject, chapter_id, int(m_q.group(1))),
-                    "stem": clean_md(m_q.group(2)),
-                    "framework": [],
-                    "answer": "",
-                    "scoring": "",
-                    "life_example": "",
-                    "derivation": "",
-                    "why_points": "",
-                    "how_to_analyze": "",
-                    "kp_file": "",
-                }
-                field = None
-                continue
-            if cur is None:
-                continue
-            if re.match(r"^\*\*答[：:]\*\*\s*$", s) or re.match(r"^\*\*答[：:]\*\*", s):
-                field = "answer"
-                rest = re.sub(r"^\*\*答[：:]\*\*\s*", "", s)
-                if rest:
-                    cur["answer"] += rest + "\n"
-                continue
-            if s.startswith("**【"):
-                mt = re.match(r"^\*\*【([^】]*)】\*\*", s)
-                title = mt.group(1) if mt else ""
-                if title.startswith("核心推导"):
-                    field = "derivation"
-                elif title.startswith("为什么要答这几点"):
-                    field = "why_points"
-                elif title.startswith("如何分析"):
-                    field = "how_to_analyze"
-                elif not title.startswith("满分"):
-                    field = None
-                if field is not None:
-                    rest = s[mt.end():] if mt else s
+        # 结构：<a id="subj_sN"></a> / **N. 题干** / **答：** / 答题正文 / --- /
+        #       **【核心推导】** / **【为什么要答这几点】** / **【如何分析题目】** / （下一题）
+        # 三块内容写在**本题题干之前**（属本题），故按题干行切段：
+        # 第 k 题的段 = 第 k-1 个题干行（含）到第 k 个题干行（不含）。
+        q_starts = [j for j, ln in enumerate(lines)
+                    if re.match(r"^\*\*(\d+)\.\s*(.+?)\*\*\s*$", ln.strip())]
+        if not q_starts:
+            return {"short_questions": [], "essay_questions": []}
+
+        def _parse_seg(seg, stem_line):
+            m_q = re.match(r"^\*\*(\d+)\.\s*(.+?)\*\*\s*$", stem_line.strip())
+            q = {
+                "id": "%s_%s_s%d" % (subject, chapter_id, int(m_q.group(1))),
+                "stem": clean_md(m_q.group(2)),
+                "framework": [],
+                "answer": "",
+                "scoring": "",
+                "life_example": "",
+                "derivation": "",
+                "why_points": "",
+                "how_to_analyze": "",
+                "kp_file": "",
+            }
+            fld = None
+            for raw in seg:
+                t = raw.strip()
+                if not t:
+                    continue
+                mt = re.match(r"^\*\*【([^】]*)】\*\*", t)
+                if mt:
+                    title = mt.group(1)
+                    if title.startswith("核心推导"):
+                        fld = "derivation"
+                    elif title.startswith("为什么要答这几点"):
+                        fld = "why_points"
+                    elif title.startswith("如何分析"):
+                        fld = "how_to_analyze"
+                    elif title.startswith(("满分", "易失", "加分", "阅卷", "字数", "建议")):
+                        if fld in ("derivation", "why_points", "how_to_analyze"):
+                            q[fld] += chr(10) + t
+                        continue
+                    else:
+                        fld = None
+                    if fld is not None:
+                        rest = t[mt.end():].strip()
+                        if rest:
+                            q[fld] += rest + chr(10)
+                    continue
+                if t == "---":
+                    continue
+                if re.match(r"^\*\*答[：:]", t):
+                    fld = "answer"
+                    rest = re.sub(r"^\*\*答[：:]\*\*\s*", "", t)
                     if rest:
-                        cur[field] += rest + "\n"
-                continue
-            if field in ("answer", "derivation", "why_points", "how_to_analyze"):
-                cur[field] += raw.rstrip() + "\n"
-        save()
-        for q in short_qs:
+                        q["answer"] += rest + chr(10)
+                    continue
+                if fld in ("derivation", "why_points", "how_to_analyze"):
+                    q[fld] += t + chr(10)
+                elif fld == "answer":
+                    q["answer"] += raw.rstrip() + chr(10)
             for k in ("answer", "derivation", "why_points", "how_to_analyze"):
-                q[k] = q.get(k, "").strip()
+                q[k] = q[k].strip()
+            return q
+
+        bounds = [0] + q_starts[1:] + [len(lines)]
+        for bi, qs_idx in enumerate(q_starts):
+            seg = lines[bounds[bi]:bounds[bi + 1]]
+            short_qs.append(_parse_seg(seg, lines[qs_idx]))
+        # 每章最后一题的三块写在下一章标题之前，会被章节切分切走，
+        # 这里从未切分的全文里补回该题题干之后到本章结束的部分。
+        if short_qs:
+            last = short_qs[-1]
+            gstart = full_lines.index(lines[q_starts[-1]]) if lines[q_starts[-1]] in full_lines else -1
+            if gstart >= 0:
+                tail = []
+                for raw in full_lines[gstart + 1:]:
+                    if re.match(r"^\*\*(\d+)\.\s*(.+?)\*\*\s*$", raw.strip()):
+                        break
+                    tail.append(raw)
+                extra = _parse_seg(tail, lines[q_starts[-1]])
+                for k in ("derivation", "why_points", "how_to_analyze", "answer"):
+                    if len(extra.get(k) or "") > len(last.get(k) or ""):
+                        last[k] = extra[k]
         return {"short_questions": short_qs, "essay_questions": []}
 
     # kaoyan 模式
@@ -389,6 +423,19 @@ def parse_subjective_common(text, subject, chapter_id, chapter_name, mode, md_pa
                         cur["kp_file"] = kf
                 i += 1
                 continue
+            # 三块内容里的子标题（【满分 X 分】【易失分点】【阅卷心理】等）与 --- 分节都属于正文
+            _in3 = field in ("derivation", "why", "analyze")
+            if _in3 and (s.startswith("**【") or s.startswith("---")):
+                _mt = re.match(r"^\*\*【([^】]*)】\*\*", s)
+                _t = _mt.group(1) if _mt else ""
+                if s.startswith("---") or _t.startswith(("满分", "易失", "加分", "阅卷", "字数", "建议")):
+                    _key = {"derivation": "derivation", "why": "why_points", "analyze": "how_to_analyze"}[field]
+                    cur[_key] += chr(10) + line.rstrip()
+                    i += 1
+                    continue
+                field = None
+                i += 1
+                continue
             if s.startswith("**【") or s.startswith("---"):
                 field = None
                 i += 1
@@ -423,66 +470,105 @@ def parse_subjective_common(text, subject, chapter_id, chapter_name, mode, md_pa
     return {"short_questions": short_qs, "essay_questions": essay_qs}
 
 
-def parse_subjective_heading(text, subject, chapter_id, chapter_name, md_path=None):
-    """简答题集.md 的另一种写法：### 子标题 + **答题要点：** 正文（时间序列/多元统计）。"""
-    qs = []
-    cur = None
-    field = None
-    for raw in text.split("\n"):
-        s = raw.strip()
-        m_h = re.match(r"^###\s+(.+?)\s*$", s)
-        if m_h and not s.startswith("####"):
-            if cur is not None:
-                qs.append(cur)
-            cur = {
-                "id": "%s_%s_s%d" % (subject, chapter_id, len(qs) + 1),
-                "stem": clean_md(m_h.group(1)),
-                "framework": [],
-                "answer": "",
-                "scoring": "",
-                "life_example": "",
-                "kp_file": "",
-                "derivation": "",
-                "why_points": "",
-                "how_to_analyze": "",
-            }
-            field = None
-            continue
-        if cur is None:
-            continue
-        if s.startswith("**答题要点") or s.startswith("**答："):
-            field = "answer"
-            rest = re.sub(r"^\*\*[^*]*\*\*\s*", "", s)
-            if rest:
-                cur["answer"] += rest + "\n"
-            continue
-        if s in ("---", "") and field == "answer":
-            cur["answer"] += ""
-            continue
-        if s.startswith("**【"):
-            m_t = re.match(r"^\*\*【([^】]*)】\*\*", s)
-            title = m_t.group(1) if m_t else ""
-            nf = None
-            if title.startswith("核心推导"):
-                nf = "derivation"
-            elif title.startswith("为什么要答这几点"):
-                nf = "why_points"
-            elif title.startswith("如何分析"):
-                nf = "how_to_analyze"
-            if nf is not None:
-                field = nf
-                rest = re.sub(r"^\*\*[^*]*\*\*\s*", "", s)
-                if rest:
-                    cur[nf] += rest + "\n"
+def parse_subjective_heading(text, subject, chapter_id, chapter_name, md_path=None, full_text=None):
+    """简答题集.md 的另一种写法：### 子标题 + **答题要点：** 正文（时间序列/多元统计）。
+
+    三块内容（核心推导/为什么要答这几点/如何分析题目）写在### 子标题**之前**，
+    属本题，故按 ### 行切段：第 k 题的段 = 第 k-1 个 ### 行（含）到第 k 个 ### 行（不含）。
+    """
+    lines = text.split("\n")
+    full_lines = (full_text if full_text is not None else text).split("\n")
+    q_starts = [j for j, ln in enumerate(lines)
+                if re.match(r"^###\s+", ln.strip()) and not ln.strip().startswith("####")]
+    if not q_starts:
+        return {"short_questions": [], "essay_questions": []}
+
+    def _parse_heading_seg(seg, stem_line):
+        q = {
+            "id": "%s_%s_s%d" % (subject, chapter_id, 0),
+            "stem": clean_md(re.sub(r"^###\s+", "", stem_line.strip())),
+            "framework": [],
+            "answer": "",
+            "scoring": "",
+            "life_example": "",
+            "kp_file": "",
+            "derivation": "",
+            "why_points": "",
+            "how_to_analyze": "",
+        }
+        fld = None
+        for raw in seg:
+            t = raw.strip()
+            if not t:
                 continue
-        if field is not None:
-            cur[field] += raw.rstrip() + "\n"
-    if cur is not None:
-        qs.append(cur)
-    for q in qs:
-        q["answer"] = q["answer"].strip()
-        for k in ("derivation", "why_points", "how_to_analyze"):
+            if t.startswith("**答题要点") or t.startswith("**答："):
+                fld = "answer"
+                rest = re.sub(r"^\*\*答题要点[：:]\*\*|^\*\*答[：:]\*\*", "", t).strip()
+                # 形如 **答题要点：****【核心推导】** —— 标记粘连在同一行，先切出内嵌的三块标记
+                _hdr = re.match(r"^\*\*【([^】]*)】\*\*\s*(.*)$", rest)
+                if _hdr:
+                    _ti = _hdr.group(1)
+                    if _ti.startswith("核心推导"):
+                        fld = "derivation"
+                    elif _ti.startswith("为什么要答这几点"):
+                        fld = "why_points"
+                    elif _ti.startswith("如何分析"):
+                        fld = "how_to_analyze"
+                    else:
+                        fld = None
+                    if fld and _hdr.group(2).strip():
+                        q[fld] += _hdr.group(2).strip() + chr(10)
+                elif rest:
+                    q["answer"] += rest + chr(10)
+                continue
+            mt = re.match(r"^\*\*【([^】]*)】\*\*", t)
+            if mt:
+                title = mt.group(1)
+                if title.startswith("核心推导"):
+                    fld = "derivation"
+                elif title.startswith("为什么要答这几点"):
+                    fld = "why_points"
+                elif title.startswith("如何分析"):
+                    fld = "how_to_analyze"
+                elif title.startswith(("满分", "易失", "加分", "阅卷", "字数", "建议")):
+                    if fld in ("derivation", "why_points", "how_to_analyze"):
+                        q[fld] += chr(10) + t
+                    continue
+                else:
+                    fld = None
+                if fld is not None:
+                    rest = t[mt.end():].strip()
+                    if rest:
+                        q[fld] += rest + chr(10)
+                continue
+            if t == "---":
+                continue
+            if fld is not None:
+                q[fld] += raw.rstrip() + chr(10)
+        for k in ("answer", "derivation", "why_points", "how_to_analyze"):
             q[k] = q[k].strip()
+        return q
+
+    bounds = [0] + q_starts[1:] + [len(lines)]
+    qs = []
+    for bi, qs_idx in enumerate(q_starts):
+        seg = lines[bounds[bi]:bounds[bi + 1]]
+        q = _parse_heading_seg(seg, lines[qs_idx])
+        q["id"] = "%s_%s_s%d" % (subject, chapter_id, bi + 1)
+        qs.append(q)
+
+    # 最后一题的三块可能落在下一章标题之后，从未切分全文补回
+    if qs and lines[q_starts[-1]] in full_lines:
+        gstart = full_lines.index(lines[q_starts[-1]])
+        tail = []
+        for raw in full_lines[gstart + 1:]:
+            if re.match(r"^###\s+", raw.strip()) and not raw.strip().startswith("####"):
+                break
+            tail.append(raw)
+        extra = _parse_heading_seg(tail, lines[q_starts[-1]])
+        for k in ("answer", "derivation", "why_points", "how_to_analyze"):
+            if len(extra.get(k) or "") > len(qs[-1].get(k) or ""):
+                qs[-1][k] = extra[k]
     return {"short_questions": qs, "essay_questions": []}
 
 
@@ -573,9 +659,9 @@ def build_subject(key):
             cno_eff = cno + 100 * (_seen[cno] - 1)
             # 两种写法都支持：**N. 题干** + **答：**（综合评价/计量/统计原理），
             # 以及 ### 子标题 + **答题要点：**（时间序列/多元统计）。
-            subj = parse_subjective_simple(bbody, key, "C%02d" % cno_eff, cname, root_subj)
+            subj = parse_subjective_simple(bbody, key, "C%02d" % cno_eff, cname, root_subj, full_text=txt)
             if not subj["short_questions"]:
-                subj = parse_subjective_heading(bbody, key, "C%02d" % cno_eff, cname, root_subj)
+                subj = parse_subjective_heading(bbody, key, "C%02d" % cno_eff, cname, root_subj, full_text=txt)
             if not subj["short_questions"] and not subj["essay_questions"]:
                 continue
             data["subjective"]["chapters"].append({

@@ -176,6 +176,12 @@ def parse_choice_file(filepath: Path, subject: str, chapter_id: str, chapter_nam
 
 # ---------- 考研真题集解析 ----------
 
+# 三块内容的块标题识别（兼容 **【X】** 与 *【X】* 两种写法）
+_HDR = r'^\*{1,2}【([^】]*)】\*{1,2}\s*$'
+_KEEP = ('核心推导', '为什么要答这几点', '如何分析题目')
+_SUBHDR = ('满分', '易失', '加分', '阅卷', '字数', '建议')
+
+
 def parse_subjective_file(filepath: Path, subject: str, chapter_id: str, chapter_name: str):
     """
     解析考研真题集.md
@@ -214,28 +220,58 @@ def parse_subjective_file(filepath: Path, subject: str, chapter_id: str, chapter
             i += 1
             continue
 
-        # 检测题目: ### 简答 N：题干 {#sN} / ### 论述 N：题干 {#lN}
-        m_q = re.match(r'^###\s+(简答|论述)\s+(\d+)[：:]\s*(.+?)\s*\{#([sl])\d+\}\s*$', stripped)
+        # 检测题目: ### 简答 N：题干 {#sN} / ### <a id="sN"></a>简答 N：题干
+        m_q = re.match(r'^###\s+(?:<a\s+id="([sl]\d+)"\s*>\s*</a>\s*)?(简答|论述)\s+(\d+)[：:]\s*(.+?)\s*(?:\{#[sl]\d+\})?\s*$', stripped)
         if m_q and current_section is not None:
             save_q()
-            q_type = m_q.group(1)
-            qnum = int(m_q.group(2))
-            anchor = m_q.group(4)  # 's' or 'l'
+            q_type = m_q.group(2)
+            qnum = int(m_q.group(3))
+            anchor = m_q.group(1)[0] if m_q.group(1) else ('s' if q_type == '简答' else 'l')
             qid = f"{subject}_{chapter_id}_{anchor}{qnum}"
             current_q = {
                 'id': qid,
-                'stem': clean_md(m_q.group(3)),
+                'stem': clean_md(m_q.group(4)),
                 'framework': [],
                 'answer': '',
                 'scoring': '',
-                'life_example': ''
+                'life_example': '',
+                'derivation': '',
+                'why_points': '',
+                'how_to_analyze': ''
             }
             i += 1
             continue
 
         # 检测字段开始
-        # **【答题框架】**
-        if current_q is not None and re.match(r'^\*\*【答题框架】\*\*\s*$', stripped):
+        # **【核心推导】 / **【为什么要答这几点】 / **【如何分析题目】
+        _mm = re.match(_HDR, stripped) if current_q is not None else None
+        if _mm is not None:
+            _ttl = _mm.group(1)
+            _nf = None
+            if _ttl in _KEEP:
+                _nf = ('derivation', 'why_points', 'how_to_analyze')[_KEEP.index(_ttl)]
+            elif _ttl.startswith(_KEEP[0]):
+                _nf = 'derivation'
+            elif _ttl.startswith(_KEEP[1]):
+                _nf = 'why_points'
+            elif _ttl.startswith(_KEEP[2]):
+                _nf = 'how_to_analyze'
+            if _nf is not None:
+                current_field = _nf
+                i += 1
+                continue
+            # 其余 **【xxx】** 行：三块内容里的子标题（【满分 X 分】【易失分点】【阅卷心理】等）
+            # 属于正文，追加进当前字段；其余标题结束当前字段，交回下面的既有分支处理
+            if current_field in ('derivation', 'why_points', 'how_to_analyze') and _ttl.startswith(_SUBHDR):
+                if current_q[current_field]:
+                    current_q[current_field] += '\n'
+                current_q[current_field] += stripped
+                i += 1
+                continue
+            current_field = None
+
+        # **【答题框架】 / *【答题框架】*
+        if current_q is not None and re.match(r'^\*{1,2}【答题框架】\*{1,2}\s*$', stripped):
             current_field = 'framework'
             i += 1
             continue
@@ -301,7 +337,11 @@ def parse_subjective_file(filepath: Path, subject: str, chapter_id: str, chapter
             continue
 
         # 分割线 ---
+        # 三块内容内部常用 --- 分节，此时 --- 只是正文分隔，不结束本题
         if stripped == '---':
+            if current_q is not None and current_field in ('derivation', 'why_points', 'how_to_analyze'):
+                i += 1
+                continue
             save_q()
             i += 1
             continue
@@ -320,7 +360,7 @@ def parse_subjective_file(filepath: Path, subject: str, chapter_id: str, chapter
 
         if current_q is not None and current_field == 'answer':
             # 答案正文，直到遇到下一个 **【 字段 或 ---
-            if re.match(r'^\*\*【', stripped) or stripped == '---':
+            if re.match(r'^\*{1,2}【', stripped) or stripped == '---':
                 current_field = None
                 # 不前进，让后续逻辑处理
             else:
@@ -332,7 +372,7 @@ def parse_subjective_file(filepath: Path, subject: str, chapter_id: str, chapter
 
         if current_q is not None and current_field == 'scoring':
             # 得分点可能多行
-            if re.match(r'^\*\*【', stripped) or stripped == '---':
+            if re.match(r'^\*{1,2}【', stripped) or stripped == '---':
                 current_field = None
             else:
                 if current_q['scoring']:
@@ -342,12 +382,30 @@ def parse_subjective_file(filepath: Path, subject: str, chapter_id: str, chapter
                 continue
 
         if current_q is not None and current_field == 'life':
-            if re.match(r'^\*\*【', stripped) or stripped == '---':
+            if re.match(r'^\*{1,2}【', stripped) or stripped == '---':
                 current_field = None
             else:
                 if current_q['life_example']:
                     current_q['life_example'] += '\n'
                 current_q['life_example'] += stripped
+                i += 1
+                continue
+
+        if current_q is not None and current_field in ('derivation', 'why_points', 'how_to_analyze'):
+            # 三块正文可以跨 --- 分段（推导里常拿 --- 分节），只有遇到下一个字段标题才停
+            if re.match(r'^\*{1,2}【[^】]*】', stripped) and not stripped.startswith('**【' + chr(0x6ee1) + '分'):
+                _h = re.match(r'^\*{1,2}【([^】]*)】', stripped)
+                if _h and _h.group(1).startswith(_SUBHDR):
+                    if current_q[current_field]:
+                        current_q[current_field] += '\n'
+                    current_q[current_field] += stripped
+                    i += 1
+                    continue
+                current_field = None
+            else:
+                if current_q[current_field]:
+                    current_q[current_field] += '\n'
+                current_q[current_field] += stripped
                 i += 1
                 continue
 
@@ -360,6 +418,9 @@ def parse_subjective_file(filepath: Path, subject: str, chapter_id: str, chapter
         q['answer'] = clean_md(q['answer'])
         q['scoring'] = clean_md(q['scoring'])
         q['life_example'] = clean_md(q['life_example'])
+        q['derivation'] = clean_md(q['derivation'])
+        q['why_points'] = clean_md(q['why_points'])
+        q['how_to_analyze'] = clean_md(q['how_to_analyze'])
 
     return {'short_questions': short_questions, 'essay_questions': essay_questions}
 
@@ -374,10 +435,6 @@ def extract_subject_from_stem(stem: str):
         return 'west_econ', re.sub(r'[（(]\s*西方经济学\s*[)）]\s*', '', stem).strip()
     return None, stem
 
-
-# 三块内容的块标题识别
-_HDR = r'^\*\*【([^】]*)】\*\*\s*$'
-_KEEP = ('核心推导', '为什么要答这几点', '如何分析题目')
 
 def parse_mock_file(filepath: Path, mock_id: str):
     """
@@ -541,6 +598,15 @@ def parse_mock_file(filepath: Path, mock_id: str):
                 current_field = _nf
                 i += 1
                 continue
+            # 其余 **【xxx】** 行：三块内容里的子标题（【满分 X 分】【易失分点】【阅卷心理】等）
+            # 属于正文，追加进当前字段；其余标题结束当前字段，交回下面的既有分支处理
+            if current_field in ('derivation', 'why_points', 'how_to_analyze') and _ttl.startswith(_SUBHDR):
+                if current_q[current_field]:
+                    current_q[current_field] += '\n'
+                current_q[current_field] += stripped
+                i += 1
+                continue
+            current_field = None
         if current_q is not None and re.match(r'^\*\*【答题框架】\*\*\s*$', stripped):
             current_field = 'framework'
             i += 1
