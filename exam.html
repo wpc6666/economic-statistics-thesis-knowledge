@@ -951,6 +951,13 @@ body.has-side { padding-right: var(--sbw); }
 .fc-answer { margin-top: 16px; border-top: 1px dashed var(--border); padding-top: 14px; overflow-wrap: anywhere; word-break: break-word; }
 .fc-fw-title { font-size: 14px; font-weight: 600; color: var(--accent); margin: 8px 0 6px; }
 .fc-exp { margin-top: 10px; overflow-wrap: anywhere; word-break: break-word; }
+.subj-fail {
+  background: var(--bg-elev); border: 1px solid var(--red); border-radius: var(--radius);
+  padding: 16px 18px; margin-bottom: 14px; box-shadow: var(--shadow);
+}
+.subj-fail-title { font-size: 15px; font-weight: 600; color: var(--red); margin-bottom: 6px; }
+.subj-fail-sub { font-size: 13px; color: var(--fg-mute); line-height: 1.7; margin-bottom: 12px; }
+.subj-fail-actions { display: flex; flex-wrap: wrap; gap: 8px; }
 .fc-more { margin-top: 14px; border: 1px solid var(--border); border-radius: 8px; background: var(--bg-sunken); }
 .fc-more > summary {
   cursor: pointer; padding: 9px 12px; font-size: 13px; font-weight: 600;
@@ -1350,26 +1357,37 @@ body.has-side { padding-right: var(--sbw); }
   };
 
   // 加载某科数据（幂等）：返回 Promise，已加载则立即 resolve
+  // 单个源等多久算超时；到点还没 onload/onerror 就换下一个源
+  var SUBJ_TIMEOUT = 12000;
   function loadSubject(sub) {
     if (!SUBJECT_META[sub]) return Promise.resolve();
     if (SUBJ_DATA[sub]) return Promise.resolve();
     if (subjLoading[sub]) return subjLoading[sub];
     var meta = SUBJECT_META[sub];
     var p = new Promise(function(resolve, reject) {
-      var s = document.createElement('script');
-      s.src = meta.file;
-      s.async = true;
-      s.onload = function() {
+      var settled = false;
+      var timer = null;
+      var done = function(err) {
+        if (settled) return;
+        settled = true;
+        if (timer) clearTimeout(timer);
+        if (err) { delete subjLoading[sub]; reject(err); return; }
         var bucket = (window.EXAM_SUBJECT_DATA || {})[sub];
-        if (!bucket) { reject(new Error('科目数据缺失: ' + sub)); return; }
+        if (!bucket) { delete subjLoading[sub]; reject(new Error('科目数据缺失: ' + sub)); return; }
         SUBJ_DATA[sub] = bucket;
         buildIndexForSubject(sub);
         resolve();
       };
-      s.onerror = function() {
-        delete subjLoading[sub];
-        reject(new Error('科目数据加载失败: ' + meta.file));
-      };
+      var s = document.createElement('script');
+      s.src = meta.file;
+      s.async = true;
+      s.onload = function() { done(null); };
+      s.onerror = function() { done(new Error('科目数据加载失败: ' + meta.file)); };
+      // 关键：网络半死不活时 <script> 既不 onload 也不 onerror，回调永不到来，
+      // 页面就永久停在「加载中」。加硬超时兜底，让失败可见、可重试。
+      timer = setTimeout(function() {
+        done(new Error('科目数据加载超时: ' + meta.file));
+      }, SUBJ_TIMEOUT);
       document.head.appendChild(s);
     });
     subjLoading[sub] = p;
@@ -1412,17 +1430,61 @@ body.has-side { padding-right: var(--sbw); }
   // 当前科目选择题是否已经加载到 qIndex
   function subjectReady(sub) { return !!SUBJ_DATA[sub]; }
 
-  // 确保某科就绪后执行 cb：已就绪同步执行，未就绪先下载再执行
+  // 确保某科就绪后执行 cb：已就绪同步执行，未就绪先下载再执行。
+  // 失败时自动重试 2 次（退避 1.5s / 3s），仍失败才在页面内提示并给「重试」按钮——
+  // 用 alert 会把整页交互锁死，用户只能刷新，体验上就是「永远打不开」。
+  var SUBJ_RETRY = 2;
   function ensureSubject(sub, cb, errCb) {
     if (SUBJ_DATA[sub]) { if (cb) cb(); return; }
-    loadSubject(sub).then(
-      function () { if (cb) cb(); },
-      function (e) {
-        console.warn('[科目加载失败]', sub, e && e.message);
-        if (errCb) errCb(e);
-        else alert('科目数据加载失败，请检查网络后重试');
-      }
-    );
+    var attempt = 0;
+    var tryLoad = function () {
+      loadSubject(sub).then(
+        function () { if (cb) cb(); },
+        function (e) {
+          console.warn('[科目加载失败]', sub, attempt, e && e.message);
+          if (attempt < SUBJ_RETRY) {
+            attempt++;
+            setTimeout(tryLoad, 1500 * attempt);
+            return;
+          }
+          if (errCb) errCb(e);
+          else subjectLoadFailed(sub, e);
+        }
+      );
+    };
+    tryLoad();
+  }
+
+  // 加载彻底失败：在当前页面内提示（不弹窗、不锁死），并给一键重试
+  function subjectLoadFailed(sub, e) {
+    var meta = SUBJECT_META[sub] || {};
+    var name = meta.name || sub;
+    var host = document.querySelector('.tab-content:not(.hidden)') || document.body;
+    var old = host.querySelector('.subj-fail');
+    if (old) old.remove();
+    var box = document.createElement('div');
+    box.className = 'subj-fail';
+    box.innerHTML =
+      '<div class="subj-fail-title">「' + escapeHtml(name) + '」的数据没能加载下来</div>' +
+      '<div class="subj-fail-sub">多半是网络抖动或页面缓存了半份文件，已经自动重试过 2 次。' +
+          '下面若仍显示着旧题目，是上一次打开时的残留，点「重新加载这一科」才会更新。</div>' +
+      '<div class="subj-fail-actions">' +
+        '<button type="button" class="user-btn" id="subjFailRetry">重新加载这一科</button>' +
+        '<button type="button" class="user-btn" id="subjFailReload">刷新整页</button>' +
+      '</div>';
+    host.insertBefore(box, host.firstChild);
+    var rb = box.querySelector('#subjFailRetry');
+    if (rb) rb.addEventListener('click', function () {
+      box.remove();
+      delete subjLoading[sub];
+      ensureSubject(sub, function () {
+        // 重试成功后按当前 tab 重画
+        var active = document.querySelector('.tab.active');
+        if (active) active.click();
+      }, function () { subjectLoadFailed(sub, e); });
+    });
+    var rl = box.querySelector('#subjFailReload');
+    if (rl) rl.addEventListener('click', function () { location.reload(); });
   }
 
   // 空闲时预取某科解析，答题时不用再等
