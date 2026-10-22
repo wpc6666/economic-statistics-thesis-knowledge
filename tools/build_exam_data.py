@@ -375,6 +375,10 @@ def extract_subject_from_stem(stem: str):
     return None, stem
 
 
+# 三块内容的块标题识别
+_HDR = r'^\*\*【([^】]*)】\*\*\s*$'
+_KEEP = ('核心推导', '为什么要答这几点', '如何分析题目')
+
 def parse_mock_file(filepath: Path, mock_id: str):
     """
     解析模拟卷.md（兼容多种格式）
@@ -500,12 +504,31 @@ def parse_mock_file(filepath: Path, mock_id: str):
                 'framework': [],
                 'answer': '',
                 'scoring': '',
-                'life_example': ''
+'life_example': '',
+                'derivation': '',
+                'why_points': '',
+                'how_to_analyze': ''
             }
             i += 1
             continue
 
         # 检测字段
+        _mm = re.match(_HDR, stripped) if current_q is not None else None
+        if _mm is not None:
+            _ttl = _mm.group(1)
+            _nf = None
+            if _ttl in _KEEP:
+                _nf = ('derivation', 'why_points', 'how_to_analyze')[_KEEP.index(_ttl)]
+            elif _ttl.startswith(_KEEP[0]):
+                _nf = 'derivation'
+            elif _ttl.startswith(_KEEP[1]):
+                _nf = 'why_points'
+            elif _ttl.startswith(_KEEP[2]):
+                _nf = 'how_to_analyze'
+            if _nf is not None:
+                current_field = _nf
+                i += 1
+                continue
         if current_q is not None and re.match(r'^\*\*【答题框架】\*\*\s*$', stripped):
             current_field = 'framework'
             i += 1
@@ -546,13 +569,26 @@ def parse_mock_file(filepath: Path, mock_id: str):
             continue
 
         # 处理字段内容
+        if current_q is not None and current_field in ('derivation', 'why_points', 'how_to_analyze'):
+            _m3 = re.match(_HDR, stripped)
+            _t3 = _m3.group(1) if _m3 is not None else ''
+            _fx = chr(0x6ee1)+chr(0x5206)
+            _sub = ('易失', '加分', '阅卷', '字数')
+            _nof = _m3 is not None and _t3[:2] != _fx and _t3[:2] not in _sub
+            if _nof or stripped == '---' or re.match(r'^#{3,4}\s+', stripped):
+                current_field = None
+            else:
+                _cf = current_field
+                if current_q[_cf]:
+                    current_q[_cf] += chr(10)
+                current_q[_cf] += stripped
         if current_q is not None and current_field == 'framework':
             m_item = re.match(r'^-\s+(.+)$', stripped)
             if m_item:
                 current_q['framework'].append(clean_md(m_item.group(1)))
                 i += 1
                 continue
-            else:
+            elif stripped != '':
                 current_field = None
 
         if current_q is not None and current_field == 'answer':
@@ -591,6 +627,8 @@ def parse_mock_file(filepath: Path, mock_id: str):
 
     # 清理
     for q in questions:
+        for _k in ('derivation', 'why_points', 'how_to_analyze'):
+            q[_k] = q[_k].strip()
         q['answer'] = clean_md(q['answer'])
         q['scoring'] = clean_md(q['scoring'])
         q['life_example'] = clean_md(q['life_example'])
