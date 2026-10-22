@@ -422,6 +422,9 @@ def parse_subjective_heading(text, subject, chapter_id, chapter_name, md_path=No
                 "scoring": "",
                 "life_example": "",
                 "kp_file": "",
+                "derivation": "",
+                "why_points": "",
+                "how_to_analyze": "",
             }
             field = None
             continue
@@ -436,12 +439,30 @@ def parse_subjective_heading(text, subject, chapter_id, chapter_name, md_path=No
         if s in ("---", "") and field == "answer":
             cur["answer"] += ""
             continue
-        if field == "answer":
-            cur["answer"] += raw.rstrip() + "\n"
+        if s.startswith("**【"):
+            m_t = re.match(r"^\*\*【([^】]*)】\*\*", s)
+            title = m_t.group(1) if m_t else ""
+            nf = None
+            if title.startswith("核心推导"):
+                nf = "derivation"
+            elif title.startswith("为什么要答"):
+                nf = "why_points"
+            elif title.startswith("如何分析"):
+                nf = "how_to_analyze"
+            if nf:
+                field = nf
+                rest = re.sub(r"^\*\*[^*]*\*\*\s*", "", s)
+                if rest:
+                    cur[nf] += rest + "\n"
+                continue
+        if field is not None:
+            cur[field] += raw.rstrip() + "\n"
     if cur is not None:
         qs.append(cur)
     for q in qs:
         q["answer"] = q["answer"].strip()
+        for k in ("derivation", "why_points", "how_to_analyze"):
+            q[k] = q[k].strip()
     return {"short_questions": qs, "essay_questions": []}
 
 
