@@ -289,15 +289,15 @@ def parse_subjective_common(text, subject, chapter_id, chapter_name, mode, md_pa
                     cur["answer"] += rest + "\n"
                 continue
             if s.startswith("**【"):
-                mt = re.match(r"^\\*【([^】]*)】\\*\s*", s)
+                mt = re.match(r"^\*\*【([^】]*)】\*\*", s)
                 title = mt.group(1) if mt else ""
                 if title.startswith("核心推导"):
                     field = "derivation"
-                elif title.startswith("为什么要答"):
+                elif title.startswith("为什么要答这几点"):
                     field = "why_points"
                 elif title.startswith("如何分析"):
                     field = "how_to_analyze"
-                else:
+                elif not title.startswith("满分"):
                     field = None
                 if field is not None:
                     rest = s[mt.end():] if mt else s
@@ -465,11 +465,11 @@ def parse_subjective_heading(text, subject, chapter_id, chapter_name, md_path=No
             nf = None
             if title.startswith("核心推导"):
                 nf = "derivation"
-            elif title.startswith("为什么要答"):
+            elif title.startswith("为什么要答这几点"):
                 nf = "why_points"
             elif title.startswith("如何分析"):
                 nf = "how_to_analyze"
-            if nf:
+            if nf is not None:
                 field = nf
                 rest = re.sub(r"^\*\*[^*]*\*\*\s*", "", s)
                 if rest:
