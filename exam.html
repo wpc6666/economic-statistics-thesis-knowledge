@@ -913,7 +913,24 @@ body.has-side { padding-right: var(--sbw); }
 .md-body code { background: var(--bg-sunken); padding: 2px 6px; border-radius: 4px; font-size: 13px; }
 .md-body pre { background: var(--bg-sunken); padding: 12px; border-radius: 6px; overflow-x: auto; margin: 10px 0; }
 .md-body pre code { background: none; padding: 0; }
-.md-body .mermaid { background: #fff; padding: 12px; border-radius: 6px; margin: 10px 0; text-align: center; border: 1px solid var(--border); }
+.md-body .mermaid { background: var(--bg-sunken); padding: 12px; border-radius: 6px; margin: 10px 0; text-align: center; border: 1px solid var(--border); overflow-x: auto; }
+/* mermaid 节点配色：neutral 主题写死浅紫底+黑字，深色页面上是刺眼白贴纸。
+   只在深色模式下用 CSS 变量覆盖，浅色模式保持原样。 */
+@media (prefers-color-scheme: dark) {
+  .md-body .mermaid .node rect,
+  .md-body .mermaid .node polygon,
+  .md-body .mermaid .node circle,
+  .md-body .mermaid .node ellipse { fill: var(--bg-elev) !important; stroke: var(--border-strong) !important; }
+  .md-body .mermaid .nodeLabel,
+  .md-body .mermaid .node label,
+  .md-body .mermaid .node span { color: var(--fg) !important; fill: var(--fg) !important; }
+  .md-body .mermaid .edgePath path,
+  .md-body .mermaid .flowchart-link { stroke: var(--fg-faint) !important; }
+  .md-body .mermaid .edgeLabel { background: transparent !important; }
+  .md-body .mermaid .edgeLabel span,
+  .md-body .mermaid .edgeLabel div { color: var(--fg-mute) !important; fill: var(--fg-mute) !important; background: transparent !important; }
+  .md-body .mermaid marker path { fill: var(--fg-faint) !important; stroke: var(--fg-faint) !important; }
+}
 .md-body h1, .md-body h2, .md-body h3 { margin: 14px 0 8px; font-size: 15px; }
 .md-body blockquote { border-left: 3px solid var(--accent); margin: 8px 0; padding: 4px 12px; background: var(--accent-soft); }
 .katex { font-size: 1.05em; }
@@ -1064,7 +1081,18 @@ body.has-side { padding-right: var(--sbw); }
   ])
     .then(function () {
       if (window.mermaid) {
-        try { mermaid.initialize({ startOnLoad: false, theme: 'neutral', securityLevel: 'loose' }); } catch (e) {}
+        try {
+          // 画布必须透明：mermaid 的 'neutral' 主题会自带一块浅色底，
+          // 深色页面上就是一块刺眼白框。底色统一交给 .mermaid 容器（走主题变量）。
+          mermaid.initialize({
+            startOnLoad: false,
+            theme: 'neutral',
+            securityLevel: 'loose',
+            fontFamily: '-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif',
+            flowchart: { htmlLabels: true, useMaxWidth: true },
+            themeVariables: { background: 'transparent', fontSize: '14px' }
+          });
+        } catch (e) {}
       }
       return true;
     })
