@@ -951,6 +951,16 @@ body.has-side { padding-right: var(--sbw); }
 .fc-answer { margin-top: 16px; border-top: 1px dashed var(--border); padding-top: 14px; overflow-wrap: anywhere; word-break: break-word; }
 .fc-fw-title { font-size: 14px; font-weight: 600; color: var(--accent); margin: 8px 0 6px; }
 .fc-exp { margin-top: 10px; overflow-wrap: anywhere; word-break: break-word; }
+.fc-more { margin-top: 14px; border: 1px solid var(--border); border-radius: 8px; background: var(--bg-sunken); }
+.fc-more > summary {
+  cursor: pointer; padding: 9px 12px; font-size: 13px; font-weight: 600;
+  color: var(--fg-mute); list-style: none; overflow-wrap: anywhere;
+}
+.fc-more > summary::-webkit-details-marker { display: none; }
+.fc-more > summary::before { content: '▸ '; color: var(--accent); }
+.fc-more[open] > summary::before { content: '▾ '; }
+.fc-more > summary:hover { color: var(--fg); }
+.fc-more-body { padding: 2px 12px 12px; border-top: 1px solid var(--border); }
 .fc-ans-body { font-size: 14px; line-height: 1.75; color: var(--fg); margin-top: 6px; overflow-wrap: anywhere; word-break: break-word; }
 .fc-ans-body p { margin: 0 0 8px; }
 .pitfall-list { display: flex; flex-direction: column; gap: 6px; }
@@ -3428,24 +3438,32 @@ body.has-side { padding-right: var(--sbw); }
         return '<div class="fc-fw-title">' + title + '</div>' +
                '<div class="fc-ans-body fc-mdhost" data-md="' + key + '"></div>';
       };
-      if (q.derivation) html += _mk('核心推导', 'derivation');
-      if (q.why_points) html += _mk('为什么要答这几点', 'why_points');
-      if (q.how_to_analyze) html += _mk('如何分析题目', 'how_to_analyze');
+      // 答案优先：先铺「参考答案」，其余展开料收进可折叠区。
+      // 原因：【核心推导】动辄 2000+ 字，排在最前面会把参考答案顶到首屏之外，
+      // 用户以为「背题里没有答案」——其实有，只是要滚很久才看得到。
+      if (q.answer) html += _mk('参考答案', 'answer');
+      if (q.scoring) html += _mk('评分标准', 'scoring');
+      var rest = '';
       if (q.framework && q.framework.length) {
-        html += '<div class="fc-fw-title">答题框架</div>' +
+        rest += '<div class="fc-fw-title">答题框架</div>' +
                 '<div class="md-body"><ul>' +
                 q.framework.map(function (t) { return '<li>' + escapeHtml(t) + '</li>'; }).join('') +
                 '</ul></div>';
       }
-      if (q.answer) html += _mk('参考答案', 'answer');
-      if (q.scoring) html += _mk('评分标准', 'scoring');
-      if (q.life_example) html += _mk('生活实例', 'life_example');
+      if (q.derivation) rest += _mk('核心推导', 'derivation');
+      if (q.why_points) rest += _mk('为什么要答这几点', 'why_points');
+      if (q.how_to_analyze) rest += _mk('如何分析题目', 'how_to_analyze');
+      if (q.life_example) rest += _mk('生活实例', 'life_example');
       var pits = extractPitfalls(q);
       if (pits.length) {
-        html += '<div class="fc-fw-title">易错点</div>' +
+        rest += '<div class="fc-fw-title">易错点</div>' +
                 '<div class="fc-ans-body pitfall-list">' +
                 pits.map(function (t) { return '<div class="pitfall-item">' + escapeHtml(t) + '</div>'; }).join('') +
                 '</div>';
+      }
+      if (rest) {
+        html += '<details class="fc-more"><summary>展开：答题框架 · 核心推导 · 为什么答这几点 · 如何分析 · 生活实例 · 易错点</summary>' +
+                '<div class="fc-more-body">' + rest + '</div></details>';
       }
     }
     // 解析块一律留空，交给渲染完成后的统一回填：

@@ -153,14 +153,33 @@ def parse_choice_questions(body, subject, chapter_id, kp_id):
         stripped = lines[i].strip()
 
         # **1.** 题干（　）。  或  **1. 题干**  或  **1. 题干**
-        m_q = re.match(r"^\*\*(\d+(?:[\.．]\d+)?)[\.．]?\*\*\s+(.+)$", stripped) \
-              or re.match(r"^\*\*(\d+(?:[\.．]\d+)?)[\.．]\s+(.+?)\*\*\s*$", stripped)
+        # 题号三种写法，各自收窄以免误伤（如 **答：** 会被当成题干）：
+        #   1) **1.1** 题干      —— 小数题号，仅多元统计用，必须带小数点
+        #   2) **1. 题干**       —— 常规最稳
+        #   3) **1.** 题干       —— 单写成 **1.** 的旧式
+        m_q = re.match(r"^\*\*(\d+[\.．]\d+)\*\*\s+(.+)$", stripped) \
+              or re.match(r"^\*\*(\d+(?:[\.．]\d+)?)[\.．]\s+(.+?)\*\*\s*$", stripped) \
+              or re.match(r"^\*\*(\d+(?:[\.．]\d+)?)[\.．]\*\*\s+(.+)$", stripped)
         if m_q:
             save()
             qnum_text = m_q.group(1).replace("．", ".")
-            qnum = len(questions) + 1
+            # id 必须用「源文件题号」而不是「已解析题数」：
+            # 同一 KP 里若存在 1-9 与 10-12 两套编号，按题数计数会撞 id。
+            # 小数题号（多元统计 1.1 / 1.2）用「小.大」拼成唯一后缀，避免都塌缩成 _1。
+            if "." in qnum_text:
+                ip, dp = qnum_text.split(".", 1)
+                qnum = int(ip) * 100 + int(dp)
+            else:
+                qnum = int(qnum_text)
+            # 同一 KP 内题号若从 1 重新开始（如 1-9 后又出现 1-2），用 a/b/c 后缀区分
+            _base_id = "%s_%s_%s_%d" % (subject, chapter_id, kp_id, qnum)
+            _bump = 0
+            while any(x["id"] == _base_id + ("" if _bump == 0 else chr(97 + _bump)) for x in questions) \
+                    or (cur is not None and cur["id"] == _base_id + ("" if _bump == 0 else chr(97 + _bump))):
+                _bump += 1
+            _qid = _base_id if _bump == 0 else _base_id + chr(97 + _bump)
             cur = {
-                "id": "%s_%s_%s_%d" % (subject, chapter_id, kp_id, qnum),
+                "id": _qid,
                 "num": qnum_text,
                 "stem": clean_md(m_q.group(2)),
                 "options": {},
@@ -196,12 +215,33 @@ def parse_choice_questions(body, subject, chapter_id, kp_id):
             continue
 
         # > **解析：** xxx
-        m_exp = re.match(r"^>\s*\*\*解析[：:]\*\*\s*(.*)$", stripped)
+        # 解析块起点：> **解析：** ... 或 > **📌 这是什么？** ...
+        # 多元统计两段并存（先"解析："后"📌"），取先出现的那个，后续 > 行统一收集
+        # 兼容 **解析：xxx**、**解析**：xxx、**解析: xxx** 三种写法
+        m_exp = re.match(r"^>\s*\*\*解析\*\*\s*[：:]?\s*(.*)$", stripped) \
+                or re.match(r"^>\s*\*\*解析[：:](.*)$", stripped)
         if m_exp and cur is not None:
             parts = [m_exp.group(1).strip()]
             j = i + 1
             while j < len(lines) and lines[j].strip().startswith(">"):
-                parts.append(re.sub(r"^>\s?", "", lines[j].strip()))
+                inner = re.sub(r"^>\s?", "", lines[j].strip())
+                # 相邻的另一块标题（如 **📌 这是什么？**）不截断，剥成普通小标题继续收集
+                inner = re.sub(r"^\*\*(📌[^*]*)\*\*$", r"\1", inner.strip())
+                parts.append(inner)
+                j += 1
+            cur["explanation"] = clean_md("\n".join(parts))
+            i = j
+            continue
+
+        # 只写 📌 块、没有"解析："行的题（如西经第 08 章）
+        m_pm = re.match(r"^>\s*\*\*📌", stripped)
+        if m_pm and cur is not None and not cur["explanation"]:
+            parts = [re.sub(r"^\*\*(📌[^*]*)\*\*$", r"\1", re.sub(r"^>\s?", "", stripped))]
+            j = i + 1
+            while j < len(lines) and lines[j].strip().startswith(">"):
+                inner = re.sub(r"^>\s?", "", lines[j].strip())
+                inner = re.sub(r"^\*\*(📌[^*]*)\*\*$", r"\1", inner.strip())
+                parts.append(inner)
                 j += 1
             cur["explanation"] = clean_md("\n".join(parts))
             i = j
