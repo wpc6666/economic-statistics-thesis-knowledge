@@ -403,6 +403,48 @@ def parse_subjective_common(text, subject, chapter_id, chapter_name, mode, md_pa
     return {"short_questions": short_qs, "essay_questions": essay_qs}
 
 
+def parse_subjective_heading(text, subject, chapter_id, chapter_name, md_path=None):
+    """简答题集.md 的另一种写法：### 子标题 + **答题要点：** 正文（时间序列/多元统计）。"""
+    qs = []
+    cur = None
+    field = None
+    for raw in text.split("\n"):
+        s = raw.strip()
+        m_h = re.match(r"^###\s+(.+?)\s*$", s)
+        if m_h and not s.startswith("####"):
+            if cur is not None:
+                qs.append(cur)
+            cur = {
+                "id": "%s_%s_s%d" % (subject, chapter_id, len(qs) + 1),
+                "stem": clean_md(m_h.group(1)),
+                "framework": [],
+                "answer": "",
+                "scoring": "",
+                "life_example": "",
+                "kp_file": "",
+            }
+            field = None
+            continue
+        if cur is None:
+            continue
+        if s.startswith("**答题要点") or s.startswith("**答："):
+            field = "answer"
+            rest = re.sub(r"^\*\*[^*]*\*\*\s*", "", s)
+            if rest:
+                cur["answer"] += rest + "\n"
+            continue
+        if s in ("---", "") and field == "answer":
+            cur["answer"] += ""
+            continue
+        if field == "answer":
+            cur["answer"] += raw.rstrip() + "\n"
+    if cur is not None:
+        qs.append(cur)
+    for q in qs:
+        q["answer"] = q["answer"].strip()
+    return {"short_questions": qs, "essay_questions": []}
+
+
 # ---------- 主流程 ----------
 
 def build_subject(key):
@@ -475,9 +517,24 @@ def build_subject(key):
         txt = root_subj.read_text(encoding="utf-8")
         # 按 ## 第N章 切分，每章一段，题目编号在全文内连续
         blocks = split_by_heading(txt, r"^##\s+第[0-9一二三四五六七八九十百]+章")
+        _CHCN = {"一":1,"二":2,"三":3,"四":4,"五":5,"六":6,"七":7,"八":8,"九":9,"十":10}
+        _seen = {}
         for bidx, (btitle, bbody) in enumerate(blocks, 1):
             cname = clean_md(strip_quan(re.sub(r"^#+\s*", "", btitle.strip()))) or ("第%d章" % bidx)
-            subj = parse_subjective_simple(bbody, key, "C%02d" % bidx, cname, root_subj)
+            # 章号改用标题里的数字（"第3章" -> 3），使简答题 id 的章段与选择题 id 对齐；
+            # 同一章号重复出现时依次加偏移，杜绝 id 撞车。
+            m_no = re.search(r"第\s*([0-9]+|[一二三四五六七八九十]+)\s*章", btitle)
+            cno = bidx
+            if m_no:
+                t = m_no.group(1)
+                cno = int(t) if t.isdigit() else _CHCN.get(t, bidx)
+            _seen[cno] = _seen.get(cno, 0) + 1
+            cno_eff = cno + 100 * (_seen[cno] - 1)
+            # 两种写法都支持：**N. 题干** + **答：**（综合评价/计量/统计原理），
+            # 以及 ### 子标题 + **答题要点：**（时间序列/多元统计）。
+            subj = parse_subjective_simple(bbody, key, "C%02d" % cno_eff, cname, root_subj)
+            if not subj["short_questions"]:
+                subj = parse_subjective_heading(bbody, key, "C%02d" % cno_eff, cname, root_subj)
             if not subj["short_questions"] and not subj["essay_questions"]:
                 continue
             data["subjective"]["chapters"].append({
