@@ -453,6 +453,8 @@ def parse_mock_file(filepath: Path, mock_id: str):
         # 格式D: ### 简答 1（政治经济学，15 分）：题干
         m_d = re.match(r'^###\s+(简答|论述)\s+(\d+)[（(](政治经济学|西方经济学)[，,]\s*(\d+)\s*分[)）][：:]\s*(.+)$', stripped)
 
+        # 格式E: ### <a id="l3_m1"></a>论述 3：题干（题意：带锚点的论述题）
+        m_e = re.match(r'^###\s*<a id="[^"]*"></a>\s*(简答|论述)\s+(\d+)[：:]\s*(.+)$', stripped)
         m_q = None
         q_type = None
         qnum = None
@@ -491,6 +493,16 @@ def parse_mock_file(filepath: Path, mock_id: str):
             q_subject = 'pol_econ' if m_d.group(3) == '政治经济学' else 'west_econ'
             score = int(m_d.group(4))
             stem = m_d.group(5).strip()
+
+        elif m_e:
+            m_q = m_e
+            q_type = m_e.group(1)
+            qnum = int(m_e.group(2))
+            stem = m_e.group(3).strip()
+            q_subject, stem = extract_subject_from_stem(stem)
+            if not q_subject:
+                q_subject = current_subject
+            score = 15 if q_type == '简答' else 30
 
         if m_q:
             save_q()
