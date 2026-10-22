@@ -273,6 +273,9 @@ def parse_subjective_common(text, subject, chapter_id, chapter_name, mode, md_pa
                     "answer": "",
                     "scoring": "",
                     "life_example": "",
+                    "derivation": "",
+                    "why_points": "",
+                    "how_to_analyze": "",
                     "kp_file": "",
                 }
                 field = None
@@ -285,11 +288,28 @@ def parse_subjective_common(text, subject, chapter_id, chapter_name, mode, md_pa
                 if rest:
                     cur["answer"] += rest + "\n"
                 continue
-            if field == "answer":
-                cur["answer"] += raw.rstrip() + "\n"
+            if s.startswith("**【"):
+                mt = re.match(r"^\\*【([^】]*)】\\*\s*", s)
+                title = mt.group(1) if mt else ""
+                if title.startswith("核心推导"):
+                    field = "derivation"
+                elif title.startswith("为什么要答"):
+                    field = "why_points"
+                elif title.startswith("如何分析"):
+                    field = "how_to_analyze"
+                else:
+                    field = None
+                if field is not None:
+                    rest = s[mt.end():] if mt else s
+                    if rest:
+                        cur[field] += rest + "\n"
+                continue
+            if field in ("answer", "derivation", "why_points", "how_to_analyze"):
+                cur[field] += raw.rstrip() + "\n"
         save()
         for q in short_qs:
-            q["answer"] = q["answer"].strip()
+            for k in ("answer", "derivation", "why_points", "how_to_analyze"):
+                q[k] = q.get(k, "").strip()
         return {"short_questions": short_qs, "essay_questions": []}
 
     # kaoyan 模式
