@@ -280,13 +280,19 @@ a { color: var(--accent); text-decoration: none; }
 .option-btn.disabled { pointer-events: none; opacity: 0.9; }
 
 /* 解析区 */
+/* 解析区：解析是要逐句读的长文本，底色必须让正文对比度最高。
+   原来整块铺 --orange-soft（深色模式下是深橄榄 #2d2408），正文继承 --fg 后对比度很低，
+   长段落几乎看不清。这里改为普通卡片底 + 左侧橙色竖线做视觉锚点，橙色只用于标题。 */
 .explanation-box {
   margin-top: 16px;
   padding: 14px;
-  background: var(--orange-soft);
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--orange);
   border-radius: 8px;
   font-size: 14px;
   line-height: 1.8;
+  color: var(--fg);
   white-space: pre-wrap;
 }
 .exp-loading { color: var(--fg-mute, #888); font-size: 13px; font-style: italic; }
@@ -296,6 +302,10 @@ a { color: var(--accent); text-decoration: none; }
   margin-bottom: 6px;
   font-size: 13px;
 }
+/* 解析正文里的 Markdown 块不要再叠一层深色底，否则整块又变暗 */
+.explanation-box .md-body blockquote { background: transparent; border-left: 2px solid var(--border-strong); color: var(--fg-mute); }
+.explanation-box .md-body code,
+.explanation-box .md-body pre { background: var(--bg-sunken); }
 .answer-badge {
   display: inline-block;
   padding: 2px 10px;
