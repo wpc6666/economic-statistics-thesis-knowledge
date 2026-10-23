@@ -677,21 +677,12 @@
       }
     }
 
-    // 库还在异步加载：等 __EXAM_LIBS_READY 落定后对同一个容器重跑一次，
-    // 否则背题卡片会在 mermaid/KaTeX 到位前渲染完，图和公式以源码形式留在页面上。
-    // 公式与 mermaid 分别判断：mermaid 是 2.5MB 的大包，常比公式晚到好几秒，
-    // 用「两者都缺」做条件会让已经能渲染的公式白等。
-    if ((!window.mermaid || !window.renderMathInElement) && window.__EXAM_LIBS_READY
-        && !container.getAttribute('data-reenhance')) {
-      container.setAttribute('data-reenhance', '1');
-      // 公式链先到就先重跑：它通常 5-6 秒就绪，而 mermaid 可能 25 秒以上
-      var mathReady = window.__EXAM_MATH_READY || window.__EXAM_LIBS_READY;
-      mathReady.then(function () {
-        if (container.isConnected) enhanceMd(container);
-      }).catch(function () {});
-      // 全部库落定后再收尾一次（mermaid 到位），然后清标记
-      window.__EXAM_LIBS_READY.then(function () {
-        container.removeAttribute('data-reenhance');
+    // 公式库未到时只等待 KaTeX 链一次。Mermaid 是按需加载的，普通内容里它
+    // 会一直不存在；若把它也当成基础库条件，已完成的 Promise 会不断重新触发自身。
+    if (!window.renderMathInElement && window.__EXAM_MATH_READY
+        && !container.getAttribute('data-math-enhance-requested')) {
+      container.setAttribute('data-math-enhance-requested', '1');
+      window.__EXAM_MATH_READY.then(function () {
         if (container.isConnected) enhanceMd(container);
       }).catch(function () {});
     }
