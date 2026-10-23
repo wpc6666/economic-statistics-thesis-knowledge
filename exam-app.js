@@ -21,6 +21,209 @@
   var SUBJ_DATA = Object.create(null);
   var SUBJ_EXPL = Object.create(null);      // sub -> {qid: 解析}
   var subjLoading = Object.create(null);    // sub -> Promise
+  var SUBJ_FULL = Object.create(null);
+  var choiceSliceLoading = Object.create(null);
+  var choiceSliceReady = Object.create(null);
+  var subjSliceLoading = Object.create(null);
+  var subjSliceReady = Object.create(null);
+  var explSliceLoading = Object.create(null);
+  var sliceDbPromise = null;
+
+  function initSubjectShells() {
+    var index = window.EXAM_DATA_INDEX;
+    if (!index || !index.subjects) throw new Error('题库索引缺失');
+    SUBJECT_KEYS.forEach(function (sub) {
+      var info = index.subjects[sub];
+      if (!info || SUBJ_DATA[sub]) return;
+      SUBJ_DATA[sub] = {
+        name: info.name,
+        choice: { chapters: info.choice.map(function (ch) {
+          return { id: ch.id, name: ch.name, kps: ch.kps.map(function (kp) {
+            return { id: kp.id, name: kp.name, file: kp.file, questions: [] };
+          }) };
+        }) },
+        subjective: { chapters: info.subjective.map(function (ch) {
+          return { id: ch.id, name: ch.name, short_questions: [], essay_questions: [] };
+        }) }
+      };
+    });
+  }
+
+  function openSliceDb() {
+    if (sliceDbPromise) return sliceDbPromise;
+    sliceDbPromise = new Promise(function (resolve) {
+      if (!window.indexedDB) return resolve(null);
+      try {
+        var request = indexedDB.open('exam-data-slices', 1);
+        request.onupgradeneeded = function () {
+          if (!request.result.objectStoreNames.contains('slices')) request.result.createObjectStore('slices');
+        };
+        request.onsuccess = function () { resolve(request.result); };
+        request.onerror = request.onblocked = function () { resolve(null); };
+      } catch (e) { resolve(null); }
+    });
+    return sliceDbPromise;
+  }
+
+  function getCachedSlice(key) {
+    return openSliceDb().then(function (db) {
+      if (!db) return null;
+      return new Promise(function (resolve) {
+        try {
+          var tx = db.transaction('slices', 'readonly');
+          var req = tx.objectStore('slices').get(key);
+          req.onsuccess = function () { resolve(req.result || null); };
+          req.onerror = function () { resolve(null); };
+        } catch (e) { resolve(null); }
+      });
+    });
+  }
+
+  function cacheSlice(key, value) {
+    return openSliceDb().then(function (db) {
+      if (!db) return;
+      try {
+        var tx = db.transaction('slices', 'readwrite');
+        tx.objectStore('slices').put(value, key);
+      } catch (e) {}
+    });
+  }
+
+  function installChoiceSlice(sub, chapterId, chapter) {
+    var chapters = SUBJ_DATA[sub].choice.chapters;
+    var at = chapters.findIndex(function (item) { return item.id === chapterId; });
+    if (at < 0) throw new Error('章节索引无效: ' + chapterId);
+    chapters[at] = chapter;
+    choiceSliceReady[sub + ':' + chapterId] = true;
+    (chapter.kps || []).forEach(function (kp) {
+      (kp.questions || []).forEach(function (q) {
+        qIndex[q.id] = { q: q, type: 'choice', subject: sub, chapterId: chapter.id,
+          chapterName: chapter.name, kpName: kp.name, kpFile: kp.file || '' };
+      });
+    });
+    return chapter;
+  }
+
+  function loadChoiceSlice(sub, chapterIndex) {
+    var index = window.EXAM_DATA_INDEX;
+    var info = index && index.subjects[sub];
+    var ref = info && info.choice[chapterIndex];
+    if (!ref) return Promise.reject(new Error('章节索引不存在'));
+    var key = index.version + ':choice:' + sub + ':' + ref.id;
+    var flightKey = sub + ':' + ref.id;
+    if (SUBJ_FULL[sub]) return Promise.resolve(SUBJ_DATA[sub].choice.chapters[chapterIndex]);
+    if (choiceSliceReady[flightKey]) return Promise.resolve(SUBJ_DATA[sub].choice.chapters[chapterIndex]);
+    if (choiceSliceLoading[flightKey]) return choiceSliceLoading[flightKey];
+
+    choiceSliceLoading[flightKey] = getCachedSlice(key).then(function (cached) {
+      if (cached) return installChoiceSlice(sub, ref.id, cached);
+      var existing = (window.EXAM_CHAPTER_DATA || {})[sub] && window.EXAM_CHAPTER_DATA[sub][ref.id];
+      if (existing) return installChoiceSlice(sub, ref.id, existing);
+      return new Promise(function (resolve, reject) {
+        var script = document.createElement('script');
+        var settled = false;
+        var timer = setTimeout(function () { finish(new Error('章节加载超时: ' + ref.name)); }, SUBJ_TIMEOUT);
+        function finish(err) {
+          if (settled) return;
+          settled = true;
+          clearTimeout(timer);
+          script.onload = script.onerror = null;
+          if (err) { if (script.parentNode) script.remove(); reject(err); return; }
+          var chapter = (window.EXAM_CHAPTER_DATA || {})[sub] && window.EXAM_CHAPTER_DATA[sub][ref.id];
+          if (!chapter) { reject(new Error('章节数据缺失: ' + ref.name)); return; }
+          installChoiceSlice(sub, ref.id, chapter);
+          cacheSlice(key, chapter);
+          resolve(chapter);
+        }
+        script.src = ref.file;
+        script.async = true;
+        script.onload = function () { finish(); };
+        script.onerror = function () { finish(new Error('章节加载失败: ' + ref.name)); };
+        document.head.appendChild(script);
+      });
+    }).finally(function () { delete choiceSliceLoading[flightKey]; });
+    return choiceSliceLoading[flightKey];
+  }
+
+  function ensureChoiceChapter(sub, chapterIndex, cb, errCb) {
+    try { initSubjectShells(); } catch (e) { if (errCb) errCb(e); return; }
+    loadChoiceSlice(sub, chapterIndex).then(function () { if (cb) cb(); }, function (e) {
+      if (errCb) errCb(e); else subjectLoadFailed(sub, e);
+    });
+  }
+
+  function loadSubjectiveSlice(sub, chapterIndex) {
+    var info = window.EXAM_DATA_INDEX.subjects[sub];
+    var ref = info && info.subjective[chapterIndex];
+    if (!ref) return Promise.reject(new Error('主观题章节索引不存在'));
+    var flightKey = sub + ':' + ref.id;
+    var cacheKey = window.EXAM_DATA_INDEX.version + ':subjective:' + flightKey;
+    if (SUBJ_FULL[sub]) return Promise.resolve(SUBJ_DATA[sub].subjective.chapters[chapterIndex]);
+    if (subjSliceReady[flightKey]) return Promise.resolve(SUBJ_DATA[sub].subjective.chapters[chapterIndex]);
+    if (subjSliceLoading[flightKey]) return subjSliceLoading[flightKey];
+    subjSliceLoading[flightKey] = getCachedSlice(cacheKey).then(function (cached) {
+      if (cached) return cached;
+      var existing = (window.EXAM_SUBJECTIVE_DATA || {})[sub] && window.EXAM_SUBJECTIVE_DATA[sub][ref.id];
+      if (existing) return existing;
+      return new Promise(function (resolve, reject) {
+        var script = document.createElement('script');
+        var settled = false;
+        var timer = setTimeout(function () { finish(new Error('主观题章节加载超时: ' + ref.name)); }, SUBJ_TIMEOUT);
+        function finish(err) {
+          if (settled) return;
+          settled = true;
+          clearTimeout(timer);
+          script.onload = script.onerror = null;
+          if (err) { if (script.parentNode) script.remove(); reject(err); return; }
+          var chapter = (window.EXAM_SUBJECTIVE_DATA || {})[sub] && window.EXAM_SUBJECTIVE_DATA[sub][ref.id];
+          if (!chapter) { reject(new Error('主观题章节数据缺失: ' + ref.name)); return; }
+          resolve(chapter);
+        }
+        script.src = ref.file;
+        script.async = true;
+        script.onload = function () { finish(); };
+        script.onerror = function () { finish(new Error('主观题章节加载失败: ' + ref.name)); };
+        document.head.appendChild(script);
+      });
+    }).then(function (chapter) {
+      var chapters = SUBJ_DATA[sub].subjective.chapters;
+      var at = chapters.findIndex(function (item) { return item.id === ref.id; });
+      chapters[at] = chapter;
+      subjSliceReady[flightKey] = true;
+      (chapter.short_questions || []).forEach(function (q) {
+        qIndex[q.id] = { q: q, type: 'short', subject: sub, chapterId: chapter.id,
+          chapterName: chapter.name, kpFile: q.kp_file || '' };
+      });
+      (chapter.essay_questions || []).forEach(function (q) {
+        qIndex[q.id] = { q: q, type: 'essay', subject: sub, chapterId: chapter.id,
+          chapterName: chapter.name, kpFile: q.kp_file || '' };
+      });
+      cacheSlice(cacheKey, chapter);
+      return chapter;
+    }).finally(function () { delete subjSliceLoading[flightKey]; });
+    return subjSliceLoading[flightKey];
+  }
+
+  function ensureSubjectiveChapter(sub, chapterIndex, cb, errCb) {
+    try { initSubjectShells(); } catch (e) { if (errCb) errCb(e); return; }
+    loadSubjectiveSlice(sub, chapterIndex).then(function () { if (cb) cb(); }, function (e) {
+      if (errCb) errCb(e); else subjectLoadFailed(sub, e);
+    });
+  }
+
+  function loadWrongChoiceSlices(qids) {
+    initSubjectShells();
+    var jobs = [];
+    (qids || []).forEach(function (qid) {
+      var sub = subjectOfQid(qid);
+      var info = sub && window.EXAM_DATA_INDEX.subjects[sub];
+      if (!info) return;
+      var idx = info.choice.findIndex(function (ch) { return qid.indexOf(sub + '_' + ch.id + '_') === 0; });
+      if (idx >= 0) jobs.push(loadChoiceSlice(sub, idx));
+      else if (sub) jobs.push(loadSubject(sub));
+    });
+    return Promise.all(jobs);
+  }
 
   // 模拟卷单独一个文件，进模拟卷 tab 才下载
   var mockLoading = null;
@@ -84,7 +287,7 @@
   var SUBJ_TIMEOUT = 12000;
   function loadSubject(sub) {
     if (!SUBJECT_META[sub]) return Promise.resolve();
-    if (SUBJ_DATA[sub]) return Promise.resolve();
+    if (SUBJ_FULL[sub]) return Promise.resolve();
     if (subjLoading[sub]) return subjLoading[sub];
     var meta = SUBJECT_META[sub];
     var p = new Promise(function(resolve, reject) {
@@ -104,6 +307,7 @@
         var bucket = (window.EXAM_SUBJECT_DATA || {})[sub];
         if (!bucket) { delete subjLoading[sub]; reject(new Error('科目数据缺失: ' + sub)); return; }
         SUBJ_DATA[sub] = bucket;
+        SUBJ_FULL[sub] = true;
         buildIndexForSubject(sub);
         resolve();
       };
@@ -127,54 +331,76 @@
   var explLoading = {};
   var explQueue = {};
   var EXPL_TIMEOUT = 12000;
-  function loadSubjectExpl(sub, cb) {
+  function loadSubjectExpl(sub, chapterId, cb) {
+    if (typeof chapterId === 'function') { cb = chapterId; chapterId = ''; }
     var meta = SUBJECT_META[sub];
     if (!meta) { if (cb) cb(); return; }
-    if (SUBJ_EXPL[sub]) { if (cb) cb(); return; }
-    if (explLoading[sub]) { if (cb) explQueue[sub].push(cb); return; }
-    explLoading[sub] = true;
-    explQueue[sub] = cb ? [cb] : [];
-    var s = document.createElement('script');
-    s.src = meta.expl;
-    s.async = true;
-    var settled = false;
-    var timer = setTimeout(function () { done(new Error('解析文件加载超时: ' + meta.expl)); }, EXPL_TIMEOUT);
+    var subjectIndex = window.EXAM_DATA_INDEX && window.EXAM_DATA_INDEX.subjects[sub];
+    var ref = chapterId && subjectIndex && subjectIndex.choice.find(function (ch) { return ch.id === chapterId; });
+    if (!ref) {
+      if (SUBJ_EXPL[sub] && !SUBJ_EXPL[sub][chapterId]) { if (cb) cb(); return; }
+      ref = { file: meta.expl, id: '' };
+    }
+    var flightKey = sub + ':' + (ref.id || 'all');
+    if (SUBJ_EXPL[sub] && (SUBJ_EXPL[sub][chapterId] || (!chapterId && !ref.id))) { if (cb) cb(); return; }
+    if (explSliceLoading[flightKey]) { if (cb) explQueue[flightKey].push(cb); return; }
+    explSliceLoading[flightKey] = true;
+    explQueue[flightKey] = cb ? [cb] : [];
+    var cacheKey = window.EXAM_DATA_INDEX.version + ':expl:' + sub + ':' + (ref.id || 'all');
     var done = function (err) {
       if (settled) return;
       settled = true;
       clearTimeout(timer);
-      s.onload = s.onerror = null;
-      if (err && s.parentNode) s.remove();
-      explLoading[sub] = false;
-      var qs = explQueue[sub] || [];
-      explQueue[sub] = [];
+      if (s) {
+        s.onload = s.onerror = null;
+        if (err && s.parentNode) s.remove();
+      }
+      delete explSliceLoading[flightKey];
+      var qs = explQueue[flightKey] || [];
+      explQueue[flightKey] = [];
       qs.forEach(function (f) { try { f(); } catch (e) {} });
     };
-    s.onload = function () {
-      var expl = (window.EXAM_SUBJECT_EXPL || {})[sub];
-      if (!expl) { done(new Error('解析数据缺失: ' + meta.expl)); return; }
-      SUBJ_EXPL[sub] = expl;
+    var s, settled = false, timer;
+    function accept(expl) {
+      if (!expl) { done(new Error('解析数据缺失: ' + ref.file)); return; }
+      SUBJ_EXPL[sub] = SUBJ_EXPL[sub] || Object.create(null);
+      if (ref.id) SUBJ_EXPL[sub][ref.id] = expl;
+      else SUBJ_EXPL[sub] = expl;
+      cacheSlice(cacheKey, expl);
       done();
-    };
-    s.onerror = function () { console.warn('解析文件加载失败: ' + meta.expl); done(new Error('解析文件加载失败: ' + meta.expl)); };
-    document.head.appendChild(s);
+    }
+    getCachedSlice(cacheKey).then(function (cached) {
+      if (cached) { accept(cached); return; }
+      var existing = ref.id && window.EXAM_EXPL_SLICES && window.EXAM_EXPL_SLICES[sub] && window.EXAM_EXPL_SLICES[sub][ref.id];
+      if (existing) { accept(existing); return; }
+      s = document.createElement('script');
+      s.src = ref.explFile || ref.file;
+      s.async = true;
+      timer = setTimeout(function () { done(new Error('解析文件加载超时: ' + s.src)); }, EXPL_TIMEOUT);
+      s.onload = function () {
+        var all = window.EXAM_EXPL_SLICES || {};
+        accept(ref.id ? all[sub] && all[sub][ref.id] : (window.EXAM_SUBJECT_EXPL || {})[sub]);
+      };
+      s.onerror = function () { console.warn('解析文件加载失败: ' + s.src); done(new Error('解析文件加载失败: ' + s.src)); };
+      document.head.appendChild(s);
+    }).catch(function (e) { done(e); });
   }
 
   // 取某题解析文本
-  function explTextOf(sub, qid) {
-    if (SUBJ_EXPL[sub]) return SUBJ_EXPL[sub][qid] || '';
+  function explTextOf(sub, qid, chapterId) {
+    if (SUBJ_EXPL[sub]) return (SUBJ_EXPL[sub][chapterId] || SUBJ_EXPL[sub])[qid] || '';
     return '';
   }
 
   // 当前科目选择题是否已经加载到 qIndex
-  function subjectReady(sub) { return !!SUBJ_DATA[sub]; }
+  function subjectReady(sub) { return !!SUBJ_FULL[sub]; }
 
   // 确保某科就绪后执行 cb：已就绪同步执行，未就绪先下载再执行。
   // 失败时自动重试 2 次（退避 1.5s / 3s），仍失败才在页面内提示并给「重试」按钮——
   // 用 alert 会把整页交互锁死，用户只能刷新，体验上就是「永远打不开」。
   var SUBJ_RETRY = 2;
   function ensureSubject(sub, cb, errCb) {
-    if (SUBJ_DATA[sub]) { if (cb) cb(); return; }
+    if (SUBJ_FULL[sub]) { if (cb) cb(); return; }
     var attempt = 0;
     var tryLoad = function () {
       loadSubject(sub).then(
@@ -262,7 +488,7 @@
     // 按 qid 前缀判断所属科目，避免跨科误取
     var sub = subjectOfQid(q.id);
     if (sub) {
-      var t = explTextOf(sub, q.id);
+      var t = explTextOf(sub, q.id, q.chapterId || (qIndex[q.id] && qIndex[q.id].chapterId));
       if (t) return t;
     }
     // 旧版合并解析文件（已停用），仅兼容浏览器缓存里残留的情况
@@ -315,7 +541,8 @@
              + renderMd(txt, qIndex[q.id]) + '</div>';
     }
     var _sub = subjectOfQid(q.id);
-    if (_sub) loadSubjectExpl(_sub, function () { hydrateExpl(document); drawFcExpIfNeeded(); });
+    var qMeta = qIndex[qid] || {};
+    if (_sub) loadSubjectExpl(_sub, qMeta.chapterId, function () { hydrateExpl(document); drawFcExpIfNeeded(); });
     return '<div class="exp-body" data-qid="' + escapeHtml(q.id) + '" data-filled="0">'
            + '<span class="exp-loading">解析加载中…</span></div>';
   }
@@ -572,6 +799,18 @@
   // 全局统计只算已加载的科目 —— 未加载的科不计入分母，
   // 否则首屏显示「已做 5 / 1565」会让人以为漏了很多。
   function countAllQuestions() {
+    var index = window.EXAM_DATA_INDEX;
+    if (index && index.subjects) {
+      var indexed = { choiceTotal: 0, shortTotal: 0, essayTotal: 0 };
+      SUBJECT_KEYS.forEach(function (sub) {
+        var info = index.subjects[sub];
+        if (!info) return;
+        indexed.choiceTotal += info.choice.reduce(function (sum, ch) { return sum + ch.count; }, 0);
+        indexed.shortTotal += info.shortCount;
+        indexed.essayTotal += info.essayCount;
+      });
+      return indexed;
+    }
     let choiceTotal = 0, shortTotal = 0, essayTotal = 0;
     SUBJECT_KEYS.forEach(function(sub) {
       var d = SUBJ_DATA[sub];
@@ -617,6 +856,8 @@
       const meta = qIndex[qid];
       if (meta && meta.type === 'short') shortDone++;
       else if (meta && meta.type === 'essay') essayDone++;
+      else if (/_s\d+$/.test(qid)) shortDone++;
+      else if (/_l\d+$/.test(qid)) essayDone++;
     });
     document.getElementById('gpShort').textContent = '已看答案 ' + shortDone + '/' + totals.shortTotal;
     document.getElementById('gpEssay').textContent = '已看答案 ' + essayDone + '/' + totals.essayTotal;
@@ -809,10 +1050,31 @@
       sideSyncToggleLabel();
       sideClock(Date.now());
 
-      if (tabName === 'choice') { ensureSubject(choiceState.subject, function () { updateChapterOptions('choice'); renderChoice(); }); }
+      if (tabName === 'choice') {
+        var choiceSub = choiceState.subject, choiceChapter = choiceState.chapterIdx;
+        document.getElementById('choiceArea').innerHTML = '<div class="empty-state">正在加载本章题目…</div>';
+        ensureChoiceChapter(choiceSub, choiceChapter, function () {
+          if (choiceState.subject !== choiceSub || choiceState.chapterIdx !== choiceChapter) return;
+          updateChapterOptions('choice'); renderChoice();
+        });
+      }
       else if (tabName === 'random') renderRandomHome();
-      else if (tabName === 'short') { ensureSubject(subjStates.short.subject, function () { updateChapterOptions('short'); renderSubjective('short'); }); }
-      else if (tabName === 'essay') { ensureSubject(subjStates.essay.subject, function () { updateChapterOptions('essay'); renderSubjective('essay'); }); }
+      else if (tabName === 'short') {
+        var shortSub = subjStates.short.subject, shortChapter = subjStates.short.chapterIdx;
+        document.getElementById('shortArea').innerHTML = '<div class="empty-state">正在加载本章题目…</div>';
+        ensureSubjectiveChapter(shortSub, shortChapter, function () {
+          if (subjStates.short.subject !== shortSub || subjStates.short.chapterIdx !== shortChapter) return;
+          updateChapterOptions('short'); renderSubjective('short');
+        });
+      }
+      else if (tabName === 'essay') {
+        var essaySub = subjStates.essay.subject, essayChapter = subjStates.essay.chapterIdx;
+        document.getElementById('essayArea').innerHTML = '<div class="empty-state">正在加载本章题目…</div>';
+        ensureSubjectiveChapter(essaySub, essayChapter, function () {
+          if (subjStates.essay.subject !== essaySub || subjStates.essay.chapterIdx !== essayChapter) return;
+          updateChapterOptions('essay'); renderSubjective('essay');
+        });
+      }
       else if (tabName === 'fc') { ensureSubject(fcState.subject, function () { initFcFilters(); fcUpdateChapters(); renderFlashcard(); }); }
       else if (tabName === 'mock') {
         loadMockPapers().then(function () { renderMockList(); }).catch(function (e) {
@@ -832,7 +1094,10 @@
           showError(e);
         });
       }
-      else if (tabName === 'wrong') renderWrongBook();
+      else if (tabName === 'wrong') {
+        var wrongIds = DB.loadProgress().wrong_questions || [];
+        loadWrongChoiceSlices(wrongIds).then(renderWrongBook);
+      }
     });
   });
 
@@ -848,7 +1113,9 @@
       choiceState.subject = sub;
       choiceState.chapterIdx = 0;
       choiceState.qIdx = 0;
-      ensureSubject(sub, function() {
+      document.getElementById('choiceArea').innerHTML = '<div class="empty-state">正在加载本章题目…</div>';
+      ensureChoiceChapter(sub, 0, function() {
+        if (choiceState.subject !== sub || choiceState.chapterIdx !== 0) return;
         updateChapterOptions('choice');
         renderChoice();
         updateGlobalProgress();
@@ -858,7 +1125,11 @@
     chapterSel.addEventListener('change', function() {
       choiceState.chapterIdx = parseInt(chapterSel.value) || 0;
       choiceState.qIdx = 0;
-      renderChoice();
+      var sub = choiceState.subject, idx = choiceState.chapterIdx;
+      document.getElementById('choiceArea').innerHTML = '<div class="empty-state">正在加载本章题目…</div>';
+      ensureChoiceChapter(sub, idx, function () {
+        if (choiceState.subject === sub && choiceState.chapterIdx === idx) renderChoice();
+      });
     });
   }
 
@@ -895,6 +1166,10 @@
 
     const chapter = chapters[choiceState.chapterIdx];
     if (!chapter) return;
+    if (!choiceSliceReady[subject + ':' + chapter.id] && !SUBJ_FULL[subject]) {
+      document.getElementById('choiceArea').innerHTML = '<div class="empty-state">正在加载本章题目…</div>';
+      return;
+    }
 
     // 收集当前章节所有题目，然后乱序（每次进入本章题目顺序都不同）
     let allQ = [];
@@ -981,14 +1256,13 @@
 
     // 绑定选项点击
     if (!recorded || !recorded.done) {
-      // 按需加载：只下当前这一科的解析，不再拉 2.3MB 的全量文件
-      loadSubjectExpl(choiceState.subject, function () { hydrateExpl(area); });
       area.querySelectorAll('.option-btn').forEach(function(btn) {
         btn.addEventListener('click', function() {
           const letter = btn.dataset.original; // 原始字母（显示位置可能被打乱）
           const correct = letter === q.answer;
           // 写本地+云端（recordChoice 内部自动更新错题统计）
           DB.recordChoice(q.id, { done: true, correct: correct, selected: letter });
+          loadSubjectExpl(choiceState.subject, q.chapterId, function () { hydrateExpl(area); });
           updateGlobalProgress();
           refreshChoiceChapterProgress();
           // 答对 → 自动进入下一题（不停留、不展开解析）；答错 → 停在本题自动展开解析等手动翻页
@@ -1080,14 +1354,16 @@
     }
     // 未开始 → 引导页
     if (!randomState.queue.length) {
-      const poolOf = function (sub) {
-        return Object.keys(qIndex).filter(function(qid){
-          if (qIndex[qid].type !== 'choice') return false;
-          return sub === 'all' || qIndex[qid].subject === sub;
-        });
+      const poolCountOf = function (sub) {
+        var index = window.EXAM_DATA_INDEX;
+        return SUBJECT_KEYS.reduce(function (sum, key) {
+          if (sub !== 'all' && key !== sub) return sum;
+          var info = index && index.subjects[key];
+          return sum + (info ? info.choice.reduce(function (n, ch) { return n + ch.count; }, 0) : 0);
+        }, 0);
       };
       const curSub = randomState.subject || 'all';
-      const curPool = poolOf(curSub);
+      const curPool = poolCountOf(curSub);
       area.innerHTML = `
         <div class="question-card" style="text-align:center; padding:40px 20px;">
           <div style="font-size:40px; margin-bottom:14px;">🎲</div>
@@ -1112,8 +1388,8 @@
       if (subSel) subSel.addEventListener('change', function () {
         randomState.subject = subSel.value;
         const sizeEl = document.getElementById('randomPoolSize');
-        if (sizeEl) sizeEl.textContent = poolOf(subSel.value).length;
-        sideStat(0, Math.min(RANDOM_QUIZ_SIZE, poolOf(subSel.value).length), 0, 0);
+        if (sizeEl) sizeEl.textContent = poolCountOf(subSel.value);
+        sideStat(0, Math.min(RANDOM_QUIZ_SIZE, poolCountOf(subSel.value)), 0, 0);
       });
       sideTitle('随机抽题');
       sideBubbles([], -1, function () {});
@@ -1128,22 +1404,50 @@
 
   function startRandomQuiz() {
     const sub = randomState.subject || 'all';
-    const allQids = Object.keys(qIndex).filter(function(qid){
-      if (qIndex[qid].type !== 'choice') return false;
-      return sub === 'all' || qIndex[qid].subject === sub;
+    const area = document.getElementById('randomArea');
+    area.innerHTML = '<div class="empty-state">正在抽取题目…</div>';
+    const refs = [];
+    SUBJECT_KEYS.forEach(function (key) {
+      if (sub !== 'all' && key !== sub) return;
+      var rows = window.EXAM_DATA_INDEX.subjects[key].choice;
+      rows.forEach(function (row, idx) { if (row.count) refs.push({ sub: key, idx: idx, remaining: row.count }); });
     });
-    const shuffled = shuffleArray(allQids);
-    const picked = shuffled.slice(0, Math.min(RANDOM_QUIZ_SIZE, shuffled.length));
-    randomState.queue = picked.map(function(qid) {
-      return { qid: qid, q: qIndex[qid].q };
+    var target = Math.min(RANDOM_QUIZ_SIZE, refs.reduce(function (n, row) { return n + row.remaining; }, 0));
+    var plan = [];
+    for (var i = 0; i < target; i++) {
+      var total = refs.reduce(function (n, row) { return n + row.remaining; }, 0);
+      var pick = Math.random() * total;
+      var selected = refs.find(function (row) {
+        pick -= row.remaining;
+        return pick < 0;
+      });
+      if (!selected) break;
+      selected.remaining--;
+      plan.push(selected);
+    }
+    var uniqueRefs = Array.from(new Map(plan.map(function (row) { return [row.sub + ':' + row.idx, row]; })).values());
+    Promise.all(uniqueRefs.map(function (row) { return loadChoiceSlice(row.sub, row.idx); })).then(function () {
+      var used = Object.create(null);
+      randomState.queue = plan.map(function (row) {
+        var chapter = SUBJ_DATA[row.sub].choice.chapters[row.idx];
+        var qs = [];
+        (chapter.kps || []).forEach(function (kp) { (kp.questions || []).forEach(function (q) { qs.push(q); }); });
+        var candidates = qs.filter(function (q) { return !used[q.id]; });
+        var q = candidates[Math.floor(Math.random() * candidates.length)];
+        if (!q) return null;
+        used[q.id] = true;
+        return { qid: q.id, q: qIndex[q.id].q };
+      }).filter(Boolean);
+      randomState.idx = 0;
+      randomState.correct = 0;
+      randomState.answered = 0;
+      randomState.finished = false;
+      randomState.wrongList = [];
+      renderRandomHome();
+      window.scrollTo({top: 0, behavior: 'smooth'});
+    }).catch(function (e) {
+      area.innerHTML = '<div class="empty-state">题目加载失败，请重试。' + escapeHtml(e.message || '') + '</div>';
     });
-    randomState.idx = 0;
-    randomState.correct = 0;
-    randomState.answered = 0;
-    randomState.finished = false;
-    randomState.wrongList = [];
-    renderRandomHome();
-    window.scrollTo({top: 0, behavior: 'smooth'});
   }
 
   function randomStatsHtml() {
@@ -1205,7 +1509,7 @@
   function bindRandomQuestion(area) {
     const item = randomState.queue[randomState.idx];
     const q = item.q;
-    loadSubjectExpl(randomState.subject && randomState.subject !== 'all' ? randomState.subject : subjectOfQid(q.id), function () { hydrateExpl(area); });
+    loadSubjectExpl(subjectOfQid(q.id), qIndex[q.id] && qIndex[q.id].chapterId, function () { hydrateExpl(area); });
 
     // ---- 侧栏：题号答题卡 + 上一题/下一题 ----
     sideTitle('随机答题卡 · ' + randomState.queue.length + ' 题');
@@ -1396,7 +1700,8 @@
       st.subject = sub;
       st.chapterIdx = 0;
       st.qIdx = 0;
-      ensureSubject(sub, function() {
+      document.getElementById(type + 'Area').innerHTML = '<div class="empty-state">正在加载本章题目…</div>';
+      ensureSubjectiveChapter(sub, st.chapterIdx, function() {
         if (subjStates[type].subject !== sub) return; // 期间又切走了，丢弃这次渲染
         updateChapterOptions(type);
         renderSubjective(type);
@@ -1408,7 +1713,11 @@
       var st = subjStates[type];
       st.chapterIdx = parseInt(chapterSel.value) || 0;
       st.qIdx = 0;
-      renderSubjective(type);
+      var sub = st.subject, idx = st.chapterIdx;
+      document.getElementById(type + 'Area').innerHTML = '<div class="empty-state">正在加载本章题目…</div>';
+      ensureSubjectiveChapter(sub, idx, function () {
+        if (st.subject === sub && st.chapterIdx === idx) renderSubjective(type);
+      });
     });
   }
 
@@ -2419,7 +2728,7 @@
       }, 1000);
       if (window.__EXAM_MATH_READY) window.__EXAM_MATH_READY.then(drawExp).catch(drawExp);
       else drawExp();
-      loadSubjectExpl(subjectOfQid(q.id), function () { drawExp(); });
+      loadSubjectExpl(subjectOfQid(q.id), q.chapterId, function () { drawExp(); });
     } else if (expEl) {
       expEl.setAttribute('data-loaded', '1');
     }
@@ -2604,19 +2913,19 @@
   }
 
   // ---------- 初始化 ----------
-  // 首屏只保证「西经」就绪（按需下载 data-west_econ.js），
-  // 其余 6 科等用户真的切过去时才拉 data-<key>.js。
+  // 首屏只加载轻量章节索引和西经第一章；其余章节在选中时再加载。
   function init() {
+    initSubjectShells();
     initChoiceFilters();
     initFcFilters();
     initSubjectiveFilters('short');
     initSubjectiveFilters('essay');
-
-    // 首屏只下西经选择题（约 250KB）；简答/论述/其他科目等切过去再下
-    ensureSubject('west_econ', function () {
+    updateChapterOptions('choice');
+    document.getElementById('choiceArea').innerHTML = '<div class="empty-state">正在加载题库索引和第一章…</div>';
+    initAuthUI();
+    updateGlobalProgress();
+    ensureChoiceChapter('west_econ', 0, function () {
       updateChapterOptions('choice');
-      initAuthUI();
-      updateGlobalProgress();
       renderChoice();
     });
   }
@@ -2625,7 +2934,10 @@
   init();
   if (window.__EXAM_LIBS_READY) {
     window.__EXAM_LIBS_READY.then(function () {
-      try { if (typeof renderChoice === 'function') renderChoice(); } catch (e) {}
+      try {
+        var current = SUBJ_DATA[choiceState.subject] && SUBJ_DATA[choiceState.subject].choice.chapters[choiceState.chapterIdx];
+        if (current && (choiceSliceReady[choiceState.subject + ':' + current.id] || SUBJ_FULL[choiceState.subject])) renderChoice();
+      } catch (e) {}
     });
   }
 })();
