@@ -924,8 +924,21 @@ body.has-side { padding-right: var(--sbw); }
 .md-body pre { background: var(--bg-sunken); padding: 12px; border-radius: 6px; overflow-x: auto; margin: 10px 0; }
 .md-body pre code { background: none; padding: 0; }
 .md-body .mermaid { background: var(--bg-sunken); padding: 12px; border-radius: 6px; margin: 10px 0; text-align: center; border: 1px solid var(--border); overflow-x: auto; }
-/* mermaid 节点配色：neutral 主题写死浅紫底+黑字，深色页面上是刺眼白贴纸。
-   只在深色模式下用 CSS 变量覆盖，浅色模式保持原样。 */
+/* mermaid 节点配色：mermaid 的 ''neutral'' 主题自带一套与页面无关的配色，
+   浅色模式下节点会变成黑底黑字、深色模式下是浅紫白贴纸，两边都看不清。
+   这里统一按页面主题变量覆盖：默认走浅色，深色模式再覆盖一次。 */
+.md-body .mermaid .node rect,
+.md-body .mermaid .node polygon,
+.md-body .mermaid .node circle,
+.md-body .mermaid .node ellipse { fill: #ffffff !important; stroke: #d0d7de !important; }
+.md-body .mermaid .nodeLabel,
+.md-body .mermaid .node label,
+.md-body .mermaid .node span { color: #1f2328 !important; fill: #1f2328 !important; }
+.md-body .mermaid .edgePath path,
+.md-body .mermaid .flowchart-link { stroke: #656d76 !important; }
+.md-body .mermaid .edgeLabel { background: transparent !important; }
+.md-body .mermaid .edgeLabel span,
+.md-body .mermaid .edgeLabel div { color: #656d76 !important; fill: #656d76 !important; background: transparent !important; }
 @media (prefers-color-scheme: dark) {
   .md-body .mermaid .node rect,
   .md-body .mermaid .node polygon,
