@@ -1099,27 +1099,38 @@ body.has-side { padding-right: var(--sbw); }
   window.__EXAM_LIBS_READY = Promise.all([
     loadOne('katexCss'),
     loadOne('marked'),
-    loadOne('mermaid'),
     mathP
   ])
     .then(function () {
-      if (window.mermaid) {
-        try {
-          // 画布必须透明：mermaid 的 'neutral' 主题会自带一块浅色底，
-          // 深色页面上就是一块刺眼白框。底色统一交给 .mermaid 容器（走主题变量）。
-          mermaid.initialize({
-            startOnLoad: false,
-            theme: 'neutral',
-            securityLevel: 'loose',
-            fontFamily: '-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif',
-            flowchart: { htmlLabels: true, useMaxWidth: true },
-            themeVariables: { background: 'transparent', fontSize: '14px' }
-          });
-        } catch (e) {}
-      }
       return true;
     })
     .catch(function () { return false; });
+
+  // Mermaid 体积较大，只在当前内容确实包含流程图时加载。
+  var mermaidLoading = null;
+  window.__EXAM_MERMAID_READY = function () {
+    if (window.mermaid) return Promise.resolve(true);
+    if (mermaidLoading) return mermaidLoading;
+    mermaidLoading = loadOne('mermaid').then(function (ok) {
+      if (!ok || !window.mermaid) return false;
+      try {
+        // 画布保持透明，背景色交给页面主题变量。
+        mermaid.initialize({
+          startOnLoad: false,
+          theme: 'neutral',
+          securityLevel: 'loose',
+          fontFamily: '-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif',
+          flowchart: { htmlLabels: true, useMaxWidth: true },
+          themeVariables: { background: 'transparent', fontSize: '14px' }
+        });
+        return true;
+      } catch (e) {
+        mermaidLoading = null;
+        return false;
+      }
+    });
+    return mermaidLoading;
+  };
 })();
 </script>
 </head>
@@ -1376,10 +1387,29 @@ body.has-side { padding-right: var(--sbw); }
     if (mockLoading) { if (cb) mockLoading.then(cb, function () {}); return mockLoading; }
     mockLoading = new Promise(function (resolve, reject) {
       var s = document.createElement('script');
+      var settled = false;
+      var timer = setTimeout(function () { finish(new Error('模拟卷加载超时')); }, 15000);
+      function finish(err) {
+        if (settled) return;
+        settled = true;
+        clearTimeout(timer);
+        s.onload = s.onerror = null;
+        if (err) {
+          if (s.parentNode) s.remove();
+          mockLoading = null;
+          reject(err);
+        } else {
+          resolve();
+          if (cb) cb();
+        }
+      }
       s.src = 'data-mock.js';
       s.async = true;
-      s.onload = function () { resolve(); if (cb) cb(); };
-      s.onerror = function () { mockLoading = null; reject(new Error('模拟卷加载失败')); };
+      s.onload = function () {
+        if (window.EXAM_MOCK_PAPERS) finish();
+        else finish(new Error('模拟卷数据缺失'));
+      };
+      s.onerror = function () { finish(new Error('模拟卷加载失败')); };
       document.head.appendChild(s);
     });
     return mockLoading;
@@ -1422,7 +1452,13 @@ body.has-side { padding-right: var(--sbw); }
         if (settled) return;
         settled = true;
         if (timer) clearTimeout(timer);
-        if (err) { delete subjLoading[sub]; reject(err); return; }
+        s.onload = s.onerror = null;
+        if (err) {
+          if (s.parentNode) s.remove();
+          delete subjLoading[sub];
+          reject(err);
+          return;
+        }
         var bucket = (window.EXAM_SUBJECT_DATA || {})[sub];
         if (!bucket) { delete subjLoading[sub]; reject(new Error('科目数据缺失: ' + sub)); return; }
         SUBJ_DATA[sub] = bucket;
@@ -1448,6 +1484,7 @@ body.has-side { padding-right: var(--sbw); }
   // 加载某科的选择题解析（幂等：下载中的请求会排队复用，不会重复插 <script>）
   var explLoading = {};
   var explQueue = {};
+  var EXPL_TIMEOUT = 12000;
   function loadSubjectExpl(sub, cb) {
     var meta = SUBJECT_META[sub];
     if (!meta) { if (cb) cb(); return; }
@@ -1458,17 +1495,26 @@ body.has-side { padding-right: var(--sbw); }
     var s = document.createElement('script');
     s.src = meta.expl;
     s.async = true;
-    var done = function () {
+    var settled = false;
+    var timer = setTimeout(function () { done(new Error('解析文件加载超时: ' + meta.expl)); }, EXPL_TIMEOUT);
+    var done = function (err) {
+      if (settled) return;
+      settled = true;
+      clearTimeout(timer);
+      s.onload = s.onerror = null;
+      if (err && s.parentNode) s.remove();
       explLoading[sub] = false;
       var qs = explQueue[sub] || [];
       explQueue[sub] = [];
       qs.forEach(function (f) { try { f(); } catch (e) {} });
     };
     s.onload = function () {
-      SUBJ_EXPL[sub] = (window.EXAM_SUBJECT_EXPL || {})[sub] || {};
+      var expl = (window.EXAM_SUBJECT_EXPL || {})[sub];
+      if (!expl) { done(new Error('解析数据缺失: ' + meta.expl)); return; }
+      SUBJ_EXPL[sub] = expl;
       done();
     };
-    s.onerror = function () { console.warn('解析文件加载失败: ' + meta.expl); done(); };
+    s.onerror = function () { console.warn('解析文件加载失败: ' + meta.expl); done(new Error('解析文件加载失败: ' + meta.expl)); };
     document.head.appendChild(s);
   }
 
@@ -1703,6 +1749,19 @@ body.has-side { padding-right: var(--sbw); }
   // 渲染后处理：扫描容器里的 mermaid 图和 KaTeX 公式
   function enhanceMd(container) {
     if (!container) return;
+
+    // Mermaid 仅在当前答案含图时下载。纯文本/公式页面不再等待或传输图表库。
+    if (!window.mermaid && window.__EXAM_MERMAID_READY) {
+      var hasDiagram = Array.from(container.querySelectorAll('pre code')).some(function (el) {
+        var code = el.textContent.trim();
+        return el.classList.contains('language-mermaid') || code.startsWith('graph ') || code.startsWith('flowchart ');
+      });
+      if (hasDiagram) {
+        window.__EXAM_MERMAID_READY().then(function (ok) {
+          if (ok && container.isConnected) enhanceMd(container);
+        });
+      }
+    }
 
     // 库还在异步加载：等 __EXAM_LIBS_READY 落定后对同一个容器重跑一次，
     // 否则背题卡片会在 mermaid/KaTeX 到位前渲染完，图和公式以源码形式留在页面上。
@@ -2047,7 +2106,24 @@ body.has-side { padding-right: var(--sbw); }
       else if (tabName === 'short') { ensureSubject(subjStates.short.subject, function () { updateChapterOptions('short'); renderSubjective('short'); }); }
       else if (tabName === 'essay') { ensureSubject(subjStates.essay.subject, function () { updateChapterOptions('essay'); renderSubjective('essay'); }); }
       else if (tabName === 'fc') { ensureSubject(fcState.subject, function () { initFcFilters(); fcUpdateChapters(); renderFlashcard(); }); }
-      else if (tabName === 'mock') loadMockPapers(function () { renderMockList(); });
+      else if (tabName === 'mock') {
+        loadMockPapers().then(function () { renderMockList(); }).catch(function (e) {
+          var area = document.getElementById('mockListArea');
+          if (!area) return;
+          var showError = function (err) {
+            area.innerHTML = '<div class="subj-fail"><div class="subj-fail-title">模拟卷暂时无法加载</div>' +
+              '<div class="subj-fail-sub">网络可能暂时不可用，请稍后重试。</div>' +
+              '<div class="subj-fail-actions"><button type="button" class="user-btn" id="mockRetry">重新加载</button></div></div>';
+            var retry = document.getElementById('mockRetry');
+            if (retry) retry.addEventListener('click', function () {
+            area.innerHTML = '<div class="text-mute" style="padding:20px;text-align:center;">模拟卷加载中…</div>';
+              loadMockPapers().then(function () { renderMockList(); }).catch(showError);
+            });
+            console.warn('[模拟卷加载失败]', err && err.message);
+          };
+          showError(e);
+        });
+      }
       else if (tabName === 'wrong') renderWrongBook();
     });
   });
