@@ -163,7 +163,12 @@ window.DB = (function () {
   }
 
   loadLocal();
-  initSupabase();
+  // 先让本地题库和首屏交互启动，云端客户端在空闲时初始化，避免抢占首屏带宽。
+  if (window.requestIdleCallback) {
+    requestIdleCallback(function () { initSupabase(); }, { timeout: 4000 });
+  } else {
+    setTimeout(function () { initSupabase(); }, 2000);
+  }
 
   // ==================== 对外接口 ====================
   return {

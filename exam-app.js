@@ -226,13 +226,6 @@
     if (rl) rl.addEventListener('click', function () { location.reload(); });
   }
 
-  // 空闲时预取某科解析，答题时不用再等
-  function preloadSubjectExpl(sub) {
-    var kick = function () { loadSubjectExpl(sub, null); };
-    if (window.requestIdleCallback) requestIdleCallback(kick, { timeout: 6000 });
-    else setTimeout(kick, 2000);
-  }
-
   // ---------- 题目索引：qid → 题目对象 + 元信息 ----------
   // 用于错题本反查题目、全局统计
   const qIndex = {};
@@ -816,7 +809,7 @@
       sideSyncToggleLabel();
       sideClock(Date.now());
 
-      if (tabName === 'choice') { ensureSubject(choiceState.subject, function () { updateChapterOptions('choice'); renderChoice(); preloadSubjectExpl(choiceState.subject); }); }
+      if (tabName === 'choice') { ensureSubject(choiceState.subject, function () { updateChapterOptions('choice'); renderChoice(); }); }
       else if (tabName === 'random') renderRandomHome();
       else if (tabName === 'short') { ensureSubject(subjStates.short.subject, function () { updateChapterOptions('short'); renderSubjective('short'); }); }
       else if (tabName === 'essay') { ensureSubject(subjStates.essay.subject, function () { updateChapterOptions('essay'); renderSubjective('essay'); }); }
@@ -859,7 +852,6 @@
         updateChapterOptions('choice');
         renderChoice();
         updateGlobalProgress();
-        preloadSubjectExpl(sub);
       });
     });
 
@@ -2223,7 +2215,6 @@
         fcUpdateChapters();
         renderFlashcard();
         updateGlobalProgress();
-        preloadSubjectExpl(sub);
       });
     });
     chapSel.addEventListener('change', function () {
@@ -2628,27 +2619,6 @@
       updateGlobalProgress();
       renderChoice();
     });
-  }
-
-  // 首屏渲染完成后，趁空闲提前把解析拉下来（用户答题时无感）
-  function idleKick(fn, delay) {
-    if (window.requestIdleCallback) requestIdleCallback(fn, { timeout: delay || 4000 });
-    else setTimeout(fn, (delay || 4000) - 1500);
-  }
-  idleKick(function () { loadSubjectExpl('west_econ'); }, 4000);
-  // 西经解析到齐后再把另外 4 个待用科目的数据在后台排队预取，
-  // 用户下次切科目基本是瞬开。download 走浏览器 HTTP 缓存，不重复流量。
-  // 只预热「最可能马上用的下一科」——政治经济学（西经之后的第二选择）。
-  // 其余 5 科共约 4MB，等用户真的切过去再下，不必用他的流量替别人铺路。
-  function warmSubjects() {
-    loadSubject('pol_econ').catch(function () {});
-  }
-  if ('requestIdleCallback' in window) {
-    setTimeout(function () {
-      requestIdleCallback(warmSubjects, { timeout: 15000 });
-    }, 12000);
-  } else {
-    setTimeout(warmSubjects, 15000);
   }
 
   // 首屏立刻渲染（不等 CDN）；库到齐后再增强公式与图表

@@ -25,18 +25,16 @@
     autoRender: ['KaTeX/0.16.9/contrib/auto-render.min.js', 'katex@0.16.9/dist/contrib/auto-render.min.js'],
     katexCss: ['KaTeX/0.16.9/katex.min.css', 'katex@0.16.9/dist/katex.min.css']
   };
-  // 单个源的等待上限：超时就换下一个源。
-  // 没有超时的话，一旦某个 CDN 卡住（2.5MB 的 mermaid 很常见），
-  // 后面的 KaTeX 永远等不到，公式就全以源码漏出来。
-  var TIMEOUT = 8000;
+  // 单个 CDN 的等待上限。最多尝试 3 个源，限制网络故障时的兜底总等待。
+  var TIMEOUT = 2500;
 
   function loadOne(kind) {
     var variants = PKGS[kind], i = 0;
     return new Promise(function (resolve) {
       (function next() {
-        if (i >= CDN.length * variants.length) return resolve(false);
-        var ci = i % CDN.length, vi = Math.floor(i / CDN.length);
-        var url = CDN[ci] + variants[vi];
+        if (i >= CDN.length) return resolve(false);
+        // 每个源只尝试其对应的一种 URL，避免 3 个 CDN × 多版本的长串行等待。
+        var url = CDN[i] + variants[i === 0 ? 0 : variants.length - 1];
         i++;
         var el, settled = false, timer;
         function finish(ok) {
