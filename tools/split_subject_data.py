@@ -253,7 +253,7 @@ def parse_choice_questions(body, subject, chapter_id, kp_id):
     return questions
 
 
-def parse_choice_kp(text, subject, chapter_id, chapter_name):
+def parse_choice_kp(text, subject, chapter_id, chapter_name, md_path=None):
     """章节子目录里的选择题集.md：按 ## KPxx 知识点切分，题 id 保持 history 兼容。"""
     kps = []
     blocks = split_by_heading(text, r"^##\s+KP\d+\s+")
@@ -262,10 +262,19 @@ def parse_choice_kp(text, subject, chapter_id, chapter_name):
         if not m_kp:
             continue
         kp_id = m_kp.group(1)
-        kp_name = clean_md(strip_quan(re.sub(r"^\[\[.*?\|(.*?)\]\].*$", r"\1", m_kp.group(2))))
+        raw_name = m_kp.group(2)
+        kp_file = resolve_kp_file(raw_name, md_path)
+        # 标题可能把知识点链接嵌在中文括号中；展示标题保留，链接本身交给 file 字段。
+        kp_name = re.sub(r"\s*[（(]\s*\[\[[^\]]+\]\]\s*[）)]", "", raw_name)
+        kp_name = re.sub(
+            r"\[\[([^\]|]+)(?:\|([^\]]+))?\]\]",
+            lambda m: (m.group(2) or Path(m.group(1)).stem).strip(),
+            kp_name,
+        )
+        kp_name = clean_md(strip_quan(kp_name))
         questions = parse_choice_questions(body, subject, chapter_id, kp_id)
         if questions:
-            kps.append({"id": kp_id, "name": kp_name, "file": "", "questions": questions})
+            kps.append({"id": kp_id, "name": kp_name, "file": kp_file, "questions": questions})
     return kps
 
 
@@ -660,7 +669,7 @@ def build_subject(key):
                 continue
             cid = cd.name
             cname = parse_chapter_name(cid)
-            kps = parse_choice_kp(cf.read_text(encoding="utf-8"), key, cid, cname)
+            kps = parse_choice_kp(cf.read_text(encoding="utf-8"), key, cid, cname, cf)
             qs_all = []
             for kp in kps:
                 kept = []
